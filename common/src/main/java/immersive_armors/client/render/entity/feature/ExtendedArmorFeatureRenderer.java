@@ -36,11 +36,11 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
         super(context, leggingsModel, bodyModel);
 
-        leggingsModelLower = (A)new BipedEntityModel<T>(0.25f);
-        bodyModelLower = (A)new BipedEntityModel<T>(0.75f);
+        leggingsModelLower = (A)new BipedEntityModel<T>(0.1f);
+        bodyModelLower = (A)new BipedEntityModel<T>(0.6f);
 
-        leggingsModelUpper = (A)new BipedEntityModel<T>(0.75f);
-        bodyModelUpper = (A)new BipedEntityModel<T>(1.25f);
+        leggingsModelUpper = (A)new BipedEntityModel<T>(1.0f);
+        bodyModelUpper = (A)new BipedEntityModel<T>(1.5f);
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {

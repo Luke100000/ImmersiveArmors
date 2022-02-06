@@ -20,9 +20,7 @@ public final class Main {
 
     public static void postLoad() {
         MixingEntityRenderDispatcher renderManager = (MixingEntityRenderDispatcher)MinecraftClient.getInstance().getEntityRenderDispatcher();
-        renderManager.getModelRenderers().forEach((unused, playerEntityRenderer) -> {
-            process(playerEntityRenderer);
-        });
+        renderManager.getModelRenderers().forEach((unused, playerEntityRenderer) -> process(playerEntityRenderer));
         renderManager.getRenderers().forEach((unused, entityRenderer) -> {
             if (entityRenderer instanceof FeatureRendererContext) {
                 process((FeatureRendererContext<?, ?>)entityRenderer);
@@ -40,7 +38,7 @@ public final class Main {
                 if (feature.getClass() == ArmorFeatureRenderer.class) {
                     MixinArmorFeatureRenderer<?, ?, ?> armorFeature = (MixinArmorFeatureRenderer<?, ?, ?>)feature;
                     toRemove.add(feature);
-                    //noinspection rawtypes
+                    //noinspection unchecked
                     toAdd.add(new ExtendedArmorFeatureRenderer(
                             renderer,
                             armorFeature.getLeggingsModel(),

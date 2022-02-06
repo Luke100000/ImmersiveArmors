@@ -15,15 +15,10 @@ public final class CommonForge {
     public CommonForge() {
         RegistrationImpl.bootstrap();
         new NetworkHandlerImpl();
-        MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
 
         Items.bootstrap();
         Sounds.bootstrap();
         ParticleTypes.bootstrap();
-    }
-
-    private void onAddReloadListener(AddReloadListenerEvent event) {
-
     }
 
     @SubscribeEvent
