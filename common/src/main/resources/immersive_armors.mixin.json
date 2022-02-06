@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.7",
+  "package": "immersive_armors.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinActivity",
+    "MixinMemoryModuleType",
+    "MixinSensorType"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

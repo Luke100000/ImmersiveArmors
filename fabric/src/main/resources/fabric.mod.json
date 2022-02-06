@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "immersive_armors",
+  "version": "${version}",
+  "name": "Immersive Armors",
+  "description": "A lot of unique and vanilla-faithful armor sets.",
+  "authors": [
+    "Luke100000"
+  ],
+  "contact": {
+    "sources": "https://github.com/Luke100000/minecraft-comes-alive",
+    "issues": "https://github.com/Luke100000/minecraft-comes-alive/issues"
+  },
+  "license": "GNU",
+  "icon": "banner.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "immersive_armors.CommonFabric"
+    ],
+    "client": [
+      "immersive_armors.ClientFabric"
+    ]
+  },
+  "mixins": [
+    "immersive_armors.mixin.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "java": ">=8",
+    "fabric-api-base": ">=0.1.0"
+  }
+}

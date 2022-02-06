@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'architectury-plugin' version '3.2-SNAPSHOT'
+    id 'dev.architectury.loom' version '0.7.2-SNAPSHOT' apply false
+    id 'org.ajoberstar.reckon' version '0.13.0'
+}
+
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+reckon {
+    scopeFromProp()
+    stageFromProp('beta', 'rc', 'final')
+}
+
+subprojects {
+    apply plugin: 'dev.architectury.loom'
+
+    loom {
+        mixinConfig "immersive_armors.mixin.json"
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${project.minecraft_version}"
+        mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    }
+}
+
+allprojects {
+    apply plugin: "architectury-plugin"
+
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+
+    group = rootProject.group
+    description = rootProject.displayname
+    archivesBaseName = rootProject.name
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
