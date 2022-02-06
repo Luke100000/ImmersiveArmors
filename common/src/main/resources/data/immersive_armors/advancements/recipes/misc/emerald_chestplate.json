@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "immersive_armors:armor"
+      "immersive_armors:emerald_chestplate"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:paper"
+            "item": "minecraft:emerald"
           },
           {
             "item": "minecraft:blue_dye"

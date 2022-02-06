@@ -1,0 +1,6 @@
+{
+  "parent": "items/generated",
+  "textures": {
+    "layer0": "immersive_armors:items/emerald_chestplate"
+  }
+}

@@ -6,9 +6,13 @@
   "mixins": [
     "MixinActivity",
     "MixinMemoryModuleType",
+    "MixinModelPart",
     "MixinSensorType"
   ],
   "client": [
+    "MixinArmorFeatureRenderer",
+    "MixingEntityRenderDispatcher",
+    "MixinLivingEntityRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

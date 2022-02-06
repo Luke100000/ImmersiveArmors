@@ -1,22 +1,32 @@
 package immersive_armors;
 
 import immersive_armors.cobalt.registration.Registration;
-import immersive_armors.item.TestItem;
+import immersive_armors.item.ArmorLayer;
+import immersive_armors.item.ExtendedArmorItem;
+import immersive_armors.item.ExtendedArmorMaterial;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public interface Items {
-    Item TEST_ITEM = register("test", new TestItem(baseProps()));
+    ExtendedArmorMaterial emerald = new ExtendedArmorMaterial("emerald")
+            .protectionAmount(2, 3, 2, 1)
+            .toughness(1.0f)
+            .layer(ArmorLayer.LOWER)
+            .colored(ArmorLayer.LOWER);
 
-    net.minecraft.item.ItemGroup ItemGroup = Registration.ObjectBuilders.ItemGroups.create(
+    Item EMERALD_CHESTPLATE = register("emerald_chestplate", new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, emerald));
+
+    ItemGroup itemGroup = Registration.ObjectBuilders.ItemGroups.create(
             new Identifier(Main.MOD_ID, Main.MOD_ID + "_tab"),
-            Items.TEST_ITEM::getDefaultStack
+            Items.EMERALD_CHESTPLATE::getDefaultStack
     );
-    ;
 
     static void bootstrap() {
         Tags.Blocks.bootstrap();
+        Tags.Items.bootstrap();
     }
 
     static Item register(String name, Item item) {
@@ -24,6 +34,6 @@ public interface Items {
     }
 
     static Item.Settings baseProps() {
-        return new Item.Settings().group(ItemGroup);
+        return new Item.Settings().group(itemGroup);
     }
 }

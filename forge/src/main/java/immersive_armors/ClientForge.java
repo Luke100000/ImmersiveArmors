@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod.EventBusSubscriber(modid = Main.MOD_ID, value = Dist.CLIENT, bus = Bus.MOD)
 public final class ClientForge {
@@ -27,6 +29,6 @@ public final class ClientForge {
     public static void onParticleFactoryRegistration(ParticleFactoryRegisterEvent event) {
         RegistrationImpl.bootstrap();
         MinecraftClient mc = MinecraftClient.getInstance();
-        mc.particleManager.registerFactory(ParticleTypes.EXAMPLE, ExampleParticle.Factory::new);
+        //mc.particleManager.registerFactory(ParticleTypes.EXAMPLE, ExampleParticle.Factory::new);
     }
 }
