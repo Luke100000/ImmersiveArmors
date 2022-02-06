@@ -1,5 +1,10 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
 
-  "item.immersive_armors.emerald_chestplate": "Emerald Chestplate"
+  "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
+
+  "item.immersive_armors.bone_helmet": "Bone Helmet",
+  "item.immersive_armors.bone_chestplate": "Bone Chestplate",
+  "item.immersive_armors.bone_leggings": "Bone Leggings",
+  "item.immersive_armors.bone_boots": "Bone Boots"
 }

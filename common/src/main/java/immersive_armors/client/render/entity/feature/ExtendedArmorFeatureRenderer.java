@@ -63,7 +63,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     private Identifier getArmorTexture(ArmorItem item, boolean legs, @Nullable String overlay, ArmorLayer armorLayer) {
         String string;
         if (item instanceof ExtendedArmorItem) {
-            string = "immersive_armors:textures/models/armor/" + item.getMaterial().getName() + "_layer_" + (legs ? 2 : 1) + "_" + armorLayer.name().toLowerCase(Locale.ENGLISH) + (overlay == null ? "" : "_" + overlay) + ".png";
+            string = "immersive_armors:textures/models/armor/" + item.getMaterial().getName() + "/layer_" + (legs ? 2 : 1) + "_" + armorLayer.name().toLowerCase(Locale.ENGLISH) + (overlay == null ? "" : "_" + overlay) + ".png";
         } else {
             string = "textures/models/armor/" + item.getMaterial().getName() + "_layer_" + (legs ? 2 : 1) + (overlay == null ? "" : "_" + overlay) + ".png";
         }

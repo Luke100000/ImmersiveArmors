@@ -15,6 +15,8 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private float toughness;
     private float knockbackResistance;
     private int enchantability;
+    private float weight;
+    private int extraHealth;
 
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
@@ -80,6 +82,16 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial weight(float weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    public ExtendedArmorMaterial extraHealth(int extraHealth) {
+        this.extraHealth = extraHealth;
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -126,5 +138,13 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public boolean isColored(ArmorLayer layer) {
         return colored.contains(layer);
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public int getExtraHealth() {
+        return extraHealth;
     }
 }

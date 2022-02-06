@@ -29,7 +29,8 @@ public class ExtendedArmorItem extends DyeableArmorItem {
         builder.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(uUID, "Armor modifier", getProtection(), EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(uUID, "Armor toughness", getMaterial().getToughness(), EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(uUID, "Armor knockback resistance", this.knockbackResistance, EntityAttributeModifier.Operation.ADDITION));
-        builder.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(uUID, "Armor movement speed", -0.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        builder.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(uUID, "Armor movement speed", -material.getWeight(), EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        builder.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uUID, "Armor health gain", material.getExtraHealth(), EntityAttributeModifier.Operation.ADDITION));
 
         this.attributeModifiers = builder.build();
     }
