@@ -26,6 +26,14 @@ public interface Items {
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
             .weight(-0.01f));
 
+    Item[] WARRIOR_ARMOR = registerSet(new ExtendedArmorMaterial("warrior")
+            .protectionAmount(5, 6, 3, 2)
+            .toughness(2.0f)
+            .enchantability(5)
+            .layer(ArmorLayer.LOWER)
+            .layer(ArmorLayer.UPPER)
+            .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
+
     ItemGroup itemGroup = Registration.ObjectBuilders.ItemGroups.create(
             new Identifier(Main.MOD_ID, Main.MOD_ID + "_tab"),
             Items.EMERALD_CHESTPLATE::getDefaultStack
