@@ -6,5 +6,10 @@
   "item.immersive_armors.bone_helmet": "Bone Helmet",
   "item.immersive_armors.bone_chestplate": "Bone Chestplate",
   "item.immersive_armors.bone_leggings": "Bone Leggings",
-  "item.immersive_armors.bone_boots": "Bone Boots"
+  "item.immersive_armors.bone_boots": "Bone Boots",
+
+  "item.immersive_armors.warrior_helmet": "Warrior Helmet",
+  "item.immersive_armors.warrior_chestplate": "Warrior Chestplate",
+  "item.immersive_armors.warrior_leggings": "Warrior Leggings",
+  "item.immersive_armors.warrior_boots": "Warrior Boots"
 }

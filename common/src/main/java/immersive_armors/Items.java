@@ -6,7 +6,6 @@ import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -34,11 +33,6 @@ public interface Items {
             .layer(ArmorLayer.UPPER)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
 
-    ItemGroup itemGroup = Registration.ObjectBuilders.ItemGroups.create(
-            new Identifier(Main.MOD_ID, Main.MOD_ID + "_tab"),
-            Items.EMERALD_CHESTPLATE::getDefaultStack
-    );
-
     static void bootstrap() {
         Tags.Blocks.bootstrap();
         Tags.Items.bootstrap();
@@ -58,6 +52,6 @@ public interface Items {
     }
 
     static Item.Settings baseProps() {
-        return new Item.Settings().group(itemGroup);
+        return new Item.Settings().group(ItemGroups.ARMOR);
     }
 }
