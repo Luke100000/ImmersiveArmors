@@ -18,6 +18,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private float weight;
     private int extraHealth;
     private int color = 10511680;
+    private float attackDamage;
+    private float attackSpeed;
+    private int luck;
 
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
@@ -98,6 +101,21 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial attackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+        return this;
+    }
+
+    public ExtendedArmorMaterial attackSpeed(int attackSpeed) {
+        this.attackSpeed = attackSpeed;
+        return this;
+    }
+
+    public ExtendedArmorMaterial luck(int luck) {
+        this.luck = luck;
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -156,5 +174,17 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public int getColor() {
         return color;
+    }
+
+    public float getAttackDamage() {
+        return attackDamage;
+    }
+
+    public float getAttackSpeed() {
+        return attackSpeed;
+    }
+
+    public int getLuck() {
+        return luck;
     }
 }
