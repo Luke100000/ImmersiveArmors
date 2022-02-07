@@ -2,6 +2,7 @@ package immersive_armors;
 
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
+import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 import net.minecraft.entity.EquipmentSlot;
@@ -43,7 +44,7 @@ public interface Items {
             .layer(ArmorLayer.UPPER)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
-    Item[] ROBE_ARMOR = registerSet(new ExtendedArmorMaterial("robe")
+    Item[] ROBE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("robe")
             .protectionAmount(3, 4, 2, 1)
             .enchantability(50)
             .color(11546150)
@@ -63,6 +64,15 @@ public interface Items {
                 register(material.getName() + "_chestplate", new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
                 register(material.getName() + "_leggings", new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
                 register(material.getName() + "_boots", new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material)),
+        };
+    }
+
+    static Item[] registerDyeableSet(ExtendedArmorMaterial material) {
+        return new Item[] {
+                register(material.getName() + "_helmet", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
+                register(material.getName() + "_chestplate", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
+                register(material.getName() + "_leggings", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
+                register(material.getName() + "_boots", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material)),
         };
     }
 
