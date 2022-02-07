@@ -33,6 +33,16 @@ public interface Items {
             .layer(ArmorLayer.UPPER)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
 
+    Item[] HEAVY_IRON_ARMOR = registerSet(new ExtendedArmorMaterial("heavy_iron")
+            .protectionAmount(6, 7, 4, 3)
+            .toughness(2.0f)
+            .knockbackReduction(0.2f)
+            .weight(0.05f)
+            .enchantability(6)
+            .layer(ArmorLayer.LOWER)
+            .layer(ArmorLayer.UPPER)
+            .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
+
     static void bootstrap() {
         Tags.Blocks.bootstrap();
         Tags.Items.bootstrap();

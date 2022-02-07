@@ -67,7 +67,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial knockbackReduction(int knockbackReduction) {
+    public ExtendedArmorMaterial knockbackReduction(float knockbackReduction) {
         this.knockbackResistance = knockbackReduction;
         return this;
     }
