@@ -31,7 +31,7 @@ public interface Items {
             .enchantability(5)
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
-            .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
+            .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] HEAVY_IRON_ARMOR = registerSet(new ExtendedArmorMaterial("heavy_iron")
             .protectionAmount(6, 7, 4, 3)
@@ -41,7 +41,16 @@ public interface Items {
             .enchantability(6)
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
-            .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT));
+            .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
+
+    Item[] ROBE_ARMOR = registerSet(new ExtendedArmorMaterial("robe")
+            .protectionAmount(3, 4, 2, 1)
+            .enchantability(50)
+            .color(11546150)
+            .layer(ArmorLayer.LOWER)
+            .colored(ArmorLayer.MIDDLE)
+            .colored(ArmorLayer.LOWER)
+            .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     static void bootstrap() {
         Tags.Blocks.bootstrap();

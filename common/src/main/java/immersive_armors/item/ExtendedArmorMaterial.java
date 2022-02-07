@@ -17,6 +17,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private int enchantability;
     private float weight;
     private int extraHealth;
+    private int color = 10511680;
 
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
@@ -92,6 +93,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial color(int color) {
+        this.color = color;
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -146,5 +152,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public int getExtraHealth() {
         return extraHealth;
+    }
+
+    public int getColor() {
+        return color;
     }
 }

@@ -16,5 +16,10 @@
   "item.immersive_armors.heavy_iron_helmet": "Heavy Iron Helmet",
   "item.immersive_armors.heavy_iron_chestplate": "Heavy Iron Chestplate",
   "item.immersive_armors.heavy_iron_leggings": "Heavy Iron Leggings",
-  "item.immersive_armors.heavy_iron_boots": "Heavy Iron Boots"
+  "item.immersive_armors.heavy_iron_boots": "Heavy Iron Boots",
+
+  "item.immersive_armors.robe_helmet": "Robe Helmet",
+  "item.immersive_armors.robe_chestplate": "Robe Chestplate",
+  "item.immersive_armors.robe_leggings": "Robe Leggings",
+  "item.immersive_armors.robe_boots": "Robe Boots"
 }
