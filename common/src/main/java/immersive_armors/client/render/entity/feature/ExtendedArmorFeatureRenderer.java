@@ -19,6 +19,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.DyeableArmorItem;
+import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -85,7 +86,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
                 boolean secondLayer = this.usesSecondLayer(armorSlot);
                 boolean hasGlint = itemStack.hasGlint();
                 if (isColored(armorItem, armorLayer)) {
-                    int i = ((DyeableArmorItem)armorItem).getColor(itemStack);
+                    int i = ((DyeableItem)armorItem).getColor(itemStack);
                     float f = (float)(i >> 16 & 255) / 255.0F;
                     float g = (float)(i >> 8 & 255) / 255.0F;
                     float h = (float)(i & 255) / 255.0F;
