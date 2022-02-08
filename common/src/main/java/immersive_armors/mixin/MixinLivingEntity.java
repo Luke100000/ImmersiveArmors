@@ -18,11 +18,11 @@ public abstract class MixinLivingEntity {
 
     private float apply(EquipmentSlot slot, DamageSource source, float amount) {
         ItemStack stack = this.getEquippedStack(slot);
-        ;
+
         if (stack != null) {
             if (stack.getItem() instanceof ExtendedArmorItem) {
                 ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
-                amount = armor.applyArmorToDamage(source, amount);
+                amount = armor.applyArmorToDamage(source, amount, stack);
             }
         }
         return amount;

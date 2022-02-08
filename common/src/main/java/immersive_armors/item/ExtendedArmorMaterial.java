@@ -1,6 +1,9 @@
 package immersive_armors.item;
 
+import immersive_armors.armorDamageEffects.ArmorEffect;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
@@ -21,6 +24,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private float attackDamage;
     private float attackSpeed;
     private int luck;
+    private final List<ArmorEffect> effects = new LinkedList<>();
 
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
@@ -47,7 +51,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public ExtendedArmorMaterial protectionAmount(int helmet, int chestplate, int legging, int boots) {
-        this.protectionAmount = new int[] {helmet, chestplate, legging, boots};
+        this.protectionAmount = new int[] {boots, legging, chestplate, helmet};
         return this;
     }
 
@@ -113,6 +117,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public ExtendedArmorMaterial luck(int luck) {
         this.luck = luck;
+        return this;
+    }
+
+    public ExtendedArmorMaterial effect(ArmorEffect effect) {
+        this.effects.add(effect);
         return this;
     }
 
@@ -186,5 +195,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public int getLuck() {
         return luck;
+    }
+
+    public List<ArmorEffect> getEffects() {
+        return effects;
     }
 }

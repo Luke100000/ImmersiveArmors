@@ -1,5 +1,6 @@
 package immersive_armors;
 
+import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.DyeableExtendedArmorItem;
@@ -51,6 +52,7 @@ public interface Items {
             .layer(ArmorLayer.LOWER)
             .colored(ArmorLayer.MIDDLE)
             .colored(ArmorLayer.LOWER)
+            .effect(new FireResistanceArmorEffect(0.25f))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     static void bootstrap() {

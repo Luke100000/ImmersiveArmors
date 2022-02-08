@@ -1,7 +1,11 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
 
+  "damageEffect.fireResistance": "%d%% Fire Resistance",
+
   "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
+
+  "item.immersive_armors.dyeable": "Dyeable",
 
   "item.immersive_armors.bone_helmet": "Bone Helmet",
   "item.immersive_armors.bone_chestplate": "Bone Chestplate",
