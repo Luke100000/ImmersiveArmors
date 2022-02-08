@@ -1,10 +1,13 @@
 package immersive_armors.mixin;
 
 import immersive_armors.item.ExtendedArmorItem;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +15,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class MixinLivingEntity {
+public abstract class MixinLivingEntity extends Entity {
+    protected MixinLivingEntity(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot arg);
 
@@ -22,7 +29,7 @@ public abstract class MixinLivingEntity {
         if (stack != null) {
             if (stack.getItem() instanceof ExtendedArmorItem) {
                 ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
-                amount = armor.applyArmorToDamage(source, amount, stack);
+                amount = armor.applyArmorToDamage(this, source, amount, stack);
             }
         }
         return amount;

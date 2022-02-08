@@ -1,7 +1,6 @@
 package immersive_armors;
 
 import immersive_armors.cobalt.registration.Registration;
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

@@ -29,8 +29,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
 
-    private final Set<ArmorLayer> layers;
-    private final Set<ArmorLayer> colored;
+    private final Set<ArmorLayer> layers = new HashSet<>();
+    private final Set<ArmorLayer> colored = new HashSet<>();
+    private final Set<ArmorLayer> tranclucent = new HashSet<>();
 
     private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
 
@@ -39,10 +40,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
         protectionAmount(0, 0, 0, 0);
 
-        layers = new HashSet<>();
         layers.add(ArmorLayer.MIDDLE);
-
-        colored = new HashSet<>();
     }
 
     public ExtendedArmorMaterial durabilityMultiplier(int durabilityMultiplier) {
@@ -87,6 +85,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public ExtendedArmorMaterial colored(ArmorLayer layer) {
         colored.add(layer);
+        return this;
+    }
+
+    public ExtendedArmorMaterial tranclucent(ArmorLayer layer) {
+        tranclucent.add(layer);
         return this;
     }
 
@@ -171,6 +174,10 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public boolean isColored(ArmorLayer layer) {
         return colored.contains(layer);
+    }
+
+    public boolean isTranslucent(ArmorLayer layer) {
+        return tranclucent.contains(layer);
     }
 
     public float getWeight() {

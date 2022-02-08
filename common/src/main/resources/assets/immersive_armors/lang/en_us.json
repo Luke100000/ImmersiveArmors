@@ -2,6 +2,8 @@
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
 
   "damageEffect.fireResistance": "%d%% Fire Resistance",
+  "damageEffect.fireInflicting": "%d ticks Fire Damage",
+  "damageEffect.bounceback": "%d Bounceback",
 
   "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
 
@@ -25,5 +27,10 @@
   "item.immersive_armors.robe_helmet": "Robe Helmet",
   "item.immersive_armors.robe_chestplate": "Robe Chestplate",
   "item.immersive_armors.robe_leggings": "Robe Leggings",
-  "item.immersive_armors.robe_boots": "Robe Boots"
+  "item.immersive_armors.robe_boots": "Robe Boots",
+
+  "item.immersive_armors.slime_helmet": "Slime Helmet",
+  "item.immersive_armors.slime_chestplate": "Slime Chestplate",
+  "item.immersive_armors.slime_leggings": "Slime Leggings",
+  "item.immersive_armors.slime_boots": "Slime Boots"
 }

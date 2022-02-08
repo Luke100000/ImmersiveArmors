@@ -1,5 +1,7 @@
 package immersive_armors;
 
+import immersive_armors.armorDamageEffects.BouncingArmorEffect;
+import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
 import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
@@ -53,7 +55,20 @@ public interface Items {
             .colored(ArmorLayer.MIDDLE)
             .colored(ArmorLayer.LOWER)
             .effect(new FireResistanceArmorEffect(0.25f))
+            .effect(new FireInflictingArmorEffect(20))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
+
+    Item[] SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")
+            .protectionAmount(3, 4, 2, 1)
+            .enchantability(10)
+            .knockbackReduction(1.0f)
+            .effect(new BouncingArmorEffect(0.25f))
+            .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.LOWER)
+            .tranclucent(ArmorLayer.UPPER)
+            .tranclucent(ArmorLayer.MIDDLE)
+            .tranclucent(ArmorLayer.LOWER)
+            .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
 
     static void bootstrap() {
         Tags.Blocks.bootstrap();

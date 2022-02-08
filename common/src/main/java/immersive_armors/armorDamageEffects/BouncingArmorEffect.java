@@ -1,0 +1,37 @@
+package immersive_armors.armorDamageEffects;
+
+import java.util.List;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
+
+public class BouncingArmorEffect extends ArmorEffect {
+    private final float strength;
+
+    public BouncingArmorEffect(float strength) {
+        this.strength = strength;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, tooltip, context);
+
+        tooltip.add(new TranslatableText("damageEffect.bounceback", (int)(strength * 100)).formatted(Formatting.GREEN));
+    }
+
+    @Override
+    public float applyArmorToDamage(Entity entity, DamageSource source, float amount, ItemStack armor) {
+        Entity attacker = source.getAttacker();
+        if (attacker != null && !source.isProjectile()) {
+            Vec3d direction = attacker.getPos().subtract(entity.getPos()).normalize().multiply(strength);
+            Vec3d velocity = attacker.getVelocity();
+            attacker.setVelocity(velocity.add(direction));
+        }
+        return 0;
+    }
+}

@@ -85,9 +85,9 @@ public class ExtendedArmorItem extends ArmorItem {
         }
     }
 
-    public float applyArmorToDamage(DamageSource source, float amount, ItemStack armor) {
+    public float applyArmorToDamage(Entity entity, DamageSource source, float amount, ItemStack armor) {
         for (ArmorEffect e : getMaterial().getEffects()) {
-            amount = e.applyArmorToDamage(source, amount, armor);
+            amount = e.applyArmorToDamage(entity, source, amount, armor);
         }
         return amount;
     }

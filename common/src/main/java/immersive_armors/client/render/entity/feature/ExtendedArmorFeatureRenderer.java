@@ -72,7 +72,13 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     }
 
     private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean glint, A model, boolean legs, float red, float green, float blue, @Nullable String overlay, ArmorLayer armorLayer) {
-        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(getArmorTexture(item, legs, overlay, armorLayer)), false, glint);
+        RenderLayer renderLayer;
+        if (item instanceof ExtendedArmorItem && ((ExtendedArmorItem)item).getMaterial().isTranslucent(armorLayer)) {
+            renderLayer = RenderLayer.getEntityTranslucent(getArmorTexture(item, legs, overlay, armorLayer));
+        } else {
+            renderLayer = RenderLayer.getArmorCutoutNoCull(getArmorTexture(item, legs, overlay, armorLayer));
+        }
+        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, false, glint);
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0F);
     }
 
