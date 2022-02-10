@@ -1,7 +1,9 @@
 package immersive_armors.client.render.entity.feature;
 
 import com.google.common.collect.Maps;
+import immersive_armors.client.render.entity.model.DecoHeadModel;
 import immersive_armors.client.render.entity.model.HorizontalHeadModel;
+import immersive_armors.client.render.entity.model.VerticalHeadModel;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
@@ -35,7 +37,8 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     private final A leggingsModelUpper;
     private final A bodyModelUpper;
 
-    private final HorizontalHeadModel headHorizontal;
+    private final DecoHeadModel headHorizontal;
+    private final DecoHeadModel headVertical;
 
     @SuppressWarnings("unchecked")
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
@@ -48,6 +51,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         bodyModelUpper = (A)new BipedEntityModel<T>(1.5f);
 
         headHorizontal = new HorizontalHeadModel();
+        headVertical = new VerticalHeadModel();
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {
@@ -139,6 +143,9 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         // special layers
         headHorizontal.copyFromModel(bodyModelLower);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headHorizontal, ArmorLayer.HEAD_HORIZONTAL);
+
+        headVertical.copyFromModel(bodyModelLower);
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headVertical, ArmorLayer.HEAD_VERTICAL);
     }
 
     private boolean hasLayer(ArmorItem item, ArmorLayer layer) {

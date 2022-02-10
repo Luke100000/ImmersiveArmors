@@ -47,6 +47,7 @@ public interface Items {
             .enchantability(6)
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.HEAD_VERTICAL)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] ROBE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("robe")
