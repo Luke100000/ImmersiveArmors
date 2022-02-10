@@ -1,6 +1,7 @@
 package immersive_armors.client.render.entity.feature;
 
 import com.google.common.collect.Maps;
+import immersive_armors.client.render.entity.model.HorizontalHeadModel;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
@@ -13,6 +14,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
@@ -33,6 +35,8 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     private final A leggingsModelUpper;
     private final A bodyModelUpper;
 
+    private final HorizontalHeadModel headHorizontal;
+
     @SuppressWarnings("unchecked")
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
         super(context, leggingsModel, bodyModel);
@@ -42,6 +46,8 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
 
         leggingsModelUpper = (A)new BipedEntityModel<T>(1.0f);
         bodyModelUpper = (A)new BipedEntityModel<T>(1.5f);
+
+        headHorizontal = new HorizontalHeadModel();
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {
@@ -71,7 +77,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::new);
     }
 
-    private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean glint, A model, boolean legs, float red, float green, float blue, @Nullable String overlay, ArmorLayer armorLayer) {
+    private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean glint, EntityModel model, boolean legs, float red, float green, float blue, @Nullable String overlay, ArmorLayer armorLayer) {
         RenderLayer renderLayer;
         if (item instanceof ExtendedArmorItem && ((ExtendedArmorItem)item).getMaterial().isTranslucent(armorLayer)) {
             renderLayer = RenderLayer.getEntityTranslucent(getArmorTexture(item, legs, overlay, armorLayer));
@@ -84,13 +90,16 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0F);
     }
 
-    private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model, ArmorLayer armorLayer) {
+    private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, EntityModel model, ArmorLayer armorLayer) {
         ItemStack itemStack = entity.getEquippedStack(armorSlot);
         if (itemStack.getItem() instanceof ArmorItem) {
             ArmorItem armorItem = (ArmorItem)itemStack.getItem();
             if (armorItem.getSlotType() == armorSlot && hasLayer(armorItem, armorLayer)) {
-                this.getContextModel().setAttributes(model);
-                this.setVisible(model, armorSlot);
+                if (model instanceof BipedEntityModel) {
+                    @SuppressWarnings("unchecked") A bipedEntityModel = (A)model;
+                    this.getContextModel().setAttributes(bipedEntityModel);
+                    this.setVisible(bipedEntityModel, armorSlot);
+                }
                 boolean secondLayer = this.usesSecondLayer(armorSlot);
                 boolean hasGlint = itemStack.hasGlint() || this.hasGlint(armorItem, armorLayer);
                 if (isColored(armorItem, armorLayer)) {
@@ -103,7 +112,6 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
                 } else {
                     renderArmorParts(matrices, vertexConsumers, light, armorItem, hasGlint, model, secondLayer, 1.0F, 1.0F, 1.0F, null, armorLayer);
                 }
-
             }
         }
     }
@@ -127,6 +135,10 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, getUpperArmor(EquipmentSlot.LEGS), ArmorLayer.UPPER);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, getUpperArmor(EquipmentSlot.FEET), ArmorLayer.UPPER);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, getUpperArmor(EquipmentSlot.HEAD), ArmorLayer.UPPER);
+
+        // special layers
+        headHorizontal.copyFromModel(bodyModelLower);
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headHorizontal, ArmorLayer.HEAD_HORIZONTAL);
     }
 
     private boolean hasLayer(ArmorItem item, ArmorLayer layer) {

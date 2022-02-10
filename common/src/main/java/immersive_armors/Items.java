@@ -36,6 +36,7 @@ public interface Items {
             .enchantability(5)
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.HEAD_HORIZONTAL)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] HEAVY_IRON_ARMOR = registerSet(new ExtendedArmorMaterial("heavy_iron")
