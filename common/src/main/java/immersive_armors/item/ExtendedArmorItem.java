@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
 import immersive_armors.armorDamageEffects.ArmorEffect;
+import immersive_armors.mixin.MixinLivingEntity;
 import java.util.List;
 import java.util.UUID;
 import net.minecraft.client.item.TooltipContext;
@@ -66,7 +67,7 @@ public class ExtendedArmorItem extends ArmorItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         for (ArmorEffect e : getMaterial().getEffects()) {
-            e.appendTooltip(stack, tooltip, context);
+            e.appendTooltip(stack, world, tooltip, context);
         }
     }
 
@@ -85,7 +86,7 @@ public class ExtendedArmorItem extends ArmorItem {
         }
     }
 
-    public float applyArmorToDamage(Entity entity, DamageSource source, float amount, ItemStack armor) {
+    public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         for (ArmorEffect e : getMaterial().getEffects()) {
             amount = e.applyArmorToDamage(entity, source, amount, armor);
         }

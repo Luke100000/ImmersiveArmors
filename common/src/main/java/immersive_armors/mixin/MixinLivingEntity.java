@@ -29,7 +29,10 @@ public abstract class MixinLivingEntity extends Entity {
         if (stack != null) {
             if (stack.getItem() instanceof ExtendedArmorItem) {
                 ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
-                amount = armor.applyArmorToDamage(this, source, amount, stack);
+                //noinspection ConstantConditions
+                if ((Entity)this instanceof LivingEntity) {
+                    amount = armor.applyArmorToDamage((LivingEntity)((Entity)this), source, amount, stack);
+                }
             }
         }
         return amount;

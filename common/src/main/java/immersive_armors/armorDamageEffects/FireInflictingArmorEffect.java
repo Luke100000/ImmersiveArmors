@@ -2,7 +2,6 @@ package immersive_armors.armorDamageEffects;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
@@ -12,6 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class FireInflictingArmorEffect extends ArmorEffect {
     private final int length;
@@ -21,7 +21,7 @@ public class FireInflictingArmorEffect extends ArmorEffect {
     }
 
     @Override
-    public float applyArmorToDamage(Entity entity, DamageSource source, float amount, ItemStack armor) {
+    public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         if (source.getAttacker() != null && !source.getAttacker().isFireImmune()) {
             source.getAttacker().setFireTicks(source.getAttacker().getFireTicks() + length);
         }
@@ -29,8 +29,8 @@ public class FireInflictingArmorEffect extends ArmorEffect {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, tooltip, context);
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(new TranslatableText("damageEffect.fireInflicting", length).formatted(Formatting.RED));
     }

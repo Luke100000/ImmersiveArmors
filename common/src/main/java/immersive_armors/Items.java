@@ -1,6 +1,7 @@
 package immersive_armors;
 
 import immersive_armors.armorDamageEffects.BouncingArmorEffect;
+import immersive_armors.armorDamageEffects.DivineArmorEffect;
 import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
 import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
@@ -65,10 +66,22 @@ public interface Items {
             .effect(new BouncingArmorEffect(0.25f))
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.LOWER)
-            .tranclucent(ArmorLayer.UPPER)
-            .tranclucent(ArmorLayer.MIDDLE)
-            .tranclucent(ArmorLayer.LOWER)
+            .translucent(ArmorLayer.UPPER)
+            .translucent(ArmorLayer.MIDDLE)
+            .translucent(ArmorLayer.LOWER)
             .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
+
+    Item[] DIVINE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("divine")
+            .protectionAmount(7, 8, 5, 4)
+            .enchantability(20)
+            .effect(new DivineArmorEffect(24000))
+            .color(11546150)
+            //.glint(ArmorLayer.MIDDLE)
+            .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.LOWER)
+            .colored(ArmorLayer.UPPER)
+            .colored(ArmorLayer.LOWER)
+            .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     static void bootstrap() {
         Tags.Blocks.bootstrap();

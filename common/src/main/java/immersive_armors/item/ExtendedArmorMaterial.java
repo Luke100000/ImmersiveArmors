@@ -31,7 +31,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     private final Set<ArmorLayer> layers = new HashSet<>();
     private final Set<ArmorLayer> colored = new HashSet<>();
-    private final Set<ArmorLayer> tranclucent = new HashSet<>();
+    private final Set<ArmorLayer> translucent = new HashSet<>();
+    private final Set<ArmorLayer> glint = new HashSet<>();
+    private final Set<ArmorLayer> glowing = new HashSet<>();
 
     private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
 
@@ -88,8 +90,18 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial tranclucent(ArmorLayer layer) {
-        tranclucent.add(layer);
+    public ExtendedArmorMaterial translucent(ArmorLayer layer) {
+        translucent.add(layer);
+        return this;
+    }
+
+    public ExtendedArmorMaterial glint(ArmorLayer layer) {
+        glint.add(layer);
+        return this;
+    }
+
+    public ExtendedArmorMaterial glowing(ArmorLayer layer) {
+        glowing.add(layer);
         return this;
     }
 
@@ -177,7 +189,15 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public boolean isTranslucent(ArmorLayer layer) {
-        return tranclucent.contains(layer);
+        return translucent.contains(layer);
+    }
+
+    public boolean isGlowing(ArmorLayer layer) {
+        return glowing.contains(layer);
+    }
+
+    public boolean hasGlint(ArmorLayer layer) {
+        return glint.contains(layer);
     }
 
     public float getWeight() {

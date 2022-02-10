@@ -4,10 +4,11 @@
   "damageEffect.fireResistance": "%d%% Fire Resistance",
   "damageEffect.fireInflicting": "%d ticks Fire Damage",
   "damageEffect.bounceback": "%d Bounceback",
+  "damageEffect.charged": "Charged",
+
+  "immersive_armors.dyeable": "Dyeable",
 
   "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
-
-  "item.immersive_armors.dyeable": "Dyeable",
 
   "item.immersive_armors.bone_helmet": "Bone Helmet",
   "item.immersive_armors.bone_chestplate": "Bone Chestplate",
@@ -32,5 +33,10 @@
   "item.immersive_armors.slime_helmet": "Slime Helmet",
   "item.immersive_armors.slime_chestplate": "Slime Chestplate",
   "item.immersive_armors.slime_leggings": "Slime Leggings",
-  "item.immersive_armors.slime_boots": "Slime Boots"
+  "item.immersive_armors.slime_boots": "Slime Boots",
+
+  "item.immersive_armors.divine_helmet": "Divine Helmet",
+  "item.immersive_armors.divine_chestplate": "Divine Chestplate",
+  "item.immersive_armors.divine_leggings": "Divine Leggings",
+  "item.immersive_armors.divine_boots": "Divine Boots"
 }

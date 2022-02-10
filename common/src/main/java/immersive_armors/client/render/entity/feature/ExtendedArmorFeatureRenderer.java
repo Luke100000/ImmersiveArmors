@@ -75,6 +75,8 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         RenderLayer renderLayer;
         if (item instanceof ExtendedArmorItem && ((ExtendedArmorItem)item).getMaterial().isTranslucent(armorLayer)) {
             renderLayer = RenderLayer.getEntityTranslucent(getArmorTexture(item, legs, overlay, armorLayer));
+        } else if (item instanceof ExtendedArmorItem && ((ExtendedArmorItem)item).getMaterial().isGlowing(armorLayer)) {
+            renderLayer = RenderLayer.getBeaconBeam(getArmorTexture(item, legs, overlay, armorLayer), false);
         } else {
             renderLayer = RenderLayer.getArmorCutoutNoCull(getArmorTexture(item, legs, overlay, armorLayer));
         }
@@ -90,7 +92,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
                 this.getContextModel().setAttributes(model);
                 this.setVisible(model, armorSlot);
                 boolean secondLayer = this.usesSecondLayer(armorSlot);
-                boolean hasGlint = itemStack.hasGlint();
+                boolean hasGlint = itemStack.hasGlint() || this.hasGlint(armorItem, armorLayer);
                 if (isColored(armorItem, armorLayer)) {
                     int i = ((DyeableItem)armorItem).getColor(itemStack);
                     float f = (float)(i >> 16 & 255) / 255.0F;
@@ -140,6 +142,14 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
             return ((ExtendedArmorItem)item).getMaterial().isColored(layer);
         } else {
             return layer == ArmorLayer.MIDDLE && item instanceof DyeableArmorItem;
+        }
+    }
+
+    private boolean hasGlint(ArmorItem item, ArmorLayer layer) {
+        if (item instanceof ExtendedArmorItem) {
+            return ((ExtendedArmorItem)item).getMaterial().hasGlint(layer);
+        } else {
+            return false;
         }
     }
 }
