@@ -6,4 +6,5 @@ public enum ArmorLayer {
     UPPER,
     HEAD_VERTICAL,
     HEAD_HORIZONTAL,
+    PRISMARINE,
 }

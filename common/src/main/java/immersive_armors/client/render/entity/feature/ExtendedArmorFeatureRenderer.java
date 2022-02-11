@@ -1,8 +1,9 @@
 package immersive_armors.client.render.entity.feature;
 
 import com.google.common.collect.Maps;
-import immersive_armors.client.render.entity.model.DecoHeadModel;
+import immersive_armors.client.render.entity.model.DecoModel;
 import immersive_armors.client.render.entity.model.HorizontalHeadModel;
+import immersive_armors.client.render.entity.model.PrismarineModel;
 import immersive_armors.client.render.entity.model.VerticalHeadModel;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
@@ -31,18 +32,25 @@ import org.jetbrains.annotations.Nullable;
 public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends ArmorFeatureRenderer<T, M, A> {
     private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
 
+    private final A leggingsModel;
+    private final A bodyModel;
+
     private final A leggingsModelLower;
     private final A bodyModelLower;
 
     private final A leggingsModelUpper;
     private final A bodyModelUpper;
 
-    private final DecoHeadModel headHorizontal;
-    private final DecoHeadModel headVertical;
+    private final DecoModel headHorizontal;
+    private final DecoModel headVertical;
+    private final DecoModel prismarine;
 
     @SuppressWarnings("unchecked")
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
         super(context, leggingsModel, bodyModel);
+
+        this.leggingsModel = leggingsModel;
+        this.bodyModel = bodyModel;
 
         leggingsModelLower = (A)new BipedEntityModel<T>(0.1f);
         bodyModelLower = (A)new BipedEntityModel<T>(0.6f);
@@ -52,6 +60,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
 
         headHorizontal = new HorizontalHeadModel();
         headVertical = new VerticalHeadModel();
+        prismarine = new PrismarineModel();
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {
@@ -103,6 +112,11 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
                     @SuppressWarnings("unchecked") A bipedEntityModel = (A)model;
                     this.getContextModel().setAttributes(bipedEntityModel);
                     this.setVisible(bipedEntityModel, armorSlot);
+                } else if (model instanceof DecoModel) {
+                    A bipedEntityModel = getArmor(armorSlot);
+                    this.getContextModel().setAttributes(bipedEntityModel);
+                    this.setVisible(bipedEntityModel, armorSlot);
+                    ((DecoModel)model).copyFromModel(bipedEntityModel);
                 }
                 boolean secondLayer = this.usesSecondLayer(armorSlot);
                 boolean hasGlint = itemStack.hasGlint() || this.hasGlint(armorItem, armorLayer);
@@ -141,11 +155,14 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, getUpperArmor(EquipmentSlot.HEAD), ArmorLayer.UPPER);
 
         // special layers
-        headHorizontal.copyFromModel(bodyModelLower);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headHorizontal, ArmorLayer.HEAD_HORIZONTAL);
 
-        headVertical.copyFromModel(bodyModelLower);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headVertical, ArmorLayer.HEAD_VERTICAL);
+
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, prismarine, ArmorLayer.PRISMARINE);
     }
 
     private boolean hasLayer(ArmorItem item, ArmorLayer layer) {

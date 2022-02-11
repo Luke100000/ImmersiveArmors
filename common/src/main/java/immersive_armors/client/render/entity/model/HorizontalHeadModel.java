@@ -7,7 +7,7 @@ public class HorizontalHeadModel extends DecoHeadModel {
 
     public HorizontalHeadModel() {
         part = new ModelPart(64, 16, 0, 0);
-        part.addCuboid(-10.0F, -22.0F, -2.0F, 20.0F, 12.0F, 0.0F, 0.0f);
+        part.addCuboid(-10.0F, -17.0F, 0.0F, 20.0F, 12.0F, 0.0F, 0.0f);
         part.setPivot(0.0F, 0.0F, 0.0F);
     }
 

@@ -85,6 +85,13 @@ public interface Items {
             .colored(ArmorLayer.LOWER)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
+    Item[] PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")
+            .protectionAmount(7, 8, 5, 4)
+            .enchantability(8)
+            .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.PRISMARINE)
+            .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
+
     static void bootstrap() {
         Tags.Blocks.bootstrap();
         Tags.Items.bootstrap();

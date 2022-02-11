@@ -21,6 +21,7 @@ build
 eclipse
 run
 backup
+/common/src/main/resources/assets/immersive_armors/textures/models/armor/emerald
 
 # Files from Forge MDK
 forge*changelog.txt
