@@ -22,24 +22,32 @@ public class DivineArmorEffect extends ArmorEffect {
 
     private boolean isCharged(long time, ItemStack armor) {
         NbtCompound tag = armor.getOrCreateTag();
-        return !tag.contains("last_divine") || tag.getLong("last_divine") + cooldown < time;
+        return (!tag.contains("last_divine") || tag.getLong("last_divine") + cooldown < time) && getSetCount(armor) == 4;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        if (world != null && isCharged(world.getTime(), stack)) {
-            tooltip.add(new TranslatableText("damageEffect.charged").formatted(Formatting.AQUA));
+        int count = getSetCount(stack);
+        if (count == 4) {
+            if (world != null && isCharged(world.getTime(), stack)) {
+                tooltip.add(new TranslatableText("damageEffect.charged").formatted(Formatting.AQUA));
+            }
+        } else {
+            tooltip.add(new TranslatableText("immersive_armors.incomplete", count, 4));
         }
     }
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (amount >= entity.getHealth()) {
-            if (isCharged(entity.world.getTime(), armor)) {
+        if (amount >= entity.getHealth() && isPrimaryArmor(armor, entity)) {
+            // try to block a potential fatal blow
+            long time = entity.world.getTime();
+            boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
+            if (charged) {
                 entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 0.5f, 1.25f);
-                armor.getOrCreateTag().putLong("last_divine", entity.world.getTime());
+                getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateTag().putLong("last_divine", time));
                 return 0;
             }
         }

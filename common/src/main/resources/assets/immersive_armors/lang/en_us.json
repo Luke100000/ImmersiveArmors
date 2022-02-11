@@ -7,6 +7,7 @@
   "damageEffect.charged": "Charged",
 
   "immersive_armors.dyeable": "Dyeable",
+  "immersive_armors.incomplete": "%d / %d parts equipped",
 
   "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
 
