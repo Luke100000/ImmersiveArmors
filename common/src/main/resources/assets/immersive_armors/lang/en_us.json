@@ -4,6 +4,7 @@
   "damageEffect.fireResistance": "%d%% Fire Resistance",
   "damageEffect.fireInflicting": "%d ticks Fire Damage",
   "damageEffect.bounceback": "%d Bounceback",
+  "damageEffect.spikes": "%d Spike Damage",
   "damageEffect.charged": "Charged",
 
   "immersive_armors.dyeable": "Dyeable",
@@ -39,5 +40,10 @@
   "item.immersive_armors.divine_helmet": "Divine Helmet",
   "item.immersive_armors.divine_chestplate": "Divine Chestplate",
   "item.immersive_armors.divine_leggings": "Divine Leggings",
-  "item.immersive_armors.divine_boots": "Divine Boots"
+  "item.immersive_armors.divine_boots": "Divine Boots",
+
+  "item.immersive_armors.prismarine_helmet": "Prismarine Helmet",
+  "item.immersive_armors.prismarine_chestplate": "Prismarine Chestplate",
+  "item.immersive_armors.prismarine_leggings": "Prismarine Leggings",
+  "item.immersive_armors.prismarine_boots": "Prismarine Boots"
 }

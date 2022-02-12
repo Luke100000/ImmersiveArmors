@@ -4,10 +4,11 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
 import immersive_armors.armorDamageEffects.ArmorEffect;
-import immersive_armors.mixin.MixinLivingEntity;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -66,8 +67,14 @@ public class ExtendedArmorItem extends ArmorItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
+        //effects
         for (ArmorEffect e : getMaterial().getEffects()) {
             e.appendTooltip(stack, world, tooltip, context);
+        }
+
+        //static enchantments
+        for (Map.Entry<Enchantment, Integer> entry : getMaterial().getEnchantments().entrySet()) {
+            tooltip.add(entry.getKey().getName(entry.getValue()));
         }
     }
 
@@ -76,7 +83,7 @@ public class ExtendedArmorItem extends ArmorItem {
         super.inventoryTick(stack, world, entity, slot, selected);
 
         if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
+            LivingEntity livingEntity = (LivingEntity)entity;
             ItemStack equippedStack = livingEntity.getEquippedStack(getSlotType());
             if (equippedStack == stack) {
                 for (ArmorEffect e : getMaterial().getEffects()) {

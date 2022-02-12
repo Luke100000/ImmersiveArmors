@@ -4,11 +4,13 @@ import immersive_armors.armorDamageEffects.BouncingArmorEffect;
 import immersive_armors.armorDamageEffects.DivineArmorEffect;
 import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
 import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
+import immersive_armors.armorDamageEffects.SpikesArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
@@ -90,6 +92,8 @@ public interface Items {
             .enchantability(8)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.PRISMARINE)
+            .effect(new SpikesArmorEffect(1))
+            .enchantment(Enchantments.DEPTH_STRIDER, 1)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     static void bootstrap() {

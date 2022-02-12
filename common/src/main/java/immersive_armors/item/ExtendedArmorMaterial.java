@@ -1,10 +1,13 @@
 package immersive_armors.item;
 
 import immersive_armors.armorDamageEffects.ArmorEffect;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
@@ -25,6 +28,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private float attackSpeed;
     private int luck;
     private final List<ArmorEffect> effects = new LinkedList<>();
+    private final Map<Enchantment, Integer> enchantments = new HashMap<>();
 
     private SoundEvent equipSound;
     private Ingredient repairIngredient;
@@ -140,6 +144,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial enchantment(Enchantment enchantment, int level) {
+        this.enchantments.put(enchantment, level);
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -226,5 +235,17 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public List<ArmorEffect> getEffects() {
         return effects;
+    }
+
+    public Map<Enchantment, Integer> getEnchantments() {
+        return enchantments;
+    }
+
+    public boolean hasEnchantment(Enchantment enchantment) {
+        return enchantments.containsKey(enchantment);
+    }
+
+    public int getEnchantment(Enchantment enchantment) {
+        return enchantments.get(enchantment);
     }
 }
