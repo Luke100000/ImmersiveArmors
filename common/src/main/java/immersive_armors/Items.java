@@ -5,6 +5,7 @@ import immersive_armors.armorDamageEffects.DivineArmorEffect;
 import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
 import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
 import immersive_armors.armorDamageEffects.SpikesArmorEffect;
+import immersive_armors.armorDamageEffects.WitherArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.DyeableExtendedArmorItem;
@@ -30,6 +31,14 @@ public interface Items {
             .protectionAmount(2, 3, 1, 1)
             .enchantability(20)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
+            .weight(-0.02f));
+
+    Item[] WITHER_ARMOR = registerSet(new ExtendedArmorMaterial("wither")
+            .protectionAmount(3, 4, 2, 1)
+            .enchantability(0)
+            .effect(new WitherArmorEffect(1.0f, 10))
+            .layer(ArmorLayer.CAPE)
+            .equipSound(SoundEvents.ENTITY_WITHER_SKELETON_AMBIENT)
             .weight(-0.01f));
 
     Item[] WARRIOR_ARMOR = registerSet(new ExtendedArmorMaterial("warrior")
@@ -61,7 +70,7 @@ public interface Items {
             .colored(ArmorLayer.MIDDLE)
             .colored(ArmorLayer.LOWER)
             .effect(new FireResistanceArmorEffect(0.25f))
-            .effect(new FireInflictingArmorEffect(20))
+            .effect(new FireInflictingArmorEffect(10))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     Item[] SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")

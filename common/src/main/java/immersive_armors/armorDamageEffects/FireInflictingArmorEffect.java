@@ -22,8 +22,8 @@ public class FireInflictingArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (source.getAttacker() != null && !source.getAttacker().isFireImmune()) {
-            source.getAttacker().setFireTicks(source.getAttacker().getFireTicks() + length);
+        if (isPrimaryArmor(armor, entity) && source.getAttacker() != null && !source.getAttacker().isFireImmune()) {
+            source.getAttacker().setFireTicks(source.getAttacker().getFireTicks() + length * getSetCount(armor, entity));
         }
         return amount;
     }

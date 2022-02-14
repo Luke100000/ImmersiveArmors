@@ -5,6 +5,7 @@
   "damageEffect.fireInflicting": "%d ticks Fire Damage",
   "damageEffect.bounceback": "%d Bounceback",
   "damageEffect.spikes": "%d Spike Damage",
+  "damageEffect.wither": "Wither",
   "damageEffect.charged": "Charged",
 
   "immersive_armors.dyeable": "Dyeable",
@@ -16,6 +17,11 @@
   "item.immersive_armors.bone_chestplate": "Bone Chestplate",
   "item.immersive_armors.bone_leggings": "Bone Leggings",
   "item.immersive_armors.bone_boots": "Bone Boots",
+
+  "item.immersive_armors.wither_helmet": "Wither Helmet",
+  "item.immersive_armors.wither_chestplate": "Wither Chestplate",
+  "item.immersive_armors.wither_leggings": "Wither Leggings",
+  "item.immersive_armors.wither_boots": "Wither Boots",
 
   "item.immersive_armors.warrior_helmet": "Warrior Helmet",
   "item.immersive_armors.warrior_chestplate": "Warrior Chestplate",
