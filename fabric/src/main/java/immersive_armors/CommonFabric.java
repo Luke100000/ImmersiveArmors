@@ -20,8 +20,6 @@ public final class CommonFabric implements ModInitializer {
         new NetworkHandlerImpl();
 
         Items.bootstrap();
-        Sounds.bootstrap();
-        ParticleTypes.bootstrap();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             Command.register(dispatcher);

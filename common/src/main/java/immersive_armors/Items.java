@@ -122,8 +122,7 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
 
     static void bootstrap() {
-        Tags.Blocks.bootstrap();
-        Tags.Items.bootstrap();
+
     }
 
     static Item[] registerSet(ExtendedArmorMaterial material) {
