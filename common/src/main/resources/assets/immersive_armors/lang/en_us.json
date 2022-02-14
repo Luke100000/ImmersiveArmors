@@ -2,11 +2,12 @@
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
 
   "damageEffect.fireResistance": "%d%% Fire Resistance",
+  "damageEffect.explosionResistance": "%d%% Explosion Resistance",
   "damageEffect.fireInflicting": "%d ticks Fire Damage",
   "damageEffect.bounceback": "%d Bounceback",
   "damageEffect.spikes": "%d Spike Damage",
   "damageEffect.arrowBlock": "%d%% Arrow Blocking",
-  "damageEffect.wither": "Wither",
+  "damageEffect.wither": "Lets your attackers wither.",
   "damageEffect.charged": "Charged",
 
   "immersive_armors.dyeable": "Dyeable",

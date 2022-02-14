@@ -3,6 +3,7 @@ package immersive_armors;
 import immersive_armors.armorDamageEffects.ArrowBlockArmorEffect;
 import immersive_armors.armorDamageEffects.BouncingArmorEffect;
 import immersive_armors.armorDamageEffects.DivineArmorEffect;
+import immersive_armors.armorDamageEffects.ExplosionProtectionArmorEffect;
 import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
 import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
 import immersive_armors.armorDamageEffects.SpikesArmorEffect;
@@ -79,6 +80,7 @@ public interface Items {
             .enchantability(10)
             .knockbackReduction(1.0f)
             .effect(new BouncingArmorEffect(0.25f))
+            .effect(new ExplosionProtectionArmorEffect(0.15f))
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.LOWER)
             .translucent(ArmorLayer.UPPER)
@@ -115,7 +117,8 @@ public interface Items {
             .enchantability(8)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.SHOULDER)
-            .effect(new ArrowBlockArmorEffect(0.2f))
+            .effect(new ArrowBlockArmorEffect(0.15f))
+            .effect(new ExplosionProtectionArmorEffect(0.1f))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
 
     static void bootstrap() {
