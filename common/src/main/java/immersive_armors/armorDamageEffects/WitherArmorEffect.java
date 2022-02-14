@@ -27,7 +27,7 @@ public class WitherArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("damageEffect.wither", wither).formatted(Formatting.BLACK));
+        tooltip.add(new TranslatableText("damageEffect.wither", wither).formatted(Formatting.GRAY));
     }
 
     @Override

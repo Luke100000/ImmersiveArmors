@@ -71,7 +71,7 @@ public class ExtendedCapeFeatureRenderer<T extends LivingEntity, M extends CapeM
                 }
 
                 if (entity.isInSneakingPose()) {
-                    q += 25.0F;
+                    q += 22.5F;
                     matrices.translate(0.0, 0.25, 0.0);
                 }
 

@@ -1,5 +1,6 @@
 package immersive_armors;
 
+import immersive_armors.armorDamageEffects.ArrowBlockArmorEffect;
 import immersive_armors.armorDamageEffects.BouncingArmorEffect;
 import immersive_armors.armorDamageEffects.DivineArmorEffect;
 import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
@@ -29,7 +30,7 @@ public interface Items {
 
     Item[] BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
             .protectionAmount(2, 3, 1, 1)
-            .enchantability(20)
+            .enchantability(15)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
             .weight(-0.02f));
 
@@ -108,6 +109,14 @@ public interface Items {
             .effect(new SpikesArmorEffect(1))
             .enchantment(Enchantments.DEPTH_STRIDER, 1)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
+
+    Item[] WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")
+            .protectionAmount(3, 4, 2, 1)
+            .enchantability(8)
+            .layer(ArmorLayer.UPPER)
+            .layer(ArmorLayer.SHOULDER)
+            .effect(new ArrowBlockArmorEffect(0.2f))
+            .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
 
     static void bootstrap() {
         Tags.Blocks.bootstrap();

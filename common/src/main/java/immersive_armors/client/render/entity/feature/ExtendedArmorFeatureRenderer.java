@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import immersive_armors.client.render.entity.model.DecoModel;
 import immersive_armors.client.render.entity.model.HorizontalHeadModel;
 import immersive_armors.client.render.entity.model.PrismarineModel;
+import immersive_armors.client.render.entity.model.ShoulderModel;
 import immersive_armors.client.render.entity.model.VerticalHeadModel;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
@@ -41,6 +42,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     private final DecoModel headHorizontal;
     private final DecoModel headVertical;
     private final DecoModel prismarine;
+    private final DecoModel shoulder;
 
     @SuppressWarnings("unchecked")
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
@@ -55,6 +57,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         headHorizontal = new HorizontalHeadModel();
         headVertical = new VerticalHeadModel();
         prismarine = new PrismarineModel();
+        shoulder = new ShoulderModel();
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {
@@ -157,6 +160,8 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, prismarine, ArmorLayer.PRISMARINE);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, prismarine, ArmorLayer.PRISMARINE);
         renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, prismarine, ArmorLayer.PRISMARINE);
+
+        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, shoulder, ArmorLayer.SHOULDER);
     }
 
     private boolean hasLayer(ArmorItem item, ArmorLayer layer) {
