@@ -39,6 +39,7 @@ public interface Items {
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.HEAD_HORIZONTAL)
+            .layer(ArmorLayer.CAPE)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] HEAVY_IRON_ARMOR = registerSet(new ExtendedArmorMaterial("heavy_iron")
@@ -86,6 +87,7 @@ public interface Items {
             .layer(ArmorLayer.CAPE)
             .colored(ArmorLayer.UPPER)
             .colored(ArmorLayer.LOWER)
+            .colored(ArmorLayer.CAPE)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")

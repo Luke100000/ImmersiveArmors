@@ -13,6 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
@@ -29,8 +30,8 @@ public class ExtendedCapeFeatureRenderer<T extends LivingEntity, M extends CapeM
         this.model = model;
     }
 
-    private Identifier getCapeTexture(ExtendedArmorItem item) {
-        return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/cape.png");
+    private Identifier getCapeTexture(ExtendedArmorItem item, boolean overlay) {
+        return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/cape" + (overlay ? "_overlay" : "") + ".png");
     }
 
     private Vec3d predictPosition(Entity entity, float tickDelta) {
@@ -78,8 +79,22 @@ public class ExtendedCapeFeatureRenderer<T extends LivingEntity, M extends CapeM
                 matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)(s / 2.0F)));
                 matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)(180.0F - s / 2.0F)));
 
-                VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(getCapeTexture((armor))));
                 model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+
+                VertexConsumer vertexConsumer;
+                if (armor.getMaterial().isColored(ArmorLayer.CAPE)) {
+                    int i = ((DyeableItem)armor).getColor(itemStack);
+                    float red = (float)(i >> 16 & 255) / 255.0F;
+                    float green = (float)(i >> 8 & 255) / 255.0F;
+                    float blue = (float)(i & 255) / 255.0F;
+
+                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
+                    model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0f);
+
+                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, true)));
+                } else {
+                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
+                }
                 model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
                 matrices.pop();
             }

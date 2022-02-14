@@ -116,10 +116,10 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
                 boolean hasGlint = itemStack.hasGlint() || this.hasGlint(armorItem, armorLayer);
                 if (isColored(armorItem, armorLayer)) {
                     int i = ((DyeableItem)armorItem).getColor(itemStack);
-                    float f = (float)(i >> 16 & 255) / 255.0F;
-                    float g = (float)(i >> 8 & 255) / 255.0F;
-                    float h = (float)(i & 255) / 255.0F;
-                    renderArmorParts(matrices, vertexConsumers, light, armorItem, hasGlint, model, secondLayer, f, g, h, null, armorLayer);
+                    float red = (float)(i >> 16 & 255) / 255.0F;
+                    float green = (float)(i >> 8 & 255) / 255.0F;
+                    float blue = (float)(i & 255) / 255.0F;
+                    renderArmorParts(matrices, vertexConsumers, light, armorItem, hasGlint, model, secondLayer, red, green, blue, null, armorLayer);
                     renderArmorParts(matrices, vertexConsumers, light, armorItem, hasGlint, model, secondLayer, 1.0F, 1.0F, 1.0F, "overlay", armorLayer);
                 } else {
                     renderArmorParts(matrices, vertexConsumers, light, armorItem, hasGlint, model, secondLayer, 1.0F, 1.0F, 1.0F, null, armorLayer);

@@ -25,6 +25,6 @@ public class CapeModel<T extends LivingEntity> extends EntityModel<T> {
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-        this.cloak.render(matrices, vertices, light, overlay);
+        this.cloak.render(matrices, vertices, light, overlay, red, green, blue, alpha);
     }
 }
