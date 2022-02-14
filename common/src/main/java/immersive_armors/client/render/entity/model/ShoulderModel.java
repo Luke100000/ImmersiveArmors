@@ -1,5 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
+import immersive_armors.mixin.MixinAnimalModel;
 import java.util.Arrays;
 import java.util.Collections;
 import net.minecraft.client.model.ModelPart;
@@ -9,7 +10,9 @@ public class ShoulderModel extends DecoModel {
     private final ModelPart left;
     private final ModelPart right;
 
-    public ShoulderModel() {
+    public ShoulderModel(MixinAnimalModel model) {
+        super(model);
+
         ModelPart part;
 
         left = new ModelPart(16, 16, 0, 0);

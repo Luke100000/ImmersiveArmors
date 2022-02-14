@@ -8,6 +8,7 @@ import immersive_armors.client.render.entity.model.ShoulderModel;
 import immersive_armors.client.render.entity.model.VerticalHeadModel;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
+import immersive_armors.mixin.MixinAnimalModel;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
 import java.util.Locale;
 import java.util.Map;
@@ -17,6 +18,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -54,10 +56,12 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
         leggingsModelUpper = (A)new BipedEntityModel<T>(1.0f);
         bodyModelUpper = (A)new BipedEntityModel<T>(1.5f);
 
-        headHorizontal = new HorizontalHeadModel();
-        headVertical = new VerticalHeadModel();
-        prismarine = new PrismarineModel();
-        shoulder = new ShoulderModel();
+        MixinAnimalModel animalModel = (MixinAnimalModel)bodyModel;
+
+        headHorizontal = new HorizontalHeadModel(animalModel);
+        headVertical = new VerticalHeadModel(animalModel);
+        prismarine = new PrismarineModel(animalModel);
+        shoulder = new ShoulderModel(animalModel);
     }
 
     private boolean usesSecondLayer(EquipmentSlot slot) {
