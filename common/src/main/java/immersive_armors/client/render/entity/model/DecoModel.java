@@ -6,7 +6,6 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.Entity;
-import org.spongepowered.asm.mixin.gen.Accessor;
 
 public abstract class DecoModel extends AnimalModel {
     public DecoModel(MixinAnimalModel model) {
