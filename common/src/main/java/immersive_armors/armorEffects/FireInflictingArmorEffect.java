@@ -1,4 +1,4 @@
-package immersive_armors.armorDamageEffects;
+package immersive_armors.armorEffects;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
@@ -32,7 +32,7 @@ public class FireInflictingArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("damageEffect.fireInflicting", length).formatted(Formatting.RED));
+        tooltip.add(new TranslatableText("armorEffect.fireInflicting", length).formatted(Formatting.RED));
     }
 
     @Override

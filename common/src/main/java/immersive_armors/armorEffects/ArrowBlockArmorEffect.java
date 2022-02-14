@@ -1,4 +1,4 @@
-package immersive_armors.armorDamageEffects;
+package immersive_armors.armorEffects;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
@@ -32,6 +32,6 @@ public class ArrowBlockArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("damageEffect.arrowBlock", (int)(chance * 100)).formatted(Formatting.GOLD));
+        tooltip.add(new TranslatableText("armorEffect.arrowBlock", (int)(chance * 100)).formatted(Formatting.GOLD));
     }
 }

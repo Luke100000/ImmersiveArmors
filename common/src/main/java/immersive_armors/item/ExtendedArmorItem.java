@@ -3,7 +3,7 @@ package immersive_armors.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
-import immersive_armors.armorDamageEffects.ArmorEffect;
+import immersive_armors.armorEffects.ArmorEffect;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

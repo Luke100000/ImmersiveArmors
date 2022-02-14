@@ -1,6 +1,6 @@
 package immersive_armors.item;
 
-import immersive_armors.armorDamageEffects.ArmorEffect;
+import immersive_armors.armorEffects.ArmorEffect;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;

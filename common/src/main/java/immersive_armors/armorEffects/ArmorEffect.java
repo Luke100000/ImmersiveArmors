@@ -1,4 +1,4 @@
-package immersive_armors.armorDamageEffects;
+package immersive_armors.armorEffects;
 
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;

@@ -1,4 +1,4 @@
-package immersive_armors.armorDamageEffects;
+package immersive_armors.armorEffects;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
@@ -32,7 +32,7 @@ public class DivineArmorEffect extends ArmorEffect {
         int count = getSetCount(stack);
         if (count == 4) {
             if (world != null && isCharged(world.getTime(), stack)) {
-                tooltip.add(new TranslatableText("damageEffect.charged").formatted(Formatting.AQUA));
+                tooltip.add(new TranslatableText("armorEffect.charged").formatted(Formatting.AQUA));
             }
         } else {
             tooltip.add(new TranslatableText("immersive_armors.incomplete", count, 4));

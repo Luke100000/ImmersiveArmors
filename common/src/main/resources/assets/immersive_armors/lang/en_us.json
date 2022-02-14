@@ -1,14 +1,14 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
 
-  "damageEffect.fireResistance": "%d%% Fire Resistance",
-  "damageEffect.explosionResistance": "%d%% Explosion Resistance",
-  "damageEffect.fireInflicting": "%d ticks Fire Damage",
-  "damageEffect.bounceback": "%d Bounceback",
-  "damageEffect.spikes": "%d Spike Damage",
-  "damageEffect.arrowBlock": "%d%% Arrow Blocking",
-  "damageEffect.wither": "Lets your attackers wither.",
-  "damageEffect.charged": "Charged",
+  "armorEffect.fireResistance": "%d%% Fire Resistance",
+  "armorEffect.explosionResistance": "%d%% Explosion Resistance",
+  "armorEffect.fireInflicting": "%d ticks Fire Damage",
+  "armorEffect.bounceback": "%d Bounceback",
+  "armorEffect.spikes": "%d Spike Damage",
+  "armorEffect.arrowBlock": "%d%% Arrow Blocking",
+  "armorEffect.wither": "Lets your attackers wither.",
+  "armorEffect.charged": "Charged",
 
   "immersive_armors.dyeable": "Dyeable",
   "immersive_armors.incomplete": "%d / %d parts equipped",

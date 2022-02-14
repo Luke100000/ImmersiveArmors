@@ -1,13 +1,13 @@
 package immersive_armors;
 
-import immersive_armors.armorDamageEffects.ArrowBlockArmorEffect;
-import immersive_armors.armorDamageEffects.BouncingArmorEffect;
-import immersive_armors.armorDamageEffects.DivineArmorEffect;
-import immersive_armors.armorDamageEffects.ExplosionProtectionArmorEffect;
-import immersive_armors.armorDamageEffects.FireInflictingArmorEffect;
-import immersive_armors.armorDamageEffects.FireResistanceArmorEffect;
-import immersive_armors.armorDamageEffects.SpikesArmorEffect;
-import immersive_armors.armorDamageEffects.WitherArmorEffect;
+import immersive_armors.armorEffects.ArrowBlockArmorEffect;
+import immersive_armors.armorEffects.BouncingArmorEffect;
+import immersive_armors.armorEffects.DivineArmorEffect;
+import immersive_armors.armorEffects.ExplosionProtectionArmorEffect;
+import immersive_armors.armorEffects.FireInflictingArmorEffect;
+import immersive_armors.armorEffects.FireResistanceArmorEffect;
+import immersive_armors.armorEffects.SpikesArmorEffect;
+import immersive_armors.armorEffects.WitherArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.DyeableExtendedArmorItem;

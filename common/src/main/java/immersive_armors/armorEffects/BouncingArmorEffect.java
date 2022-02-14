@@ -1,4 +1,4 @@
-package immersive_armors.armorDamageEffects;
+package immersive_armors.armorEffects;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
@@ -9,13 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class SpikesArmorEffect extends ArmorEffect {
-    private final int strength;
+public class BouncingArmorEffect extends ArmorEffect {
+    private final float strength;
 
-    public SpikesArmorEffect(int strength) {
+    public BouncingArmorEffect(float strength) {
         this.strength = strength;
     }
 
@@ -23,18 +24,17 @@ public class SpikesArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("damageEffect.spikes", strength).formatted(Formatting.RED));
+        tooltip.add(new TranslatableText("armorEffect.bounceback", (int)(strength * 100)).formatted(Formatting.GREEN));
     }
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (isPrimaryArmor(armor, entity) && !source.isProjectile()) {
-            Entity attacker = source.getAttacker();
-            if (attacker != null) {
-                attacker.damage(DamageSource.thorns(entity), strength * getSetCount(armor));
-            }
+        Entity attacker = source.getAttacker();
+        if (attacker != null && !source.isProjectile()) {
+            Vec3d direction = attacker.getPos().subtract(entity.getPos()).normalize().multiply(strength);
+            Vec3d velocity = attacker.getVelocity();
+            attacker.setVelocity(velocity.add(direction));
         }
-
-        return amount;
+        return 0;
     }
 }
