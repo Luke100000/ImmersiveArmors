@@ -1,6 +1,8 @@
 package immersive_armors;
 
 import immersive_armors.client.render.entity.feature.ExtendedArmorFeatureRenderer;
+import immersive_armors.client.render.entity.feature.ExtendedCapeFeatureRenderer;
+import immersive_armors.client.render.entity.model.CapeModel;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
 import immersive_armors.mixin.MixinLivingEntityRenderer;
 import immersive_armors.mixin.MixingEntityRenderDispatcher;
@@ -9,6 +11,7 @@ import java.util.List;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
+import net.minecraft.client.render.entity.feature.CapeFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import org.apache.logging.log4j.LogManager;
@@ -44,7 +47,12 @@ public final class Main {
                             armorFeature.getLeggingsModel(),
                             armorFeature.getBodyModel()
                     ));
+                    //noinspection unchecked
+                    toAdd.add(new ExtendedCapeFeatureRenderer(renderer, new CapeModel()));
                     LOGGER.info("Replace Armor Renderer of " + renderer);
+                } else if (feature.getClass() == CapeFeatureRenderer.class) {
+                    LOGGER.info("Replace Cape Renderer of " + renderer);
+                    toRemove.add(feature);
                 }
             }
             while (!toRemove.isEmpty()) {

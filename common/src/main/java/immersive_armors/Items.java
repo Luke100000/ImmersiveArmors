@@ -83,6 +83,7 @@ public interface Items {
             //.glint(ArmorLayer.MIDDLE)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.LOWER)
+            .layer(ArmorLayer.CAPE)
             .colored(ArmorLayer.UPPER)
             .colored(ArmorLayer.LOWER)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
@@ -90,6 +91,7 @@ public interface Items {
     Item[] PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")
             .protectionAmount(7, 8, 5, 4)
             .enchantability(8)
+            .weight(0.02f)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.PRISMARINE)
             .effect(new SpikesArmorEffect(1))

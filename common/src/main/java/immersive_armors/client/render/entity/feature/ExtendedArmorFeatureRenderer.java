@@ -32,9 +32,6 @@ import org.jetbrains.annotations.Nullable;
 public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends ArmorFeatureRenderer<T, M, A> {
     private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
 
-    private final A leggingsModel;
-    private final A bodyModel;
-
     private final A leggingsModelLower;
     private final A bodyModelLower;
 
@@ -48,9 +45,6 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     @SuppressWarnings("unchecked")
     public ExtendedArmorFeatureRenderer(FeatureRendererContext<T, M> context, A leggingsModel, A bodyModel) {
         super(context, leggingsModel, bodyModel);
-
-        this.leggingsModel = leggingsModel;
-        this.bodyModel = bodyModel;
 
         leggingsModelLower = (A)new BipedEntityModel<T>(0.1f);
         bodyModelLower = (A)new BipedEntityModel<T>(0.6f);
