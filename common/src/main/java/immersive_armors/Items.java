@@ -42,10 +42,10 @@ public interface Items {
             .layer(ArmorLayer.CAPE)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
-    Item[] HEAVY_IRON_ARMOR = registerSet(new ExtendedArmorMaterial("heavy_iron")
+    Item[] HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")
             .protectionAmount(6, 7, 4, 3)
             .toughness(2.0f)
-            .knockbackReduction(0.2f)
+            .knockbackReduction(0.5f)
             .weight(0.05f)
             .enchantability(6)
             .layer(ArmorLayer.LOWER)
