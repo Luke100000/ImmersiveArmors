@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IEI",
+    "IRI",
+    "   "
+  ],
+  "key": {
+    "R": [
+      {
+        "item": "immersive_armors:robe_helmet"
+      }
+    ],
+    "E": [
+      {
+        "item": "minecraft:emerald"
+      }
+    ],
+    "I": [
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:divine_helmet"
+  }
+}

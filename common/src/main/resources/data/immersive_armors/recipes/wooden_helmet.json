@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "W W",
+    "   "
+  ],
+  "key": {
+    "W": [
+      {
+        "tag": "minecraft:logs"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:wooden_helmet"
+  }
+}

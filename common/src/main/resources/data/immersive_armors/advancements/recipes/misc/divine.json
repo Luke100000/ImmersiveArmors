@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "immersive_armors:divine_helmet",
+      "immersive_armors:divine_chestplate",
+      "immersive_armors:divine_leggings",
+      "immersive_armors:divine_boots"
+    ]
+  },
+  "criteria": {
+    "has_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersive_armors:robe_helmet"
+          }
+        ]
+      }
+    },
+    "has_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersive_armors:robe_chestplate"
+          }
+        ]
+      }
+    },
+    "has_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersive_armors:robe_leggings"
+          }
+        ]
+      }
+    },
+    "has_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersive_armors:robe_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_helmet",
+      "has_chestplate",
+      "has_leggings",
+      "has_boots"
+    ]
+  ]
+}

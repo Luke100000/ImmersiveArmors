@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "ITI",
+    "IRI"
+  ],
+  "key": {
+    "R": [
+      {
+        "item": "immersive_armors:robe_chestplate"
+      }
+    ],
+    "T": [
+      {
+        "item": "minecraft:totem_of_undying"
+      }
+    ],
+    "I": [
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:divine_chestplate"
+  }
+}

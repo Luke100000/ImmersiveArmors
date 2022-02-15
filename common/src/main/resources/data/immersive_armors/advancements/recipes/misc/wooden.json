@@ -2,7 +2,10 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "immersive_armors:emerald_chestplate"
+      "immersive_armors:wooden_helmet",
+      "immersive_armors:wooden_chestplate",
+      "immersive_armors:wooden_leggings",
+      "immersive_armors:wooden_boots"
     ]
   },
   "criteria": {
@@ -11,10 +14,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:emerald"
-          },
-          {
-            "item": "minecraft:blue_dye"
+            "tag": "minecraft:logs"
           }
         ]
       }

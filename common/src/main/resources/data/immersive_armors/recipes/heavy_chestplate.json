@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "iIi",
+    "iIi"
+  ],
+  "key": {
+    "I": [
+      {
+        "item": "minecraft:iron_block"
+      }
+    ],
+    "i": [
+      {
+        "item": "minecraft:iron_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:heavy_chestplate"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "B B",
+    "   "
+  ],
+  "key": {
+    "B": [
+      {
+        "item": "minecraft:bone"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:bone_helmet"
+  }
+}

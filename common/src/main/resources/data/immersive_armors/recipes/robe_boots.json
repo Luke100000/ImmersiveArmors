@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W W",
+    "W W",
+    "   "
+  ],
+  "key": {
+    "W": [
+      {
+        "tag": "minecraft:wool"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:robe_boots"
+  }
+}

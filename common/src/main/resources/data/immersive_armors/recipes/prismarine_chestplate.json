@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "S": [
+      {
+        "item": "minecraft:prismarine_shard"
+      }
+    ],
+    "C": [
+      {
+        "item": "minecraft:prismarine_crystals"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:prismarine_chestplate"
+  }
+}

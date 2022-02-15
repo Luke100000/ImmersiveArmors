@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "I I",
+    "I I"
+  ],
+  "key": {
+    "R": [
+      {
+        "item": "immersive_armors:robe_leggings"
+      }
+    ],
+    "I": [
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:divine_leggings"
+  }
+}

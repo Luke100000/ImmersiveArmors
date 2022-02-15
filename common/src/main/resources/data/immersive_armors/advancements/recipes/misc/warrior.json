@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "immersive_armors:warrior_helmet",
+      "immersive_armors:warrior_chestplate",
+      "immersive_armors:warrior_leggings",
+      "immersive_armors:warrior_boots"
+    ]
+  },
+  "criteria": {
+    "has_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather_helmet"
+          }
+        ]
+      }
+    },
+    "has_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather_chestplate"
+          }
+        ]
+      }
+    },
+    "has_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather_leggings"
+          }
+        ]
+      }
+    },
+    "has_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_helmet",
+      "has_chestplate",
+      "has_leggings",
+      "has_boots"
+    ]
+  ]
+}

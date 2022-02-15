@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ILI",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "L": [
+      {
+        "item": "minecraft:leather_boots"
+      }
+    ],
+    "I": [
+      {
+        "item": "minecraft:iron_ingot"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:warrior_boots"
+  }
+}

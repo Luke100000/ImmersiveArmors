@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WBW",
+    "W W",
+    "W W"
+  ],
+  "key": {
+    "B": [
+      {
+        "item": "minecraft:blaze_powder"
+      }
+    ],
+    "W": [
+      {
+        "tag": "minecraft:wool"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:robe_leggings"
+  }
+}

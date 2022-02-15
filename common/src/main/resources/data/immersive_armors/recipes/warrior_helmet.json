@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BIB",
+    "ILI",
+    "   "
+  ],
+  "key": {
+    "L": [
+      {
+        "item": "minecraft:leather_helmet"
+      }
+    ],
+    "I": [
+      {
+        "item": "minecraft:iron_ingot"
+      }
+    ],
+    "B": [
+      {
+        "item": "minecraft:bone"
+      }
+    ]
+  },
+  "result": {
+    "item": "immersive_armors:warrior_helmet"
+  }
+}
