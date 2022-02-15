@@ -8,6 +8,6 @@ public class ItemGroups {
    @SuppressWarnings("Convert2MethodRef")
    public static ItemGroup ARMOR = Registration.ObjectBuilders.ItemGroups.create(
             new Identifier(Main.MOD_ID, Main.MOD_ID + "_tab"),
-           () -> Items.EMERALD_CHESTPLATE.getDefaultStack()
+           () -> Items.DIVINE_ARMOR[1].getDefaultStack()
     );
 }

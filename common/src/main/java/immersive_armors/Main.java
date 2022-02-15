@@ -4,6 +4,7 @@ import immersive_armors.client.render.entity.feature.ExtendedArmorFeatureRendere
 import immersive_armors.client.render.entity.feature.ExtendedCapeFeatureRenderer;
 import immersive_armors.client.render.entity.model.CapeModel;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
+import immersive_armors.mixin.MixinItemRenderer;
 import immersive_armors.mixin.MixinLivingEntityRenderer;
 import immersive_armors.mixin.MixingEntityRenderDispatcher;
 import java.util.LinkedList;
@@ -14,6 +15,8 @@ import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.feature.CapeFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.item.DyeableItem;
+import net.minecraft.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +32,13 @@ public final class Main {
                 process((FeatureRendererContext<?, ?>)entityRenderer);
             }
         });
+
+        //register colored items
+        MixinItemRenderer itemRenderer = (MixinItemRenderer)MinecraftClient.getInstance().getItemRenderer();
+        for (Item[] items : Items.coloredItems) {
+            itemRenderer.getColorMap().register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), items);
+
+        }
     }
 
     private static void process(FeatureRendererContext<?, ?> renderer) {

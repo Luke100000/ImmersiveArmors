@@ -13,6 +13,8 @@ import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
+import java.util.LinkedList;
+import java.util.List;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
@@ -21,13 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public interface Items {
-    ExtendedArmorMaterial emerald = new ExtendedArmorMaterial("emerald")
-            .protectionAmount(2, 3, 2, 1)
-            .toughness(1.0f)
-            .layer(ArmorLayer.LOWER)
-            .colored(ArmorLayer.LOWER);
-
-    Item EMERALD_CHESTPLATE = register("emerald_chestplate", new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, emerald));
+    List<Item[]> coloredItems = new LinkedList<>();
 
     Item[] BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
             .protectionAmount(2, 3, 1, 1)
@@ -135,12 +131,14 @@ public interface Items {
     }
 
     static Item[] registerDyeableSet(ExtendedArmorMaterial material) {
-        return new Item[] {
+        Item[] items = {
                 register(material.getName() + "_helmet", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
                 register(material.getName() + "_chestplate", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
                 register(material.getName() + "_leggings", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
                 register(material.getName() + "_boots", new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material)),
         };
+        coloredItems.add(items);
+        return items;
     }
 
     static Item register(String name, Item item) {
