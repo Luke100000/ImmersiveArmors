@@ -20,4 +20,4 @@ include('common')
 include('fabric')
 include('forge')
 
-rootProject.name = 'minecraft-comes-alive'
+rootProject.name = "immersive-armors"

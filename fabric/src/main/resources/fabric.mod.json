@@ -8,11 +8,12 @@
     "Luke100000"
   ],
   "contact": {
-    "sources": "https://github.com/Luke100000/minecraft-comes-alive",
-    "issues": "https://github.com/Luke100000/minecraft-comes-alive/issues"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/ImmersiveArmors",
+    "sources": "https://github.com/Luke100000/ImmersiveArmors",
+    "issues": "https://github.com/Luke100000/ImmersiveArmors/issues"
   },
   "license": "GNU",
-  "icon": "banner.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

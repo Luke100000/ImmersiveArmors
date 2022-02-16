@@ -1,17 +1,19 @@
 modLoader = "javafml"
 loaderVersion = "[35,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/Luke100000/ImmersiveArmors/issues"
 license = "GNU"
 
 [[mods]]
 modId = "immersive_armors"
 version = "${version}"
-displayName = "Immersive Armor"
+displayName = "Immersive Armors"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/ImmersiveArmors"
 authors = "Luke100000"
 description = '''
-A lot of unique and vanilla-faithful armor sets.
-'''
-logoFile = "banner.png"
+    A lot of unique and vanilla-faithful armor sets.
+    '''
+logoFile = "logoFile.png"
+itemIcon = "immersive_armors:divine_chestplate"
 
 [[dependencies.immersive_armors]]
 modId = "forge"

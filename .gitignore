@@ -35,3 +35,4 @@ forge*changelog.txt
 /logs
 /common/src/main/resources/assets/immersive_armors/textures/*.psd
 /.vscode
+/curseforge
