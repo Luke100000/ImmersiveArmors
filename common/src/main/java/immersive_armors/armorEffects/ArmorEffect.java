@@ -18,6 +18,10 @@ import org.jetbrains.annotations.Nullable;
 public abstract class ArmorEffect {
     abstract public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor);
 
+    public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
+        return amount;
+    }
+
     private final List<EquipmentSlot> armorEquipmentSlots = Arrays.asList(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET);
 
     protected Stream<ItemStack> getMatchingEquippedArmor(LivingEntity entity, ExtendedArmorMaterial material) {

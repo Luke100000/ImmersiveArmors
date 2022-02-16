@@ -7,8 +7,11 @@
   "armorEffect.bounceback": "%d Bounceback",
   "armorEffect.spikes": "%d Spike Damage",
   "armorEffect.arrowBlock": "%d%% Arrow Blocking",
-  "armorEffect.wither": "Lets your attackers wither.",
+  "armorEffect.wither": "Lets your attackers wither",
   "armorEffect.charged": "Charged",
+  "armorEffect.beserk": "Up to %d%% Damage when injured",
+  "armorEffect.weaponEfficiency": "+%d%% Damage with %s",
+  "armorEffect.weaponEfficiency.AxeItem": "Axes",
 
   "immersive_armors.dyeable": "Dyeable",
   "immersive_armors.incomplete": "%d / %d parts equipped",

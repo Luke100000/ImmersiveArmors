@@ -99,4 +99,11 @@ public class ExtendedArmorItem extends ArmorItem {
         }
         return amount;
     }
+
+    public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
+        for (ArmorEffect e : getMaterial().getEffects()) {
+            amount = e.applyArmorToAttack(target, source, amount, armor);
+        }
+        return amount;
+    }
 }

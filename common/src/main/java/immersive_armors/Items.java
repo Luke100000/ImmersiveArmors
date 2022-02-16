@@ -1,12 +1,14 @@
 package immersive_armors;
 
 import immersive_armors.armorEffects.ArrowBlockArmorEffect;
+import immersive_armors.armorEffects.BeserkArmorEffect;
 import immersive_armors.armorEffects.BouncingArmorEffect;
 import immersive_armors.armorEffects.DivineArmorEffect;
 import immersive_armors.armorEffects.ExplosionProtectionArmorEffect;
 import immersive_armors.armorEffects.FireInflictingArmorEffect;
 import immersive_armors.armorEffects.FireResistanceArmorEffect;
 import immersive_armors.armorEffects.SpikesArmorEffect;
+import immersive_armors.armorEffects.WeaponEfficiency;
 import immersive_armors.armorEffects.WitherArmorEffect;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorLayer;
@@ -17,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -47,6 +50,8 @@ public interface Items {
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.HEAD_HORIZONTAL)
             .layer(ArmorLayer.CAPE)
+            .effect(new BeserkArmorEffect(0.2f))
+            .effect(new WeaponEfficiency(0.05f, AxeItem.class))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")

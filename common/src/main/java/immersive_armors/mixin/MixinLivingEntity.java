@@ -38,6 +38,21 @@ public abstract class MixinLivingEntity extends Entity {
         return amount;
     }
 
+    private float applyToAttacker(LivingEntity attacker, EquipmentSlot slot, DamageSource source, float amount) {
+        ItemStack stack = attacker.getEquippedStack(slot);
+
+        if (stack != null) {
+            if (stack.getItem() instanceof ExtendedArmorItem) {
+                ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
+                //noinspection ConstantConditions
+                if ((Entity)this instanceof LivingEntity) {
+                    amount = armor.applyArmorToAttack((LivingEntity)((Entity)this), source, amount, stack);
+                }
+            }
+        }
+        return amount;
+    }
+
     @Inject(method = "applyArmorToDamage", at = @At("RETURN"), cancellable = true)
     void applyArmorToDamage(DamageSource source, float unused, CallbackInfoReturnable<Float> cir) {
         float amount = cir.getReturnValue();
@@ -46,6 +61,14 @@ public abstract class MixinLivingEntity extends Entity {
         amount = apply(EquipmentSlot.CHEST, source, amount);
         amount = apply(EquipmentSlot.LEGS, source, amount);
         amount = apply(EquipmentSlot.FEET, source, amount);
+
+        Entity attacker = source.getAttacker();
+        if (attacker instanceof LivingEntity) {
+            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.HEAD, source, amount);
+            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.CHEST, source, amount);
+            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.LEGS, source, amount);
+            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.FEET, source, amount);
+        }
 
         cir.setReturnValue(amount);
     }

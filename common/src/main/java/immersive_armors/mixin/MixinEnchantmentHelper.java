@@ -44,7 +44,7 @@ public abstract class MixinEnchantmentHelper {
 
     /**
      * @author Luke100000
-     * Overwrite required since getLevel is public static
+     * @reason Overwrite required since getLevel is public static
      */
     @Overwrite
     public static int getLevel(Enchantment enchantment, ItemStack stack) {
