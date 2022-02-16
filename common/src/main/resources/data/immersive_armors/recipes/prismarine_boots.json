@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IRI",
-    "   ",
+    "C C",
+    "S S",
     "   "
   ],
   "key": {
-    "R": [
+    "S": [
       {
-        "item": "immersive_armors:robe_boots"
+        "item": "minecraft:prismarine_shard"
       }
     ],
-    "I": [
+    "C": [
       {
-        "item": "minecraft:gold_ingot"
+        "item": "minecraft:prismarine_crystals"
       }
     ]
   },
   "result": {
-    "item": "immersive_armors:divine_boots"
+    "item": "immersive_armors:prismarine_boots"
   }
 }
