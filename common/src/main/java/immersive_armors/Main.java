@@ -3,6 +3,7 @@ package immersive_armors;
 import immersive_armors.client.render.entity.feature.ExtendedArmorFeatureRenderer;
 import immersive_armors.client.render.entity.feature.ExtendedCapeFeatureRenderer;
 import immersive_armors.client.render.entity.model.CapeModel;
+import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
 import immersive_armors.mixin.MixinItemRenderer;
 import immersive_armors.mixin.MixinLivingEntityRenderer;
@@ -36,8 +37,7 @@ public final class Main {
         //register colored items
         MixinItemRenderer itemRenderer = (MixinItemRenderer)MinecraftClient.getInstance().getItemRenderer();
         for (Item[] items : Items.coloredItems) {
-            itemRenderer.getColorMap().register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), items);
-
+            itemRenderer.getColorMap().register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((ExtendedArmorItem)stack.getItem()).getColor(stack), items);
         }
     }
 

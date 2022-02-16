@@ -29,6 +29,8 @@ public class DivineArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
+        tooltip.add(new TranslatableText("item.immersive_armors.divine.description").formatted(Formatting.GRAY));
+
         int count = getSetCount(stack);
         if (count == 4) {
             if (world != null && isCharged(world.getTime(), stack)) {
@@ -41,12 +43,11 @@ public class DivineArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (amount >= entity.getHealth() && isPrimaryArmor(armor, entity)) {
-            // try to block a potential fatal blow
+        if (isPrimaryArmor(armor, entity)) {
             long time = entity.world.getTime();
             boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
             if (charged) {
-                entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 0.5f, 1.25f);
+                entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, entity.getSoundCategory(), 0.5f, 1.25f);
                 getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateTag().putLong("last_divine", time));
                 return 0;
             }

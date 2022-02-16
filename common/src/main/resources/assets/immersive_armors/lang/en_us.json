@@ -16,8 +16,6 @@
   "immersive_armors.dyeable": "Dyeable",
   "immersive_armors.incomplete": "%d / %d parts equipped",
 
-  "item.immersive_armors.emerald_chestplate": "Emerald Chestplate",
-
   "item.immersive_armors.bone_helmet": "Bone Helmet",
   "item.immersive_armors.bone_chestplate": "Bone Chestplate",
   "item.immersive_armors.bone_leggings": "Bone Leggings",
@@ -52,6 +50,7 @@
   "item.immersive_armors.divine_chestplate": "Divine Chestplate",
   "item.immersive_armors.divine_leggings": "Divine Leggings",
   "item.immersive_armors.divine_boots": "Divine Boots",
+  "item.immersive_armors.divine.description": "Can deflect a hit once in a minute",
 
   "item.immersive_armors.prismarine_helmet": "Prismarine Helmet",
   "item.immersive_armors.prismarine_chestplate": "Prismarine Chestplate",

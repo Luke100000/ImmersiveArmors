@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
@@ -31,7 +32,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
 
     private SoundEvent equipSound;
-    private Ingredient repairIngredient;
+    private Supplier<Ingredient> repairIngredient;
 
     private final Set<ArmorLayer> layers = new HashSet<>();
     private final Set<ArmorLayer> colored = new HashSet<>();
@@ -74,7 +75,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial repairIngredient(Ingredient repairIngredient) {
+    public ExtendedArmorMaterial repairIngredient(Supplier<Ingredient> repairIngredient) {
         this.repairIngredient = repairIngredient;
         return this;
     }
@@ -181,7 +182,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return repairIngredient;
+        return repairIngredient.get();
     }
 
     @Override

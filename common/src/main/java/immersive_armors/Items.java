@@ -21,7 +21,9 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -29,12 +31,16 @@ public interface Items {
     List<Item[]> coloredItems = new LinkedList<>();
 
     Item[] BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
+            .durabilityMultiplier(8)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
             .protectionAmount(2, 3, 1, 1)
             .enchantability(15)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
             .weight(-0.02f));
 
     Item[] WITHER_ARMOR = registerSet(new ExtendedArmorMaterial("wither")
+            .durabilityMultiplier(12)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
             .protectionAmount(3, 4, 2, 1)
             .enchantability(0)
             .effect(new WitherArmorEffect(1.0f, 10))
@@ -43,8 +49,10 @@ public interface Items {
             .weight(-0.01f));
 
     Item[] WARRIOR_ARMOR = registerSet(new ExtendedArmorMaterial("warrior")
-            .protectionAmount(5, 6, 3, 2)
-            .toughness(2.0f)
+            .protectionAmount(3, 5, 6, 2)
+            .durabilityMultiplier(15)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.IRON_INGOT))
+            .toughness(1.0f)
             .enchantability(5)
             .layer(ArmorLayer.LOWER)
             .layer(ArmorLayer.UPPER)
@@ -55,7 +63,9 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")
-            .protectionAmount(6, 7, 4, 3)
+            .protectionAmount(4, 7, 6, 3)
+            .durabilityMultiplier(20)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.IRON_INGOT))
             .toughness(2.0f)
             .knockbackReduction(0.5f)
             .weight(0.05f)
@@ -66,8 +76,10 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] ROBE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("robe")
-            .protectionAmount(3, 4, 2, 1)
+            .protectionAmount(2, 3, 2, 1)
             .enchantability(50)
+            .durabilityMultiplier(12)
+            .repairIngredient(() -> Ingredient.fromTag(ItemTags.WOOL))
             .color(11546150)
             .layer(ArmorLayer.LOWER)
             .colored(ArmorLayer.MIDDLE)
@@ -77,8 +89,10 @@ public interface Items {
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     Item[] SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")
-            .protectionAmount(3, 4, 2, 1)
+            .protectionAmount(3, 5, 4, 2)
             .enchantability(10)
+            .durabilityMultiplier(20)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.SLIME_BALL))
             .knockbackReduction(1.0f)
             .effect(new BouncingArmorEffect(0.25f))
             .effect(new ExplosionProtectionArmorEffect(0.15f))
@@ -90,9 +104,11 @@ public interface Items {
             .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
 
     Item[] DIVINE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("divine")
-            .protectionAmount(7, 8, 5, 4)
+            .protectionAmount(3, 7, 5, 3)
+            .durabilityMultiplier(12)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
             .enchantability(20)
-            .effect(new DivineArmorEffect(24000))
+            .effect(new DivineArmorEffect(1200))
             .color(11546150)
             //.glint(ArmorLayer.MIDDLE)
             .layer(ArmorLayer.UPPER)
@@ -104,8 +120,10 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")
-            .protectionAmount(7, 8, 5, 4)
+            .protectionAmount(3, 8, 6, 3)
             .enchantability(8)
+            .durabilityMultiplier(18)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.PRISMARINE)
@@ -114,7 +132,9 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")
-            .protectionAmount(3, 4, 2, 1)
+            .protectionAmount(1, 3, 2, 1)
+            .durabilityMultiplier(8)
+            .repairIngredient(() -> Ingredient.fromTag(ItemTags.LOGS))
             .enchantability(8)
             .layer(ArmorLayer.UPPER)
             .layer(ArmorLayer.SHOULDER)
