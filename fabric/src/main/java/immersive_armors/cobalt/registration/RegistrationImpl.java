@@ -8,9 +8,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import immersive_armors.cobalt.registration.Registration.PoiFactory;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
-import immersive_armors.mixin.MixinActivity;
-import immersive_armors.mixin.MixinMemoryModuleType;
-import immersive_armors.mixin.MixinSensorType;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
@@ -63,22 +60,23 @@ public class RegistrationImpl extends Registration.Impl {
 
     @Override
     public Function<Identifier, Activity> activity() {
-        return id -> MixinActivity.register(id.toString());
+        return null;
     }
 
     @Override
     public <T extends Sensor<?>> BiFunction<Identifier, Supplier<T>, SensorType<T>> sensor() {
-        return (id, factory) -> MixinSensorType.register(id.toString(), factory);
+        return null;
     }
 
     @Override
     public <U> BiFunction<Identifier, Optional<Codec<U>>, MemoryModuleType<U>> memoryModule() {
-        return (id, codec) -> register(Registry.MEMORY_MODULE_TYPE, id, MixinMemoryModuleType.init(codec));
+        return null;
     }
 
     @Override
     public <T extends LivingEntity> BiFunction<EntityType<T>, Supplier<Builder>, EntityType<T>> defaultEntityAttributes() {
         return (type, attributes) -> {
+            //noinspection ConstantConditions
             FabricDefaultAttributeRegistry.register(type, attributes.get());
             return type;
         };

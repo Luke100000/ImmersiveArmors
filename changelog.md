@@ -13,3 +13,4 @@
 # 1.0.1
 
 * Fixed incompatibility with modded armor on Forge
+* Reworked model and renderer injector to work better with other mods

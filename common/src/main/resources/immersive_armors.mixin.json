@@ -4,20 +4,15 @@
   "package": "immersive_armors.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinActivity",
     "MixinAnimalModel",
-    "MixinArmorFeatureRendererInjector",
+    "MixinArmorFeatureRenderer",
+    "MixinCapeFeatureRenderer",
     "MixinEnchantmentHelper",
-    "MixinLivingEntity",
-    "MixinMemoryModuleType",
-    "MixinModelPart",
-    "MixinSensorType"
+    "MixinLivingEntity"
   ],
   "client": [
     "MixinArmorFeatureRenderer",
-    "MixingEntityRenderDispatcher",
-    "MixinItemRenderer",
-    "MixinLivingEntityRenderer"
+    "MixinItemRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
