@@ -10,8 +10,10 @@ import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.mixin.MixinAnimalModel;
 import immersive_armors.mixin.MixinArmorFeatureRenderer;
+
 import java.util.Locale;
 import java.util.Map;
+
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -105,7 +107,7 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
 
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, EntityModel model, ArmorLayer armorLayer) {
         ItemStack itemStack = entity.getEquippedStack(armorSlot);
-        if (itemStack.getItem() instanceof ArmorItem) {
+        if (itemStack.getItem() instanceof ExtendedArmorItem) {
             ArmorItem armorItem = (ArmorItem)itemStack.getItem();
             if (armorItem.getSlotType() == armorSlot && hasLayer(armorItem, armorLayer)) {
                 if (model instanceof BipedEntityModel) {
@@ -135,36 +137,38 @@ public class ExtendedArmorFeatureRenderer<T extends LivingEntity, M extends Bipe
     }
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
+    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l) {
+        super.render(matrixStack, vertexConsumerProvider, i, entity, f, g, h, j, k, l);
+
         // middle layer
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, getArmor(EquipmentSlot.CHEST), ArmorLayer.MIDDLE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, getArmor(EquipmentSlot.LEGS), ArmorLayer.MIDDLE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, getArmor(EquipmentSlot.FEET), ArmorLayer.MIDDLE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, getArmor(EquipmentSlot.HEAD), ArmorLayer.MIDDLE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, getArmor(EquipmentSlot.CHEST), ArmorLayer.MIDDLE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, getArmor(EquipmentSlot.LEGS), ArmorLayer.MIDDLE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, getArmor(EquipmentSlot.FEET), ArmorLayer.MIDDLE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, getArmor(EquipmentSlot.HEAD), ArmorLayer.MIDDLE);
 
         // lower layer
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, getLowerArmor(EquipmentSlot.CHEST), ArmorLayer.LOWER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, getLowerArmor(EquipmentSlot.LEGS), ArmorLayer.LOWER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, getLowerArmor(EquipmentSlot.FEET), ArmorLayer.LOWER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, getLowerArmor(EquipmentSlot.HEAD), ArmorLayer.LOWER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, getLowerArmor(EquipmentSlot.CHEST), ArmorLayer.LOWER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, getLowerArmor(EquipmentSlot.LEGS), ArmorLayer.LOWER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, getLowerArmor(EquipmentSlot.FEET), ArmorLayer.LOWER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, getLowerArmor(EquipmentSlot.HEAD), ArmorLayer.LOWER);
 
         // upper layer
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, getUpperArmor(EquipmentSlot.CHEST), ArmorLayer.UPPER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, getUpperArmor(EquipmentSlot.LEGS), ArmorLayer.UPPER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, getUpperArmor(EquipmentSlot.FEET), ArmorLayer.UPPER);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, getUpperArmor(EquipmentSlot.HEAD), ArmorLayer.UPPER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, getUpperArmor(EquipmentSlot.CHEST), ArmorLayer.UPPER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, getUpperArmor(EquipmentSlot.LEGS), ArmorLayer.UPPER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, getUpperArmor(EquipmentSlot.FEET), ArmorLayer.UPPER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, getUpperArmor(EquipmentSlot.HEAD), ArmorLayer.UPPER);
 
         // special layers
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headHorizontal, ArmorLayer.HEAD_HORIZONTAL);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, headHorizontal, ArmorLayer.HEAD_HORIZONTAL);
 
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, headVertical, ArmorLayer.HEAD_VERTICAL);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, headVertical, ArmorLayer.HEAD_VERTICAL);
 
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, prismarine, ArmorLayer.PRISMARINE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, prismarine, ArmorLayer.PRISMARINE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, prismarine, ArmorLayer.PRISMARINE);
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, prismarine, ArmorLayer.PRISMARINE);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, prismarine, ArmorLayer.PRISMARINE);
 
-        renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, shoulder, ArmorLayer.SHOULDER);
+        renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, shoulder, ArmorLayer.SHOULDER);
     }
 
     private boolean hasLayer(ArmorItem item, ArmorLayer layer) {
