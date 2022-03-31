@@ -1,6 +1,5 @@
 package immersive_armors.mixin;
 
-import com.google.common.collect.Maps;
 import immersive_armors.client.render.entity.feature.ExtendedCapeFeatureRenderer;
 import immersive_armors.client.render.entity.model.*;
 import immersive_armors.item.ArmorLayer;
@@ -24,7 +23,6 @@ import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -114,12 +112,13 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
             string = "textures/models/armor/" + item.getMaterial().getName() + "_layer_" + (legs ? 2 : 1) + (overlay == null ? "" : "_" + overlay) + ".png";
         }
 
-        return getArmorCache().computeIfAbsent(string, s -> {
-            Identifier identifier = new Identifier(s);
-            String vanilla = "minecraft:textures/models/armor/" + item.getMaterial().getName() + "_layer_" + (legs ? 2 : 1) + ".png";
-            getArmorCache().put(vanilla, identifier);
-            return identifier;
-        });
+        Identifier identifier = new Identifier(string);
+
+        // some support mods with custom models
+        String vanilla = "minecraft:textures/models/armor/" + item.getMaterial().getName() + "_layer_" + (legs ? 2 : 1) + ".png";
+        getArmorCache().put(vanilla, identifier);
+
+        return getArmorCache().computeIfAbsent(string, s -> identifier);
     }
 
     private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean glint, EntityModel model, boolean legs, float red, float green, float blue, @Nullable String overlay, ArmorLayer armorLayer) {
