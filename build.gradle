@@ -2,19 +2,30 @@ plugins {
     id 'java-library'
     id 'architectury-plugin' version '3.2-SNAPSHOT'
     id 'dev.architectury.loom' version '0.7.2-SNAPSHOT' apply false
-    id 'org.ajoberstar.reckon' version '0.13.0'
 }
 
-targetCompatibility = JavaVersion.VERSION_1_8
-sourceCompatibility = JavaVersion.VERSION_1_8
+def getAppVersion = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    def commitId = stdout.toString().replace("\n", "").replace("\r", "").trim()
+    stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'tag', '--points-at', commitId
+        standardOutput = stdout
+    }
+    def tagName = stdout.toString().replace("\n", "").replace("\r", "").trim()
+    def versionName = 'git-' + commitId
+    if (tagName != null && "" != tagName) {
+        versionName = tagName
+    }
+    return versionName
+} as Object
 
 architectury {
     minecraft = rootProject.minecraft_version
-}
-
-reckon {
-    scopeFromProp()
-    stageFromProp('beta', 'rc', 'final')
 }
 
 subprojects {
@@ -35,6 +46,8 @@ allprojects {
 
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
+
+    project.version = getAppVersion()
 
     group = rootProject.group
     description = rootProject.displayname
