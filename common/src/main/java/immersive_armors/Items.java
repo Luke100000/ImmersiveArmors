@@ -1,22 +1,13 @@
 package immersive_armors;
 
-import immersive_armors.armorEffects.ArrowBlockArmorEffect;
-import immersive_armors.armorEffects.BeserkArmorEffect;
-import immersive_armors.armorEffects.BouncingArmorEffect;
-import immersive_armors.armorEffects.DivineArmorEffect;
-import immersive_armors.armorEffects.ExplosionProtectionArmorEffect;
-import immersive_armors.armorEffects.FireInflictingArmorEffect;
-import immersive_armors.armorEffects.FireResistanceArmorEffect;
-import immersive_armors.armorEffects.SpikesArmorEffect;
-import immersive_armors.armorEffects.WeaponEfficiency;
-import immersive_armors.armorEffects.WitherArmorEffect;
+import immersive_armors.armorEffects.*;
+import immersive_armors.client.render.entity.piece.CapePiece;
+import immersive_armors.client.render.entity.model.*;
 import immersive_armors.cobalt.registration.Registration;
-import immersive_armors.item.ArmorLayer;
+import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
-import java.util.LinkedList;
-import java.util.List;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
@@ -27,6 +18,9 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public interface Items {
     List<Item[]> coloredItems = new LinkedList<>();
 
@@ -35,6 +29,8 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
             .protectionAmount(1, 3, 2, 1)
             .enchantability(15)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
             .weight(-0.02f));
 
@@ -44,7 +40,10 @@ public interface Items {
             .protectionAmount(2, 6, 5, 2)
             .enchantability(0)
             .effect(new WitherArmorEffect(1.0f, 10))
-            .layer(ArmorLayer.CAPE)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())))
+            .hideCape()
             .equipSound(SoundEvents.ENTITY_WITHER_SKELETON_AMBIENT)
             .weight(-0.01f));
 
@@ -54,10 +53,15 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.IRON_INGOT))
             .toughness(1.0f)
             .enchantability(5)
-            .layer(ArmorLayer.LOWER)
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.HEAD_HORIZONTAL)
-            .layer(ArmorLayer.CAPE)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
+            .piece(new ArmorPiece(HorizontalHeadModel::new).head().texture("horizontal"))
+            .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())))
+            .hideCape()
             .effect(new BeserkArmorEffect(0.2f))
             .effect(new WeaponEfficiency(0.05f, AxeItem.class))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
@@ -70,9 +74,13 @@ public interface Items {
             .knockbackReduction(0.5f)
             .weight(0.05f)
             .enchantability(6)
-            .layer(ArmorLayer.LOWER)
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.HEAD_VERTICAL)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
+            .piece(new ArmorPiece(VerticalHeadModel::new).head().texture("vertical"))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] ROBE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("robe")
@@ -81,9 +89,10 @@ public interface Items {
             .durabilityMultiplier(14)
             .repairIngredient(() -> Ingredient.fromTag(ItemTags.WOOL))
             .color(11546150)
-            .layer(ArmorLayer.LOWER)
-            .colored(ArmorLayer.MIDDLE)
-            .colored(ArmorLayer.LOWER)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower().colored())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper().colored())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower().colored())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper().colored())
             .effect(new FireResistanceArmorEffect(0.25f))
             .effect(new FireInflictingArmorEffect(10))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
@@ -96,11 +105,12 @@ public interface Items {
             .knockbackReduction(1.0f)
             .effect(new BouncingArmorEffect(0.25f))
             .effect(new ExplosionProtectionArmorEffect(0.15f))
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.LOWER)
-            .translucent(ArmorLayer.UPPER)
-            .translucent(ArmorLayer.MIDDLE)
-            .translucent(ArmorLayer.LOWER)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower().translucent())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper().translucent())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower().translucent())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper().translucent())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower().translucent())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper().translucent())
             .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
 
     Item[] DIVINE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("divine")
@@ -111,12 +121,14 @@ public interface Items {
             .effect(new DivineArmorEffect(1200))
             .color(11546150)
             //.glint(ArmorLayer.MIDDLE)
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.LOWER)
-            .layer(ArmorLayer.CAPE)
-            .colored(ArmorLayer.UPPER)
-            .colored(ArmorLayer.LOWER)
-            .colored(ArmorLayer.CAPE)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower().colored())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper().colored())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower().colored())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper().colored())
+            .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())).colored())
+            .hideCape()
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     Item[] PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")
@@ -125,8 +137,11 @@ public interface Items {
             .durabilityMultiplier(18)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.PRISMARINE)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
+            .piece(new ArmorPiece(PrismarineModel::new).full().texture("prismarine"))
             .effect(new SpikesArmorEffect(1))
             .enchantment(Enchantments.DEPTH_STRIDER, 1)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
@@ -136,8 +151,11 @@ public interface Items {
             .durabilityMultiplier(8)
             .repairIngredient(() -> Ingredient.fromTag(ItemTags.LOGS))
             .enchantability(4)
-            .layer(ArmorLayer.UPPER)
-            .layer(ArmorLayer.SHOULDER)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_UPPER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
+            .piece(new ArmorPiece(ShoulderModel::new).chest().texture("shoulder"))
             .effect(new ArrowBlockArmorEffect(0.15f))
             .effect(new ExplosionProtectionArmorEffect(0.1f))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));

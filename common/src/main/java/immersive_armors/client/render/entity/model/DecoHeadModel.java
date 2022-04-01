@@ -1,13 +1,13 @@
 package immersive_armors.client.render.entity.model;
 
-import immersive_armors.mixin.MixinAnimalModel;
-import java.util.Collections;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 
+import java.util.Collections;
+
 public abstract class DecoHeadModel extends DecoModel {
-    public DecoHeadModel(MixinAnimalModel model) {
-        super(model);
+    public DecoHeadModel() {
+        super();
     }
 
     abstract ModelPart getPart();

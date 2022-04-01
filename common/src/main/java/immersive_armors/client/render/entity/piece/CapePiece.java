@@ -1,17 +1,15 @@
-package immersive_armors.client.render.entity.feature;
+package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.client.render.entity.model.CapeModel;
-import immersive_armors.item.ArmorLayer;
+import immersive_armors.client.render.entity.piece.Piece;
+import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
@@ -21,12 +19,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
 
-public class ExtendedCapeFeatureRenderer<T extends LivingEntity, M extends CapeModel<T>> extends FeatureRenderer<T, M> {
+public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
     private final M model;
 
-    public ExtendedCapeFeatureRenderer(FeatureRendererContext<T, M> context, M model) {
-        super(context);
-
+    public CapePiece(M model) {
         this.model = model;
     }
 
@@ -42,62 +38,58 @@ public class ExtendedCapeFeatureRenderer<T extends LivingEntity, M extends CapeM
         );
     }
 
-    @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        ItemStack itemStack = entity.getEquippedStack(EquipmentSlot.CHEST);
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, ArmorPiece piece) {
         if (itemStack.getItem() instanceof ExtendedArmorItem) {
             ExtendedArmorItem armor = (ExtendedArmorItem)itemStack.getItem();
 
-            if (armor.getMaterial().hasLayer(ArmorLayer.CAPE)) {
-                //update cape motion
-                CapeAngles angles = new CapeAngles(itemStack);
-                angles.updateCapeAngles(entity, tickDelta);
-                angles.store(itemStack);
+            //update cape motion
+            CapeAngles angles = new CapeAngles(itemStack);
+            angles.updateCapeAngles(entity, tickDelta);
+            angles.store(itemStack);
 
-                matrices.push();
-                matrices.translate(0.0D, 0.0D, 0.125D);
+            matrices.push();
+            matrices.translate(0.0D, 0.0D, 0.125D);
 
-                float n = entity.prevBodyYaw + (entity.bodyYaw - entity.prevBodyYaw);
-                double o = MathHelper.sin(n * 0.017453292F);
-                double p = -MathHelper.cos(n * 0.017453292F);
-                double q = angles.deltaY * 40.0F;
-                q = MathHelper.clamp(q, -6.0F, 32.0F);
-                double r = (angles.deltaX * o + angles.deltaZ * p) * 100.0F;
-                r = MathHelper.clamp(r, 0.0F, 150.0F);
-                double s = (angles.deltaX * p - angles.deltaZ * o) * 100.0F;
-                s = MathHelper.clamp(s, -20.0F, 20.0F);
-                if (r < 0.0F) {
-                    r = 0.0F;
-                }
-
-                if (entity.isInSneakingPose()) {
-                    q += 22.5F;
-                    matrices.translate(0.0, 0.25, 0.0);
-                }
-
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float)(6.0F + r / 2.0F + q)));
-                matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)(s / 2.0F)));
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)(180.0F - s / 2.0F)));
-
-                model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-
-                VertexConsumer vertexConsumer;
-                if (armor.getMaterial().isColored(ArmorLayer.CAPE)) {
-                    int i = ((DyeableItem)armor).getColor(itemStack);
-                    float red = (float)(i >> 16 & 255) / 255.0F;
-                    float green = (float)(i >> 8 & 255) / 255.0F;
-                    float blue = (float)(i & 255) / 255.0F;
-
-                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
-                    model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0f);
-
-                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, true)));
-                } else {
-                    vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
-                }
-                model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
-                matrices.pop();
+            float n = entity.prevBodyYaw + (entity.bodyYaw - entity.prevBodyYaw);
+            double o = MathHelper.sin(n * 0.017453292F);
+            double p = -MathHelper.cos(n * 0.017453292F);
+            double q = angles.deltaY * 40.0F;
+            q = MathHelper.clamp(q, -6.0F, 32.0F);
+            double r = (angles.deltaX * o + angles.deltaZ * p) * 100.0F;
+            r = MathHelper.clamp(r, 0.0F, 150.0F);
+            double s = (angles.deltaX * p - angles.deltaZ * o) * 100.0F;
+            s = MathHelper.clamp(s, -20.0F, 20.0F);
+            if (r < 0.0F) {
+                r = 0.0F;
             }
+
+            if (entity.isInSneakingPose()) {
+                q += 22.5F;
+                matrices.translate(0.0, 0.25, 0.0);
+            }
+
+            matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float)(6.0F + r / 2.0F + q)));
+            matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)(s / 2.0F)));
+            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)(180.0F - s / 2.0F)));
+
+            model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+
+            VertexConsumer vertexConsumer;
+            if (piece.isColored()) {
+                int i = ((DyeableItem)armor).getColor(itemStack);
+                float red = (float)(i >> 16 & 255) / 255.0F;
+                float green = (float)(i >> 8 & 255) / 255.0F;
+                float blue = (float)(i & 255) / 255.0F;
+
+                vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
+                model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0f);
+
+                vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, true)));
+            } else {
+                vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
+            }
+            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
+            matrices.pop();
         }
     }
 

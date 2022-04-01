@@ -1,18 +1,14 @@
 package immersive_armors.item;
 
 import immersive_armors.armorEffects.ArmorEffect;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
+
+import java.util.*;
+import java.util.function.Supplier;
 
 public class ExtendedArmorMaterial implements ArmorMaterial {
     private final String name;
@@ -31,14 +27,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private final List<ArmorEffect> effects = new LinkedList<>();
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
 
+    private final List<ArmorPiece> pieces = new LinkedList<>();
+    private boolean hideCape;
+
     private SoundEvent equipSound;
     private Supplier<Ingredient> repairIngredient;
-
-    private final Set<ArmorLayer> layers = new HashSet<>();
-    private final Set<ArmorLayer> colored = new HashSet<>();
-    private final Set<ArmorLayer> translucent = new HashSet<>();
-    private final Set<ArmorLayer> glint = new HashSet<>();
-    private final Set<ArmorLayer> glowing = new HashSet<>();
 
     private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
 
@@ -46,8 +39,6 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         this.name = name;
 
         protectionAmount(0, 0, 0, 0);
-
-        layers.add(ArmorLayer.MIDDLE);
     }
 
     public ExtendedArmorMaterial durabilityMultiplier(int durabilityMultiplier) {
@@ -82,31 +73,6 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public ExtendedArmorMaterial knockbackReduction(float knockbackReduction) {
         this.knockbackResistance = knockbackReduction;
-        return this;
-    }
-
-    public ExtendedArmorMaterial layer(ArmorLayer layer) {
-        layers.add(layer);
-        return this;
-    }
-
-    public ExtendedArmorMaterial colored(ArmorLayer layer) {
-        colored.add(layer);
-        return this;
-    }
-
-    public ExtendedArmorMaterial translucent(ArmorLayer layer) {
-        translucent.add(layer);
-        return this;
-    }
-
-    public ExtendedArmorMaterial glint(ArmorLayer layer) {
-        glint.add(layer);
-        return this;
-    }
-
-    public ExtendedArmorMaterial glowing(ArmorLayer layer) {
-        glowing.add(layer);
         return this;
     }
 
@@ -150,6 +116,16 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial hideCape() {
+        this.hideCape = true;
+        return this;
+    }
+
+    public ExtendedArmorMaterial piece(ArmorPiece piece) {
+        pieces.add(piece);
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -190,26 +166,6 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return knockbackResistance;
     }
 
-    public boolean hasLayer(ArmorLayer layer) {
-        return layers.contains(layer);
-    }
-
-    public boolean isColored(ArmorLayer layer) {
-        return colored.contains(layer);
-    }
-
-    public boolean isTranslucent(ArmorLayer layer) {
-        return translucent.contains(layer);
-    }
-
-    public boolean isGlowing(ArmorLayer layer) {
-        return glowing.contains(layer);
-    }
-
-    public boolean hasGlint(ArmorLayer layer) {
-        return glint.contains(layer);
-    }
-
     public float getWeight() {
         return weight;
     }
@@ -248,5 +204,13 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public int getEnchantment(Enchantment enchantment) {
         return enchantments.get(enchantment);
+    }
+
+    public boolean shouldHideCape() {
+        return hideCape;
+    }
+
+    public List<ArmorPiece> getPieces() {
+        return pieces;
     }
 }

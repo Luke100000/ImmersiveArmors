@@ -1,6 +1,5 @@
 package immersive_armors.mixin;
 
-import immersive_armors.item.ArmorLayer;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -21,7 +20,7 @@ public class MixinCapeFeatureRenderer {
         if (abstractClientPlayerEntity.canRenderCapeTexture() && !abstractClientPlayerEntity.isInvisible() && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE) && abstractClientPlayerEntity.getCapeTexture() != null) {
             ItemStack itemStack = abstractClientPlayerEntity.getEquippedStack(EquipmentSlot.CHEST);
             if (itemStack.getItem() instanceof ExtendedArmorItem) {
-                if (((ExtendedArmorItem)itemStack.getItem()).getMaterial().hasLayer(ArmorLayer.CAPE)) {
+                if (((ExtendedArmorItem)itemStack.getItem()).getMaterial().shouldHideCape()) {
                     ci.cancel();
                 }
             }

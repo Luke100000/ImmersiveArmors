@@ -1,11 +1,11 @@
 package immersive_armors.client.render.entity.model;
 
-import immersive_armors.mixin.MixinAnimalModel;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 
 public class PrismarineModel extends DecoModel {
     private final List<ModelPart> parts = new LinkedList<>();
@@ -53,8 +53,8 @@ public class PrismarineModel extends DecoModel {
             {0.0f},
     };
 
-    public PrismarineModel(MixinAnimalModel model) {
-        super(model);
+    public PrismarineModel() {
+        super();
         for (int t = 0; t < SPIKE_PIVOTS_X.length; t++) {
             ModelPart part = new ModelPart(8, 8, 0, 0);
             for (int i = 0; i < SPIKE_PIVOTS_X[t].length; i++) {
