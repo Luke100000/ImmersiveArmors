@@ -18,3 +18,4 @@
 # 1.1.0
 
 * Further, extended armor framework to allow even cooler armor
+* Improved armor performance
