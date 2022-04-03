@@ -37,4 +37,21 @@ public abstract class DecoModel extends AnimalModel {
     public void setAngles(Entity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 
     }
+
+    public static ModelPart getModelPart(BipedEntityModel model, String name) {
+        switch (name) {
+            case "head":
+                return model.head;
+            case "leftArm":
+                return model.leftArm;
+            case "rightArm":
+                return model.rightArm;
+            case "leftLeg":
+                return model.leftLeg;
+            case "rightLeg":
+                return model.rightLeg;
+            default:
+                return model.body;
+        }
+    }
 }

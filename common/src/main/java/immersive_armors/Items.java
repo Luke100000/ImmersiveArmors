@@ -3,6 +3,8 @@ package immersive_armors;
 import immersive_armors.armorEffects.*;
 import immersive_armors.client.render.entity.piece.CapePiece;
 import immersive_armors.client.render.entity.model.*;
+import immersive_armors.client.render.entity.piece.GearPiece;
+import immersive_armors.client.render.entity.piece.ItemPiece;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.DyeableExtendedArmorItem;
@@ -12,10 +14,13 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Quaternion;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedList;
@@ -62,7 +67,7 @@ public interface Items {
             .piece(new ArmorPiece(HorizontalHeadModel::new).head().texture("horizontal"))
             .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())))
             .hideCape()
-            .effect(new BeserkArmorEffect(0.2f))
+            .effect(new BerserkArmorEffect(0.2f))
             .effect(new WeaponEfficiency(0.05f, AxeItem.class))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
@@ -155,6 +160,30 @@ public interface Items {
             .effect(new ArrowBlockArmorEffect(0.15f))
             .effect(new ExplosionProtectionArmorEffect(0.1f))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
+
+    Item[] STEAMPUNK_ARMOR = registerSet(new ExtendedArmorMaterial("steampunk")
+            .protectionAmount(3, 6, 4, 2)
+            .durabilityMultiplier(11)
+            .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
+            .enchantability(4)
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper())
+            .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
+            .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("leftArm", 0.05f, -0.25f, 0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), 90.0f, true))))
+            .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.item.Items.CLOCK))))
+            .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 0.2f)))
+            .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -0.3f)))
+            .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("body", 5), "gear_small", -0.1f, 0.45f, -0.17f, -0.3f)))
+            .piece(new ArmorPiece().head().renderer(() -> new GearPiece<>(new GearModel("head", 5), "gear_small", -0.3f, -0.3f, 0.0f, -0.2f, new Quaternion(new Vec3f(0.0f, 1.0f, 0.0f), 90.0f, true))))
+            .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("leftArm", 5), "gear_small", 0.23f, 0.40f, 0.0f, -0.3f, new Quaternion(new Vec3f(0.0f, 1.0f, 0.0f), 90.0f, true))))
+            .piece(new ArmorPiece(RightVerticalShoulderModel::new).chest().texture("shoulder"))
+            .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())))
+            .hideCape()
+            .effect(new ExplosionProtectionArmorEffect(0.1f))
+            .effect(new SteamJetArmorEffect())
+            .equipSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT));
 
     static void bootstrap() {
 

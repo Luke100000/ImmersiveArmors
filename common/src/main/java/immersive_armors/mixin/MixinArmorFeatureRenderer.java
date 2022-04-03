@@ -124,8 +124,9 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
                             renderExtendedArmor(matrices, vertexConsumers, light, itemStack, armorSlot, decoModel, piece);
                         }
                         if (piece.getRenderer() != null) {
+                            A bipedEntityModel = getArmor(armorSlot);
                             Piece renderer = renderers.computeIfAbsent(piece.getRenderer(), Supplier::get);
-                            renderer.render(matrices, vertexConsumers, light, entity, itemStack, tickDelta, piece);
+                            renderer.render(matrices, vertexConsumers, light, entity, itemStack, tickDelta, piece, (BipedEntityModel<LivingEntity>)bipedEntityModel);
                         }
                     }
                 });

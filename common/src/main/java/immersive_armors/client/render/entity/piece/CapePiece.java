@@ -8,6 +8,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -38,7 +39,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         );
     }
 
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, ArmorPiece piece) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, ArmorPiece piece, BipedEntityModel<LivingEntity> bipedEntityModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem) {
             ExtendedArmorItem armor = (ExtendedArmorItem)itemStack.getItem();
 

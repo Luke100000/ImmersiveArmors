@@ -11,10 +11,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class BeserkArmorEffect extends ArmorEffect {
+public class BerserkArmorEffect extends ArmorEffect {
     private final float berserk;
 
-    public BeserkArmorEffect(float berserk) {
+    public BerserkArmorEffect(float berserk) {
         this.berserk = berserk;
     }
 
@@ -22,7 +22,7 @@ public class BeserkArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("armorEffect.beserk", (int)(berserk * 100)).formatted(Formatting.RED));
+        tooltip.add(new TranslatableText("armorEffect.berserk", (int)(berserk * 100)).formatted(Formatting.RED));
     }
 
     @Override

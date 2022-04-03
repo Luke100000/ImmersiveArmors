@@ -1,19 +1,37 @@
 package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.util.math.MatrixStack;
 
-public class GearModel extends DecoHeadModel {
+public class GearModel extends DecoModel {
+    private final String attachTo;
     private final ModelPart part;
 
-    public GearModel() {
+    public GearModel(String to, int size) {
         super();
-        part = new ModelPart(64, 16, 0, 0);
-        part.addCuboid(-10.0F, -17.0F, 0.0F, 20.0F, 12.0F, 0.0F, 0.0f);
+        attachTo = to;
+        part = new ModelPart(16, 8, 0, 0);
+        part.addCuboid(-size / 2.0f, -size / 2.0f, 0.0F, size, size, 0.0f, 0.0f);
         part.setPivot(0.0F, 0.0F, 0.0F);
     }
 
     @Override
-    ModelPart getPart() {
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+        part.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    }
+
+    public void copyFromModel(BipedEntityModel model) {
+        copyFromPart(part, getModelPart(model, attachTo));
+        super.copyFromModel(model);
+    }
+
+    public String getAttachTo() {
+        return attachTo;
+    }
+
+    public ModelPart getPart() {
         return part;
     }
 }

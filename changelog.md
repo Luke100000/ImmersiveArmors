@@ -19,3 +19,4 @@
 
 * Further, extended armor framework to allow even cooler armor
 * Improved armor performance
+* Added Steampunk Armor
