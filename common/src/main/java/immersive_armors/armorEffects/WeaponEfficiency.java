@@ -1,8 +1,5 @@
 package immersive_armors.armorEffects;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,6 +10,10 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class WeaponEfficiency extends ArmorEffect {
     private final float damage;

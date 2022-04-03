@@ -1,6 +1,5 @@
 package immersive_armors.item;
 
-import java.util.List;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.DyeableItem;
@@ -10,6 +9,8 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class DyeableExtendedArmorItem extends ExtendedArmorItem implements DyeableItem {
     public DyeableExtendedArmorItem(Settings settings, EquipmentSlot slot, ExtendedArmorMaterial material) {

@@ -2,7 +2,6 @@ package immersive_armors;
 
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.mixin.MixinItemRenderer;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import org.apache.logging.log4j.LogManager;

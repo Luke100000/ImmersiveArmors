@@ -2,11 +2,8 @@ package immersive_armors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+
+import java.io.*;
 
 public final class Config implements Serializable {
     private static final long serialVersionUID = 9132405079466337851L;

@@ -1,14 +1,15 @@
 package immersive_armors.util;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class FlowingText {
 

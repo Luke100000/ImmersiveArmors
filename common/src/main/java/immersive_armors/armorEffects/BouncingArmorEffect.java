@@ -1,6 +1,5 @@
 package immersive_armors.armorEffects;
 
-import java.util.List;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -12,6 +11,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BouncingArmorEffect extends ArmorEffect {
     private final float strength;

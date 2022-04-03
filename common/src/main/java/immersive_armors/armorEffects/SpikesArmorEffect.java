@@ -1,6 +1,5 @@
 package immersive_armors.armorEffects;
 
-import java.util.List;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -11,6 +10,8 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class SpikesArmorEffect extends ArmorEffect {
     private final int strength;

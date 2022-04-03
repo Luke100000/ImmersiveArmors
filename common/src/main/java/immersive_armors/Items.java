@@ -1,8 +1,8 @@
 package immersive_armors;
 
 import immersive_armors.armorEffects.*;
-import immersive_armors.client.render.entity.piece.CapePiece;
 import immersive_armors.client.render.entity.model.*;
+import immersive_armors.client.render.entity.piece.CapePiece;
 import immersive_armors.client.render.entity.piece.GearPiece;
 import immersive_armors.client.render.entity.piece.ItemPiece;
 import immersive_armors.cobalt.registration.Registration;

@@ -1,6 +1,6 @@
 package immersive_armors.mixin;
 
-import immersive_armors.client.render.entity.model.*;
+import immersive_armors.client.render.entity.model.DecoModel;
 import immersive_armors.client.render.entity.piece.Piece;
 import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.ExtendedArmorItem;

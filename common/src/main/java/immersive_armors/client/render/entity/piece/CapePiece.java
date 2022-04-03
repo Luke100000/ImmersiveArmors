@@ -1,7 +1,6 @@
 package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.client.render.entity.model.CapeModel;
-import immersive_armors.client.render.entity.piece.Piece;
 import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;

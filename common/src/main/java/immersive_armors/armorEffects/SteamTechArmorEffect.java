@@ -1,6 +1,6 @@
 package immersive_armors.armorEffects;
 
-import immersive_armors.client.FlowingText;
+import immersive_armors.util.FlowingText;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
