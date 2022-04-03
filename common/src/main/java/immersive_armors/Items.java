@@ -169,7 +169,7 @@ public interface Items {
             .piece(new ArmorPiece(ArmorPiece.LEGGINGS_LOWER).lower())
             .piece(new ArmorPiece(ArmorPiece.BODY_LOWER).upper())
             .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
-            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper())
+            .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper().translucent())
             .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
             .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("leftArm", 0.05f, -0.25f, 0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), 90.0f, true))))
             .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.item.Items.CLOCK))))
@@ -182,7 +182,7 @@ public interface Items {
             .piece(new ArmorPiece().chest().renderer(() -> new CapePiece<>(new CapeModel<>())))
             .hideCape()
             .effect(new ExplosionProtectionArmorEffect(0.1f))
-            .effect(new SteamJetArmorEffect())
+            .effect(new SteamTechArmorEffect())
             .equipSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT));
 
     static void bootstrap() {

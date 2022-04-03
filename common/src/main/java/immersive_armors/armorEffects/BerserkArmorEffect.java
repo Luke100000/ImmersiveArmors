@@ -26,11 +26,6 @@ public class BerserkArmorEffect extends ArmorEffect {
     }
 
     @Override
-    public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        return amount;
-    }
-
-    @Override
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
         if (source.getAttacker() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity)source.getAttacker();

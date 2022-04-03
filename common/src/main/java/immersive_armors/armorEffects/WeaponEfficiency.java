@@ -24,11 +24,6 @@ public class WeaponEfficiency extends ArmorEffect {
     }
 
     @Override
-    public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        return amount;
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 

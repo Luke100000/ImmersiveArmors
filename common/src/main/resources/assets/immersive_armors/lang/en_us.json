@@ -12,7 +12,10 @@
   "armorEffect.berserk": "Up to %d%% Damage when injured",
   "armorEffect.weaponEfficiency": "+%d%% Damage with %s",
   "armorEffect.weaponEfficiency.AxeItem": "Axes",
-  "armorEffect.steamJet": "Uses Steam Jets to avoid fall damage",
+  "armorEffect.steamTech.head": "A primitive radar shows you the position of close entities.",
+  "armorEffect.steamTech.chest": "Steam powered mini pistons increase your fist damage by 300%",
+  "armorEffect.steamTech.legs": "+10% melee damage thanks to increases mobility in combat.",
+  "armorEffect.steamTech.feet": "Uses Steam Jets to avoid fall damage",
 
   "immersive_armors.dyeable": "Dyeable",
   "immersive_armors.incomplete": "%d / %d parts equipped",

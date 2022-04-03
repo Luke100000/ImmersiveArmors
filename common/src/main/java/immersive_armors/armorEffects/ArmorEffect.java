@@ -16,7 +16,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ArmorEffect {
-    abstract public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor);
+    public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
+        return amount;
+    }
 
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
         return amount;
