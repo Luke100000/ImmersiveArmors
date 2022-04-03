@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Pilblockering",
   "armorEffect.wither": "Låt dina angripare vissna",
   "armorEffect.charged": "Laddad",
-  "armorEffect.beserk": "Upp till %d%% Skada vid skada",
+  "armorEffect.berserk": "Upp till %d%% Skada vid skada",
   "armorEffect.weaponEfficiency": "+%d%% Skada med %s",
   "armorEffect.weaponEfficiency.AxeItem": "Axlar",
+  "armorEffect.steamTech.head": "En primitiv radar visar dig positionen för nära enheter",
+  "armorEffect.steamTech.chest": "Ångdrivna minikolvar ökar din näve skada med 300%",
+  "armorEffect.steamTech.legs": "+10% närstridsskada tack vare ökad rörlighet i strid",
+  "armorEffect.steamTech.feet": "Använder Steam Jets för att undvika fallskador",
   "immersive_armors.dyeable": "Färgbar",
   "immersive_armors.incomplete": "%d / %d delar utrustade",
   "item.immersive_armors.bone_helmet": "Benhjälm",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Trähjälm",
   "item.immersive_armors.wooden_chestplate": "Träkärna",
   "item.immersive_armors.wooden_leggings": "Byxor i trä",
-  "item.immersive_armors.wooden_boots": "Trästövlar"
+  "item.immersive_armors.wooden_boots": "Trästövlar",
+  "item.immersive_armors.steampunk_helmet": "Steampunk Hjälm",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk Harnesk",
+  "item.immersive_armors.steampunk_leggings": "Steampunk Byxor",
+  "item.immersive_armors.steampunk_boots": "Steampunk Stövlar"
 }

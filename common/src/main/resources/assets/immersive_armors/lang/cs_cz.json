@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Blokování šípů",
   "armorEffect.wither": "Dá svým útočníkům buďto",
   "armorEffect.charged": "Nabito",
-  "armorEffect.beserk": "Až %d%% Poškození při zranění",
+  "armorEffect.berserk": "Až %d%% Poškození při zranění",
   "armorEffect.weaponEfficiency": "+%d%% Poškození s %s",
   "armorEffect.weaponEfficiency.AxeItem": "Osy",
+  "armorEffect.steamTech.head": "Primitivní radar zobrazuje pozici zavřených entit",
+  "armorEffect.steamTech.chest": "Mini pisty napájené na Steamu zvyšují tvé škody o 300%",
+  "armorEffect.steamTech.legs": "+10 % poškození blízko díky zvýšení mobility v boji",
+  "armorEffect.steamTech.feet": "Používá Steam Jets k zamezení poškození pádu",
   "immersive_armors.dyeable": "Barvení",
   "immersive_armors.incomplete": "%d / %d částí vybaveno",
   "item.immersive_armors.bone_helmet": "Kostěná helma",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Dřevěná helma",
   "item.immersive_armors.wooden_chestplate": "Dřevěná hrudní deska",
   "item.immersive_armors.wooden_leggings": "Dřevěné kalhoty",
-  "item.immersive_armors.wooden_boots": "Dřevěné boty"
+  "item.immersive_armors.wooden_boots": "Dřevěné boty",
+  "item.immersive_armors.steampunk_helmet": "Steampunková helma",
+  "item.immersive_armors.steampunk_chestplate": "Steampunková hrudní zbroj",
+  "item.immersive_armors.steampunk_leggings": "Steampunkové kalhoty",
+  "item.immersive_armors.steampunk_boots": "Steampunkové boty"
 }

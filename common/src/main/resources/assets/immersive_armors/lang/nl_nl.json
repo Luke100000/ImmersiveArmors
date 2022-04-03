@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Pijl Blokkeren",
   "armorEffect.wither": "Laat je aanvallers wither",
   "armorEffect.charged": "Opgeladen",
-  "armorEffect.beserk": "Tot %d%% Schade bij verwondingen",
+  "armorEffect.berserk": "Tot %d%% Schade bij verwondingen",
   "armorEffect.weaponEfficiency": "+%d%% Schade met %s",
   "armorEffect.weaponEfficiency.AxeItem": "Assen",
+  "armorEffect.steamTech.head": "Een primitieve radar toont de positie van sluitende entiteiten",
+  "armorEffect.steamTech.chest": "Mini pistons op stoomkracht verhogen je stormschade met 300%",
+  "armorEffect.steamTech.legs": "+10% slagschade dankzij een verhoogde mobiliteit in de strijd",
+  "armorEffect.steamTech.feet": "Gebruikt Steam Jets om valschade te voorkomen",
   "immersive_armors.dyeable": "Verfeerbaar",
   "immersive_armors.incomplete": "%d / %d onderdelen uitgerust",
   "item.immersive_armors.bone_helmet": "Botten helm",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Houten Helm",
   "item.immersive_armors.wooden_chestplate": "Houten borstplaat",
   "item.immersive_armors.wooden_leggings": "Houten beenstukken",
-  "item.immersive_armors.wooden_boots": "Houten Laarzen"
+  "item.immersive_armors.wooden_boots": "Houten Laarzen",
+  "item.immersive_armors.steampunk_helmet": "Steampunk Helm",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk Borstplaat",
+  "item.immersive_armors.steampunk_leggings": "Steampunk Broek",
+  "item.immersive_armors.steampunk_boots": "Steampunk Laarzen"
 }

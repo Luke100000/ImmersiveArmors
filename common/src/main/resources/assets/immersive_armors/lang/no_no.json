@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Pil Blokkering",
   "armorEffect.wither": "Lar dine angripere vinne",
   "armorEffect.charged": "Oppladet",
-  "armorEffect.beserk": "Opp til %d%% skade når skadet",
+  "armorEffect.berserk": "Opp til %d%% skade når skadet",
   "armorEffect.weaponEfficiency": "+%d%% skade med %s",
   "armorEffect.weaponEfficiency.AxeItem": "Økser",
+  "armorEffect.steamTech.head": "En primitiv radar viser posisjonen til tette enheter",
+  "armorEffect.steamTech.chest": "Steam drevet mini-stempel øker din skyldningsskade med 300%",
+  "armorEffect.steamTech.legs": "+10% nærkamp skade takket være øker mobiliteten i kampen",
+  "armorEffect.steamTech.feet": "Bruker Steam Jets for å unngå fall skade",
   "immersive_armors.dyeable": "Dyktig",
   "immersive_armors.incomplete": "%d / %d deler utstyrt",
   "item.immersive_armors.bone_helmet": "Bein Hjelm",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Tre Hjelm",
   "item.immersive_armors.wooden_chestplate": "Brystplate av tre",
   "item.immersive_armors.wooden_leggings": "Tre Bukser",
-  "item.immersive_armors.wooden_boots": "Tre Støvler"
+  "item.immersive_armors.wooden_boots": "Tre Støvler",
+  "item.immersive_armors.steampunk_helmet": "Steampunk hjelm",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk Brystplate",
+  "item.immersive_armors.steampunk_leggings": "Steampunk Bukser",
+  "item.immersive_armors.steampunk_boots": "Stampunk stÃ¸vler"
 }

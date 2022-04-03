@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Блокування стріл",
   "armorEffect.wither": "Дає вашим зловмисникам соті",
   "armorEffect.charged": "Заряджено",
-  "armorEffect.beserk": "До %d%% Пошкодження при пораненні",
+  "armorEffect.berserk": "До %d%% Пошкодження при пораненні",
   "armorEffect.weaponEfficiency": "+%d%% Пошкодження з %s",
   "armorEffect.weaponEfficiency.AxeItem": "Вісі",
+  "armorEffect.steamTech.head": "Примітивний радар показує вам позицію близьких об'єктів",
+  "armorEffect.steamTech.chest": "Живі міні-пістолети підвищують ушкодження кулаків на 300%",
+  "armorEffect.steamTech.legs": "+10% шкоди ближнього бою, завдяки підвищенню мобільності в бою",
+  "armorEffect.steamTech.feet": "Використовує турніри Steam, щоб уникнути падіння шкоди",
   "immersive_armors.dyeable": "До побачень",
   "immersive_armors.incomplete": "%d / %d частин споряджено",
   "item.immersive_armors.bone_helmet": "Кістяний шолом",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Дерев’яний шолом",
   "item.immersive_armors.wooden_chestplate": "Дерев’яний нагрудник",
   "item.immersive_armors.wooden_leggings": "Дерев’яні штани",
-  "item.immersive_armors.wooden_boots": "Дерев’яні чоботи"
+  "item.immersive_armors.wooden_boots": "Дерев’яні чоботи",
+  "item.immersive_armors.steampunk_helmet": "Стімпанський шолом",
+  "item.immersive_armors.steampunk_chestplate": "Стімпанський нагрудник",
+  "item.immersive_armors.steampunk_leggings": "Стімпанські штани",
+  "item.immersive_armors.steampunk_boots": "Стипенсні Чоботи"
 }

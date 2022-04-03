@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Nuolinesto",
   "armorEffect.wither": "Antaa hyökkääjät kuihtua",
   "armorEffect.charged": "Ladattu",
-  "armorEffect.beserk": "Jopa %d%% Vahingonkorvaus loukkaantuneena",
+  "armorEffect.berserk": "Jopa %d%% Vahingonkorvaus loukkaantuneena",
   "armorEffect.weaponEfficiency": "+%d%% Vahingonkorvaus %s",
   "armorEffect.weaponEfficiency.AxeItem": "Akselit",
+  "armorEffect.steamTech.head": "Alkukantainen tutka näyttää sinulle läheisten yhteisöjen aseman",
+  "armorEffect.steamTech.chest": "Höyrykäyttöiset minipistimet lisäävät nyrkkyjen vaurioita 300%",
+  "armorEffect.steamTech.legs": "+10 % lähitaisteluvaurioita, jotka johtuvat liikkuvuuden lisääntymisestä taistelussa",
+  "armorEffect.steamTech.feet": "Käyttää Steam-Jetsia välttämään putoamisvaurioita",
   "immersive_armors.dyeable": "Dyeable",
   "immersive_armors.incomplete": "%d / %d osaa varustettu",
   "item.immersive_armors.bone_helmet": "Luukypärä",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Puinen Kypärä",
   "item.immersive_armors.wooden_chestplate": "Puinen Arkkulevy",
   "item.immersive_armors.wooden_leggings": "Puiset Housut",
-  "item.immersive_armors.wooden_boots": "Puiset Saappaat"
+  "item.immersive_armors.wooden_boots": "Puiset Saappaat",
+  "item.immersive_armors.steampunk_helmet": "Steampunk Kypärä",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk Rintapanssari",
+  "item.immersive_armors.steampunk_leggings": "Steampunk Housut",
+  "item.immersive_armors.steampunk_boots": "Steampunk-saappaat"
 }

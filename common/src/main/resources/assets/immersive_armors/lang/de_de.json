@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Pfeil blockieren",
   "armorEffect.wither": "Lässt deine Angreifer verdorben",
   "armorEffect.charged": "Aufgeladen",
-  "armorEffect.beserk": "Bis zu %d%% Schaden bei Verletzten",
+  "armorEffect.berserk": "Bis zu %d%% Schaden bei Verletzten",
   "armorEffect.weaponEfficiency": "+%d%% Schaden mit %s",
   "armorEffect.weaponEfficiency.AxeItem": "Achsen",
+  "armorEffect.steamTech.head": "Ein primitives Radar zeigt Ihnen die Position der nahen Objekte",
+  "armorEffect.steamTech.chest": "Dampfbetriebene Mini-Kolben erhöhen deinen Faustschaden um 300%",
+  "armorEffect.steamTech.legs": "+10% Nahkampfschaden dank erhöhter Mobilität im Kampf",
+  "armorEffect.steamTech.feet": "Verwendet Steam Jets um Fallschaden zu vermeiden",
   "immersive_armors.dyeable": "Abholbar",
   "immersive_armors.incomplete": "%d / %d Teile ausgerüstet",
   "item.immersive_armors.bone_helmet": "Knochenhelm",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Holzhelm",
   "item.immersive_armors.wooden_chestplate": "Holzbrustplatte",
   "item.immersive_armors.wooden_leggings": "Holzbeinschutz",
-  "item.immersive_armors.wooden_boots": "Holzstiefel"
+  "item.immersive_armors.wooden_boots": "Holzstiefel",
+  "item.immersive_armors.steampunk_helmet": "Steampunk-Helm",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk-Brustplatte",
+  "item.immersive_armors.steampunk_leggings": "Steampunk-Hose",
+  "item.immersive_armors.steampunk_boots": "Steampunkstiefel"
 }

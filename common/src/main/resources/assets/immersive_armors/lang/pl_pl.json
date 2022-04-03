@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Blokowanie strzałek",
   "armorEffect.wither": "Pozostawia twoim atakującym Wither'a",
   "armorEffect.charged": "Naładowany",
-  "armorEffect.beserk": "Do %d%% Obrażenia po urazie",
+  "armorEffect.berserk": "Do %d%% Obrażenia po urazie",
   "armorEffect.weaponEfficiency": "+%d%% Obrażenia z %s",
   "armorEffect.weaponEfficiency.AxeItem": "Siekiery",
+  "armorEffect.steamTech.head": "Prymitywny radar pokazuje pozycję zamkniętych obiektów",
+  "armorEffect.steamTech.chest": "Mini z napędem parowym zwiększają obrażenia twojej pięści o 300%",
+  "armorEffect.steamTech.legs": "+10% obrażeń wręcz dzięki zwiększonej mobilności w walce",
+  "armorEffect.steamTech.feet": "Używa Steam Jets aby uniknąć obrażeń od upadku",
   "immersive_armors.dyeable": "Odbiornik",
   "immersive_armors.incomplete": "Wyposażenie %d / %d części",
   "item.immersive_armors.bone_helmet": "Kościany Hełm",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Drewniany Hełm",
   "item.immersive_armors.wooden_chestplate": "Drewniany Napierśnik",
   "item.immersive_armors.wooden_leggings": "Drewniane nogawice",
-  "item.immersive_armors.wooden_boots": "Drewniane buty"
+  "item.immersive_armors.wooden_boots": "Drewniane buty",
+  "item.immersive_armors.steampunk_helmet": "Hełm Steampunk",
+  "item.immersive_armors.steampunk_chestplate": "Napierśnik Steampunk",
+  "item.immersive_armors.steampunk_leggings": "Spodnie Steampunk",
+  "item.immersive_armors.steampunk_boots": "Buty Steampunka"
 }

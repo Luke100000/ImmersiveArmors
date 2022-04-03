@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% حظر السهم",
   "armorEffect.wither": "اتاح لمهاجمك",
   "armorEffect.charged": "مشحون",
-  "armorEffect.beserk": "حتى %d%% الضرر عند الإصابة",
+  "armorEffect.berserk": "حتى %d%% الضرر عند الإصابة",
   "armorEffect.weaponEfficiency": "+%d%% ضرر مع %s",
   "armorEffect.weaponEfficiency.AxeItem": "محاور",
+  "armorEffect.steamTech.head": "رادار بدائي يظهر لك موقع الكيانات القريبة",
+  "armorEffect.steamTech.chest": "المسدسات الصغيرة ذات القدرة البخارية تزيد من ضرر قبضتك بنسبة 300%",
+  "armorEffect.steamTech.legs": "+10% ضرر المشاجرة بفضل زيادة الحركة في المعركة",
+  "armorEffect.steamTech.feet": "يستخدم Steam Jets لتجنب وقوع الضرر",
   "immersive_armors.dyeable": "مستوي",
   "immersive_armors.incomplete": "%d / %d أجزاء مجهزة",
   "item.immersive_armors.bone_helmet": "خوذة العظام",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "خوذة خشبية",
   "item.immersive_armors.wooden_chestplate": "صندوق خشبي",
   "item.immersive_armors.wooden_leggings": "بنطال خشبي",
-  "item.immersive_armors.wooden_boots": "أحذية خشبية"
+  "item.immersive_armors.wooden_boots": "أحذية خشبية",
+  "item.immersive_armors.steampunk_helmet": "خوذة البخار",
+  "item.immersive_armors.steampunk_chestplate": "صندوق البستان",
+  "item.immersive_armors.steampunk_leggings": "بنطال الباركوبك",
+  "item.immersive_armors.steampunk_boots": "حذاء البخار"
 }

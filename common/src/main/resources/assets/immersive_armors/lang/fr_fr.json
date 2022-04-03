@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Blocage de flèches",
   "armorEffect.wither": "Laisse vos attaquants se dessécher",
   "armorEffect.charged": "Chargé",
-  "armorEffect.beserk": "Jusqu'à %d%% Dégâts en cas de blessure",
+  "armorEffect.berserk": "Jusqu'à %d%% Dégâts en cas de blessure",
   "armorEffect.weaponEfficiency": "+%d%% Dégâts avec %s",
   "armorEffect.weaponEfficiency.AxeItem": "Haches",
+  "armorEffect.steamTech.head": "Un radar primitif vous montre la position des entités proches",
+  "armorEffect.steamTech.chest": "Les mini-pistons à vapeur augmentent vos dégâts de poing de 300%",
+  "armorEffect.steamTech.legs": "+10% de dégâts de mêlée grâce à une augmentation de la mobilité en combat",
+  "armorEffect.steamTech.feet": "Utilise des jambières à vapeur pour éviter les dégâts de chute",
   "immersive_armors.dyeable": "Teignable",
   "immersive_armors.incomplete": "Pièces de %d / %d équipées",
   "item.immersive_armors.bone_helmet": "Casque en os",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Casque en bois",
   "item.immersive_armors.wooden_chestplate": "Plastron en bois",
   "item.immersive_armors.wooden_leggings": "Jambières en bois",
-  "item.immersive_armors.wooden_boots": "Bottes en bois"
+  "item.immersive_armors.wooden_boots": "Bottes en bois",
+  "item.immersive_armors.steampunk_helmet": "Casque Steampunk",
+  "item.immersive_armors.steampunk_chestplate": "Plastron Steampunk",
+  "item.immersive_armors.steampunk_leggings": "Jambières Steampunk",
+  "item.immersive_armors.steampunk_boots": "Bottes Steampunk"
 }

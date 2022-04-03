@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% 矢印ブロック",
   "armorEffect.wither": "攻撃者が枯れてしまいます。",
   "armorEffect.charged": "充電完了",
-  "armorEffect.beserk": "負傷時に最大 %d%% ダメージ",
+  "armorEffect.berserk": "負傷時に最大 %d%% ダメージ",
   "armorEffect.weaponEfficiency": "+%d%% ダメージ %s",
   "armorEffect.weaponEfficiency.AxeItem": "軸",
+  "armorEffect.steamTech.head": "原始的なレーダーは、近い実体の位置を示します。",
+  "armorEffect.steamTech.chest": "ミニピストンを蒸気で動かすと拳のダメージが300%増加",
+  "armorEffect.steamTech.legs": "戦闘機の移動度を向上させることで近接攻撃ダメージ+10%",
+  "armorEffect.steamTech.feet": "蒸気ジェットを使用して落下ダメージを防ぎます",
   "immersive_armors.dyeable": "染料可能",
   "immersive_armors.incomplete": "%d / %d 部品",
   "item.immersive_armors.bone_helmet": "骨のヘルメット",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "木のヘルメット",
   "item.immersive_armors.wooden_chestplate": "木のチェストプレート",
   "item.immersive_armors.wooden_leggings": "木のレギンス",
-  "item.immersive_armors.wooden_boots": "木のブーツ"
+  "item.immersive_armors.wooden_boots": "木のブーツ",
+  "item.immersive_armors.steampunk_helmet": "Steampunkヘルメット",
+  "item.immersive_armors.steampunk_chestplate": "スチーム パンクなチェストプレート",
+  "item.immersive_armors.steampunk_leggings": "スチーム パンクなレギンス",
+  "item.immersive_armors.steampunk_boots": "スチーム パンクなブーツ"
 }

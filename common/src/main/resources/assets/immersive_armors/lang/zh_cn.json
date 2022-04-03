@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% 箭头",
   "armorEffect.wither": "让你的攻击者被杀死了",
   "armorEffect.charged": "已充电",
-  "armorEffect.beserk": "受伤时最多伤害 %d%%",
+  "armorEffect.berserk": "受伤时最多伤害 %d%%",
   "armorEffect.weaponEfficiency": "+%d%% 伤害与 %s",
   "armorEffect.weaponEfficiency.AxeItem": "坐标轴",
+  "armorEffect.steamTech.head": "原始雷达显示了您的近距离实体",
+  "armorEffect.steamTech.chest": "Steam供电的微型手枪使你的拳头伤害增加300%",
+  "armorEffect.steamTech.legs": "战斗中机动性提高造成的近战伤害+10%",
+  "armorEffect.steamTech.feet": "使用蒸汽喷口来避免掉落伤害",
   "immersive_armors.dyeable": "可下载的",
   "immersive_armors.incomplete": "%d / %d 配件装备了",
   "item.immersive_armors.bone_helmet": "骨头头盔",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "木头头盔",
   "item.immersive_armors.wooden_chestplate": "木制胸甲",
   "item.immersive_armors.wooden_leggings": "木制护腿",
-  "item.immersive_armors.wooden_boots": "木制靴子"
+  "item.immersive_armors.wooden_boots": "木制靴子",
+  "item.immersive_armors.steampunk_helmet": "Steampunk 头盔",
+  "item.immersive_armors.steampunk_chestplate": "Steampunk 胸甲",
+  "item.immersive_armors.steampunk_leggings": "Steampunk 护腿",
+  "item.immersive_armors.steampunk_boots": "Steampunk 靴子"
 }

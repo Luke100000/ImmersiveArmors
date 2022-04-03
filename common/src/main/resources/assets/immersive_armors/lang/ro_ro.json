@@ -8,9 +8,13 @@
   "armorEffect.arrowBlock": "%d%% Blocare săgeată",
   "armorEffect.wither": "Permite atacatorilor tăi să lărgească",
   "armorEffect.charged": "Încărcat",
-  "armorEffect.beserk": "Până la %d%% Daune când ești rănit",
+  "armorEffect.berserk": "Până la %d%% Daune când ești rănit",
   "armorEffect.weaponEfficiency": "+%d%% Daune cu %s",
   "armorEffect.weaponEfficiency.AxeItem": "Axe",
+  "armorEffect.steamTech.head": "Un radar primitiv vă arată poziția entităților apropiate",
+  "armorEffect.steamTech.chest": "Micii pistoni alimentați de abur cresc cu 300% daunele provocate de pumnuri",
+  "armorEffect.steamTech.legs": "+10% daune provocate de melee datorită creșterii mobilității în luptă",
+  "armorEffect.steamTech.feet": "Folosește Jet-uri cu abur pentru a evita căderea daunelor",
   "immersive_armors.dyeable": "Disponibil",
   "immersive_armors.incomplete": "%d / %d părți echipate",
   "item.immersive_armors.bone_helmet": "Coif de oase",
@@ -49,5 +53,9 @@
   "item.immersive_armors.wooden_helmet": "Coif din lemn",
   "item.immersive_armors.wooden_chestplate": "Plăcuță de Lemn",
   "item.immersive_armors.wooden_leggings": "Pigi din lemn",
-  "item.immersive_armors.wooden_boots": "Cizme de lemn"
+  "item.immersive_armors.wooden_boots": "Cizme de lemn",
+  "item.immersive_armors.steampunk_helmet": "Coif Steampunk",
+  "item.immersive_armors.steampunk_chestplate": "Plăcuță de piept Steampunk",
+  "item.immersive_armors.steampunk_leggings": "Picioare Steampunk",
+  "item.immersive_armors.steampunk_boots": "Cizme Steampunk"
 }
