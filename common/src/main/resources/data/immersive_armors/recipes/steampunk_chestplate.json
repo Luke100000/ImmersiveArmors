@@ -1,14 +1,29 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S S",
-    "SSS",
-    "SSS"
+    "G G",
+    "CGS",
+    "GPG"
   ],
   "key": {
     "S": [
       {
-        "item": "minecraft:slime_ball"
+        "item": "minecraft:clock"
+      }
+    ],
+    "C": [
+      {
+        "item": "minecraft:compass"
+      }
+    ],
+    "G": [
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ],
+    "P": [
+      {
+        "item": "minecraft:piston"
       }
     ]
   },

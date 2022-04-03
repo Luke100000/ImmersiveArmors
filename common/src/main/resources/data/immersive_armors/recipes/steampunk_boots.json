@@ -2,13 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "S S",
-    "S S",
+    "G G",
     "   "
   ],
   "key": {
     "S": [
       {
-        "item": "minecraft:slime_ball"
+        "item": "minecraft:piston"
+      }
+    ],
+    "G": [
+      {
+        "item": "minecraft:gold_ingot"
       }
     ]
   },

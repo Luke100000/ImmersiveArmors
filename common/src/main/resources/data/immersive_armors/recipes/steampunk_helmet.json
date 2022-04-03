@@ -1,14 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SSS",
-    "S S",
+    "R  ",
+    "HGH",
     "   "
   ],
   "key": {
-    "S": [
+    "R": [
       {
-        "item": "minecraft:slime_ball"
+        "item": "minecraft:redstone_torch"
+      }
+    ],
+    "G": [
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ],
+    "H": [
+      {
+        "item": "minecraft:white_stained_glass"
       }
     ]
   },
