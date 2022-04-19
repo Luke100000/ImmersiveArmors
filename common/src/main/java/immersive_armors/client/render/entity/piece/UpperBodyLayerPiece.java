@@ -7,7 +7,7 @@ public class UpperBodyLayerPiece extends LayerPiece {
     private static final BipedEntityModel<LivingEntity> model = new BipedEntityModel<>(1.0f);
 
     public UpperBodyLayerPiece() {
-        texture("layer_1_upper");
+        texture("body_upper");
     }
 
     @Override

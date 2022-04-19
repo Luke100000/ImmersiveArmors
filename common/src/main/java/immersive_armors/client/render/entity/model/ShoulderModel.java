@@ -18,14 +18,14 @@ public class ShoulderModel extends DecoModel {
 
         left = new ModelPart(16, 16, 0, 0);
         part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -3.5f, -3.5f, 1.0f, 8.0f, 7.0f);
+        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
         part.roll = (float)(-Math.PI * 0.125f);
         part.setPivot(5, -1, 0);
         left.addChild(part);
 
         right = new ModelPart(16, 16, 0, 0);
         part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -3.5f, -3.5f, 1.0f, 8.0f, 7.0f);
+        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
         part.roll = (float)(Math.PI * 0.125f);
         part.yaw = (float)Math.PI;
         part.setPivot(-5, -1, 0);

@@ -7,7 +7,7 @@ public class LowerLeggingsLayerPiece extends LayerPiece {
     private static final BipedEntityModel<LivingEntity> model = new BipedEntityModel<>(0.6f);
 
     public LowerLeggingsLayerPiece() {
-        texture("layer_2_lower");
+        texture("leggings_lower");
     }
 
     @Override

@@ -9,14 +9,17 @@ if __name__ == "__main__":
 
         for layer in [1, 2]:
             for texture in [
-                "lower",
-                "middle",
-                "upper",
-                "lower_overlay",
-                "middle_overlay",
-                "upper_overlay",
+                "",
+                "_lower",
+                "_middle",
+                "_upper",
+                "_lower_overlay",
+                "_middle_overlay",
+                "_upper_overlay",
             ]:
-                path = os.path.join(armor, f"layer_{layer}_{texture}.png")
+                layer_name = "body" if layer == 1 else "leggings"
+                path = os.path.join(armor, f"{layer_name}{texture}.png")
+                print(path)
                 if os.path.exists(path):
                     img = PIL.Image.open(path)
                     result = PIL.Image.alpha_composite(result, img)
