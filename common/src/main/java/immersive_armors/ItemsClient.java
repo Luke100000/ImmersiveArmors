@@ -77,7 +77,7 @@ public class ItemsClient {
                 .lower(new MiddleLeggingsLayerPiece())
                 .upper(new MiddleBodyLayerPiece().translucent())
                 .upper(new UpperBodyLayerPiece())
-                .chest(new ItemPiece("leftArm", 0.05f, -0.25f, -0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), -90.0f, true)))
+                .chest(new ItemPiece("leftArm", 0.05f, -0.2f, -0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), -90.0f, true)))
                 .chest(new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.item.Items.CLOCK)))
                 .chest(new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 0.2f))
                 .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -0.3f))

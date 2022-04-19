@@ -59,11 +59,6 @@ public class ExtendedArmorItem extends ArmorItem {
         return material;
     }
 
-    public int getColor(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getSubTag("display");
-        return nbtCompound != null && nbtCompound.contains("color", 99) ? nbtCompound.getInt("color") : getMaterial().getColor();
-    }
-
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);

@@ -4,6 +4,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -22,5 +23,11 @@ public class DyeableExtendedArmorItem extends ExtendedArmorItem implements Dyeab
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(new TranslatableText("immersive_armors.dyeable").formatted(Formatting.GOLD));
+    }
+
+    @Override
+    public int getColor(ItemStack stack) {
+        NbtCompound nbtCompound = stack.getSubTag("display");
+        return nbtCompound != null && nbtCompound.contains("color", 99) ? nbtCompound.getInt("color") : getMaterial().getColor();
     }
 }
