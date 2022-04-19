@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.util.HashMap;
 
 public final class Config implements Serializable {
     private static final long serialVersionUID = 9132405079466337851L;
@@ -15,6 +16,20 @@ public final class Config implements Serializable {
     }
 
     public static final int VERSION = 1;
+
+    public final HashMap<String, Boolean> enabledArmors = new HashMap<>();
+    {
+        enabledArmors.put("bone", true);
+        enabledArmors.put("wither", true);
+        enabledArmors.put("warrior", true);
+        enabledArmors.put("heavy", true);
+        enabledArmors.put("robe", true);
+        enabledArmors.put("slime", true);
+        enabledArmors.put("divine", true);
+        enabledArmors.put("prismarine", true);
+        enabledArmors.put("wooden", true);
+        enabledArmors.put("steampunk", true);
+    }
 
     public int version = 0;
 

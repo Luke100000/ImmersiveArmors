@@ -1,6 +1,7 @@
 package immersive_armors.item;
 
 import immersive_armors.armorEffects.ArmorEffect;
+import immersive_armors.client.render.entity.piece.Piece;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
@@ -30,7 +31,14 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private final List<ArmorEffect> effects = new LinkedList<>();
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
 
-    private final List<ArmorPiece> pieces = new LinkedList<>();
+    private final Map<EquipmentSlot, List<Piece>> pieces = new HashMap<>();
+    {
+        pieces.put(EquipmentSlot.HEAD, new LinkedList<>());
+        pieces.put(EquipmentSlot.CHEST, new LinkedList<>());
+        pieces.put(EquipmentSlot.LEGS, new LinkedList<>());
+        pieces.put(EquipmentSlot.FEET, new LinkedList<>());
+    }
+
     private boolean hideCape;
 
     private SoundEvent equipSound;
@@ -124,8 +132,41 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial piece(ArmorPiece piece) {
-        pieces.add(piece);
+    public ExtendedArmorMaterial head(Piece pieceSupplier) {
+        this.pieces.get(EquipmentSlot.HEAD).add(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial chest(Piece pieceSupplier) {
+        this.pieces.get(EquipmentSlot.CHEST).add(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial legs(Piece pieceSupplier) {
+        this.pieces.get(EquipmentSlot.LEGS).add(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial feet(Piece pieceSupplier) {
+        this.pieces.get(EquipmentSlot.FEET).add(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial upper(Piece pieceSupplier) {
+        head(pieceSupplier);
+        chest(pieceSupplier);
+        feet(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial lower(Piece pieceSupplier) {
+        legs(pieceSupplier);
+        return this;
+    }
+
+    public ExtendedArmorMaterial full(Piece pieceSupplier) {
+        upper(pieceSupplier);
+        lower(pieceSupplier);
         return this;
     }
 
@@ -213,7 +254,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return hideCape;
     }
 
-    public List<ArmorPiece> getPieces() {
+    public Map<EquipmentSlot, List<Piece>> getPieces() {
         return pieces;
+    }
+
+    public List<Piece> getPieces(EquipmentSlot slot) {
+        return pieces.get(slot);
     }
 }

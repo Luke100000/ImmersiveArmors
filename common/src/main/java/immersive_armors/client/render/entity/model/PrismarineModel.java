@@ -2,6 +2,7 @@ package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.entity.EquipmentSlot;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -83,12 +84,26 @@ public class PrismarineModel extends DecoModel {
     }
 
     @Override
-    public void copyFromModel(BipedEntityModel model) {
-        copyFromPart(parts.get(0), model.head);
-        copyFromPart(parts.get(1), model.rightArm);
-        copyFromPart(parts.get(2), model.leftArm);
-        copyFromPart(parts.get(3), model.rightLeg);
-        copyFromPart(parts.get(4), model.leftLeg);
-        super.copyFromModel(model);
+    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+        parts.forEach(p -> p.visible = false);
+        switch (slot) {
+            case HEAD:
+                parts.get(0).copyTransform(model.head);
+                parts.get(0).visible = true;
+                break;
+            case CHEST:
+                parts.get(1).copyTransform(model.rightArm);
+                parts.get(2).copyTransform(model.leftArm);
+                parts.get(1).visible = true;
+                parts.get(2).visible = true;
+                break;
+            case LEGS:
+                parts.get(3).copyTransform(model.rightLeg);
+                parts.get(4).copyTransform(model.leftLeg);
+                parts.get(3).visible = true;
+                parts.get(4).visible = true;
+                break;
+        }
+        super.copyFromModel(model, slot);
     }
 }

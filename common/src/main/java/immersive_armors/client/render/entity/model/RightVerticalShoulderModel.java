@@ -2,20 +2,21 @@ package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.entity.EquipmentSlot;
 
 import java.util.Collections;
 
 public class RightVerticalShoulderModel extends DecoModel {
-    private final ModelPart model;
+    private final ModelPart part;
 
     public RightVerticalShoulderModel() {
         super();
 
-        model = new ModelPart(32, 16, 0, 0);
+        part = new ModelPart(32, 16, 0, 0);
 
-        model.addCuboid(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
-        model.addCuboid(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f);
-        model.addCuboid(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
+        part.addCuboid(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
+        part.addCuboid(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f);
+        part.addCuboid(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
     }
 
     @Override
@@ -25,12 +26,12 @@ public class RightVerticalShoulderModel extends DecoModel {
 
     @Override
     protected Iterable<ModelPart> getBodyParts() {
-        return Collections.singletonList(model);
+        return Collections.singletonList(part);
     }
 
     @Override
-    public void copyFromModel(BipedEntityModel model) {
-        copyFromPart(this.model, model.rightArm);
-        super.copyFromModel(model);
+    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+        part.copyTransform(model.rightArm);
+        super.copyFromModel(model, slot);
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 
 import java.util.Collections;
 
@@ -12,15 +13,10 @@ public abstract class DecoModel extends AnimalModel {
         super(true, 16.0f, 0.0f, 2.0f, 2.0f, 24.0f);
     }
 
-    public void copyFromModel(BipedEntityModel model) {
+    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
         this.handSwingProgress = model.handSwingProgress;
         this.riding = model.riding;
         this.child = model.child;
-    }
-
-    protected void copyFromPart(ModelPart to, ModelPart from) {
-        to.copyTransform(from);
-        to.visible = from.visible;
     }
 
     @Override

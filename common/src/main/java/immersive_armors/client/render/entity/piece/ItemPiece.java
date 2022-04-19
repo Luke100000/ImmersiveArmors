@@ -1,13 +1,13 @@
 package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.client.render.entity.model.DecoModel;
-import immersive_armors.item.ArmorPiece;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Quaternion;
@@ -36,9 +36,10 @@ public class ItemPiece extends Piece {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, ArmorPiece piece, BipedEntityModel<LivingEntity> bipedEntityModel) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
+
         matrices.push();
-        DecoModel.getModelPart(bipedEntityModel, attachTo).rotate(matrices);
+        DecoModel.getModelPart(contextModel, attachTo).rotate(matrices);
         matrices.translate(x, y, z);
         matrices.scale(size, -size, -size);
         if (rotation != null) {

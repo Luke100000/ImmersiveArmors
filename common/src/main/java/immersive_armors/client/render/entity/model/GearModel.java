@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EquipmentSlot;
 
 public class GearModel extends DecoModel {
     private final String attachTo;
@@ -22,9 +23,9 @@ public class GearModel extends DecoModel {
         part.render(matrices, vertices, light, overlay, red, green, blue, alpha);
     }
 
-    public void copyFromModel(BipedEntityModel model) {
-        copyFromPart(part, getModelPart(model, attachTo));
-        super.copyFromModel(model);
+    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+        part.copyTransform(getModelPart(model, attachTo));
+        super.copyFromModel(model, slot);
     }
 
     public String getAttachTo() {

@@ -2,6 +2,7 @@ package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.entity.EquipmentSlot;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,14 +18,14 @@ public class ShoulderModel extends DecoModel {
 
         left = new ModelPart(16, 16, 0, 0);
         part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
+        part.addCuboid(-0.5f, -3.5f, -3.5f, 1.0f, 8.0f, 7.0f);
         part.roll = (float)(-Math.PI * 0.125f);
         part.setPivot(5, -1, 0);
         left.addChild(part);
 
         right = new ModelPart(16, 16, 0, 0);
         part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
+        part.addCuboid(-0.5f, -3.5f, -3.5f, 1.0f, 8.0f, 7.0f);
         part.roll = (float)(Math.PI * 0.125f);
         part.yaw = (float)Math.PI;
         part.setPivot(-5, -1, 0);
@@ -42,9 +43,9 @@ public class ShoulderModel extends DecoModel {
     }
 
     @Override
-    public void copyFromModel(BipedEntityModel model) {
-        copyFromPart(left, model.leftArm);
-        copyFromPart(right, model.rightArm);
-        super.copyFromModel(model);
+    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+        left.copyTransform(model.leftArm);
+        right.copyTransform(model.rightArm);
+        super.copyFromModel(model, slot);
     }
 }

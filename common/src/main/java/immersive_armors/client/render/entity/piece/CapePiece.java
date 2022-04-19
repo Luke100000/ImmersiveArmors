@@ -1,7 +1,6 @@
 package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.client.render.entity.model.CapeModel;
-import immersive_armors.item.ArmorPiece;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -10,6 +9,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
@@ -38,7 +38,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         );
     }
 
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, ArmorPiece piece, BipedEntityModel<LivingEntity> bipedEntityModel) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem) {
             ExtendedArmorItem armor = (ExtendedArmorItem)itemStack.getItem();
 
@@ -75,7 +75,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
             model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
             VertexConsumer vertexConsumer;
-            if (piece.isColored()) {
+            if (isColored()) {
                 int i = ((DyeableItem)armor).getColor(itemStack);
                 float red = (float)(i >> 16 & 255) / 255.0F;
                 float green = (float)(i >> 8 & 255) / 255.0F;
