@@ -44,12 +44,12 @@ public class ItemsClient {
                 .upper(new MiddleBodyLayerPiece().colored());
 
         SLIME_ARMOR
-                .lower(new LowerLeggingsLayerPiece().texture("leggings"))
-                .upper(new LowerBodyLayerPiece().texture("body"))
-                .lower(new MiddleLeggingsLayerPiece().texture("leggings"))
-                .upper(new MiddleBodyLayerPiece().texture("body"))
-                .lower(new UpperLeggingsLayerPiece().texture("leggings"))
-                .upper(new UpperBodyLayerPiece().texture("body"));
+                .lower(new LowerLeggingsLayerPiece().texture("leggings").translucent())
+                .upper(new LowerBodyLayerPiece().texture("body").translucent())
+                .lower(new MiddleLeggingsLayerPiece().texture("leggings").translucent())
+                .upper(new MiddleBodyLayerPiece().texture("body").translucent())
+                .lower(new UpperLeggingsLayerPiece().texture("leggings").translucent())
+                .upper(new UpperBodyLayerPiece().texture("body").translucent());
 
         DIVINE_ARMOR
                 .lower(new LowerLeggingsLayerPiece().colored())
