@@ -171,7 +171,7 @@ public interface Items {
             .piece(new ArmorPiece(ArmorPiece.LEGGINGS_MIDDLE).lower())
             .piece(new ArmorPiece(ArmorPiece.BODY_MIDDLE).upper().translucent())
             .piece(new ArmorPiece(ArmorPiece.BODY_UPPER).upper())
-            .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("leftArm", 0.05f, -0.25f, 0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), 90.0f, true))))
+            .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("leftArm", 0.05f, -0.25f, -0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), -90.0f, true))))
             .piece(new ArmorPiece().chest().renderer(() -> new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.item.Items.CLOCK))))
             .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 0.2f)))
             .piece(new ArmorPiece().chest().renderer(() -> new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -0.3f)))

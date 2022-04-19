@@ -20,3 +20,4 @@
 * Further, extended armor framework to allow even cooler armor
 * Improved armor performance
 * Added Steampunk Armor
+* Added fallback textures for conflicting mods
