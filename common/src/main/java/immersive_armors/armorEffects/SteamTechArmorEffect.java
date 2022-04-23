@@ -83,7 +83,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
                 amount *= 4.0f;
             }
         }
-        if (!source.isProjectile() && getEquipmentSlot(armor) == EquipmentSlot.FEET) {
+        if (!source.isProjectile() && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
             amount *= 1.1f;
         }
         return amount;
