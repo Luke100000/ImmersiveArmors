@@ -45,10 +45,11 @@ public class SteamTechArmorEffect extends ArmorEffect {
                 world.addParticle(ParticleTypes.SMOKE, entity.getX() + x, entity.getY() + 1.2f, entity.getZ() + z, x * 0.2f, -0.025f, z * 0.2f);
             }
 
-            //breaking
+            //braking fall
             Vec3d velocity = entity.getVelocity();
             if (velocity.getY() < -0.75) {
                 entity.setVelocity(velocity.x, -0.75f, velocity.z);
+                entity.fallDistance = 0;
 
                 world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, entity.getParticleX(0.5D), entity.getY(), entity.getParticleZ(0.5D), 0.0D, -0.5f, 0.0D);
 
