@@ -70,6 +70,7 @@ public interface Items {
             .color(11546150)
             .effect(new FireResistanceArmorEffect(0.25f))
             .effect(new FireInflictingArmorEffect(10))
+            .effect(new MagicProtectionArmorEffect(0.15f))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     ExtendedArmorMaterial SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")

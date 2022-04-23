@@ -22,3 +22,11 @@
 * Improved armor performance
 * Added fallback textures for conflicting mods
 * You can now disable individual armor sets in the config
+
+# 1.1.1
+
+* Fixed Steampunk Leggings effect applied to Boots instead
+* Fixed Steampunk boots slowing you down, but not preventing fall damage
+* Fixed compass on Steampunk armor to point in the opposite direction
+* Updated translations (thanks Fleyzi!)
+* Added magic protection effect to robe
