@@ -94,22 +94,22 @@ public class PrismarineModel extends DecoModel {
     public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
         parts.forEach(p -> p.visible = false);
         switch (slot) {
-            case HEAD:
+            case HEAD -> {
                 parts.get(0).copyTransform(model.head);
                 parts.get(0).visible = true;
-                break;
-            case CHEST:
+            }
+            case CHEST -> {
                 parts.get(1).copyTransform(model.rightArm);
                 parts.get(2).copyTransform(model.leftArm);
                 parts.get(1).visible = true;
                 parts.get(2).visible = true;
-                break;
-            case LEGS:
+            }
+            case LEGS -> {
                 parts.get(3).copyTransform(model.rightLeg);
                 parts.get(4).copyTransform(model.leftLeg);
                 parts.get(3).visible = true;
                 parts.get(4).visible = true;
-                break;
+            }
         }
         super.copyFromModel(model, slot);
     }

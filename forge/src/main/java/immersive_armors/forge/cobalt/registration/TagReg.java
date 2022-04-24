@@ -50,13 +50,7 @@ final class TagReg<T> implements Identified<T> {
         return ret;
     }
 
-    private static final class Target<T> {
-        Target(TagGroup<T> container, Tag<T> tag) {
-            this.container = container;
-            this.tag = tag;
-        }
+    private record Target<T>(TagGroup<T> container, Tag<T> tag) {
 
-        final TagGroup<T> container;
-        final Tag<T> tag;
     }
 }

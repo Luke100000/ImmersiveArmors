@@ -39,8 +39,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
     }
 
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
-        if (itemStack.getItem() instanceof ExtendedArmorItem) {
-            ExtendedArmorItem armor = (ExtendedArmorItem)itemStack.getItem();
+        if (itemStack.getItem() instanceof ExtendedArmorItem armor) {
 
             //update cape motion
             CapeAngles angles = new CapeAngles(itemStack);

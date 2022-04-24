@@ -77,8 +77,7 @@ public class ExtendedArmorItem extends ArmorItem {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
 
-        if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity)entity;
+        if (entity instanceof LivingEntity livingEntity) {
             ItemStack equippedStack = livingEntity.getEquippedStack(getSlotType());
             if (equippedStack == stack) {
                 for (ArmorEffect e : getMaterial().getEffects()) {

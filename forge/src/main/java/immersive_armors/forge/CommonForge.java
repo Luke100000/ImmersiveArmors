@@ -21,8 +21,6 @@ public final class CommonForge {
 
     @SubscribeEvent
     public static void onCreateEntityAttributes(EntityAttributeCreationEvent event) {
-        RegistrationImpl.ENTITY_ATTRIBUTES.forEach((type, attributes) -> {
-            event.put(type, attributes.get().build());
-        });
+        RegistrationImpl.ENTITY_ATTRIBUTES.forEach((type, attributes) -> event.put(type, attributes.get().build()));
     }
 }

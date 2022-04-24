@@ -11,24 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public final class FlowingText {
-
-    private final List<OrderedText> lines;
-
-    private final float scale;
-
-    public FlowingText(List<OrderedText> lines, float scale) {
-        this.lines = lines;
-        this.scale = scale;
-    }
-
-    public List<OrderedText> lines() {
-        return lines;
-    }
-
-    public float scale() {
-        return scale;
-    }
+public record FlowingText(List<OrderedText> lines, float scale) {
 
     public interface Factory {
         /**

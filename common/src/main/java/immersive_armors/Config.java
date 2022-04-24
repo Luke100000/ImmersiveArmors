@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public final class Config implements Serializable {
+    @Serial
     private static final long serialVersionUID = 9132405079466337851L;
 
     private static final Config INSTANCE = loadOrCreate();

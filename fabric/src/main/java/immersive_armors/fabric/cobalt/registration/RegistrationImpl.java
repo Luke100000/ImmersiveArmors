@@ -11,7 +11,6 @@ import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.fabricmc.fabric.mixin.object.builder.VillagerProfessionAccessor;
@@ -31,7 +30,6 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
-import net.minecraft.world.poi.PointOfInterestType;
 
 public class RegistrationImpl extends Registration.Impl {
     @Override

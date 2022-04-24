@@ -74,12 +74,6 @@ public class Registration {
             }
         }
 
-        public static class MemoryModules {
-            public static <U> MemoryModuleType<U> create(Identifier id, Optional<Codec<U>> codec) {
-                return INSTANCE.<U>memoryModule().apply(id, codec);
-            }
-        }
-
         public static class Profession {
             public static ProfessionFactory<VillagerProfession> creator() {
                 return INSTANCE.profession();

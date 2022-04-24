@@ -27,8 +27,7 @@ public abstract class MixinLivingEntity extends Entity {
         ItemStack stack = this.getEquippedStack(slot);
 
         if (stack != null) {
-            if (stack.getItem() instanceof ExtendedArmorItem) {
-                ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
+            if (stack.getItem() instanceof ExtendedArmorItem armor) {
                 //noinspection ConstantConditions
                 if ((Entity)this instanceof LivingEntity) {
                     amount = armor.applyArmorToDamage((LivingEntity)((Entity)this), source, amount, stack);
@@ -42,8 +41,7 @@ public abstract class MixinLivingEntity extends Entity {
         ItemStack stack = attacker.getEquippedStack(slot);
 
         if (stack != null) {
-            if (stack.getItem() instanceof ExtendedArmorItem) {
-                ExtendedArmorItem armor = (ExtendedArmorItem)stack.getItem();
+            if (stack.getItem() instanceof ExtendedArmorItem armor) {
                 //noinspection ConstantConditions
                 if ((Entity)this instanceof LivingEntity) {
                     amount = armor.applyArmorToAttack((LivingEntity)((Entity)this), source, amount, stack);

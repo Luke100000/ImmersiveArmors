@@ -27,23 +27,24 @@ public abstract class Piece {
     protected void setVisible(BipedEntityModel bipedModel, EquipmentSlot slot) {
         bipedModel.setVisible(false);
         switch (slot) {
-            case HEAD:
+            case HEAD -> {
                 bipedModel.head.visible = true;
                 bipedModel.hat.visible = true;
-                break;
-            case CHEST:
+            }
+            case CHEST -> {
                 bipedModel.body.visible = true;
                 bipedModel.rightArm.visible = true;
                 bipedModel.leftArm.visible = true;
-                break;
-            case LEGS:
+            }
+            case LEGS -> {
                 bipedModel.body.visible = true;
                 bipedModel.rightLeg.visible = true;
                 bipedModel.leftLeg.visible = true;
-                break;
-            case FEET:
+            }
+            case FEET -> {
                 bipedModel.rightLeg.visible = true;
                 bipedModel.leftLeg.visible = true;
+            }
         }
     }
 

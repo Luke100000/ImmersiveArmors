@@ -32,8 +32,7 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, float tickDelta) {
         ItemStack itemStack = entity.getEquippedStack(armorSlot);
-        if (itemStack.getItem() instanceof ExtendedArmorItem) {
-            ExtendedArmorItem armorItem = (ExtendedArmorItem)itemStack.getItem();
+        if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
             if (armorItem.getSlotType() == armorSlot) {
                 armorItem.getMaterial().getPieces(armorSlot).forEach(piece -> {
                     //noinspection unchecked

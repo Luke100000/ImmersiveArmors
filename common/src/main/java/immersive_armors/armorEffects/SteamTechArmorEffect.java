@@ -77,8 +77,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
-        if (getEquipmentSlot(armor) == EquipmentSlot.CHEST && source.getAttacker() instanceof LivingEntity) {
-            LivingEntity attacker = (LivingEntity)source.getAttacker();
+        if (getEquipmentSlot(armor) == EquipmentSlot.CHEST && source.getAttacker() instanceof LivingEntity attacker) {
             ItemStack hand = attacker.getStackInHand(attacker.getActiveHand());
             if (hand.isEmpty()) {
                 amount *= 4.0f;

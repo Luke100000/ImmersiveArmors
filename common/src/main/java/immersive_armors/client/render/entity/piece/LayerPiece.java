@@ -23,8 +23,7 @@ public abstract class LayerPiece extends Piece {
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
-        if (itemStack.getItem() instanceof ExtendedArmorItem) {
-            ExtendedArmorItem armorItem = (ExtendedArmorItem)itemStack.getItem();
+        if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
             contextModel.setAttributes(getModel());
             setVisible(getModel(), armorSlot);
 

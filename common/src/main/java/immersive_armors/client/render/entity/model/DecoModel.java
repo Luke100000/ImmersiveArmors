@@ -35,19 +35,13 @@ public abstract class DecoModel extends AnimalModel {
     }
 
     public static ModelPart getModelPart(BipedEntityModel model, String name) {
-        switch (name) {
-            case "head":
-                return model.head;
-            case "leftArm":
-                return model.leftArm;
-            case "rightArm":
-                return model.rightArm;
-            case "leftLeg":
-                return model.leftLeg;
-            case "rightLeg":
-                return model.rightLeg;
-            default:
-                return model.body;
-        }
+        return switch (name) {
+            case "head" -> model.head;
+            case "leftArm" -> model.leftArm;
+            case "rightArm" -> model.rightArm;
+            case "leftLeg" -> model.leftLeg;
+            case "rightLeg" -> model.rightLeg;
+            default -> model.body;
+        };
     }
 }

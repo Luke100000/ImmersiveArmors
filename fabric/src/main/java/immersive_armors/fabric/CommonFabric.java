@@ -15,9 +15,7 @@ public final class CommonFabric implements ModInitializer {
 
         Items.bootstrap();
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-            Command.register(dispatcher);
-        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> Command.register(dispatcher));
     }
 }
 

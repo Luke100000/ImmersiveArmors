@@ -12,8 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnchantmentHelper.class)
 public abstract class MixinEnchantmentHelper {
     private static int getEnchantmentLevel(Enchantment enchantment, ItemStack stack) {
-        if (stack.getItem() instanceof ExtendedArmorItem) {
-            ExtendedArmorItem item = (ExtendedArmorItem)stack.getItem();
+        if (stack.getItem() instanceof ExtendedArmorItem item) {
 
             if (item.getMaterial().hasEnchantment(enchantment)) {
                 return item.getMaterial().getEnchantment(enchantment);

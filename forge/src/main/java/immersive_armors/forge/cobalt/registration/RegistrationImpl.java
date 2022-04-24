@@ -9,8 +9,6 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
@@ -18,7 +16,6 @@ import com.mojang.serialization.Codec;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Activity;
@@ -36,7 +33,6 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
-import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -57,11 +53,6 @@ public class RegistrationImpl extends Registration.Impl {
     private final Map<String, RegistryRepo> repos = new HashMap<>();
 
     public static void bootstrap() {}
-
-    @SubscribeEvent
-    public static void handleEvent(RegistryEvent.Register<Block> event) {
-
-    }
 
     private RegistryRepo getRepo(String namespace) {
         return repos.computeIfAbsent(namespace, RegistryRepo::new);
