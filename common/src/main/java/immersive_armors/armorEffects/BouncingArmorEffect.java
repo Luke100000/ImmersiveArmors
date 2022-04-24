@@ -36,6 +36,6 @@ public class BouncingArmorEffect extends ArmorEffect {
             Vec3d velocity = attacker.getVelocity();
             attacker.setVelocity(velocity.add(direction));
         }
-        return 0;
+        return amount;
     }
 }

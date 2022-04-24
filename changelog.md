@@ -30,3 +30,7 @@
 * Fixed compass on Steampunk armor to point in the opposite direction
 * Updated translations (thanks Fleyzi!)
 * Added magic protection effect to robe
+
+# 1.1.2
+
+* Fixed slime armor making you invincible
