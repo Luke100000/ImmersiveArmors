@@ -1,4 +1,4 @@
-package immersive_armors.cobalt.registration;
+package immersive_armors.forge.cobalt.registration;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 
-import immersive_armors.cobalt.registration.Registration.PoiFactory;
+import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -130,15 +130,6 @@ public class RegistrationImpl extends Registration.Impl {
         return (type, attributes) -> {
             ENTITY_ATTRIBUTES.put(type, attributes);
             return type;
-        };
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public PoiFactory<PointOfInterestType> poi() {
-        return (Identifier id, int ticketCount, int searchDistance, Block...blocks) -> {
-            Set<BlockState> setBlocks = Stream.of(blocks).map(Block::getDefaultState).collect(Collectors.toSet());
-            return register(Registry.POINT_OF_INTEREST_TYPE, id, new PointOfInterestType(id.toString(), setBlocks, ticketCount, searchDistance));
         };
     }
 

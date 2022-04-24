@@ -1,4 +1,4 @@
-package immersive_armors.cobalt.registration;
+package immersive_armors.forge.cobalt.registration;
 
 import java.util.List;
 import java.util.function.Supplier;

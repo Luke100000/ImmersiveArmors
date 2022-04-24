@@ -33,7 +33,7 @@ def getAppVersion = { ->
         standardOutput = stdout
     }
     def tagName = stdout.toString().replace("\n", "").replace("\r", "").trim()
-    def versionName = 'git-' + commitId
+    def versionName = '0-git-' + commitId
     if (tagName != null && "" != tagName) {
         versionName = tagName
     }

@@ -1,6 +1,7 @@
-package immersive_armors;
+package immersive_armors.forge;
 
-import immersive_armors.cobalt.registration.RegistrationImpl;
+import immersive_armors.Main;
+import immersive_armors.forge.cobalt.registration.RegistrationImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;

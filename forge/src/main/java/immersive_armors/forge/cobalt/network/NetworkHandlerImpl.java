@@ -1,6 +1,8 @@
-package immersive_armors.cobalt.network;
+package immersive_armors.forge.cobalt.network;
 
 import immersive_armors.Main;
+import immersive_armors.cobalt.network.Message;
+import immersive_armors.cobalt.network.NetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;

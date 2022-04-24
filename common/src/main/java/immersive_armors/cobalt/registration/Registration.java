@@ -80,12 +80,6 @@ public class Registration {
             }
         }
 
-        public static class Poi {
-            public static PointOfInterestType create(Identifier id, int ticketCount, int searchDistance, Block... blocks) {
-                return INSTANCE.poi().apply(id, ticketCount, searchDistance, blocks);
-            }
-        }
-
         public static class Profession {
             public static ProfessionFactory<VillagerProfession> creator() {
                 return INSTANCE.profession();
@@ -115,8 +109,6 @@ public class Registration {
         public abstract <U> BiFunction<Identifier, Optional<Codec<U>>, MemoryModuleType<U>> memoryModule();
 
         public abstract <T extends LivingEntity> BiFunction<EntityType<T>, Supplier<Builder>, EntityType<T>> defaultEntityAttributes();
-
-        public abstract PoiFactory<PointOfInterestType> poi();
 
         public abstract ProfessionFactory<VillagerProfession> profession();
     }

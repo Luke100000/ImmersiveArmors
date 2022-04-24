@@ -1,5 +1,7 @@
-package immersive_armors;
+package immersive_armors.forge;
 
+import immersive_armors.ClientMain;
+import immersive_armors.Main;
 import immersive_armors.server.Command;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;

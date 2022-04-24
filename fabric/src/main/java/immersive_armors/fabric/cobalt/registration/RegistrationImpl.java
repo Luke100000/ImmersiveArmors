@@ -1,4 +1,4 @@
-package immersive_armors.cobalt.registration;
+package immersive_armors.fabric.cobalt.registration;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
@@ -6,7 +6,8 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import immersive_armors.cobalt.registration.Registration.PoiFactory;
+
+import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -80,11 +81,6 @@ public class RegistrationImpl extends Registration.Impl {
             FabricDefaultAttributeRegistry.register(type, attributes.get());
             return type;
         };
-    }
-
-    @Override
-    public PoiFactory<PointOfInterestType> poi() {
-        return PointOfInterestHelper::register;
     }
 
     @Override
