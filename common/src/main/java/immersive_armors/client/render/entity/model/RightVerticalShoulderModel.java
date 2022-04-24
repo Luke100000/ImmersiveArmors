@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 
@@ -12,11 +12,18 @@ public class RightVerticalShoulderModel extends DecoModel {
     public RightVerticalShoulderModel() {
         super();
 
-        part = new ModelPart(32, 16, 0, 0);
+        ModelData modelData = new ModelData();
 
-        part.addCuboid(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
-        part.addCuboid(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f);
-        part.addCuboid(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f);
+        modelData.getRoot().addChild("part",
+                ModelPartBuilder.create()
+                        .cuboid(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f)
+                        .cuboid(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f)
+                        .cuboid(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f),
+                ModelTransform.NONE);
+
+
+        ModelPart model = TexturedModelData.of(modelData, 32, 16).createModel();
+        part = model.getChild("part");
     }
 
     @Override

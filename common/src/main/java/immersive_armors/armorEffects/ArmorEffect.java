@@ -47,7 +47,7 @@ public abstract class ArmorEffect {
     }
 
     protected int getSetCount(ItemStack stack) {
-        return stack.getOrCreateTag().getInt("set_bonus");
+        return stack.getOrCreateNbt().getInt("set_bonus");
     }
 
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
@@ -56,7 +56,7 @@ public abstract class ArmorEffect {
 
     public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
         if (world.getTime() % 20 == 0) {
-            stack.getOrCreateTag().putInt("set_bonus", getSetCount(stack, entity));
+            stack.getOrCreateNbt().putInt("set_bonus", getSetCount(stack, entity));
         }
     }
 }

@@ -1,15 +1,14 @@
-dependencies {
-  modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
-}
-
 architectury {
-  common()
+    common(rootProject.enabled_platforms.split(","))
 }
 
-minecraft {
-  refmapName = 'immersive_armors.mixin.refmap.json' // remove to make it forge runClient compatible
+loom {
+    //noinspection GroovyAssignabilityCheck
+    accessWidenerPath = file("src/main/resources/immersive_armors.accesswidener")
 }
 
-java {
-  withSourcesJar()
+dependencies {
+    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
+    // Do NOT use other classes from fabric loader
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 }

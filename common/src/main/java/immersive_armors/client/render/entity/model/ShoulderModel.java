@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 
@@ -8,28 +8,33 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ShoulderModel extends DecoModel {
-    private final ModelPart left;
-    private final ModelPart right;
+    private final ModelPart left, right;
 
     public ShoulderModel() {
         super();
 
-        ModelPart part;
+        ModelData modelData = new ModelData();
 
-        left = new ModelPart(16, 16, 0, 0);
-        part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
-        part.roll = (float)(-Math.PI * 0.125f);
-        part.setPivot(5, -1, 0);
-        left.addChild(part);
+        modelData.getRoot()
+                .addChild("left", ModelPartBuilder.create(), ModelTransform.NONE)
+                .addChild("left",
+                        ModelPartBuilder.create()
+                                .uv(0, 0)
+                                .cuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f),
+                        ModelTransform.of(5, -1, 0, 0, 0, (float)(-Math.PI * 0.125f)));
 
-        right = new ModelPart(16, 16, 0, 0);
-        part = new ModelPart(16, 16, 0, 0);
-        part.addCuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f);
-        part.roll = (float)(Math.PI * 0.125f);
-        part.yaw = (float)Math.PI;
-        part.setPivot(-5, -1, 0);
-        right.addChild(part);
+        modelData.getRoot()
+                .addChild("right", ModelPartBuilder.create(), ModelTransform.NONE)
+                .addChild("right",
+                        ModelPartBuilder.create()
+                                .uv(0, 0)
+                                .cuboid(-0.5f, -4f, -3.5f, 1.0f, 8.0f, 7.0f),
+                        ModelTransform.of(-5, -1, 0, 0, (float)Math.PI, (float)(Math.PI * 0.125f)));
+
+
+        ModelPart model = TexturedModelData.of(modelData, 16, 16).createModel();
+        left = model.getChild("left");
+        right = model.getChild("right");
     }
 
     @Override

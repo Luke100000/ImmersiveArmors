@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 
 public class VerticalHeadModel extends DecoHeadModel {
     private final ModelPart part;
@@ -12,9 +12,15 @@ public class VerticalHeadModel extends DecoHeadModel {
     public VerticalHeadModel(float x, float y, float z) {
         super();
 
-        part = new ModelPart(64, 16, 0, 0);
-        part.addCuboid(0.0F, -17.0F, -10.0F, 0.0F, 12.0F, 20.0F, 0.0f);
-        part.setPivot(x, y, z);
+        ModelData modelData = new ModelData();
+
+        modelData.getRoot().addChild("part",
+                ModelPartBuilder.create()
+                        .cuboid(0.0F, -17.0F, -10.0F, 0.0F, 12.0F, 20.0F),
+                ModelTransform.pivot(x, y, z));
+
+        ModelPart model = TexturedModelData.of(modelData, 64, 16).createModel();
+        part = model.getChild("part");
     }
 
     @Override

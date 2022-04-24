@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.LivingEntity;
 
 public class MiddleBodyLayerPiece  extends LayerPiece {
-    private static final BipedEntityModel<LivingEntity> model = new BipedEntityModel<>(0.5f);
+    private static final BipedEntityModel<LivingEntity> model = buildDilatedModel(0.5f);
 
     public MiddleBodyLayerPiece() {
         texture("body_middle");

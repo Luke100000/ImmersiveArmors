@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.LivingEntity;
 
 public class UpperBodyLayerPiece extends LayerPiece {
-    private static final BipedEntityModel<LivingEntity> model = new BipedEntityModel<>(1.0f);
+    private static final BipedEntityModel<LivingEntity> model = buildDilatedModel(1.0f);
 
     public UpperBodyLayerPiece() {
         texture("body_upper");

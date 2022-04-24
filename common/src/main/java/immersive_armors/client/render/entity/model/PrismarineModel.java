@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 
@@ -56,20 +56,27 @@ public class PrismarineModel extends DecoModel {
 
     public PrismarineModel() {
         super();
+
+        ModelData modelData = new ModelData();
+
         for (int t = 0; t < SPIKE_PIVOTS_X.length; t++) {
-            ModelPart part = new ModelPart(8, 8, 0, 0);
+            ModelPartData data = modelData.getRoot().addChild("part_" + t, ModelPartBuilder.create(), ModelTransform.NONE);
+
             for (int i = 0; i < SPIKE_PIVOTS_X[t].length; i++) {
-                ModelPart spike = new ModelPart(8, 8, 0, 0);
-                spike.addCuboid(-1.0f, -1.0f, -1.0f, 2.0f, 5.0f, 2.0f);
-                spike.pitch = (float)(SPIKE_PITCHES[t][i] / 180.0f * Math.PI);
-                spike.yaw = (float)(SPIKE_YAWS[t][i] / 180.0f * Math.PI);
-                spike.roll = (float)(SPIKE_ROLLS[t][i] / 180.0f * Math.PI);
-                spike.pivotX = SPIKE_PIVOTS_X[t][i];
-                spike.pivotY = SPIKE_PIVOTS_Y[t][i];
-                spike.pivotZ = SPIKE_PIVOTS_Z[t][i];
-                part.addChild(spike);
+                data.addChild("spike_" + i,
+                        ModelPartBuilder.create()
+                                .cuboid(-1.0f, -1.0f, -1.0f, 2.0f, 5.0f, 2.0f),
+                        ModelTransform.of(
+                                SPIKE_PIVOTS_X[t][i],
+                                SPIKE_PIVOTS_Y[t][i],
+                                SPIKE_PIVOTS_Z[t][i],
+                                (float)(SPIKE_PITCHES[t][i] / 180.0f * Math.PI),
+                                (float)(SPIKE_YAWS[t][i] / 180.0f * Math.PI),
+                                (float)(SPIKE_ROLLS[t][i] / 180.0f * Math.PI)
+                        ));
             }
-            parts.add(part);
+
+            parts.add(data.createPart(8, 8));
         }
     }
 

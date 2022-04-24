@@ -1,23 +1,14 @@
 pluginManagement {
     repositories {
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
-        maven {
-            name = 'Architectury'
-            url "https://maven.architectury.dev/"
-        }
-        maven {
-            name = 'Forge'
-            url "https://files.minecraftforge.net/maven/"
-        }
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://maven.minecraftforge.net/" }
         gradlePluginPortal()
     }
 }
 
-include('common')
-include('fabric')
-include('forge')
+include("common")
+include("fabric")
+include("forge")
 
 rootProject.name = "immersive-armors"

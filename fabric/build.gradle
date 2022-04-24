@@ -1,66 +1,68 @@
 plugins {
-  id "com.github.johnrengelman.shadow" version "5.0.0"
-}
-
-configurations {
-  shadowCommon
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 architectury {
-  platformSetupLoomIde()
-  fabric()
+    platformSetupLoomIde()
+    fabric()
 }
 
-minecraft {
-  refmapName = 'immersive_armors.mixin.refmap.json'
+loom {
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
 }
 
 dependencies {
-  modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
-  modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_version}"
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
 
-  implementation(project(path: ":common")) {
-    transitive = false
-  }
-  developmentFabric(project(path: ":common")) {
-    transitive = false
-  }
-  shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) {
-    transitive = false
-  }
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
 processResources {
-  inputs.property "version", project.version.toString()
+    inputs.property "version", project.version
 
-  filesMatching("fabric.mod.json") {
-    expand "version": project.version.toString()
-  }
-
-  from 'LICENSE'
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
 }
 
 shadowJar {
-  configurations = [project.configurations.shadowCommon]
-  classifier "dev-shadow"
+    exclude "architectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
 }
 
 remapJar {
-  input.set shadowJar.archiveFile
-  dependsOn shadowJar
-  classifier "fabric"
+    injectAccessWidener = true
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier null
 }
 
 jar {
-  classifier "dev"
-}
-
-java {
-  withSourcesJar()
+    classifier "dev"
 }
 
 sourcesJar {
-  def commonSources = project(":common").sourcesJar
-  dependsOn commonSources
-  from commonSources.archiveFile.map { zipTree(it) }
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
 }

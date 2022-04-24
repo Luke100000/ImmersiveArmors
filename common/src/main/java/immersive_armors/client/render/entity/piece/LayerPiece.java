@@ -1,6 +1,8 @@
 package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.item.ExtendedArmorItem;
+import net.minecraft.client.model.Dilation;
+import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
@@ -11,6 +13,10 @@ import net.minecraft.item.ItemStack;
 
 public abstract class LayerPiece extends Piece {
     protected abstract BipedEntityModel<LivingEntity> getModel();
+
+    protected static BipedEntityModel<LivingEntity> buildDilatedModel(float dilation) {
+        return new BipedEntityModel<>(TexturedModelData.of(BipedEntityModel.getModelData(new Dilation(dilation), 0.0f), 64, 32).createModel());
+    }
 
     public LayerPiece() {
     }

@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
@@ -13,9 +13,17 @@ public class GearModel extends DecoModel {
     public GearModel(String to, int size) {
         super();
         attachTo = to;
-        part = new ModelPart(16, 8, 0, 0);
-        part.addCuboid(-size / 2.0f, -size / 2.0f, 0.0F, size, size, 0.0f, 0.0f);
-        part.setPivot(0.0F, 0.0F, 0.0F);
+
+        ModelData modelData = new ModelData();
+
+        modelData.getRoot().addChild("part",
+                ModelPartBuilder.create()
+                        .cuboid(-size / 2.0f, -size / 2.0f, 0.0F, size, size, 0.0f),
+                ModelTransform.NONE);
+
+
+        ModelPart model = TexturedModelData.of(modelData, 16, 8).createModel();
+        part = model.getChild("part");
     }
 
     @Override

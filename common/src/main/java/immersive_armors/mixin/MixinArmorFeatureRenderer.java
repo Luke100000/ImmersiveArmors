@@ -18,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
-
     public MixinArmorFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
     }
@@ -31,7 +30,7 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
         }
     }
 
-    private void renderDecoModels(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, float tickDelta) {
+    private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, float tickDelta) {
         ItemStack itemStack = entity.getEquippedStack(armorSlot);
         if (itemStack.getItem() instanceof ExtendedArmorItem) {
             ExtendedArmorItem armorItem = (ExtendedArmorItem)itemStack.getItem();
@@ -47,9 +46,9 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"))
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float tickDelta, float j, float k, float l, CallbackInfo ci) {
         // features
-        renderDecoModels(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, tickDelta);
-        renderDecoModels(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, tickDelta);
-        renderDecoModels(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, tickDelta);
-        renderDecoModels(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, tickDelta);
+        renderPieces(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.HEAD, i, tickDelta);
+        renderPieces(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, tickDelta);
+        renderPieces(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.LEGS, i, tickDelta);
+        renderPieces(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.FEET, i, tickDelta);
     }
 }

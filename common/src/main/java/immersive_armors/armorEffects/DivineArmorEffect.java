@@ -22,7 +22,7 @@ public class DivineArmorEffect extends ArmorEffect {
     }
 
     private boolean isCharged(long time, ItemStack armor) {
-        NbtCompound tag = armor.getOrCreateTag();
+        NbtCompound tag = armor.getOrCreateNbt();
         return (!tag.contains("last_divine") || tag.getLong("last_divine") + cooldown < time) && getSetCount(armor) == 4;
     }
 
@@ -49,7 +49,7 @@ public class DivineArmorEffect extends ArmorEffect {
             boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
             if (charged) {
                 entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, entity.getSoundCategory(), 0.5f, 1.25f);
-                getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateTag().putLong("last_divine", time));
+                getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateNbt().putLong("last_divine", time));
                 return 0;
             }
         }

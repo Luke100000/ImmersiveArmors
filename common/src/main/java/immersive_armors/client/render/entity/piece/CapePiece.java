@@ -141,7 +141,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         }
 
         public CapeAngles(ItemStack cape) {
-            NbtCompound tag = cape.getOrCreateTag();
+            NbtCompound tag = cape.getOrCreateNbt();
             if (tag.contains("capeAngles")) {
                 NbtCompound angles = tag.getCompound("capeAngles");
                 capeX = angles.getDouble("capeX");
@@ -152,7 +152,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         }
 
         public void store(ItemStack cape) {
-            NbtCompound tag = cape.getOrCreateTag();
+            NbtCompound tag = cape.getOrCreateNbt();
             NbtCompound angles = new NbtCompound();
             angles.putDouble("capeX", capeX);
             angles.putDouble("capeY", capeY);

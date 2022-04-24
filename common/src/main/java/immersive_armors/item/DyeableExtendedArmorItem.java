@@ -27,7 +27,7 @@ public class DyeableExtendedArmorItem extends ExtendedArmorItem implements Dyeab
 
     @Override
     public int getColor(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getSubTag("display");
+        NbtCompound nbtCompound = stack.getSubNbt("display");
         return nbtCompound != null && nbtCompound.contains("color", 99) ? nbtCompound.getInt("color") : getMaterial().getColor();
     }
 }
