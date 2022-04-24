@@ -37,3 +37,7 @@
 * Increase Steampunk and Slime Armor explosion resistance
 * Increased Robe magic resistance
 * Decreased Slime armor knockback resistance for incomplete sets
+
+# 1.2.0
+
+* Ported to 1.17.1
