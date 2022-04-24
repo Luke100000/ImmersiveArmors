@@ -34,3 +34,6 @@
 # 1.1.2
 
 * Fixed slime armor making you invincible
+* Increase Steampunk and Slime Armor explosion resistance
+* Increased Robe magic resistance
+* Decreased Slime armor knockback resistance for incomplete sets

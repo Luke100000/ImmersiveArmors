@@ -70,7 +70,7 @@ public interface Items {
             .color(11546150)
             .effect(new FireResistanceArmorEffect(0.25f))
             .effect(new FireInflictingArmorEffect(10))
-            .effect(new MagicProtectionArmorEffect(0.15f))
+            .effect(new MagicProtectionArmorEffect(0.2f))
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     ExtendedArmorMaterial SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")
@@ -78,9 +78,9 @@ public interface Items {
             .enchantability(10)
             .durabilityMultiplier(20)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.SLIME_BALL))
-            .knockbackReduction(1.0f)
+            .knockbackReduction(0.25f)
             .effect(new BouncingArmorEffect(0.25f))
-            .effect(new ExplosionProtectionArmorEffect(0.15f))
+            .effect(new ExplosionProtectionArmorEffect(0.2f))
             .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
 
     ExtendedArmorMaterial DIVINE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("divine")
@@ -118,7 +118,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
             .enchantability(4)
             .hideCape()
-            .effect(new ExplosionProtectionArmorEffect(0.1f))
+            .effect(new ExplosionProtectionArmorEffect(0.2f))
             .effect(new SteamTechArmorEffect())
             .equipSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT));
 
