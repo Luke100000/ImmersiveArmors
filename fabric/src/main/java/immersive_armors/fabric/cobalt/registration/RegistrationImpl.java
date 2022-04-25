@@ -12,9 +12,7 @@ import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.fabricmc.fabric.mixin.object.builder.VillagerProfessionAccessor;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Activity;
@@ -22,11 +20,9 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
@@ -45,16 +41,6 @@ public class RegistrationImpl extends Registration.Impl {
     @Override
     public ItemGroup itemGroup(Identifier id, Supplier<ItemStack> icon) {
         return FabricItemGroupBuilder.create(id).icon(icon).build();
-    }
-
-    @Override
-    public Function<Identifier, Tag<Block>> blockTag() {
-        return TagRegistry::block;
-    }
-
-    @Override
-    public Function<Identifier, Tag<Item>> itemTag() {
-        return TagRegistry::item;
     }
 
     @Override

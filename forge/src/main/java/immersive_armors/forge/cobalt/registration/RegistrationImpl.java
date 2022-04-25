@@ -15,7 +15,6 @@ import com.mojang.serialization.Codec;
 
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.cobalt.registration.Registration.ProfessionFactory;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Activity;
@@ -23,19 +22,13 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistry;
@@ -86,16 +79,6 @@ public class RegistrationImpl extends Registration.Impl {
                 return icon.get();
             }
         };
-    }
-
-    @Override
-    public Function<Identifier, Tag<Block>> blockTag() {
-        return id -> new TagReg<>(id, BlockTags::getTagGroup);
-    }
-
-    @Override
-    public Function<Identifier, Tag<Item>> itemTag() {
-        return id -> new TagReg<>(id, ItemTags::getTagGroup);
     }
 
     @SuppressWarnings("deprecation")
