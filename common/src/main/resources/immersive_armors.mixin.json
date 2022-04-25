@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.7",
   "package": "immersive_armors.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
     "MixinEnchantmentHelper",
     "MixinLivingEntity"
