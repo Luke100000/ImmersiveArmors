@@ -18,17 +18,19 @@ import java.util.stream.Stream;
 public class WeaponEfficiency extends ArmorEffect {
     private final float damage;
     private final Class weapon;
+    private final String weaponName;
 
-    public WeaponEfficiency(float damage, Class items) {
+    public WeaponEfficiency(float damage, Class weapon, String weaponName) {
         this.damage = damage;
-        weapon = items;
+        this.weapon = weapon;
+        this.weaponName = weaponName;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        TranslatableText weaponText = new TranslatableText("armorEffect.weaponEfficiency." + weapon.getSimpleName());
+        TranslatableText weaponText = new TranslatableText("armorEffect.weaponEfficiency." + weaponName);
         tooltip.add(new TranslatableText("armorEffect.weaponEfficiency", (int)(damage * 100), weaponText).formatted(Formatting.GOLD));
     }
 

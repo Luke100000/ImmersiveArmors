@@ -49,7 +49,7 @@ public interface Items {
             .enchantability(5)
             .hideCape()
             .effect(new BerserkArmorEffect(0.2f))
-            .effect(new WeaponEfficiency(0.05f, AxeItem.class))
+            .effect(new WeaponEfficiency(0.05f, AxeItem.class, "axe"))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")
