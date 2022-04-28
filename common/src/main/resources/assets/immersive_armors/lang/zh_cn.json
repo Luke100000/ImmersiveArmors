@@ -1,9 +1,9 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "沉浸式盔甲",
-  "armorEffect.fireResistance": "%d%% 防火性",
-  "armorEffect.explosionResistance": "%d%% 抗爆炸性",
+  "armorEffect.fireResistance": "%d%% 抗火",
+  "armorEffect.explosionResistance": "%d%% 爆炸抗性",
   "armorEffect.magicResistance": "%d%% 魔法抗性",
-  "armorEffect.fireInflicting": "%d Ticks 火灾伤害",
+  "armorEffect.fireInflicting": "%d Ticks 火焰伤害",
   "armorEffect.bounceback": "%d 弹回",
   "armorEffect.spikes": "%d 秒杀伤害",
   "armorEffect.arrowBlock": "%d%% 箭头阻断",
