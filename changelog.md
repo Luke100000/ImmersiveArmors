@@ -45,3 +45,9 @@
 # 1.3.0
 
 * Ported to 1.18.2
+
+# 1.3.1
+
+* Ported to 1.18.1
+* Updated translations
+* Fixed tooltip issue on Fabric on Warrior Armor
