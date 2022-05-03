@@ -7,7 +7,7 @@
   "armorEffect.fireInflicting": "%d刻火焰持续伤害",
   "armorEffect.bounceback": "%d%概率击退攻击者",
   "armorEffect.spikes": "%d点尖刺反伤",
-  "armorEffect.arrowBlock": "%d%%远程抗性",
+  "armorEffect.arrowBlock": "%d%%弹射物抗性",
   "armorEffect.wither": "让攻击你的生物凋零",
   "armorEffect.charged": "充能",
   "armorEffect.berserk": "受伤时最多额外增加%d%%的伤害",
