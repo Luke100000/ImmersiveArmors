@@ -5,7 +5,7 @@
   "armorEffect.explosionResistance": "%d%%爆炸抗性",
   "armorEffect.magicResistance": "%d%%魔法抗性",
   "armorEffect.fireInflicting": "%d刻火焰持续伤害",
-  "armorEffect.bounceback": "%d%概率击退攻击者",
+  "armorEffect.bounceback": "%d%%概率回弹击退攻击者",
   "armorEffect.spikes": "%d点尖刺反伤",
   "armorEffect.arrowBlock": "%d%%弹射物抗性",
   "armorEffect.wither": "让攻击你的生物凋零",
