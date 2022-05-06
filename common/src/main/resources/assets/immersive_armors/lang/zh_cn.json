@@ -9,7 +9,7 @@
   "armorEffect.spikes": "%d点尖刺反伤",
   "armorEffect.arrowBlock": "%d%%弹射物抗性",
   "armorEffect.wither": "让攻击你的生物凋零",
-  "armorEffect.charged": "充能",
+  "armorEffect.charged": "已充能",
   "armorEffect.berserk": "受伤时最多额外增加%d%%的伤害",
   "armorEffect.weaponEfficiency": "额外增加%s的%d%%伤害",
   "armorEffect.weaponEfficiency.AxeItem": "斧",
