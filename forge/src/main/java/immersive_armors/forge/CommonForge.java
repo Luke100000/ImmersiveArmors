@@ -12,6 +12,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @Mod(Main.MOD_ID)
 @Mod.EventBusSubscriber(modid = Main.MOD_ID, bus = Bus.MOD)
 public final class CommonForge {
+    {
+        Main.FORGE = true;
+    }
+
     public CommonForge() {
         RegistrationImpl.bootstrap();
         new NetworkHandlerImpl();

@@ -1,5 +1,6 @@
 package immersive_armors.mixin;
 
+import immersive_armors.Main;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
@@ -28,11 +29,6 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     ItemStack equippedStack;
     T entity;
 
-    @Inject(method = "renderArmor", at = @At("HEAD"))
-    private void fetchEntity(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot slot, int light, A model, CallbackInfo ci) {
-        this.entity = entity;
-    }
-
     @ModifyVariable(method = "renderArmor", at = @At("STORE"), ordinal = 0)
     private ItemStack fetchItemStack(ItemStack itemStack) {
         this.equippedStack = itemStack;
@@ -41,17 +37,38 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     @Inject(method = "renderArmorParts", at = @At("HEAD"), cancellable = true)
     void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean usesSecondLayer, A model, boolean legs, float red, float green, float blue, String overlay, CallbackInfo ci) {
-        if (equippedStack.getItem() == item && item instanceof ExtendedArmorItem armorItem) {
-            armorItem.getMaterial().getPieces(item.getSlotType()).forEach(piece -> {
-                //noinspection unchecked
-                piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), (BipedEntityModel<LivingEntity>)getContextModel());
-            });
+        if (!Main.FORGE && equippedStack.getItem() == item && item instanceof ExtendedArmorItem armorItem) {
+            renderPieces(matrices, vertexConsumers, light, armorItem);
             ci.cancel();
         }
     }
 
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"))
+    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"), cancellable = true)
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float tickDelta, float j, float k, float l, CallbackInfo ci) {
         this.tickDelta = tickDelta;
+        this.entity = entity;
+
+        // Forge removed renderArmorParts calls
+        if (Main.FORGE) {
+            renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.HEAD);
+            renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.CHEST);
+            renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.LEGS);
+            renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.FEET);
+            ci.cancel();
+        }
+    }
+
+    private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, EquipmentSlot armorSlot) {
+        equippedStack = entity.getEquippedStack(armorSlot);
+        if (equippedStack.getItem() instanceof ExtendedArmorItem armorItem) {
+            renderPieces(matrices, vertexConsumers, light, armorItem);
+        }
+    }
+
+    private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ExtendedArmorItem item) {
+        item.getMaterial().getPieces(item.getSlotType()).forEach(piece -> {
+            //noinspection unchecked
+            piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), (BipedEntityModel<LivingEntity>)getContextModel());
+        });
     }
 }
