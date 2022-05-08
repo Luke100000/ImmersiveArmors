@@ -41,3 +41,9 @@
 # 1.2.0
 
 * Ported to 1.17.1
+
+# 1.2.1
+
+* Fixed incompatibility with some cosmetic layer mods
+* Fixed hat and other second layer skins overlapping parts of the armor
+* Fixed incompatibility with First Aid
