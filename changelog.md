@@ -51,3 +51,7 @@
 * Ported to 1.18.1
 * Updated translations
 * Fixed tooltip issue on Fabric on Warrior Armor
+
+# 1.3.2
+
+* Fixed incompatibility with some cosmetic layer mods 
