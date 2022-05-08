@@ -19,6 +19,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     private int durabilityMultiplier;
     private int[] protectionAmount;
+    private final boolean[] hidesSecondLayer = {false, false, false, false};
     private float toughness;
     private float knockbackResistance;
     private int enchantability;
@@ -260,5 +261,17 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public List<Piece> getPieces(EquipmentSlot slot) {
         return pieces.get(slot);
+    }
+
+    public ExtendedArmorMaterial hidesSecondLayer(boolean head, boolean chest, boolean legs, boolean feet) {
+        hidesSecondLayer[0] = head;
+        hidesSecondLayer[1] = chest;
+        hidesSecondLayer[2] = legs;
+        hidesSecondLayer[3] = feet;
+        return this;
+    }
+
+    public boolean[] shouldHideSecondLayer() {
+        return hidesSecondLayer;
     }
 }
