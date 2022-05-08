@@ -38,7 +38,7 @@
 * Increased Robe magic resistance
 * Decreased Slime armor knockback resistance for incomplete sets
 
-# 1.1.2
+# 1.1.3
 
 * Fixed incompatibility with some cosmetic layer mods
 * Fixed hat and other second layer skins overlapping parts of the armor
