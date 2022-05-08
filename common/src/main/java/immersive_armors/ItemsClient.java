@@ -20,6 +20,7 @@ public class ItemsClient {
                 .chest(new CapePiece<>(new CapeModel<>()));
 
         WARRIOR_ARMOR
+                .hidesSecondLayer(true, true, true, true)
                 .lower(new LowerLeggingsLayerPiece())
                 .upper(new LowerBodyLayerPiece())
                 .lower(new MiddleLeggingsLayerPiece())
@@ -30,6 +31,7 @@ public class ItemsClient {
                 .chest(new CapePiece<>(new CapeModel<>()));
 
         HEAVY_ARMOR
+                .hidesSecondLayer(true, true, true, true)
                 .lower(new LowerLeggingsLayerPiece())
                 .upper(new LowerBodyLayerPiece())
                 .upper(new MiddleBodyLayerPiece())
@@ -38,6 +40,7 @@ public class ItemsClient {
                 .head(new ModelPiece(new VerticalHeadModel()).texture("vertical"));
 
         ROBE_ARMOR
+                .hidesSecondLayer(true, true, true, true)
                 .lower(new LowerLeggingsLayerPiece().colored())
                 .upper(new LowerBodyLayerPiece().colored())
                 .lower(new MiddleLeggingsLayerPiece().colored())
@@ -52,6 +55,7 @@ public class ItemsClient {
                 .upper(new UpperBodyLayerPiece().texture("body").translucent());
 
         DIVINE_ARMOR
+                .hidesSecondLayer(true, true, true, true)
                 .lower(new LowerLeggingsLayerPiece().colored())
                 .upper(new LowerBodyLayerPiece().colored())
                 .upper(new MiddleBodyLayerPiece().glint())
@@ -76,6 +80,7 @@ public class ItemsClient {
         rotate.hamiltonProduct(flip);
 
         STEAMPUNK_ARMOR
+                .hidesSecondLayer(false, true, true, true)
                 .lower(new LowerLeggingsLayerPiece())
                 .upper(new LowerBodyLayerPiece())
                 .lower(new MiddleLeggingsLayerPiece())
