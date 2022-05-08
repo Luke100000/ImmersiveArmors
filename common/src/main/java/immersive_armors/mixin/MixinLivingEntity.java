@@ -10,15 +10,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(LivingEntity.class)
 public abstract class MixinLivingEntity extends Entity {
     protected MixinLivingEntity(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
+
+    @Invoker("applyDamage")
+    protected abstract void applyDamage(DamageSource source, float amount);
 
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot arg);
@@ -51,10 +54,10 @@ public abstract class MixinLivingEntity extends Entity {
         return amount;
     }
 
-    @Inject(method = "applyArmorToDamage", at = @At("RETURN"), cancellable = true)
-    void applyArmorToDamage(DamageSource source, float unused, CallbackInfoReturnable<Float> cir) {
-        float amount = cir.getReturnValue();
-
+    @Redirect(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
+              at = @At(value = "INVOKE",
+                       target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"))
+    public void redirectApplyDamage(LivingEntity instance, DamageSource source, float amount) {
         amount = apply(EquipmentSlot.HEAD, source, amount);
         amount = apply(EquipmentSlot.CHEST, source, amount);
         amount = apply(EquipmentSlot.LEGS, source, amount);
@@ -68,6 +71,6 @@ public abstract class MixinLivingEntity extends Entity {
             amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.FEET, source, amount);
         }
 
-        cir.setReturnValue(amount);
+        applyDamage(source, amount);
     }
 }
