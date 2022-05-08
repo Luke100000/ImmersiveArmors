@@ -56,3 +56,4 @@
 
 * Fixed incompatibility with some cosmetic layer mods
 * Fixed hat and other second layer skins overlapping parts of the armor
+* Fixed incompatibility with First Aid
