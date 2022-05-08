@@ -21,7 +21,7 @@ public abstract class MixinLivingEntity extends Entity {
     }
 
     @Invoker("applyDamage")
-    protected abstract void applyDamage(DamageSource source, float amount);
+    protected abstract void invokeApplyDamage(DamageSource source, float amount);
 
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot arg);
@@ -73,6 +73,6 @@ public abstract class MixinLivingEntity extends Entity {
             amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.FEET, source, amount);
         }
 
-        applyDamage(source, amount);
+        invokeApplyDamage(source, amount);
     }
 }
