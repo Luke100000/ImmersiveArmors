@@ -37,3 +37,9 @@
 * Increase Steampunk and Slime Armor explosion resistance
 * Increased Robe magic resistance
 * Decreased Slime armor knockback resistance for incomplete sets
+
+# 1.1.2
+
+* Fixed incompatibility with some cosmetic layer mods
+* Fixed hat and other second layer skins overlapping parts of the armor
+* Fixed incompatibility with First Aid
