@@ -37,8 +37,8 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     @Inject(method = "renderArmorParts", at = @At("HEAD"), cancellable = true)
     void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean usesSecondLayer, A model, boolean legs, float red, float green, float blue, String overlay, CallbackInfo ci) {
-        if (!Main.FORGE && equippedStack.getItem() == item && item instanceof ExtendedArmorItem armorItem) {
-            renderPieces(matrices, vertexConsumers, light, armorItem);
+        if (!Main.FORGE && equippedStack.getItem() == item && item instanceof ExtendedArmorItem) {
+            renderPieces(matrices, vertexConsumers, light, (ExtendedArmorItem)item);
             ci.cancel();
         }
     }
@@ -60,8 +60,8 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, EquipmentSlot armorSlot) {
         equippedStack = entity.getEquippedStack(armorSlot);
-        if (equippedStack.getItem() instanceof ExtendedArmorItem armorItem) {
-            renderPieces(matrices, vertexConsumers, light, armorItem);
+        if (equippedStack.getItem() instanceof ExtendedArmorItem) {
+            renderPieces(matrices, vertexConsumers, light, (ExtendedArmorItem) equippedStack.getItem());
         }
     }
 

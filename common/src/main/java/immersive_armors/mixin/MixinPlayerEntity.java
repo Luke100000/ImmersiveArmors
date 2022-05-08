@@ -23,28 +23,30 @@ public abstract class MixinPlayerEntity {
             return;
         }
 
-        int flag = modelPart.getId();
         EquipmentSlot slot = null;
         int index = -1;
-        switch (flag) {
-            case 1, 2, 3 -> {
+        switch (modelPart.getName()) {
+            case "jacket":
+            case "left_sleeve":
+            case "right_sleeve":
                 slot = EquipmentSlot.CHEST;
                 index = 1;
-            }
-            case 4, 5 -> {
+                break;
+            case "left_pants_leg":
+            case "right_pants_leg":
                 slot = EquipmentSlot.LEGS;
                 index = 2;
-            }
-            case 6 -> {
+                break;
+            case "hat":
                 slot = EquipmentSlot.HEAD;
                 index = 0;
-            }
+                break;
         }
 
         if (index >= 0) {
             ItemStack stack = getEquippedStack(slot);
-            if (stack.getItem() instanceof ExtendedArmorItem armorItem) {
-                if (armorItem.getMaterial().shouldHideSecondLayer()[index]) {
+            if (stack.getItem() instanceof ExtendedArmorItem) {
+                if (((ExtendedArmorItem)stack.getItem()).getMaterial().shouldHideSecondLayer()[index]) {
                     cir.setReturnValue(false);
                 }
             }
