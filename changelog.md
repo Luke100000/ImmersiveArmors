@@ -54,4 +54,5 @@
 
 # 1.3.2
 
-* Fixed incompatibility with some cosmetic layer mods 
+* Fixed incompatibility with some cosmetic layer mods
+* Fixed hat and other second layer skins overlapping parts of the armor
