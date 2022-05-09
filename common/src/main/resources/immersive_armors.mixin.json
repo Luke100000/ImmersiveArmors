@@ -5,14 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinEnchantmentHelper",
-    "MixinLivingEntity",
-    "MixinPlayerEntity"
+    "MixinLivingEntity"
   ],
   "client": [
     "MixinArmorFeatureRenderer",
     "MixinCapeFeatureRenderer",
-    "MixinArmorFeatureRenderer",
-    "MixinItemRenderer"
+    "MixinItemRenderer",
+    "MixinPlayerEntity"
   ],
   "injectors": {
     "defaultRequire": 1

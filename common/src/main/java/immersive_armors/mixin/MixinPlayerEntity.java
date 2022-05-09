@@ -2,6 +2,7 @@ package immersive_armors.mixin;
 
 import immersive_armors.Config;
 import immersive_armors.item.ExtendedArmorItem;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.entity.PlayerModelPart;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,9 +18,15 @@ public abstract class MixinPlayerEntity {
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
+    @Shadow public abstract boolean isMainPlayer();
+
     @Inject(method = "isPartVisible", at = @At("HEAD"), cancellable = true)
     public void isPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.getInstance().hideSecondLayerUnderArmor) {
+            return;
+        }
+
+        if (isMainPlayer() && !MinecraftClient.getInstance().gameRenderer.getCamera().isThirdPerson()) {
             return;
         }
 
