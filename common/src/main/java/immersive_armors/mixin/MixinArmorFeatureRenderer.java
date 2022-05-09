@@ -36,14 +36,24 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     }
 
     @Inject(method = "renderArmorParts", at = @At("HEAD"), cancellable = true)
-    void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean usesSecondLayer, A model, boolean legs, float red, float green, float blue, String overlay, CallbackInfo ci) {
+    void injectRenderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean usesSecondLayer, A model, boolean legs, float red, float green, float blue, String overlay, CallbackInfo ci) {
         if (!Main.FORGE && equippedStack.getItem() == item && item instanceof ExtendedArmorItem armorItem) {
             renderPieces(matrices, vertexConsumers, light, armorItem);
             ci.cancel();
         }
     }
 
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "renderArmor", at = @At("HEAD"), cancellable = true)
+    void injectRenderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model, CallbackInfo ci) {
+        if (Main.FORGE) {
+            ItemStack itemStack = entity.getEquippedStack(armorSlot);
+            if (itemStack.getItem() instanceof ExtendedArmorItem) {
+                ci.cancel();
+            }
+        }
+    }
+
+    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"))
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float tickDelta, float j, float k, float l, CallbackInfo ci) {
         this.tickDelta = tickDelta;
         this.entity = entity;
@@ -54,7 +64,6 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
             renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.CHEST);
             renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.LEGS);
             renderPieces(matrixStack, vertexConsumerProvider, i, EquipmentSlot.FEET);
-            ci.cancel();
         }
     }
 
