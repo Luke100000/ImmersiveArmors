@@ -57,3 +57,8 @@
 * Fixed incompatibility with some cosmetic layer mods
 * Fixed hat and other second layer skins overlapping parts of the armor
 * Fixed incompatibility with First Aid
+
+# 1.3.3
+
+* Fixed armor not rendering on forge
+* Fixed first person sleeve not showing
