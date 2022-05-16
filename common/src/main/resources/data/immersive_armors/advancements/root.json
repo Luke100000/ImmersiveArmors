@@ -17,10 +17,7 @@
   },
   "criteria": {
     "beginning_village": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "feature": "village"
-      }
+      "trigger": "minecraft:minecraft:impossible"
     }
   }
 }
