@@ -67,3 +67,4 @@
 
 * Added config to disable effects
 * Removed broken advancement
+* Fixed enchantment glow

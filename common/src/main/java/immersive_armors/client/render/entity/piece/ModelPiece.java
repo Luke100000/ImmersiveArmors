@@ -20,6 +20,6 @@ public class ModelPiece extends Piece {
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
         model.copyFromModel(contextModel, armorSlot);
-        renderParts(matrices, vertexConsumers, light, (ExtendedArmorItem)itemStack.getItem(), model, 1.0f, 1.0f, 1.0f, false);
+        renderParts(matrices, vertexConsumers, light, itemStack, (ExtendedArmorItem)itemStack.getItem(), model, 1.0f, 1.0f, 1.0f, false);
     }
 }
