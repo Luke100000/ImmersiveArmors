@@ -11,7 +11,7 @@
   "armorEffect.charged": "Ladattu",
   "armorEffect.berserk": "Enintään %d%% Vahingon määrä loukkaantuessa.",
   "armorEffect.weaponEfficiency": "%d%% Vaurio, jossa %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Akselit",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Alkeellinen tutka näyttää lähellä olevien kohteiden sijainnin.",
   "armorEffect.steamTech.chest": "Höyrykäyttöiset minimännät lisäävät nyrkkivahinkoa 300%.",
   "armorEffect.steamTech.legs": "10% lähitaisteluvahinkoa liikkuvuuden lisääntymisen ansiosta taistelussa",
