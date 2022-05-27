@@ -11,7 +11,7 @@
   "armorEffect.charged": "Carregado",
   "armorEffect.berserk": "Até %d%% Danos quando ferido",
   "armorEffect.weaponEfficiency": "%d%% Danos com %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Eixos",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Um radar primitivo mostra-lhe a posição de entidades próximas",
   "armorEffect.steamTech.chest": "Os mini pistões a vapor aumentam os danos nos punhos em 300%.",
   "armorEffect.steamTech.legs": "10% de danos causados pelo combate corpo a corpo graças ao aumento da mobilidade em combate",
