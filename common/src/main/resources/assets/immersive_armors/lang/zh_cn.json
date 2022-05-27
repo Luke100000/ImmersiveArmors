@@ -11,7 +11,7 @@
   "armorEffect.charged": "充能",
   "armorEffect.berserk": "受伤时最多额外增加 %d%% 伤害",
   "armorEffect.weaponEfficiency": "额外增加%s的 %d%% 伤害",
-  "armorEffect.weaponEfficiency.AxeItem": "斧",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "利用原始雷达显示正在接近你的实体所在的位置",
   "armorEffect.steamTech.chest": "利用蒸汽驱动的迷你活塞使你的攻击伤害增加 300%",
   "armorEffect.steamTech.legs": "增加了战斗中的机动性，使近战伤害增加 10%",
