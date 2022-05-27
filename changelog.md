@@ -62,3 +62,7 @@
 
 * Fixed armor not rendering on forge
 * Fixed first person sleeve not showing
+
+# 1.3.4
+
+* Added config to disable effects

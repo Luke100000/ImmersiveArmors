@@ -1,5 +1,6 @@
 package immersive_armors.item;
 
+import immersive_armors.Config;
 import immersive_armors.armorEffects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
 import net.minecraft.enchantment.Enchantment;
@@ -119,7 +120,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public ExtendedArmorMaterial effect(ArmorEffect effect) {
-        this.effects.add(effect);
+        if (Config.getInstance().enableEffects) {
+            this.effects.add(effect);
+        }
         return this;
     }
 
