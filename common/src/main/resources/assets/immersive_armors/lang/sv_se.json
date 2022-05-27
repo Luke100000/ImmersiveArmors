@@ -11,7 +11,7 @@
   "armorEffect.charged": "Laddad",
   "armorEffect.berserk": "Upp till %d%% Skada vid skada.",
   "armorEffect.weaponEfficiency": "%d%% Skador med %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Axlar",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "En primitiv radar visar dig positionen för närliggande enheter.",
   "armorEffect.steamTech.chest": "Ångdrivna minikolvar ökar din knytnävsskada med 300 %.",
   "armorEffect.steamTech.legs": "10 % skada i närstrid tack vare ökad rörlighet i strid",
