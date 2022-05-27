@@ -12,7 +12,7 @@
   "armorEffect.charged": "Charged",
   "armorEffect.berserk": "Up to %d%% Damage when injured",
   "armorEffect.weaponEfficiency": "+%d%% Damage with %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Axes",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "A primitive radar shows you the position of close entities",
   "armorEffect.steamTech.chest": "Steam powered mini pistons increase your fist damage by 300%",
   "armorEffect.steamTech.legs": "+10% melee damage thanks to increases mobility in combat",

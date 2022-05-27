@@ -27,10 +27,10 @@ public abstract class LayerPiece extends Piece {
                 float red = (float)(i >> 16 & 255) / 255.0F;
                 float green = (float)(i >> 8 & 255) / 255.0F;
                 float blue = (float)(i & 255) / 255.0F;
-                renderParts(matrices, vertexConsumers, light, armorItem, getModel(), red, green, blue, false);
-                renderParts(matrices, vertexConsumers, light, armorItem, getModel(), 1.0F, 1.0F, 1.0F, true);
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), red, green, blue, false);
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 1.0F, 1.0F, 1.0F, true);
             } else {
-                renderParts(matrices, vertexConsumers, light, armorItem, getModel(), 1.0F, 1.0F, 1.0F, false);
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 1.0F, 1.0F, 1.0F, false);
             }
         }
     }
