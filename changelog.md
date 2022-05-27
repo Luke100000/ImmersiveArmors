@@ -66,3 +66,4 @@
 # 1.3.4
 
 * Added config to disable effects
+* Removed broken advancement

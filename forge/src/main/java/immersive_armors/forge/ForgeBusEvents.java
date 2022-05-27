@@ -2,9 +2,13 @@ package immersive_armors.forge;
 
 import immersive_armors.ClientMain;
 import immersive_armors.Main;
+import immersive_armors.cobalt.network.NetworkHandler;
+import immersive_armors.network.s2c.SettingsMessage;
 import immersive_armors.server.Command;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,6 +28,13 @@ public class ForgeBusEvents {
         if (firstLoad) {
             ClientMain.postLoad();
             firstLoad = false;
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getPlayer() instanceof ServerPlayerEntity player) {
+            NetworkHandler.sendToPlayer(new SettingsMessage(), player);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.util.HashMap;
 
+@SuppressWarnings("CanBeFinal")
 public final class Config implements Serializable {
     @Serial
     private static final long serialVersionUID = 9132405079466337851L;
@@ -18,10 +19,10 @@ public final class Config implements Serializable {
 
     public static final int VERSION = 1;
 
-    public final boolean hideSecondLayerUnderArmor = true;
-    public final boolean enableEffects = true;
+    public boolean hideSecondLayerUnderArmor = true;
+    public boolean enableEffects = true;
 
-    public final HashMap<String, Boolean> enabledArmors = new HashMap<>();
+    public HashMap<String, Boolean> enabledArmors = new HashMap<>();
     {
         enabledArmors.put("bone", true);
         enabledArmors.put("wither", true);
@@ -61,7 +62,7 @@ public final class Config implements Serializable {
             config.save();
             return config;
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         Config config = new Config();
         config.save();
