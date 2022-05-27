@@ -11,7 +11,7 @@
   "armorEffect.charged": "Φορτισμένο",
   "armorEffect.berserk": "Μέχρι %d%% Ζημιά όταν τραυματίζεται",
   "armorEffect.weaponEfficiency": "%d%% Ζημιά με %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Άξονες",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Ένα πρωτόγονο ραντάρ σας δείχνει τη θέση κοντινών οντοτήτων",
   "armorEffect.steamTech.chest": "Τα μίνι έμβολα που κινούνται με ατμό αυξάνουν τη ζημιά από τις γροθιές σας κατά 300%.",
   "armorEffect.steamTech.legs": "10% ζημιά από κοντινή απόσταση χάρη στην αύξηση της κινητικότητας στη μάχη",
