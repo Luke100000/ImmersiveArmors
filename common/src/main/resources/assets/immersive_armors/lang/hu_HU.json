@@ -11,7 +11,7 @@
   "armorEffect.charged": "Feltöltve",
   "armorEffect.berserk": "Legfeljebb %d%% Sérülés esetén a sérüléssel járó kár.",
   "armorEffect.weaponEfficiency": "%d%% Kár a %s-val.",
-  "armorEffect.weaponEfficiency.AxeItem": "Tengelyek",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Egy primitív radar mutatja a közeli entitások helyzetét.",
   "armorEffect.steamTech.chest": "A gőzzel működő mini dugattyúk 300%-kal növelik az öklöd sebzését.",
   "armorEffect.steamTech.legs": "10% közelharci sebzés a harci mobilitás növelésének köszönhetően",
