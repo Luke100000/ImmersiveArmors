@@ -11,7 +11,7 @@
   "armorEffect.charged": "Încărcat",
   "armorEffect.berserk": "Până la %d%% Daune atunci când este rănit",
   "armorEffect.weaponEfficiency": "%d%% Avarie cu %s.",
-  "armorEffect.weaponEfficiency.AxeItem": "Axele",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Un radar primitiv vă arată poziția entităților apropiate",
   "armorEffect.steamTech.chest": "Mini-pistoanele cu aburi îți măresc pagubele pumnului cu 300%.",
   "armorEffect.steamTech.legs": "10% daune corp la corp datorită creșterii mobilității în luptă",
