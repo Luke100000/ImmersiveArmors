@@ -11,7 +11,7 @@
   "armorEffect.charged": "有料",
   "armorEffect.berserk": "負傷時、最大 %d%% ダメージ。",
   "armorEffect.weaponEfficiency": "%d%% %sでダメージ。",
-  "armorEffect.weaponEfficiency.AxeItem": "軸",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "原始的なレーダーで、身近な存在の位置がわかる",
   "armorEffect.steamTech.chest": "スチーム式ミニピストンで拳のダメージが300％アップ",
   "armorEffect.steamTech.legs": "戦闘時の機動力アップにより、近接攻撃力が10%アップ。",
