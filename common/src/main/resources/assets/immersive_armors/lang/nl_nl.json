@@ -11,7 +11,7 @@
   "armorEffect.charged": "Opgeladen",
   "armorEffect.berserk": "Tot %d%% Schade bij verwonding",
   "armorEffect.weaponEfficiency": "%d%% Schade met %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Assen",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Een primitieve radar toont je de positie van entiteiten in de buurt",
   "armorEffect.steamTech.chest": "Stoom aangedreven minizuigers verhogen je vuist schade met 300%",
   "armorEffect.steamTech.legs": "10% melee schade dankzij verhoogde mobiliteit in de strijd",
