@@ -11,7 +11,7 @@
   "armorEffect.charged": "Усилена",
   "armorEffect.berserk": "Ещё %d%% урона при ранении",
   "armorEffect.weaponEfficiency": "+%d%% урона %s",
-  "armorEffect.weaponEfficiency.AxeItem": "топорами",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "Встроенный радар показывает положение ближайших существ",
   "armorEffect.steamTech.chest": "Паровые мини-поршни увеличивают урон в рукопашную на 300%",
   "armorEffect.steamTech.legs": "+10% урона в ближнем бою благодаря увеличению подвижности в бою",
