@@ -11,7 +11,7 @@
   "armorEffect.charged": "Opladet",
   "armorEffect.berserk": "Op til %d%% Skade, når såret",
   "armorEffect.weaponEfficiency": "%d%% Skade med %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Akser",
+  "armorEffect.weaponEfficiency.axe": "Axes",
   "armorEffect.steamTech.head": "En primitiv radar viser dig positionen af nærtliggende enheder",
   "armorEffect.steamTech.chest": "Dampdrevne minikolber øger din knytnæves skade med 300 %",
   "armorEffect.steamTech.legs": "10% skade i nærkamp takket være øget mobilitet i kamp",
