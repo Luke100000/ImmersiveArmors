@@ -11,7 +11,7 @@
   "armorEffect.charged": "Заряджено",
   "armorEffect.berserk": "До %d%% Пошкодження при пораненні",
   "armorEffect.weaponEfficiency": "+%d%% Пошкодження з %s",
-  "armorEffect.weaponEfficiency.AxeItem": "Вісі",
+  "armorEffect.weaponEfficiency.axe": "Вісі",
   "armorEffect.steamTech.head": "Примітивний радар показує вам позицію близьких об'єктів",
   "armorEffect.steamTech.chest": "Живі міні-пістолети підвищують ушкодження кулаків на 300%",
   "armorEffect.steamTech.legs": "+10% шкоди ближнього бою, завдяки підвищенню мобільності в бою",
