@@ -48,3 +48,8 @@
 
 * Fixed armor not rendering on forge
 * Fixed first person sleeve not showing
+
+# 1.1.5
+
+* Fixed Axe efficiency tooltip
+* Fixed enchantment glow
