@@ -7,6 +7,7 @@ import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.forge.cobalt.network.NetworkHandlerImpl;
 import immersive_armors.forge.cobalt.registration.RegistrationImpl;
 import immersive_armors.network.s2c.SettingsMessage;
+import net.minecraft.item.Item;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,12 +28,13 @@ public final class CommonForge {
     public CommonForge() {
         RegistrationImpl.bootstrap();
         new NetworkHandlerImpl();
+
+        Messages.bootstrap();
     }
 
     @SubscribeEvent
-    public static void onRegistryEvent(RegistryEvent event) {
+    public static void onRegistryEvent(RegistryEvent<Item> event) {
         Items.bootstrap();
-        Messages.bootstrap();
     }
 
     @SubscribeEvent

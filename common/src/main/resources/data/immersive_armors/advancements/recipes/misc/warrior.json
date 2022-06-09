@@ -9,42 +9,17 @@
     ]
   },
   "criteria": {
-    "has_helmet": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:leather_helmet"
-          }
-        ]
-      }
-    },
-    "has_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:leather_chestplate"
-          }
-        ]
-      }
-    },
-    "has_leggings": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:leather_leggings"
-          }
-        ]
-      }
-    },
-    "has_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:leather_boots"
+            "items": [
+              "minecraft:leather_helmet",
+              "minecraft:leather_chestplate",
+              "minecraft:leather_leggings",
+              "minecraft:leather_boots"
+            ]
           }
         ]
       }
@@ -52,10 +27,7 @@
   },
   "requirements": [
     [
-      "has_helmet",
-      "has_chestplate",
-      "has_leggings",
-      "has_boots"
+      "has_item"
     ]
   ]
 }

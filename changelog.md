@@ -68,3 +68,7 @@
 * Added config to disable effects
 * Removed broken advancement
 * Fixed enchantment glow
+
+# 1.3.5
+
+* Fixed recipes advancements

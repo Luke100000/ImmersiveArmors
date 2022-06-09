@@ -9,42 +9,17 @@
     ]
   },
   "criteria": {
-    "has_helmet": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "immersive_armors:robe_helmet"
-          }
-        ]
-      }
-    },
-    "has_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "immersive_armors:robe_chestplate"
-          }
-        ]
-      }
-    },
-    "has_leggings": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "immersive_armors:robe_leggings"
-          }
-        ]
-      }
-    },
-    "has_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "immersive_armors:robe_boots"
+            "items": [
+              "immersive_armors:robe_helmet",
+              "immersive_armors:robe_chestplate",
+              "immersive_armors:robe_leggings",
+              "immersive_armors:robe_boots"
+            ]
           }
         ]
       }
@@ -52,10 +27,7 @@
   },
   "requirements": [
     [
-      "has_helmet",
-      "has_chestplate",
-      "has_leggings",
-      "has_boots"
+      "has_item"
     ]
   ]
 }
