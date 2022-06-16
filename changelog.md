@@ -73,3 +73,4 @@
 
 * Fixed recipes advancements
 * Added config to disable enchantment glint
+* Fixed incompatibility with sihywtcamd
