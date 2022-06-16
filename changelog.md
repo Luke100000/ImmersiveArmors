@@ -53,3 +53,9 @@
 
 * Fixed Axe efficiency tooltip
 * Fixed enchantment glow
+
+# 1.1.6
+
+* Fixed recipes advancements
+* Added config to disable enchantment glint
+* Fixed incompatibility with sihywtcamd
