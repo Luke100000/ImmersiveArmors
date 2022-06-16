@@ -1,6 +1,7 @@
 package immersive_armors.client.render.entity.piece;
 
 import com.google.common.collect.Maps;
+import immersive_armors.Config;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -62,7 +63,7 @@ public abstract class Piece {
         } else {
             renderLayer = RenderLayer.getArmorCutoutNoCull(getTexture(item, overlay));
         }
-        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, false, hasGlint() | itemStack.hasGlint());
+        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, false, hasGlint() | itemStack.hasGlint() & Config.getInstance().enableEnchantmentGlint);
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0F);
     }
 

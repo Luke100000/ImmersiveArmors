@@ -72,3 +72,4 @@
 # 1.3.5
 
 * Fixed recipes advancements
+* Added config to disable enchantment glint
