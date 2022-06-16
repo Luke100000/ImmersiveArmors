@@ -22,9 +22,10 @@ public abstract class LayerPiece extends Piece {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
+    public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
-            contextModel.setAttributes(getModel());
+            //noinspection unchecked
+            armorModel.setAttributes((BipedEntityModel<T>)getModel());
             setVisible(getModel(), armorSlot);
 
             if (isColored()) {

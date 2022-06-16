@@ -18,8 +18,8 @@ public class ModelPiece extends Piece {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
-        model.copyFromModel(contextModel, armorSlot);
+    public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
+        model.copyFromModel(armorModel, armorSlot);
         renderParts(matrices, vertexConsumers, light, itemStack, (ExtendedArmorItem)itemStack.getItem(), model, 1.0f, 1.0f, 1.0f, false);
     }
 }

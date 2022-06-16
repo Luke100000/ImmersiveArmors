@@ -13,6 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -21,6 +22,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
+    @Shadow
+    protected abstract A getArmor(EquipmentSlot slot);
+
     public MixinArmorFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
     }
@@ -76,8 +80,9 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ExtendedArmorItem item) {
         item.getMaterial().getPieces(item.getSlotType()).forEach(piece -> {
-            //noinspection unchecked
-            piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), (BipedEntityModel<LivingEntity>)getContextModel());
+            A armorModel = getArmor(item.getSlotType());
+            this.getContextModel().setAttributes(armorModel);
+            piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), armorModel);
         });
     }
 }
