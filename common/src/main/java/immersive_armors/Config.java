@@ -17,7 +17,9 @@ public final class Config implements Serializable {
 
     public static final int VERSION = 1;
 
-    public final boolean hideSecondLayerUnderArmor = true;
+    public boolean hideSecondLayerUnderArmor = true;
+    public boolean enableEffects = true;
+    public boolean enableEnchantmentGlint = true;
 
     public final HashMap<String, Boolean> enabledArmors = new HashMap<>();
     {
