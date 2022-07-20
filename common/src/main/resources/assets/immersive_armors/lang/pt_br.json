@@ -1,5 +1,5 @@
 {
-  "itemGroup.immersive_armors.immersive_armors_tab": "Armaduras imersivas",
+  "itemGroup.immersive_armors.immersive_armors_tab": "Armaduras Imersivas",
   "armorEffect.fireResistance": "%d%% Resistência ao fogo",
   "armorEffect.explosionResistance": "%d%% Resistência à Explosão",
   "armorEffect.magicResistance": "%d%% Resistência Mágica",
@@ -46,7 +46,7 @@
   "item.immersive_armors.divine_chestplate": "Peitoral Divino",
   "item.immersive_armors.divine_leggings": "Calças Divinas",
   "item.immersive_armors.divine_boots": "Botas Divinas",
-  "item.immersive_armors.divine.description": "Pode desviar um ataque por um minuto",
+  "item.immersive_armors.divine.description": "Pode desviar um ataque a cada minuto",
   "item.immersive_armors.prismarine_helmet": "Capacete Prismarina",
   "item.immersive_armors.prismarine_chestplate": "Peitoral Prismarina",
   "item.immersive_armors.prismarine_leggings": "Calças Prismarina",
