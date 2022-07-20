@@ -1,6 +1,7 @@
 # 1.1.7
 
 * Fixed compatibility issues (thanks MerchantPug!)
+* Skeleton armor now prevents you from being attacked from skeletons
 
 # 1.1.6
 

@@ -29,6 +29,7 @@ public interface Items {
             .protectionAmount(1, 3, 2, 1)
             .enchantability(15)
             .equipSound(SoundEvents.ENTITY_SKELETON_AMBIENT)
+            .antiSkeleton()
             .weight(-0.02f));
 
     ExtendedArmorMaterial WITHER_ARMOR = registerSet(new ExtendedArmorMaterial("wither")
@@ -39,6 +40,7 @@ public interface Items {
             .effect(new WitherArmorEffect(1.0f, 10))
             .hideCape()
             .equipSound(SoundEvents.ENTITY_WITHER_SKELETON_AMBIENT)
+            .antiSkeleton()
             .weight(-0.01f));
 
     ExtendedArmorMaterial WARRIOR_ARMOR = registerSet(new ExtendedArmorMaterial("warrior")

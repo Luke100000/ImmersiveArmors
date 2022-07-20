@@ -33,6 +33,8 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private final List<ArmorEffect> effects = new LinkedList<>();
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
 
+    private boolean antiSkeleton;
+
     private final Map<EquipmentSlot, List<Piece>> pieces = new HashMap<>();
     {
         pieces.put(EquipmentSlot.HEAD, new LinkedList<>());
@@ -128,6 +130,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public ExtendedArmorMaterial enchantment(Enchantment enchantment, int level) {
         this.enchantments.put(enchantment, level);
+        return this;
+    }
+
+    public ExtendedArmorMaterial antiSkeleton() {
+        this.antiSkeleton = true;
         return this;
     }
 
@@ -276,5 +283,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public boolean[] shouldHideSecondLayer() {
         return hidesSecondLayer;
+    }
+
+    public boolean isAntiSkeleton() {
+        return antiSkeleton;
     }
 }
