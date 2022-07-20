@@ -1,7 +1,7 @@
 package immersive_armors.mixin;
 
 import immersive_armors.item.ExtendedArmorItem;
-import net.minecraft.entity.ai.goal.FollowTargetGoal;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.TrackTargetGoal;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(FollowTargetGoal.class)
+@Mixin(ActiveTargetGoal.class)
 public abstract class MixinFollowTargetGoal extends TrackTargetGoal {
     public MixinFollowTargetGoal(MobEntity mob, boolean checkVisibility) {
         super(mob, checkVisibility);
@@ -20,12 +20,10 @@ public abstract class MixinFollowTargetGoal extends TrackTargetGoal {
 
     @Inject(method = "start()V", at = @At("TAIL"))
     private void start(CallbackInfo ci) {
-        if (mob instanceof AbstractSkeletonEntity && mob.getTarget() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity)mob.getTarget();
+        if (mob instanceof AbstractSkeletonEntity && mob.getTarget() instanceof PlayerEntity player) {
             int pieces = 0;
             for (ItemStack item : player.getArmorItems()) {
-                if (item.getItem() instanceof ExtendedArmorItem) {
-                    ExtendedArmorItem armor = (ExtendedArmorItem)item.getItem();
+                if (item.getItem() instanceof ExtendedArmorItem armor) {
                     if (armor.getMaterial().isAntiSkeleton()) {
                         pieces++;
                     }
