@@ -2,6 +2,8 @@ package immersive_armors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ public final class Config implements Serializable {
     @Serial
     private static final long serialVersionUID = 9132405079466337851L;
 
+    public static final Logger LOGGER = LogManager.getLogger();
     private static final Config INSTANCE = loadOrCreate();
 
     public static Config getInstance() {
@@ -24,6 +27,7 @@ public final class Config implements Serializable {
     public boolean enableEnchantmentGlint = true;
 
     public HashMap<String, Boolean> enabledArmors = new HashMap<>();
+
     {
         enabledArmors.put("bone", true);
         enabledArmors.put("wither", true);
@@ -54,19 +58,24 @@ public final class Config implements Serializable {
     }
 
     public static Config loadOrCreate() {
-        try (FileReader reader = new FileReader(getConfigFile())) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Config config = gson.fromJson(reader, Config.class);
-            if (config.version != VERSION) {
-                config = new Config();
+        if (getConfigFile().exists()) {
+            try (FileReader reader = new FileReader(getConfigFile())) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Config config = gson.fromJson(reader, Config.class);
+                if (config.version != VERSION) {
+                    config = new Config();
+                }
+                config.save();
+                return config;
+            } catch (Exception e) {
+                LOGGER.error("Failed to load Immersive Armors config! Default config is used for now. Delete the file to reset.");
+                e.printStackTrace();
+                return new Config();
             }
+        } else {
+            Config config = new Config();
             config.save();
             return config;
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        Config config = new Config();
-        config.save();
-        return config;
     }
 }
