@@ -35,7 +35,7 @@ public interface Items {
     ExtendedArmorMaterial WITHER_ARMOR = registerSet(new ExtendedArmorMaterial("wither")
             .durabilityMultiplier(12)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
-            .protectionAmount(2, 6, 5, 2)
+            .protectionAmount(2, 4, 3, 2)
             .enchantability(0)
             .effect(new WitherArmorEffect(1.0f, 10))
             .hideCape()

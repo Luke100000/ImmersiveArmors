@@ -5,6 +5,7 @@
 * The steampunk leggings can now double jump
 * Robe armor no longer makes random sounds
 * Robe armor no loner spawns particles in first person
+* Wither armor no longer requires wither skulls
 
 # 1.3.6
 
