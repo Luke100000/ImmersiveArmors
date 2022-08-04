@@ -1,5 +1,6 @@
 package immersive_armors.armorEffects;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -25,6 +26,8 @@ public class FireInflictingArmorEffect extends ArmorEffect {
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         if (isPrimaryArmor(armor, entity) && source.getAttacker() != null && !source.getAttacker().isFireImmune()) {
             source.getAttacker().setFireTicks(source.getAttacker().getFireTicks() + length * getSetCount(armor, entity));
+
+            entity.world.playSoundFromEntity(null, entity, SoundEvents.ENTITY_BLAZE_BURN, entity.getSoundCategory(), 1.0f, entity.getRandom().nextFloat() * 0.7F + 0.3F);
         }
         return amount;
     }
@@ -38,13 +41,8 @@ public class FireInflictingArmorEffect extends ArmorEffect {
 
     @Override
     public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
-        if (world.isClient) {
-            if (entity.getRandom().nextInt(200) == 0 && !entity.isSilent()) {
-                world.playSound(entity.getX() + 0.5D, entity.getY() + 0.5D, entity.getZ() + 0.5D,
-                        SoundEvents.ENTITY_BLAZE_BURN, entity.getSoundCategory(), 0.5F + entity.getRandom().nextFloat() * 0.5F, entity.getRandom().nextFloat() * 0.7F + 0.3F, false);
-            }
-
-            if (entity.getRandom().nextInt(20) == 0) {
+        if (world.isClient && MinecraftClient.getInstance().player == entity && !MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
+            if (entity.getRandom().nextInt(15) == 0) {
                 world.addParticle(ParticleTypes.FLAME, entity.getParticleX(0.5D), entity.getRandomBodyY(), entity.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
             }
         }

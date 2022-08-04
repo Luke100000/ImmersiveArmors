@@ -3,6 +3,8 @@
 * The steampunk armor no longer deals extra damage
 * The steampunk chestplate shows a compass and clock in the HUD
 * The steampunk leggings can now double jump
+* Robe armor no longer makes random sounds
+* Robe armor no loner spawns particles in first person
 
 # 1.3.6
 
