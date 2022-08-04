@@ -2,7 +2,7 @@ package immersive_armors;
 
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.mixin.MixinItemRenderer;
-import immersive_armors.network.ClientNetworkManager;
+import immersive_armors.network.NetworkManagerImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 
@@ -17,7 +17,7 @@ public class ClientMain {
         }
 
         //initialize network manager
-        Main.networkManager = new ClientNetworkManager();
+        Main.networkManager = new NetworkManagerImpl();
 
         //finish the items
         ItemsClient.setupPieces();
