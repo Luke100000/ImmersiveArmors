@@ -131,9 +131,9 @@ public interface Items {
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
             List<Supplier<Item>> items = List.of(
-                    register(material.getName() + "_helmet", () ->new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
-                    register(material.getName() + "_chestplate",  () ->new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
-                    register(material.getName() + "_leggings",  () ->new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
+                    register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
+                    register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
+                    register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
                     register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material))
             );
             Items.items.addAll(items);
@@ -144,10 +144,10 @@ public interface Items {
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
             List<Supplier<Item>> items = List.of(
-                    register(material.getName() + "_helmet",  () ->new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
+                    register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
                     register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
-                    register(material.getName() + "_leggings",  () ->new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
-                    register(material.getName() + "_boots",  () ->new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material))
+                    register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
+                    register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material))
             );
             Items.items.addAll(items);
             Items.coloredItems.addAll(items);

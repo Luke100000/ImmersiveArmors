@@ -1,3 +1,8 @@
+# 1.3.7
+
+* The steampunk armor no longer deals extra damage
+* The steampunk chestplate shows a compass and clock in the HUD
+
 # 1.3.6
 
 * Skeleton armor now prevents you from being attacked from skeletons

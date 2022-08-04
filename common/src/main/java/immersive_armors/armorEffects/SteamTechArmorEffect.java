@@ -4,7 +4,6 @@ import immersive_armors.util.FlowingText;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
@@ -73,20 +72,6 @@ public class SteamTechArmorEffect extends ArmorEffect {
                 }
             });
         }
-    }
-
-    @Override
-    public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
-        if (getEquipmentSlot(armor) == EquipmentSlot.CHEST && source.getAttacker() instanceof LivingEntity attacker) {
-            ItemStack hand = attacker.getStackInHand(attacker.getActiveHand());
-            if (hand.isEmpty()) {
-                amount *= 4.0f;
-            }
-        }
-        if (!source.isProjectile() && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
-            amount *= 1.1f;
-        }
-        return amount;
     }
 
     private EquipmentSlot getEquipmentSlot(ItemStack stack) {
