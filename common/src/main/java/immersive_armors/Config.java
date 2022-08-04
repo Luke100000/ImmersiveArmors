@@ -26,6 +26,11 @@ public final class Config implements Serializable {
     public boolean enableEffects = true;
     public boolean enableEnchantmentGlint = true;
 
+    public int hudClockX = -91 - 20;
+    public int hudClockY = -20;
+    public int hudCompassX = 91 + 4;
+    public int hudCompassY = -20;
+
     public HashMap<String, Boolean> enabledArmors = new HashMap<>();
 
     {

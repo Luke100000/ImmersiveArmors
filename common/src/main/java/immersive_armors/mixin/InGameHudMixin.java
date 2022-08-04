@@ -1,5 +1,6 @@
 package immersive_armors.mixin;
 
+import immersive_armors.Config;
 import immersive_armors.Main;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -42,7 +43,7 @@ public class InGameHudMixin {
     }
 
     private void renderSteampunkHud() {
-        client.getItemRenderer().renderInGuiWithOverrides(clock, scaledWidth / 2 - 91 - 20, scaledHeight - 20);
-        client.getItemRenderer().renderInGuiWithOverrides(compass, scaledWidth / 2 + 91 + 4, scaledHeight - 20);
+        client.getItemRenderer().renderInGuiWithOverrides(clock, scaledWidth / 2 + Config.getInstance().hudClockX, scaledHeight + Config.getInstance().hudClockY);
+        client.getItemRenderer().renderInGuiWithOverrides(compass, scaledWidth / 2 + Config.getInstance().hudCompassX, scaledHeight + Config.getInstance().hudCompassY);
     }
 }
