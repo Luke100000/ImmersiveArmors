@@ -1,4 +1,9 @@
-# 1.1.7
+# 1.1.8
+
+* Robe armor no longer makes random sounds
+* Robe armor no loner spawns particles in first person
+
+* # 1.1.7
 
 * Fixed compatibility issues (thanks MerchantPug!)
 * Skeleton armor now prevents you from being attacked from skeletons
