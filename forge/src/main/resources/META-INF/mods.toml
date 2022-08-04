@@ -18,12 +18,12 @@ itemIcon = "immersive_armors:divine_chestplate"
 [[dependencies.immersive_armors]]
 modId = "forge"
 mandatory = true
-versionRange = "[36,)"
+versionRange = "[41,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.immersive_armors]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18.2]"
+versionRange = "[1.19]"
 ordering = "NONE"
 side = "BOTH"

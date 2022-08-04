@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -30,15 +29,15 @@ public class DivineArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("item.immersive_armors.divine.description").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.immersive_armors.divine.description").formatted(Formatting.GRAY));
 
         int count = getSetCount(stack);
         if (count == 4) {
             if (world != null && isCharged(world.getTime(), stack)) {
-                tooltip.add(new TranslatableText("armorEffect.charged").formatted(Formatting.AQUA));
+                tooltip.add(Text.translatable("armorEffect.charged").formatted(Formatting.AQUA));
             }
         } else {
-            tooltip.add(new TranslatableText("immersive_armors.incomplete", count, 4));
+            tooltip.add(Text.translatable("immersive_armors.incomplete", count, 4));
         }
     }
 

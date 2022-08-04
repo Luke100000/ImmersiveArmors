@@ -17,7 +17,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -32,7 +31,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        MutableText text = new TranslatableText("armorEffect.steamTech." + getEquipmentSlot(stack).name().toLowerCase(Locale.ROOT)).formatted(Formatting.GRAY);
+        MutableText text = Text.translatable("armorEffect.steamTech." + getEquipmentSlot(stack).name().toLowerCase(Locale.ROOT)).formatted(Formatting.GRAY);
         tooltip.addAll(FlowingText.wrap(text, 140));
     }
 

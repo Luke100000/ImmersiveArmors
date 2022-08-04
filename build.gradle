@@ -10,10 +10,6 @@ architectury {
 subprojects {
     apply plugin: "dev.architectury.loom"
 
-    loom {
-        silentMojangMappingsLicense()
-    }
-
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -47,9 +43,12 @@ allprojects {
     archivesBaseName = rootProject.archives_base_name
     version = getAppVersion()
 
+    group = rootProject.group
+    description = rootProject.displayname
+
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 16
+        options.release = 17
     }
 
     java {

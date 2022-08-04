@@ -6,7 +6,6 @@ import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -22,7 +21,7 @@ public class DyeableExtendedArmorItem extends ExtendedArmorItem implements Dyeab
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("immersive_armors.dyeable").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("immersive_armors.dyeable").formatted(Formatting.GOLD));
     }
 
     @Override

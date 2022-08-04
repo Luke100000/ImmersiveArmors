@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -36,7 +35,7 @@ public class FireInflictingArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(new TranslatableText("armorEffect.fireInflicting", length).formatted(Formatting.RED));
+        tooltip.add(Text.translatable("armorEffect.fireInflicting", length).formatted(Formatting.RED));
     }
 
     @Override
