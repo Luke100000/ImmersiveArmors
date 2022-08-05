@@ -1,9 +1,6 @@
 package immersive_armors.forge.cobalt.registration;
 
 import immersive_armors.cobalt.registration.Registration;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -22,8 +19,6 @@ import java.util.function.Supplier;
 public class RegistrationImpl extends Registration.Impl {
     @SuppressWarnings("unused")
     public static final RegistrationImpl IMPL = new RegistrationImpl();
-
-    public static final Map<EntityType<? extends LivingEntity>, Supplier<Builder>> ENTITY_ATTRIBUTES = new HashMap<>();
 
     private final Map<String, RegistryRepo> repos = new HashMap<>();
 
