@@ -1,3 +1,8 @@
+# 1.1.9
+
+* Fixed compatibility with Modern UI
+* Fixed Wither Helmet recipe (Thanks Ardis!)
+
 # 1.1.8
 
 * Robe armor no longer makes random sounds
