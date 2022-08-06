@@ -1,3 +1,8 @@
+# 1.3.8
+
+* Fixed compatibility with Modern UI
+* Fixed Wither Helmet recipe (Thanks Ardis!)
+
 # 1.3.7
 
 * The steampunk armor no longer deals extra damage
