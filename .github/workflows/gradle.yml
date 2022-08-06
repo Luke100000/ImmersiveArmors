@@ -46,7 +46,7 @@ jobs:
           project_id: "580681"
           token: "${{ secrets.CF_API_TOKEN }}"
           changelog_type: "markdown"
-          changelog: "Full changelog can be found in the [GitHub Repo](https://github.com/Luke100000/ImmersiveArmors/blob/1.19/changelog.md)"
+          changelog: "Full changelog can be found in the [GitHub Repo](https://github.com/Luke100000/ImmersiveArmors/blob/1.19.0/changelog.md)"
           release_type: "release"
       - name: "Upload Forge to CurseForge"
         uses: itsmeow/curseforge-upload@v3
@@ -59,5 +59,5 @@ jobs:
           project_id: "580681"
           token: "${{ secrets.CF_API_TOKEN }}"
           changelog_type: "markdown"
-          changelog: "Full changelog can be found in the [GitHub Repo](https://github.com/Luke100000/ImmersiveArmors/blob/1.19/changelog.md)"
+          changelog: "Full changelog can be found in the [GitHub Repo](https://github.com/Luke100000/ImmersiveArmors/blob/1.19.0/changelog.md)"
           release_type: "release"
