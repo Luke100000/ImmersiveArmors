@@ -1,3 +1,7 @@
+# 1.4.0
+
+* Ported to 1.19
+
 # 1.3.8
 
 * Fixed compatibility with Modern UI
