@@ -30,7 +30,7 @@ public class InGameHudMixin {
 
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;F)V", at = @At("TAIL"))
     private void renderInject(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        if (!this.client.options.hudHidden && this.client.interactionManager != null && this.client.interactionManager.hasStatusBars()) {
+        if (!this.client.options.hudHidden && this.client.interactionManager != null) {
             if (client.player != null) {
                 for (ItemStack item : client.player.getArmorItems()) {
                     Identifier id = Registry.ITEM.getId(item.getItem());
