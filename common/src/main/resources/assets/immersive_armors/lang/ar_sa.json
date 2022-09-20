@@ -1,6 +1,6 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "الدروع الغامرة",
-  "armorEffect.fireResistance": "%d%% دفاع النار",
+  "armorEffect.fireResistance": "%d%% دفاع ضد النار",
   "armorEffect.explosionResistance": "%d%% دفاع الانفجار",
   "armorEffect.magicResistance": "%d%% مقاومة السحر",
   "armorEffect.fireInflicting": "%d ضرر النار للمذكرات",
