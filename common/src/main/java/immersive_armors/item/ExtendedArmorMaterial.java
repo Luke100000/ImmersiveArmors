@@ -9,10 +9,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class ExtendedArmorMaterial implements ArmorMaterial {
@@ -248,7 +245,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         if (Main.ENABLE_EFFECTS) {
             return effects;
         } else {
-            return List.of();
+            return Collections.emptyList();
         }
     }
 
