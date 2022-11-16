@@ -116,12 +116,12 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
 
     ExtendedArmorMaterial STEAMPUNK_ARMOR = registerSet(new ExtendedArmorMaterial("steampunk")
-            .protectionAmount(3, 6, 4, 2)
-            .durabilityMultiplier(11)
+            .protectionAmount(3, 6, 3, 2)
+            .durabilityMultiplier(10)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
             .enchantability(4)
             .hideCape()
-            .effect(new ExplosionProtectionArmorEffect(0.2f))
+            .effect(new ExplosionProtectionArmorEffect(0.1f))
             .effect(new SteamTechArmorEffect())
             .equipSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT));
 
