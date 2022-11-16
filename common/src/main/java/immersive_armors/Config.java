@@ -26,8 +26,10 @@ public final class Config implements Serializable {
     public boolean enableEffects = true;
     public boolean enableEnchantmentGlint = true;
 
+    public int hudClockXOffhand = -91 - 20 - 29;
     public int hudClockX = -91 - 20;
     public int hudClockY = -20;
+    public int hudCompassXOffhand = 91 + 4 + 29;
     public int hudCompassX = 91 + 4;
     public int hudCompassY = -20;
 
