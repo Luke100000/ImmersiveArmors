@@ -36,10 +36,9 @@ public class ItemPiece extends Piece {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> contextModel) {
-
+    public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
         matrices.push();
-        DecoModel.getModelPart(contextModel, attachTo).rotate(matrices);
+        DecoModel.getModelPart(armorModel, attachTo).rotate(matrices);
         matrices.translate(x, y, z);
         matrices.scale(size, -size, -size);
         if (rotation != null) {

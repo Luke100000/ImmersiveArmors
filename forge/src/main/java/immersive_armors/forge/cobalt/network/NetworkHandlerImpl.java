@@ -1,11 +1,13 @@
-package immersive_armors.cobalt.network;
+package immersive_armors.forge.cobalt.network;
 
 import immersive_armors.Main;
+import immersive_armors.cobalt.network.Message;
+import immersive_armors.cobalt.network.NetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 public class NetworkHandlerImpl extends NetworkHandler.Impl {
     private final String PROTOCOL_VERSION = "1";

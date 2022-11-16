@@ -1,6 +1,6 @@
 package immersive_armors.item;
 
-import immersive_armors.Config;
+import immersive_armors.Main;
 import immersive_armors.armorEffects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
 import net.minecraft.enchantment.Enchantment;
@@ -122,9 +122,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public ExtendedArmorMaterial effect(ArmorEffect effect) {
-        if (Config.getInstance().enableEffects) {
             this.effects.add(effect);
-        }
         return this;
     }
 
@@ -246,7 +244,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public List<ArmorEffect> getEffects() {
+        if (Main.ENABLE_EFFECTS) {
         return effects;
+        } else {
+            return List.of();
+        }
     }
 
     public Map<Enchantment, Integer> getEnchantments() {
@@ -263,10 +265,6 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public boolean shouldHideCape() {
         return hideCape;
-    }
-
-    public Map<EquipmentSlot, List<Piece>> getPieces() {
-        return pieces;
     }
 
     public List<Piece> getPieces(EquipmentSlot slot) {

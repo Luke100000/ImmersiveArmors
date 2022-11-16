@@ -1,5 +1,7 @@
-package immersive_armors.cobalt.network;
+package immersive_armors.fabric.cobalt.network;
 
+import immersive_armors.cobalt.network.Message;
+import immersive_armors.cobalt.network.NetworkHandler;
 import io.netty.buffer.Unpooled;
 import immersive_armors.Main;
 import net.fabricmc.api.EnvType;

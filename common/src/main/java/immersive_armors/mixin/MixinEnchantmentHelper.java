@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class MixinEnchantmentHelper {
-    private static int getStaticLevel(Enchantment enchantment, ItemStack stack) {
+    private static int getEnchantmentLevel(Enchantment enchantment, ItemStack stack) {
         if (stack.getItem() instanceof ExtendedArmorItem) {
             ExtendedArmorItem item = (ExtendedArmorItem)stack.getItem();
 
@@ -24,6 +24,6 @@ public abstract class MixinEnchantmentHelper {
 
     @Inject(method = "getLevel", at = @At("RETURN"), cancellable = true)
     private static void getLevel(Enchantment enchantment, ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(Math.max(cir.getReturnValue(), getStaticLevel(enchantment, stack)));
+        cir.setReturnValue(Math.max(cir.getReturnValue(), getEnchantmentLevel(enchantment, stack)));
     }
 }

@@ -59,4 +59,8 @@ public abstract class ArmorEffect {
             stack.getOrCreateTag().putInt("set_bonus", getSetCount(stack, entity));
         }
     }
+
+    public void receiveCommand(ItemStack armor, World world, LivingEntity entity, int slot, String command) {
+
+    }
 }

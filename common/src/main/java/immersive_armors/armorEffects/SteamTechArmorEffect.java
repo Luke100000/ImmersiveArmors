@@ -1,15 +1,18 @@
 package immersive_armors.armorEffects;
 
+import immersive_armors.cobalt.network.NetworkHandler;
+import immersive_armors.network.c2s.ArmorCommandMessage;
 import immersive_armors.util.FlowingText;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
@@ -39,6 +42,8 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
         //machine smoke
         if (getEquipmentSlot(armor) == EquipmentSlot.FEET) {
+            entity.fallDistance = 0;
+
             if (entity.getRandom().nextInt(10) == 0) {
                 double x = Math.cos(entity.bodyYaw / 180.f * Math.PI - Math.PI * 0.5f) * 0.25;
                 double z = Math.sin(entity.bodyYaw / 180.f * Math.PI - Math.PI * 0.5f) * 0.25;
@@ -49,11 +54,9 @@ public class SteamTechArmorEffect extends ArmorEffect {
             Vec3d velocity = entity.getVelocity();
             if (velocity.getY() < -0.75) {
                 entity.setVelocity(velocity.x, -0.75f, velocity.z);
-                entity.fallDistance = 0;
+                createSteamParticle(entity);
 
-                world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, entity.getParticleX(0.5D), entity.getY(), entity.getParticleZ(0.5D), 0.0D, -0.5f, 0.0D);
-
-                if (entity.age % 4 == 0) {
+                if (entity.age % 5 == 0) {
                     entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.1f, 1.0f);
                 }
             }
@@ -73,24 +76,69 @@ public class SteamTechArmorEffect extends ArmorEffect {
                 }
             });
         }
+
+        //double jump
+        if (world.isClient && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
+            NbtCompound nbt = armor.getOrCreateTag();
+            if (entity.isOnGround()) {
+                nbt.putInt("thrusterState", ThrusterState.CHARGED.ordinal());
+            } else if (nbt.getInt("thrusterState") == ThrusterState.CHARGED.ordinal()) {
+                if (!isJumping()) {
+                    nbt.putInt("thrusterState", ThrusterState.READY.ordinal());
+                }
+            } else if (nbt.getInt("thrusterState") == ThrusterState.READY.ordinal()) {
+                if (isJumping()) {
+                    thrust(entity);
+                    nbt.putInt("thrusterState", ThrusterState.OFFLINE.ordinal());
+
+                    NetworkHandler.sendToServer(new ArmorCommandMessage(slot, "thrust"));
+                }
+            }
+        }
+    }
+
+    private void createSteamParticle(LivingEntity entity) {
+        entity.world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                entity.getParticleX(0.5D),
+                entity.getY() - 0.25,
+                entity.getParticleZ(0.5D),
+                (entity.getRandom().nextFloat() - 0.5) * 0.1,
+                -0.75D + (entity.getRandom().nextFloat() - 0.5) * 0.1,
+                (entity.getRandom().nextFloat() - 0.5) * 0.1
+        );
     }
 
     @Override
-    public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
-        if (getEquipmentSlot(armor) == EquipmentSlot.CHEST && source.getAttacker() instanceof LivingEntity) {
-            LivingEntity attacker = (LivingEntity)source.getAttacker();
-            ItemStack hand = attacker.getStackInHand(attacker.getActiveHand());
-            if (hand.isEmpty()) {
-                amount *= 4.0f;
-            }
+    public void receiveCommand(ItemStack armor, World world, LivingEntity entity, int slot, String command) {
+        if (command.equals("thrust")) {
+            thrust(entity);
         }
-        if (!source.isProjectile() && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
-            amount *= 1.1f;
+    }
+
+    private boolean isJumping() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client != null && client.player != null && client.player.input.jumping;
+    }
+
+    private void thrust(LivingEntity entity) {
+        //thrust
+        Vec3d velocity = entity.getVelocity();
+        entity.setVelocity(velocity.x, 0.6, velocity.z);
+
+        for (int i = 0; i < 5; i++) {
+            createSteamParticle(entity);
         }
-        return amount;
+
+        entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.25f, 0.75f);
     }
 
     private EquipmentSlot getEquipmentSlot(ItemStack stack) {
         return ((ArmorItem)stack.getItem()).getSlotType();
+    }
+
+    private enum ThrusterState {
+        OFFLINE,
+        CHARGED,
+        READY
     }
 }

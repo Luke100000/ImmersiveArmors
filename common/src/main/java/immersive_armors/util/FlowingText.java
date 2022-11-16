@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public final class FlowingText {
+public class FlowingText {
     public static List<Text> wrap(Text text, int maxWidth) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.world != null && client.isOnThread()) {

@@ -21,7 +21,7 @@ if __name__ == "__main__":
                     if os.path.exists(path):
                         img = PIL.Image.open(path)
                         result = PIL.Image.alpha_composite(result, img)
-                        found= True
+                        found = True
 
                 if found:
                     armor_name = os.path.basename(os.path.normpath(armor))

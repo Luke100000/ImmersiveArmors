@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "immersive_armors.CommonFabric"
+      "immersive_armors.fabric.CommonFabric"
     ],
     "client": [
-      "immersive_armors.ClientFabric"
+      "immersive_armors.fabric.ClientFabric"
     ]
   },
   "mixins": [

@@ -9,6 +9,7 @@
     "MixinLivingEntity"
   ],
   "client": [
+    "InGameHudMixin",
     "MixinArmorFeatureRenderer",
     "MixinCapeFeatureRenderer",
     "MixinItemRenderer",
