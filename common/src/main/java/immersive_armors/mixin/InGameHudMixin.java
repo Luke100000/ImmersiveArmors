@@ -5,8 +5,10 @@ import immersive_armors.Main;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.Final;
@@ -20,8 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
     @Shadow
     @Final
-
     private MinecraftClient client;
+
     @Shadow
     private int scaledHeight, scaledWidth;
 
@@ -42,8 +44,22 @@ public class InGameHudMixin {
         }
     }
 
+    private PlayerEntity getCameraPlayer() {
+        return !(this.client.getCameraEntity() instanceof PlayerEntity) ? null : (PlayerEntity)this.client.getCameraEntity();
+    }
+
     private void renderSteampunkHud() {
-        client.getItemRenderer().renderInGuiWithOverrides(clock, scaledWidth / 2 + Config.getInstance().hudClockX, scaledHeight + Config.getInstance().hudClockY);
-        client.getItemRenderer().renderInGuiWithOverrides(compass, scaledWidth / 2 + Config.getInstance().hudCompassX, scaledHeight + Config.getInstance().hudCompassY);
+        // Offset item when offhand slot is rendered
+        Arm arm = null;
+        PlayerEntity playerEntity = getCameraPlayer();
+        if (playerEntity != null) {
+            ItemStack itemStack = playerEntity.getOffHandStack();
+            if (!itemStack.isEmpty()) {
+                arm = playerEntity.getMainArm().getOpposite();
+            }
+        }
+
+        client.getItemRenderer().renderInGuiWithOverrides(clock, scaledWidth / 2 + (arm == Arm.LEFT ? Config.getInstance().hudClockXOffhand : Config.getInstance().hudClockX), scaledHeight + Config.getInstance().hudClockY);
+        client.getItemRenderer().renderInGuiWithOverrides(compass, scaledWidth / 2 + (arm == Arm.RIGHT ? Config.getInstance().hudCompassXOffhand : Config.getInstance().hudCompassX), scaledHeight + Config.getInstance().hudCompassY);
     }
 }
