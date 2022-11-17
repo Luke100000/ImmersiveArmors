@@ -6,6 +6,6 @@ import immersive_armors.network.s2c.SettingsMessage;
 public class NetworkManagerImpl implements NetworkManager {
     @Override
     public void handleSettingsMessage(SettingsMessage message) {
-        Main.ENABLE_EFFECTS = message.enableEffects;
+        Main.setSharedConfig(message.config);
     }
 }
