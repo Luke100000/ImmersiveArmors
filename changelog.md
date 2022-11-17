@@ -4,6 +4,7 @@
 * Fixed offhand slot occluding steampunk armor
 * Steampunk armor has now 10% explosion resistance instead of 20%, reduced leggings armor by 1
 * Steampunk HUD Overlay also works on Forge now
+* Most armor properties are now configurable
 
 # 1.1.9
 
