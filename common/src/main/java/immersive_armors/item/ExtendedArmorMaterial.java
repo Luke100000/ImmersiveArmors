@@ -242,7 +242,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public List<ArmorEffect> getEffects() {
-        if (Main.ENABLE_EFFECTS) {
+        if (Main.sharedConfig.enableEffects) {
             return effects;
         } else {
             return Collections.emptyList();
@@ -283,5 +283,13 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public boolean isAntiSkeleton() {
         return antiSkeleton;
+    }
+
+    public int[] getProtectionAmounts() {
+        return protectionAmount;
+    }
+
+    public int getDurabilityMultiplier() {
+        return durabilityMultiplier;
     }
 }

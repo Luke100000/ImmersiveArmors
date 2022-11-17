@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("CanBeFinal")
 public final class Config implements Serializable {
@@ -25,6 +26,10 @@ public final class Config implements Serializable {
     public boolean hideSecondLayerUnderArmor = true;
     public boolean enableEffects = true;
     public boolean enableEnchantmentGlint = true;
+
+    @SuppressWarnings("unused")
+    public String _documentation = "https://github.com/Luke100000/ImmersiveArmors/blob/HEAD/config.md";
+    public Map<String, Float> overwriteValues = new HashMap<>();
 
     public int hudClockXOffhand = -91 - 20 - 29;
     public int hudClockX = -91 - 20;

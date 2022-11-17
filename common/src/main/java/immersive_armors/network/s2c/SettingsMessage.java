@@ -6,12 +6,11 @@ import immersive_armors.cobalt.network.Message;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class SettingsMessage implements Message {
-    public final boolean enableEffects;
+    public final Config config;
 
     public SettingsMessage() {
-        boolean enabled = Config.getInstance().enableEffects;
-        Main.ENABLE_EFFECTS = enabled;
-        this.enableEffects = enabled;
+        Main.setSharedConfig(Config.getInstance());
+        this.config = Config.getInstance();
     }
 
     @Override

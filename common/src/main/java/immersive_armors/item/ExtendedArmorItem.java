@@ -27,7 +27,7 @@ import java.util.UUID;
 public class ExtendedArmorItem extends ArmorItem {
     private static final UUID[] MODIFIERS = new UUID[] {UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"), UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"), UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150")};
 
-    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
+    private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     private final ExtendedArmorMaterial material;
 
     public ExtendedArmorItem(Item.Settings settings, EquipmentSlot slot, ExtendedArmorMaterial material) {
@@ -35,6 +35,10 @@ public class ExtendedArmorItem extends ArmorItem {
 
         this.material = material;
 
+        refreshAttributes();
+    }
+
+    public void refreshAttributes() {
         Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         UUID uUID = MODIFIERS[slot.getEntitySlotId()];
         builder.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(uUID, "Armor modifier", getProtection(), EntityAttributeModifier.Operation.ADDITION));
