@@ -1,6 +1,7 @@
 # 1.5.0
 
 * Synced codebase, 1.16.5, 1.18.2 and 1.19.2 are now nearly identical again
+* Armor can now be found in loot chests!
 * Fixed offhand slot occluding steampunk armor
 * Steampunk armor has now 10% explosion resistance instead of 20%, reduced leggings armor by 1
 * Steampunk HUD Overlay also works on Forge now

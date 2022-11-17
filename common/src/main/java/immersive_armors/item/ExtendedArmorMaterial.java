@@ -29,6 +29,7 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private int luck;
     private final List<ArmorEffect> effects = new LinkedList<>();
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
+    private final Map<String, Float> loot = new HashMap<>();
 
     private boolean antiSkeleton;
 
@@ -176,6 +177,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
+    public ExtendedArmorMaterial addLoot(String name, float chance) {
+        loot.put(name, chance);
+        return this;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -290,5 +296,9 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public int getDurabilityMultiplier() {
         return durabilityMultiplier;
+    }
+
+    public Map<String, Float> getLoot() {
+        return loot;
     }
 }

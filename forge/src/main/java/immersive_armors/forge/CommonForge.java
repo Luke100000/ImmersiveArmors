@@ -23,5 +23,7 @@ public final class CommonForge {
         Messages.bootstrap();
 
         Items.bootstrap();
+
+        LootProvider.initialize();
     }
 }
