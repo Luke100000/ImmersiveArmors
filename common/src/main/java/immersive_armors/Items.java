@@ -15,15 +15,17 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 
 public interface Items {
     List<Supplier<Item>> coloredItems = new LinkedList<>();
     List<Supplier<Item>> items = new LinkedList<>();
+    Map<String, Map<Supplier<Item>, Float>> lootLookup = new HashMap<>();
 
     ExtendedArmorMaterial BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
+            .addLoot("minecraft:chests/village/village_weaponsmith", 1.0f)
+            .addLoot("minecraft:chests/jungle_temple", 1.0f)
             .durabilityMultiplier(8)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
             .protectionAmount(1, 3, 2, 1)
@@ -33,6 +35,9 @@ public interface Items {
             .weight(-0.02f));
 
     ExtendedArmorMaterial WITHER_ARMOR = registerSet(new ExtendedArmorMaterial("wither")
+            .addLoot("minecraft:chests/jungle_temple", 0.5f)
+            .addLoot("minecraft:chests/ruined_portal", 1.0f)
+            .addLoot("minecraft:chests/bastion_other", 1.0f)
             .durabilityMultiplier(12)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.BONE))
             .protectionAmount(2, 4, 3, 2)
@@ -44,6 +49,8 @@ public interface Items {
             .weight(-0.01f));
 
     ExtendedArmorMaterial WARRIOR_ARMOR = registerSet(new ExtendedArmorMaterial("warrior")
+            .addLoot("minecraft:chests/village/village_armorer", 1.0f)
+            .addLoot("minecraft:chests/shipwreck_supply", 1.0f)
             .protectionAmount(2, 5, 6, 2)
             .durabilityMultiplier(15)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.IRON_INGOT))
@@ -55,6 +62,8 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")
+            .addLoot("minecraft:chests/village/village_armorer", 1.0f)
+            .addLoot("minecraft:chests/stronghold_crossing", 1.0f)
             .protectionAmount(4, 6, 5, 3)
             .durabilityMultiplier(20)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.IRON_INGOT))
@@ -65,6 +74,9 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial ROBE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("robe")
+            .addLoot("minecraft:chests/village/village_shepherd", 0.25f)
+            .addLoot("minecraft:chests/woodland_mansion", 1.0f)
+            .addLoot("minecraft:chests/igloo_chest", 1.0f)
             .protectionAmount(2, 3, 2, 1)
             .enchantability(50)
             .durabilityMultiplier(14)
@@ -76,6 +88,7 @@ public interface Items {
             .equipSound(SoundEvents.BLOCK_WOOL_PLACE));
 
     ExtendedArmorMaterial SLIME_ARMOR = registerSet(new ExtendedArmorMaterial("slime")
+            .addLoot("minecraft:chests/simple_dungeon", 0.25f)
             .protectionAmount(3, 5, 4, 2)
             .enchantability(10)
             .durabilityMultiplier(20)
@@ -86,6 +99,11 @@ public interface Items {
             .equipSound(SoundEvents.ENTITY_SLIME_SQUISH));
 
     ExtendedArmorMaterial DIVINE_ARMOR = registerDyeableSet(new ExtendedArmorMaterial("divine")
+            .addLoot("minecraft:chests/village/village_temple", 0.4f)
+            .addLoot("minecraft:chests/bastion_treasure", 0.25f)
+            .addLoot("minecraft:chests/woodland_mansion", 0.25f)
+            .addLoot("minecraft:chests/desert_pyramid", 1.0f)
+            .addLoot("minecraft:blocks/coal_block", 0.1f)
             .protectionAmount(3, 7, 5, 3)
             .durabilityMultiplier(18)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
@@ -96,6 +114,8 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial PRISMARINE_ARMOR = registerSet(new ExtendedArmorMaterial("prismarine")
+            .addLoot("minecraft:chests/underwater_ruin_big", 1.0f)
+            .addLoot("minecraft:chests/underwater_ruin_small", 0.5f)
             .protectionAmount(3, 8, 6, 3)
             .enchantability(8)
             .durabilityMultiplier(18)
@@ -106,6 +126,7 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")
+            .addLoot("minecraft:chests/village/village_fletcher", 0.25f)
             .protectionAmount(1, 3, 2, 1)
             .durabilityMultiplier(8)
             .repairIngredient(() -> Ingredient.fromTag(ItemTags.LOGS))
@@ -115,6 +136,8 @@ public interface Items {
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER));
 
     ExtendedArmorMaterial STEAMPUNK_ARMOR = registerSet(new ExtendedArmorMaterial("steampunk")
+            .addLoot("minecraft:chests/village/village_toolsmith", 0.25f)
+            .addLoot("minecraft:chests/shipwreck_treasure", 1.0f)
             .protectionAmount(3, 6, 3, 2)
             .durabilityMultiplier(10)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
@@ -131,10 +154,10 @@ public interface Items {
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
             List<Supplier<Item>> items = List.of(
-                    register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
-                    register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
-                    register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
-                    register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material))
+                    register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material),
+                    register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material),
+                    register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material),
+                    register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material)
             );
             Items.items.addAll(items);
         }
@@ -144,10 +167,10 @@ public interface Items {
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
             List<Supplier<Item>> items = List.of(
-                    register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material)),
-                    register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material)),
-                    register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material)),
-                    register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material))
+                    register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material),
+                    register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material),
+                    register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material),
+                    register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material)
             );
             Items.items.addAll(items);
             Items.coloredItems.addAll(items);
@@ -155,8 +178,13 @@ public interface Items {
         return material;
     }
 
-    static Supplier<Item> register(String name, Supplier<Item> item) {
-        return Registration.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item);
+    static Supplier<Item> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
+        Supplier<Item> register = Registration.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item);
+        for (Map.Entry<String, Float> entry : material.getLoot().entrySet()) {
+            lootLookup.putIfAbsent(entry.getKey(), new HashMap<>());
+            lootLookup.get(entry.getKey()).put(register, entry.getValue());
+        }
+        return register;
     }
 
     static Item.Settings baseProps() {
