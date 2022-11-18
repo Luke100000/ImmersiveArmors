@@ -12,7 +12,7 @@ public class ClientMain {
     public static void postLoad() {
         //register colored items
         MixinItemRenderer itemRenderer = (MixinItemRenderer)MinecraftClient.getInstance().getItemRenderer();
-        for (Supplier<Item> item : Items.coloredItems) {
+        for (Supplier<Item> item : Items.coloredItems.values()) {
             itemRenderer.getColors().register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableExtendedArmorItem)stack.getItem()).getColor(stack), item.get());
         }
 

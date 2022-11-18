@@ -14,7 +14,7 @@ public class ItemPropertyOverwrite {
         for (Map.Entry<String, Float> entry : map.entrySet()) {
             String[] split = entry.getKey().split(":");
             if (split.length == 2) {
-                Optional<ExtendedArmorMaterial> found = Items.items.stream()
+                Optional<ExtendedArmorMaterial> found = Items.items.values().stream()
                         .map(Supplier::get)
                         .filter(i -> i instanceof ExtendedArmorItem)
                         .map(i -> ((ExtendedArmorItem)i).getMaterial())
@@ -59,7 +59,7 @@ public class ItemPropertyOverwrite {
                     }
 
                     // Refresh properties
-                    Items.items.stream()
+                    Items.items.values().stream()
                             .map(Supplier::get)
                             .filter(i -> i instanceof ExtendedArmorItem && ((ExtendedArmorItem)i).getMaterial() == material)
                             .forEach(i -> ((ExtendedArmorItem)i).refreshAttributes());
