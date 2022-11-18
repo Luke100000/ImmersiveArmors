@@ -13,7 +13,7 @@ import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.item.Item;
-import net.minecraft.loot.BinomialLootTableRange;
+import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 
@@ -40,7 +40,7 @@ public final class CommonFabric implements ModInitializer {
             if (Items.lootLookup.containsKey(id.toString())) {
                 for (Map.Entry<Supplier<Item>, Float> entry : Items.lootLookup.get(id.toString()).entrySet()) {
                     tableBuilder.pool(LootPool.builder()
-                            .rolls(new BinomialLootTableRange(1, entry.getValue() * Config.getInstance().lootChance))
+                            .rolls(BinomialLootNumberProvider.create(1, entry.getValue() * Config.getInstance().lootChance))
                             .with(ItemEntry.builder(entry.getKey().get()))
                     );
                 }
