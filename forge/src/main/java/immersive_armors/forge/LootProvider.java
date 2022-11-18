@@ -15,12 +15,12 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.common.loot.LootTableIdCondition;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class LootProvider {
         }
     }
 
-    private static final DeferredRegister<GlobalLootModifierSerializer<?>> GLM = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, Main.MOD_ID);
+    private static final DeferredRegister<GlobalLootModifierSerializer<?>> GLM = DeferredRegister.create(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, Main.MOD_ID);
     private static final RegistryObject<ImmersiveArmorsLootModifier.Serializer> ARMOR_MODIFIER_SERIALIZER = GLM.register("armor_modifier_serializer", ImmersiveArmorsLootModifier.Serializer::new);
 
     @Mod.EventBusSubscriber(modid = Main.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -42,7 +42,7 @@ public class LootProvider {
         @SubscribeEvent
         public static void runData(GatherDataEvent event) {
             if (Config.getInstance().lootChance > 0) {
-                event.getGenerator().install(new DataProvider(event.getGenerator(), Main.MOD_ID));
+                event.getGenerator().addProvider(new DataProvider(event.getGenerator(), Main.MOD_ID));
             }
         }
     }
