@@ -33,8 +33,7 @@ public class ForgeBusEvents {
 
     @SubscribeEvent
     public static void onPlayerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayerEntity) {
-            ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
+        if (event.getEntity() instanceof ServerPlayerEntity player) {
             NetworkHandler.sendToPlayer(new SettingsMessage(), player);
         }
     }
