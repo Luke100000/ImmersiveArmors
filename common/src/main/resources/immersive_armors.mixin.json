@@ -6,7 +6,8 @@
   "mixins": [
     "MixinEnchantmentHelper",
     "MixinFollowTargetGoal",
-    "MixinLivingEntity"
+    "MixinLivingEntity",
+    "MobEntityMixin"
   ],
   "client": [
     "InGameHudMixin",

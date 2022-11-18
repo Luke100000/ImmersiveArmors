@@ -37,6 +37,7 @@ public final class Config implements Serializable {
     public int hudCompassY = -20;
 
     public float lootChance = 0.025f;
+    public float mobEntityUseImmersiveArmorChance = 0.5f;
 
     public HashMap<String, Boolean> enabledArmors = new HashMap<>();
 

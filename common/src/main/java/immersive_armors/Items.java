@@ -15,12 +15,14 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public interface Items {
-    List<Supplier<Item>> coloredItems = new LinkedList<>();
-    List<Supplier<Item>> items = new LinkedList<>();
+    Map<String, Supplier<Item>> coloredItems = new HashMap<>();
+    Map<String, Supplier<Item>> items = new HashMap<>();
     Map<String, Map<Supplier<Item>, Float>> lootLookup = new HashMap<>();
 
     ExtendedArmorMaterial BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
@@ -153,38 +155,33 @@ public interface Items {
 
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
-            List<Supplier<Item>> items = Arrays.asList(
-                    register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material),
-                    register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material),
-                    register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material),
-                    register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material)
-            );
-            Items.items.addAll(items);
+            Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material));
+            Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material));
+            Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material));
+            Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material));
         }
         return material;
     }
 
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
         if (Config.getInstance().enabledArmors.get(material.getName())) {
-            List<Supplier<Item>> items = Arrays.asList(
-                    register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material),
-                    register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material),
-                    register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material),
-                    register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material)
-            );
-            Items.items.addAll(items);
-            Items.coloredItems.addAll(items);
+            Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material));
+            Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material));
+            Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material));
+            Items.coloredItems.putAll(register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.FEET, material), material));
+
+            Items.items.putAll(Items.coloredItems);
         }
         return material;
     }
 
-    static Supplier<Item> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
+    static Map<String, Supplier<Item>> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
         Supplier<Item> register = Registration.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item);
         for (Map.Entry<String, Float> entry : material.getLoot().entrySet()) {
             lootLookup.putIfAbsent(entry.getKey(), new HashMap<>());
             lootLookup.get(entry.getKey()).put(register, entry.getValue());
         }
-        return register;
+        return Collections.singletonMap(name, register);
     }
 
     static Item.Settings baseProps() {
