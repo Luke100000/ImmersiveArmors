@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
     @Shadow
-    protected abstract A getArmor(EquipmentSlot slot);
+    protected abstract A getModel(EquipmentSlot slot);
 
     public MixinArmorFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
@@ -80,7 +80,7 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
 
     private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ExtendedArmorItem item) {
         item.getMaterial().getPieces(item.getSlotType()).forEach(piece -> {
-            A armorModel = getArmor(item.getSlotType());
+            A armorModel = getModel(item.getSlotType());
             this.getContextModel().setAttributes(armorModel);
             piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), armorModel);
         });
