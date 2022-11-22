@@ -1,7 +1,7 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Armaduras inmersivas",
   "armorEffect.fireResistance": "%d%% Resistencia al fuego",
-  "armorEffect.explosionResistance": "%d%% Resistencia a explosiónes",
+  "armorEffect.explosionResistance": "%d%% Resistencia a explosiones",
   "armorEffect.magicResistance": "%d%% Resistencia mágica",
   "armorEffect.fireInflicting": "%d Ticks Daño de Fuego",
   "armorEffect.bounceback": "%d Rebote",
