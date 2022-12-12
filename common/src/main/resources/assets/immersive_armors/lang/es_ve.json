@@ -12,7 +12,7 @@
   "armorEffect.berserk": "Hasta %d%% Daño cuando está herido",
   "armorEffect.weaponEfficiency": "%d%% Daño con %s",
   "armorEffect.weaponEfficiency.axe": "Hachas",
-  "armorEffect.steamTech.head": "Un radar primitivo muestra la posición de las entidades cercanas",
+  "armorEffect.steamTech.head": "Un radar primitivo muestra la posición de entidades cercanas",
   "armorEffect.steamTech.chest": "¡No vuelvas a perder la noción del tiempo!",
   "armorEffect.steamTech.legs": "Descarga el depósito de vapor para realizar un salto doble",
   "armorEffect.steamTech.feet": "Utiliza chorros de vapor para evitar daños por caída",
