@@ -1,6 +1,6 @@
 # 1.5.0
 
-* Synced codebase, 1.16.5, 1.18.2 and 1.19.2 are now nearly identical again
+* Synced codebase, 1.16.5, 1.18.2 and 1.19.3 are now nearly identical again
 * Armor can now be found in loot chests!
 * Entities will now wear immersive armor
 * Fixed offhand slot occluding steampunk armor
@@ -10,7 +10,7 @@
 
 # 1.4.2
 
-* Ported to 1.19.2
+* Ported to 1.19.3
 
 # 1.4.1
 

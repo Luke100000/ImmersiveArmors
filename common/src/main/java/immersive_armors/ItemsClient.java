@@ -3,8 +3,8 @@ package immersive_armors;
 import immersive_armors.client.render.entity.model.*;
 import immersive_armors.client.render.entity.piece.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Quaternion;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
+import org.joml.Quaternionf;
 
 import static immersive_armors.Items.*;
 
@@ -75,9 +75,7 @@ public class ItemsClient {
                 .upper(new UpperBodyLayerPiece())
                 .chest(new ModelPiece(new ShoulderModel()).texture("shoulder"));
 
-        Quaternion flip = new Quaternion(new Vec3f(1.0f, 0.0f, 0.0f), -90.0f, true);
-        Quaternion rotate = new Quaternion(new Vec3f(0.0f, 1.0f, 0.0f), 180.0f, true);
-        rotate.hamiltonProduct(flip);
+        Quaternionf rotate = RotationAxis.POSITIVE_X.rotationDegrees(90.0f);
 
         STEAMPUNK_ARMOR
                 .hidesSecondLayer(false, true, true, true)
@@ -91,8 +89,8 @@ public class ItemsClient {
                 .chest(new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 0.2f))
                 .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -0.3f))
                 .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.1f, 0.45f, -0.17f, -0.3f))
-                .head(new GearPiece<>(new GearModel("head", 5), "gear_small", -0.3f, -0.3f, 0.0f, -0.2f, new Quaternion(new Vec3f(0.0f, 1.0f, 0.0f), 90.0f, true)))
-                .chest(new GearPiece<>(new GearModel("leftArm", 5), "gear_small", 0.23f, 0.40f, 0.0f, -0.3f, new Quaternion(new Vec3f(0.0f, 1.0f, 0.0f), 90.0f, true)))
+                .head(new GearPiece<>(new GearModel("head", 5), "gear_small", -0.3f, -0.3f, 0.0f, -0.2f, RotationAxis.POSITIVE_Y.rotationDegrees(90.0f)))
+                .chest(new GearPiece<>(new GearModel("leftArm", 5), "gear_small", 0.23f, 0.40f, 0.0f, -0.3f, RotationAxis.POSITIVE_Z.rotationDegrees(90.0f)))
                 .chest(new ModelPiece(new RightVerticalShoulderModel()).texture("shoulder"))
                 .chest(new CapePiece<>(new CapeModel<>()));
     }

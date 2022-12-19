@@ -10,10 +10,10 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -176,7 +176,7 @@ public interface Items {
     }
 
     static Map<String, Supplier<Item>> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
-        Supplier<Item> register = Registration.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item);
+        Supplier<Item> register = Registration.register(Registries.ITEM, new Identifier(Main.MOD_ID, name), item);
         for (Map.Entry<String, Float> entry : material.getLoot().entrySet()) {
             lootLookup.putIfAbsent(entry.getKey(), new HashMap<>());
             lootLookup.get(entry.getKey()).put(register, entry.getValue());
@@ -185,6 +185,6 @@ public interface Items {
     }
 
     static Item.Settings baseProps() {
-        return new Item.Settings().group(ItemGroups.ARMOR);
+        return new Item.Settings();
     }
 }

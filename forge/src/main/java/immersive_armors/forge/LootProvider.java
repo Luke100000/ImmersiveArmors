@@ -7,7 +7,7 @@ import immersive_armors.Config;
 import immersive_armors.Items;
 import immersive_armors.Main;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataOutput;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.condition.LootCondition;
@@ -46,14 +46,14 @@ public class LootProvider {
         @SubscribeEvent
         public static void runData(GatherDataEvent event) {
             if (Config.getInstance().lootChance > 0) {
-                event.getGenerator().addProvider(event.includeServer(), new DataProvider(event.getGenerator(), Main.MOD_ID));
+                event.getGenerator().addProvider(event.includeServer(), new DataProvider(event.getGenerator().getPackOutput(), Main.MOD_ID));
             }
         }
     }
 
     private static class DataProvider extends GlobalLootModifierProvider {
-        public DataProvider(DataGenerator gen, String modId) {
-            super(gen, modId);
+        public DataProvider(DataOutput output, String id) {
+            super(output, id);
         }
 
         @Override

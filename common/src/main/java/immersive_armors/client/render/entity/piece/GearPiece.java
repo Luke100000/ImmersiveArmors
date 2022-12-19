@@ -13,16 +13,16 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Quaternion;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Quaternionf;
 
 public class GearPiece<M extends GearModel> extends Piece {
     private final M model;
     private final String texture;
     private final float x, y, z;
     private final float speed;
-    private final Quaternion rotation;
+    private final Quaternionf rotation;
 
     private Identifier getTexture(ExtendedArmorItem item) {
         return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/" + texture + ".png");
@@ -32,7 +32,7 @@ public class GearPiece<M extends GearModel> extends Piece {
         this(model, texture, x, y, z, speed, null);
     }
 
-    public GearPiece(M model, String texture, float x, float y, float z, float speed, @Nullable Quaternion rotation) {
+    public GearPiece(M model, String texture, float x, float y, float z, float speed, @Nullable Quaternionf rotation) {
         this.model = model;
         this.texture = texture;
         this.x = x;
@@ -50,7 +50,7 @@ public class GearPiece<M extends GearModel> extends Piece {
         if (rotation != null) {
             matrices.multiply(rotation);
         }
-        matrices.multiply(new Quaternion(new Vec3f(0.0f, 0.0f, 1.0f), (entity.age + tickDelta) * speed, false));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((entity.age + tickDelta) * speed));
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getTexture((ExtendedArmorItem)itemStack.getItem())));
         model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
         matrices.pop();

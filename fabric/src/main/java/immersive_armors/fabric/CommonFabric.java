@@ -1,6 +1,7 @@
 package immersive_armors.fabric;
 
 import immersive_armors.Config;
+import immersive_armors.ItemGroups;
 import immersive_armors.Items;
 import immersive_armors.Messages;
 import immersive_armors.cobalt.network.NetworkHandler;
@@ -10,6 +11,7 @@ import immersive_armors.network.s2c.SettingsMessage;
 import immersive_armors.server.Command;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.item.Item;
@@ -28,6 +30,12 @@ public final class CommonFabric implements ModInitializer {
 
         Items.bootstrap();
         Messages.bootstrap();
+
+        ItemGroups.ARMOR = FabricItemGroup.builder(ItemGroups.getIdentifier())
+                .displayName(ItemGroups.getDisplayName())
+                .icon(ItemGroups::getIcon)
+                .entries((enabledFeatures, entries, operatorEnabled) -> entries.addAll(Items.items.values().stream().map(i -> i.get().getDefaultStack()).toList()))
+                .build();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> Command.register(dispatcher));
 

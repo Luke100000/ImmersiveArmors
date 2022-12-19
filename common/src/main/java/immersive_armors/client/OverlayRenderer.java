@@ -6,9 +6,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class OverlayRenderer {
     private static final ItemStack clock = new ItemStack(Items.CLOCK);
@@ -19,7 +19,7 @@ public class OverlayRenderer {
         if (!client.options.hudHidden && client.interactionManager != null) {
             if (client.player != null) {
                 for (ItemStack item : client.player.getArmorItems()) {
-                    Identifier id = Registry.ITEM.getId(item.getItem());
+                    Identifier id = Registries.ITEM.getId(item.getItem());
                     if (id.equals(Main.locate("steampunk_chestplate"))) {
                         renderSteampunkHud();
                     }

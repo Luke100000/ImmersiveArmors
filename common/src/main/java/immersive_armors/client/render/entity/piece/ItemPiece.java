@@ -10,8 +10,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Quaternion;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Quaternionf;
 
 public class ItemPiece extends Piece {
     private final String attachTo;
@@ -19,13 +19,13 @@ public class ItemPiece extends Piece {
     private final float size;
 
     private final ItemStack stack;
-    private final Quaternion rotation;
+    private final Quaternionf rotation;
 
     public ItemPiece(String to, float x, float y, float z, float size, ItemStack stack) {
         this(to, x, y, z, size, stack, null);
     }
 
-    public ItemPiece(String to, float x, float y, float z, float size, ItemStack stack, @Nullable Quaternion rotation) {
+    public ItemPiece(String to, float x, float y, float z, float size, ItemStack stack, @Nullable Quaternionf rotation) {
         attachTo = to;
         this.x = x;
         this.y = y;

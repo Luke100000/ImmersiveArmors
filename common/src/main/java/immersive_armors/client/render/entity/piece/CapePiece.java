@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 
 public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
     private final M model;
@@ -66,9 +66,9 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
                 matrices.translate(0.0, 0.25, 0.0);
             }
 
-            matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float)(6.0F + r / 2.0F + q)));
-            matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)(s / 2.0F)));
-            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)(180.0F - s / 2.0F)));
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((float)(6.0F + r / 2.0F + q)));
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)(s / 2.0F)));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float)(180.0F - s / 2.0F)));
 
             model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 

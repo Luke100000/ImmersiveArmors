@@ -24,7 +24,7 @@ public class ForgeBusEvents {
 
     @SubscribeEvent
     public static void onClientStart(TickEvent.ClientTickEvent event) {
-        //forge decided to be funny and won't trigger the client load event
+        //forge decided to be funny and won't trigger the client load event.
         if (firstLoad) {
             ClientMain.postLoad();
             firstLoad = false;

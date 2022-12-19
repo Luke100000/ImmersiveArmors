@@ -81,7 +81,7 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ExtendedArmorItem item) {
         item.getMaterial().getPieces(item.getSlotType()).forEach(piece -> {
             A armorModel = getModel(item.getSlotType());
-            this.getContextModel().setAttributes(armorModel);
+            this.getContextModel().copyBipedStateTo(armorModel);
             piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), armorModel);
         });
     }

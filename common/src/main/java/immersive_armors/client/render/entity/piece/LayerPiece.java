@@ -25,7 +25,7 @@ public abstract class LayerPiece extends Piece {
     public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
             //noinspection unchecked
-            armorModel.setAttributes((BipedEntityModel<T>)getModel());
+            armorModel.copyBipedStateTo((BipedEntityModel<T>)getModel());
             setVisible(getModel(), armorSlot);
 
             if (isColored()) {
