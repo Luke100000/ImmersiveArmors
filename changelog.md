@@ -2,6 +2,7 @@
 
 * Fixed item order in creative menu in 1.19.3
 * Improved order and size of armor layers
+* Steampunk boots no longer prevents critical damage
 
 # 1.5.0
 

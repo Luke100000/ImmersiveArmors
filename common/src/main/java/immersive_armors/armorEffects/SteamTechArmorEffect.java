@@ -41,7 +41,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
         //machine smoke
         if (getEquipmentSlot(armor) == EquipmentSlot.FEET) {
-            entity.fallDistance = 0;
+            entity.fallDistance = Math.min(1, entity.fallDistance);
 
             if (entity.getRandom().nextInt(10) == 0) {
                 double x = Math.cos(entity.bodyYaw / 180.f * Math.PI - Math.PI * 0.5f) * 0.25;
