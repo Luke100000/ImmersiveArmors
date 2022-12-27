@@ -1,3 +1,8 @@
+# 1.5.1
+
+* Fixed item order in creative menu in 1.19.3
+* Improved order and size of armor layers
+
 # 1.5.0
 
 * Synced codebase, 1.16.5, 1.18.2 and 1.19.2 are now nearly identical again
@@ -7,6 +12,18 @@
 * Steampunk armor has now 10% explosion resistance instead of 20%, reduced leggings armor by 1
 * Steampunk HUD Overlay also works on Forge now
 * Most armor properties are now configurable
+
+# 1.4.2
+
+* Ported to 1.19.3
+
+# 1.4.1
+
+* Ported to 1.19.1
+
+# 1.4.0
+
+* Ported to 1.19
 
 # 1.3.8
 
