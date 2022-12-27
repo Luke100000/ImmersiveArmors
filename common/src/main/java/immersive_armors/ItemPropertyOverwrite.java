@@ -23,20 +23,20 @@ public class ItemPropertyOverwrite {
                     ExtendedArmorMaterial material = found.get();
                     switch (split[1]) {
                         case "helmetProtection":
-                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[0]);
-                            material.getProtectionAmounts()[0] = entry.getValue().intValue();
+                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[3]);
+                            material.getProtectionAmounts()[3] = entry.getValue().intValue();
                             break;
                         case "chestplateProtection":
-                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[1]);
-                            material.getProtectionAmounts()[1] = entry.getValue().intValue();
-                            break;
-                        case "leggingsProtection":
                             backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[2]);
                             material.getProtectionAmounts()[2] = entry.getValue().intValue();
                             break;
+                        case "leggingsProtection":
+                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[1]);
+                            material.getProtectionAmounts()[1] = entry.getValue().intValue();
+                            break;
                         case "bootsProtection":
-                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[3]);
-                            material.getProtectionAmounts()[3] = entry.getValue().intValue();
+                            backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[0]);
+                            material.getProtectionAmounts()[0] = entry.getValue().intValue();
                             break;
                         case "weight":
                             backup.putIfAbsent(entry.getKey(), material.getWeight());
