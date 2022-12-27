@@ -4,6 +4,7 @@
 * Improved order and size of armor layers
 * Steampunk boots no longer prevents critical damage
 * Fixed a crash related to Cosmetic Armor (thanks TelepathicGrunt!)
+* Fixed protection value custom configuration
 
 # 1.5.0
 
