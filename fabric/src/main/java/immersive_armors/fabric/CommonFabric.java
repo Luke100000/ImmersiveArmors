@@ -34,7 +34,7 @@ public final class CommonFabric implements ModInitializer {
         ItemGroups.ARMOR = FabricItemGroup.builder(ItemGroups.getIdentifier())
                 .displayName(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
-                .entries((enabledFeatures, entries, operatorEnabled) -> entries.addAll(Items.items.values().stream().map(i -> i.get().getDefaultStack()).toList()))
+                .entries((enabledFeatures, entries, operatorEnabled) -> entries.addAll(Items.getSortedItems()))
                 .build();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> Command.register(dispatcher));

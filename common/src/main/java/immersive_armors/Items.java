@@ -9,20 +9,20 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public interface Items {
     Map<String, Supplier<Item>> coloredItems = new HashMap<>();
     Map<String, Supplier<Item>> items = new HashMap<>();
+    List<Supplier<Item>> itemsOrdered = new LinkedList<>();
     Map<String, Map<Supplier<Item>, Float>> lootLookup = new HashMap<>();
 
     ExtendedArmorMaterial BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
@@ -181,10 +181,15 @@ public interface Items {
             lootLookup.putIfAbsent(entry.getKey(), new HashMap<>());
             lootLookup.get(entry.getKey()).put(register, entry.getValue());
         }
+        itemsOrdered.add(register);
         return Collections.singletonMap(name, register);
     }
 
     static Item.Settings baseProps() {
         return new Item.Settings();
+    }
+
+    static List<ItemStack> getSortedItems() {
+        return itemsOrdered.stream().map(i -> i.get().getDefaultStack()).toList();
     }
 }

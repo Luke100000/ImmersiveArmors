@@ -35,7 +35,7 @@ public final class CommonForge {
         ItemGroups.ARMOR = event.registerCreativeModeTab(ItemGroups.getIdentifier(), builder -> builder
                 .displayName(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
-                .entries((featureFlags, output, hasOp) -> output.addAll(Items.items.values().stream().map(i -> i.get().getDefaultStack()).toList()))
+                .entries((featureFlags, output, hasOp) -> output.addAll(Items.getSortedItems()))
         );
     }
 }
