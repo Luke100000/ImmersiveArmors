@@ -50,7 +50,7 @@ public class GearPiece<M extends GearModel> extends Piece {
         if (rotation != null) {
             matrices.multiply(rotation);
         }
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((entity.age + tickDelta) * speed));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)((entity.age + tickDelta) * speed * 180.0f / Math.PI / 20.0f)));
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getTexture((ExtendedArmorItem)itemStack.getItem())));
         model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
         matrices.pop();

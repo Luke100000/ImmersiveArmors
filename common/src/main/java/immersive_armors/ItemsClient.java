@@ -86,11 +86,11 @@ public class ItemsClient {
                 .upper(new UpperBodyLayerPiece())
                 .chest(new ItemPiece("leftArm", 0.05f, -0.2f, 0.1f, 1.0f, new ItemStack(net.minecraft.item.Items.COMPASS), rotate))
                 .chest(new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.item.Items.CLOCK)))
-                .chest(new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 0.2f))
-                .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -0.3f))
-                .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.1f, 0.45f, -0.17f, -0.3f))
-                .head(new GearPiece<>(new GearModel("head", 5), "gear_small", -0.3f, -0.3f, 0.0f, -0.2f, RotationAxis.POSITIVE_Y.rotationDegrees(90.0f)))
-                .chest(new GearPiece<>(new GearModel("leftArm", 5), "gear_small", 0.23f, 0.40f, 0.0f, -0.3f, RotationAxis.POSITIVE_Z.rotationDegrees(90.0f)))
+                .chest(new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 2.0f))
+                .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -2.0f))
+                .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.1f, 0.45f, -0.17f, -2.0f))
+                .head(new GearPiece<>(new GearModel("head", 5), "gear_small", -0.3f, -0.3f, 0.0f, -1.5f, RotationAxis.POSITIVE_Y.rotationDegrees(90.0f)))
+                .chest(new GearPiece<>(new GearModel("leftArm", 5), "gear_small", 0.23f, 0.40f, 0.0f, -2.0f, RotationAxis.POSITIVE_Y.rotationDegrees(90.0f)))
                 .chest(new ModelPiece(new RightVerticalShoulderModel()).texture("shoulder"))
                 .chest(new CapePiece<>(new CapeModel<>()));
     }
