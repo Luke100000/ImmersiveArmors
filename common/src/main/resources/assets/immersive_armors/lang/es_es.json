@@ -1,7 +1,7 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Armaduras inmersivas",
   "armorEffect.fireResistance": "%d%% Resistencia al fuego",
-  "armorEffect.explosionResistance": "%d%% Resistencia a explosiónes",
+  "armorEffect.explosionResistance": "%d%% Resistencia a explosiones",
   "armorEffect.magicResistance": "%d%% Resistencia mágica",
   "armorEffect.fireInflicting": "%d Ticks Daño de Fuego",
   "armorEffect.bounceback": "%d Rebote",
@@ -12,7 +12,7 @@
   "armorEffect.berserk": "Hasta %d%% Daño cuando está herido",
   "armorEffect.weaponEfficiency": "%d%% Daño con %s",
   "armorEffect.weaponEfficiency.axe": "Hachas",
-  "armorEffect.steamTech.head": "Un radar primitivo muestra la posición de las entidades cercanas",
+  "armorEffect.steamTech.head": "Un radar primitivo muestra la posición de entidades cercanas",
   "armorEffect.steamTech.chest": "¡No vuelvas a perder la noción del tiempo!",
   "armorEffect.steamTech.legs": "Descarga el depósito de vapor para realizar un salto doble",
   "armorEffect.steamTech.feet": "Utiliza chorros de vapor para evitar daños por caída",
