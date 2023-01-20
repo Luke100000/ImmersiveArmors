@@ -1,5 +1,6 @@
 package immersive_armors;
 
+import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 

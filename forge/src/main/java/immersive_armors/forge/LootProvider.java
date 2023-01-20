@@ -1,7 +1,7 @@
 package immersive_armors.forge;
 
 import com.google.gson.JsonObject;
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Items;
 import immersive_armors.Main;
 import net.minecraft.data.DataGenerator;

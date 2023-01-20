@@ -67,6 +67,7 @@ jobs:
             Java 17
           dependencies: |
             fabric-api | recommends | *
+            cloth-config | recommends | *
 
           fail-mode: skip
       - name: "Upload Forge"

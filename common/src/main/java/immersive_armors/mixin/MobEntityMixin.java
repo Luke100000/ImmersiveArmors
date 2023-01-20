@@ -1,6 +1,6 @@
 package immersive_armors.mixin;
 
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Items;
 import immersive_armors.item.ExtendedArmorMaterial;
 import net.minecraft.entity.EquipmentSlot;

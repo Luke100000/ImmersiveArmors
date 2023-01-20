@@ -1,6 +1,6 @@
 package immersive_armors.fabric;
 
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Items;
 import immersive_armors.Messages;
 import immersive_armors.cobalt.network.NetworkHandler;
