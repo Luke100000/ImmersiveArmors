@@ -7,15 +7,13 @@ import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.fabric.cobalt.network.NetworkHandlerImpl;
 import immersive_armors.fabric.cobalt.registration.RegistrationImpl;
 import immersive_armors.network.s2c.SettingsMessage;
-import immersive_armors.server.Command;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.item.Item;
-import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -28,8 +26,6 @@ public final class CommonFabric implements ModInitializer {
 
         Items.bootstrap();
         Messages.bootstrap();
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> Command.register(dispatcher));
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 NetworkHandler.sendToPlayer(new SettingsMessage(), handler.player)
