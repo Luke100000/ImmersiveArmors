@@ -1,6 +1,6 @@
 package immersive_armors.client;
 
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Main;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,6 +1,6 @@
 package immersive_armors.network.s2c;
 
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Main;
 import immersive_armors.cobalt.network.Message;
 import net.minecraft.entity.player.PlayerEntity;

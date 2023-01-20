@@ -8,7 +8,7 @@
     "Luke100000"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/ImmersiveArmors",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/immersive-armors",
     "sources": "https://github.com/Luke100000/ImmersiveArmors",
     "issues": "https://github.com/Luke100000/ImmersiveArmors/issues"
   },
@@ -21,6 +21,9 @@
     ],
     "client": [
       "immersive_armors.fabric.ClientFabric"
+    ],
+    "modmenu": [
+      "immersive_armors.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -30,5 +33,12 @@
     "fabricloader": ">=0.11.3",
     "java": ">=8",
     "fabric-api-base": ">=0.1.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.com/invite/agxcvAdj2a"
+      }
+    }
   }
 }

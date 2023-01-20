@@ -1,7 +1,7 @@
 package immersive_armors.client.render.entity.piece;
 
 import com.google.common.collect.Maps;
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
