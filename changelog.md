@@ -1,3 +1,7 @@
+# 1.5.2
+
+* Updated and fixed translations
+
 # 1.5.1
 
 * Fixed item order in creative menu in 1.19.3
