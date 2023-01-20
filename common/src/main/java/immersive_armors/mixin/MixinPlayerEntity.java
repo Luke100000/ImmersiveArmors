@@ -21,7 +21,7 @@ public abstract class MixinPlayerEntity {
     @Shadow public abstract boolean isMainPlayer();
 
     @Inject(method = "isPartVisible", at = @At("HEAD"), cancellable = true)
-    public void isPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
+    public void immersiveArmors$injectIsPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.getInstance().hideSecondLayerUnderArmor) {
             return;
         }

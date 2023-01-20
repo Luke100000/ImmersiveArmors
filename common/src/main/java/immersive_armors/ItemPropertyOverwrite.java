@@ -22,40 +22,39 @@ public class ItemPropertyOverwrite {
                 if (found.isPresent()) {
                     ExtendedArmorMaterial material = found.get();
                     switch (split[1]) {
-                        case "helmetProtection":
+                        case "helmetProtection" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[3]);
                             material.getProtectionAmounts()[3] = entry.getValue().intValue();
-                            break;
-                        case "chestplateProtection":
+                        }
+                        case "chestplateProtection" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[2]);
                             material.getProtectionAmounts()[2] = entry.getValue().intValue();
-                            break;
-                        case "leggingsProtection":
+                        }
+                        case "leggingsProtection" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[1]);
                             material.getProtectionAmounts()[1] = entry.getValue().intValue();
-                            break;
-                        case "bootsProtection":
+                        }
+                        case "bootsProtection" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getProtectionAmounts()[0]);
                             material.getProtectionAmounts()[0] = entry.getValue().intValue();
-                            break;
-                        case "weight":
+                        }
+                        case "weight" -> {
                             backup.putIfAbsent(entry.getKey(), material.getWeight());
                             material.weight(entry.getValue());
-                            break;
-                        case "toughness":
+                        }
+                        case "toughness" -> {
                             backup.putIfAbsent(entry.getKey(), material.getToughness());
                             material.toughness(entry.getValue());
-                            break;
-                        case "enchantability":
+                        }
+                        case "enchantability" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getEnchantability());
                             material.enchantability(entry.getValue().intValue());
-                            break;
-                        case "durabilityMultiplier":
+                        }
+                        case "durabilityMultiplier" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getDurabilityMultiplier());
                             material.durabilityMultiplier(entry.getValue().intValue());
-                            break;
-                        default:
-                            Config.LOGGER.error("Armor property " + split[1] + " for item " + split[0] + " does not exist!");
+                        }
+                        default -> Config.LOGGER.error("Armor property " + split[1] + " for item " + split[0] + " does not exist!");
                     }
 
                     // Refresh properties
