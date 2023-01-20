@@ -7,7 +7,6 @@ import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.fabric.cobalt.network.NetworkHandlerImpl;
 import immersive_armors.fabric.cobalt.registration.RegistrationImpl;
 import immersive_armors.network.s2c.SettingsMessage;
-import immersive_armors.server.Command;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
