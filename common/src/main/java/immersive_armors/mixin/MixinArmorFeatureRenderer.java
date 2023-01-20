@@ -44,7 +44,7 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     T immersiveArmors$entity;
 
     @ModifyVariable(method = "renderArmor", at = @At("STORE"), ordinal = 0)
-    ItemStack immersiveArmors$fetchItemStack(ItemStack itemStack) {
+    ItemStack immersiveArmors$immersiveArmors$fetchItemStack(ItemStack itemStack) {
         this.immersiveArmors$equippedStack = itemStack;
         return itemStack;
     }
