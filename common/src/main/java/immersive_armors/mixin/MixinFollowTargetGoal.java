@@ -19,7 +19,7 @@ public abstract class MixinFollowTargetGoal extends TrackTargetGoal {
     }
 
     @Inject(method = "start()V", at = @At("TAIL"))
-    private void start(CallbackInfo ci) {
+    private void immersiveArmors$injectStart(CallbackInfo ci) {
         if (mob instanceof AbstractSkeletonEntity && mob.getTarget() instanceof PlayerEntity player) {
             int pieces = 0;
             for (ItemStack item : player.getArmorItems()) {

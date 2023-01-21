@@ -3,7 +3,7 @@ package immersive_armors.forge;
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Items;
 import immersive_armors.Main;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;

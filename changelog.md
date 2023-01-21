@@ -1,3 +1,9 @@
+# 1.5.3
+
+* Updated Translations
+* Fixed incompatibility with some mods (including Dungeons Gear)
+* Added support for Mod Menu and Cloth Config
+
 # 1.5.2
 
 * Updated and fixed translations

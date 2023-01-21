@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion = "[@LOADER_MAJOR@,)"
 issueTrackerURL = "https://github.com/Luke100000/ImmersiveArmors/issues"
 license = "GNU"
 
@@ -18,13 +18,13 @@ itemIcon = "immersive_armors:divine_chestplate"
 [[dependencies.immersive_armors]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.2,)"
+versionRange = "[@MINECRAFT_VERSION@,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.immersive_armors]]
 modId = "forge"
 mandatory = true
-versionRange = "[1.19.3]"
+versionRange = "[@FORGE_VERSION@,)"
 ordering = "NONE"
 side = "BOTH"

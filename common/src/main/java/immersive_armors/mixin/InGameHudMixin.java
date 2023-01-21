@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;F)V", at = @At("TAIL"))
-    private void renderInject(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+    private void immersiveArmors$renderInject(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         OverlayRenderer.renderOverlay();
     }
 }

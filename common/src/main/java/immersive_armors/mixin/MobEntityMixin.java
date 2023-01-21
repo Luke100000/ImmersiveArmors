@@ -1,6 +1,6 @@
 package immersive_armors.mixin;
 
-import immersive_armors.Config;
+import immersive_armors.config.Config;
 import immersive_armors.Items;
 import immersive_armors.item.ExtendedArmorMaterial;
 import net.minecraft.entity.EquipmentSlot;
@@ -19,10 +19,10 @@ import java.util.function.Supplier;
 @Mixin(MobEntity.class)
 public class MobEntityMixin {
     @Inject(method = "getEquipmentForSlot(Lnet/minecraft/entity/EquipmentSlot;I)Lnet/minecraft/item/Item;", at = @At("HEAD"), cancellable = true)
-    private static void getEquipmentForSlot(EquipmentSlot equipmentSlot, int equipmentLevel, CallbackInfoReturnable<Item> cir) {
+    private static void immersiveArmors$injectGetEquipmentForSlot(EquipmentSlot equipmentSlot, int equipmentLevel, CallbackInfoReturnable<Item> cir) {
         Random random = new Random();
 
-        final Map<Integer, ExtendedArmorMaterial> items = new HashMap<Integer, ExtendedArmorMaterial>() {{
+        final Map<Integer, ExtendedArmorMaterial> items = new HashMap<>() {{
             put(0, Items.WOODEN_ARMOR);
             put(1, Items.WARRIOR_ARMOR);
             put(2, Items.HEAVY_ARMOR);
@@ -33,21 +33,13 @@ public class MobEntityMixin {
         if (items.containsKey(equipmentLevel) && random.nextFloat() < Config.getInstance().mobEntityUseImmersiveArmorChance) {
             String name = items.get(equipmentLevel).getName();
 
-            Supplier<Item> item = null;
-            switch (equipmentSlot) {
-                case HEAD:
-                    item = Items.items.get(name + "_helmet");
-                    break;
-                case CHEST:
-                    item = Items.items.get(name + "_chestplate");
-                    break;
-                case LEGS:
-                    item = Items.items.get(name + "_leggings");
-                    break;
-                case FEET:
-                    item = Items.items.get(name + "_boots");
-                    break;
-            }
+            Supplier<Item> item = switch (equipmentSlot) {
+                case HEAD -> Items.items.get(name + "_helmet");
+                case CHEST -> Items.items.get(name + "_chestplate");
+                case LEGS -> Items.items.get(name + "_leggings");
+                case FEET -> Items.items.get(name + "_boots");
+                default -> null;
+            };
 
             if (item != null) {
                 cir.setReturnValue(item.get());

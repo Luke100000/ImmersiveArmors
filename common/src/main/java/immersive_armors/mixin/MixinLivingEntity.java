@@ -55,7 +55,7 @@ public abstract class MixinLivingEntity extends Entity {
     DamageSource source;
 
     @Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "HEAD"))
-    public void redirectApplyDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    public void immersiveArmors$injectDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         this.source = source;
     }
 
@@ -63,7 +63,7 @@ public abstract class MixinLivingEntity extends Entity {
                at = @At(value = "INVOKE",
                         target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"),
                index = 1)
-    public float redirectApplyDamage(float amount) {
+    public float immersiveArmors$modifyArgs(float amount) {
         amount = apply(EquipmentSlot.HEAD, source, amount);
         amount = apply(EquipmentSlot.CHEST, source, amount);
         amount = apply(EquipmentSlot.LEGS, source, amount);
