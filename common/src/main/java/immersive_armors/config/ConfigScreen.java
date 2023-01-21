@@ -9,8 +9,7 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -22,10 +21,10 @@ public class ConfigScreen {
         Config config = Config.getInstance();
 
         ConfigBuilder builder = ConfigBuilder.create()
-                .setTitle(new TranslatableText("itemGroup.immersive_armors.immersive_armors_tab"))
+                .setTitle(Text.translatable("itemGroup.immersive_armors.immersive_armors_tab"))
                 .setSavingRunnable(config::save);
 
-        ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("option.immersive_armors.general"));
+        ConfigCategory general = builder.getOrCreateCategory(Text.translatable("option.immersive_armors.general"));
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
@@ -35,7 +34,7 @@ public class ConfigScreen {
                 try {
                     String key = "option.immersive_armors." + field.getName();
                     if (annotation instanceof IntegerConfigEntry entry) {
-                        general.addEntry(entryBuilder.startIntField(new TranslatableText(key), field.getInt(config))
+                        general.addEntry(entryBuilder.startIntField(Text.translatable(key), field.getInt(config))
                                 .setDefaultValue(entry.value())
                                 .setSaveConsumer(v -> {
                                     try {
@@ -48,7 +47,7 @@ public class ConfigScreen {
                                 .setMax(entry.max())
                                 .build());
                     } else if (annotation instanceof FloatConfigEntry entry) {
-                        general.addEntry(entryBuilder.startFloatField(new TranslatableText(key), field.getFloat(config))
+                        general.addEntry(entryBuilder.startFloatField(Text.translatable(key), field.getFloat(config))
                                 .setDefaultValue(entry.value())
                                 .setSaveConsumer(v -> {
                                     try {
@@ -68,7 +67,7 @@ public class ConfigScreen {
         }
 
         // whitelist
-        ConfigCategory whitelist = builder.getOrCreateCategory(new TranslatableText("option.immersive_armors.whitelist"));
+        ConfigCategory whitelist = builder.getOrCreateCategory(Text.translatable("option.immersive_armors.whitelist"));
         List<String> materials = Items.items.values().stream().map(Supplier::get).map(i -> (ExtendedArmorItem)i).map(ExtendedArmorItem::getMaterial).map(ExtendedArmorMaterial::getName).distinct().sorted().toList();
 
         for (String material : materials) {
@@ -76,7 +75,7 @@ public class ConfigScreen {
         }
 
         for (String material : config.enabledArmors.keySet()) {
-            whitelist.addEntry(entryBuilder.startBooleanToggle(new LiteralText(material), config.enabledArmors.getOrDefault(material, true))
+            whitelist.addEntry(entryBuilder.startBooleanToggle(Text.translatable(material), config.enabledArmors.getOrDefault(material, true))
                     .setDefaultValue(true)
                     .setSaveConsumer(v -> config.enabledArmors.put(material, v))
                     .requireRestart()
