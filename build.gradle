@@ -1,6 +1,7 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "0.11.0-SNAPSHOT" apply false
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 architectury {
@@ -10,9 +11,34 @@ architectury {
 subprojects {
     apply plugin: "dev.architectury.loom"
 
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'java'
+
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    configurations {
+        shade
+    }
+
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
+        implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
+        annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+        annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
+        shade "com.github.LlamaLad7:MixinExtras:0.1.1"
+    }
+
+    shadowJar {
+        relocate 'com.github.LlamaLad7', 'com.immersive_armors'
     }
 }
 
@@ -43,12 +69,9 @@ allprojects {
     archivesBaseName = rootProject.archives_base_name
     version = getAppVersion()
 
-    group = rootProject.group
-    description = rootProject.displayname
-
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 17
+        options.release = 16
     }
 
     java {
