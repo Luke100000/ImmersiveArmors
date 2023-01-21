@@ -23,7 +23,6 @@ public class ConfigScreen {
 
         ConfigBuilder builder = ConfigBuilder.create()
                 .setTitle(new TranslatableText("itemGroup.immersive_armors.immersive_armors_tab"))
-                .transparentBackground()
                 .setSavingRunnable(config::save);
 
         ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("option.immersive_armors.general"));
@@ -38,12 +37,26 @@ public class ConfigScreen {
                     if (annotation instanceof IntegerConfigEntry entry) {
                         general.addEntry(entryBuilder.startIntField(new TranslatableText(key), field.getInt(config))
                                 .setDefaultValue(entry.value())
+                                .setSaveConsumer(v -> {
+                                    try {
+                                        field.setInt(config, v);
+                                    } catch (IllegalAccessException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                })
                                 .setMin(entry.min())
                                 .setMax(entry.max())
                                 .build());
                     } else if (annotation instanceof FloatConfigEntry entry) {
                         general.addEntry(entryBuilder.startFloatField(new TranslatableText(key), field.getFloat(config))
                                 .setDefaultValue(entry.value())
+                                .setSaveConsumer(v -> {
+                                    try {
+                                        field.setFloat(config, v);
+                                    } catch (IllegalAccessException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                })
                                 .setMin(entry.min())
                                 .setMax(entry.max())
                                 .build());
@@ -57,7 +70,12 @@ public class ConfigScreen {
         // whitelist
         ConfigCategory whitelist = builder.getOrCreateCategory(new TranslatableText("option.immersive_armors.whitelist"));
         List<String> materials = Items.items.values().stream().map(Supplier::get).map(i -> (ExtendedArmorItem)i).map(ExtendedArmorItem::getMaterial).map(ExtendedArmorMaterial::getName).distinct().sorted().toList();
+
         for (String material : materials) {
+            config.enabledArmors.putIfAbsent(material, true);
+        }
+
+        for (String material : config.enabledArmors.keySet()) {
             whitelist.addEntry(entryBuilder.startBooleanToggle(new LiteralText(material), config.enabledArmors.getOrDefault(material, true))
                     .setDefaultValue(true)
                     .setSaveConsumer(v -> config.enabledArmors.put(material, v))
