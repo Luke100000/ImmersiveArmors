@@ -1,6 +1,12 @@
+buildscript {
+    configurations.classpath {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.11.0-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
@@ -27,7 +33,7 @@ subprojects {
     }
 
     dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        minecraft "com.mojang:minecraft:${rootProject.architectury.minecraft}"
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
         implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
@@ -35,10 +41,6 @@ subprojects {
         annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
         shade "com.github.LlamaLad7:MixinExtras:0.1.1"
-    }
-
-    shadowJar {
-        relocate 'com.github.LlamaLad7', 'com.immersive_armors'
     }
 }
 
