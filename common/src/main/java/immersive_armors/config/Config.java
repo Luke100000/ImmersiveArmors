@@ -20,19 +20,20 @@ public final class Config extends JsonConfig {
     @SuppressWarnings("unused")
     public String _documentation = "https://github.com/Luke100000/ImmersiveArmors/blob/HEAD/config.md";
 
-    @IntegerConfigEntry(-91 - 20 - 29) public int hudClockXOffhand;
-
     @IntegerConfigEntry(-91 - 20)
     public int hudClockX;
 
-    @IntegerConfigEntry(91 + 4 + 29)
-    public int hudCompassXOffhand;
+    @IntegerConfigEntry(-91 - 20 - 29)
+    public int hudClockXOffhand;
 
     @IntegerConfigEntry(-20)
     public int hudClockY;
 
     @IntegerConfigEntry(91 + 4)
     public int hudCompassX;
+
+    @IntegerConfigEntry(91 + 4 + 29)
+    public int hudCompassXOffhand;
 
     @IntegerConfigEntry(-20)
     public int hudCompassY;
