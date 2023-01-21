@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = EnchantmentHelper.class, priority = 500)
+@Mixin(value = EnchantmentHelper.class)
 public abstract class MixinEnchantmentHelper {
     private static int getEnchantmentLevel(Enchantment enchantment, ItemStack stack) {
         if (stack.getItem() instanceof ExtendedArmorItem item) {

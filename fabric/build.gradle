@@ -1,13 +1,18 @@
-architectury {
-    platformSetupLoomIde()
-    fabric()
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
 configurations {
+    shade
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     compileClasspath.extendsFrom common
@@ -15,23 +20,28 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+repositories {
+    maven { url "https://maven.terraformersmc.com/releases/" }
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    modCompileOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
 processResources {
-    inputs.property "version", project.version
-
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
+    inputs.property "version", project.version
 }
 
 shadowJar {
+    exclude "architectury-common.accessWidener"
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon, project.configurations.shade]
@@ -50,9 +60,15 @@ jar {
 }
 
 sourcesJar {
-    def commonSources = project(":common").sourcesJar
-    dependsOn commonSources
-    from commonSources.archiveFile.map { zipTree(it) }
+    afterEvaluate {
+        [":common"].forEach {
+            def depSources = project(it).sourcesJar
+            dependsOn depSources
+            from(depSources.archiveFile.map { zipTree(it) }) {
+                exclude "immersive_armors.accessWidener"
+            }
+        }
+    }
 }
 
 components.java {
