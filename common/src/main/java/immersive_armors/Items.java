@@ -125,7 +125,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
             .effect(new SpikesArmorEffect(1))
-            .enchantment(Enchantments.DEPTH_STRIDER, 1)
+            .enchantment(Enchantments.DEPTH_STRIDER, 2)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")

@@ -13,14 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = EnchantmentHelper.class, priority = 500)
 public abstract class MixinEnchantmentHelper {
     private static int getEnchantmentLevel(Enchantment enchantment, ItemStack stack) {
-        int level = 0;
         if (stack.getItem() instanceof ExtendedArmorItem item) {
             if (item.getMaterial().hasEnchantment(enchantment)) {
-                int e = item.getMaterial().getEnchantment(enchantment);
-                level = Math.min(level + e, enchantment.getMaxLevel());
+                return item.getMaterial().getEnchantment(enchantment);
             }
         }
-        return level;
+        return 0;
     }
 
     private static int level;
