@@ -36,11 +36,11 @@ subprojects {
         minecraft "com.mojang:minecraft:${rootProject.architectury.minecraft}"
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
-        implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
-        annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
-        annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+        //implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
+        //annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+        //annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
-        shade "com.github.LlamaLad7:MixinExtras:0.1.1"
+        //shade "com.github.LlamaLad7:MixinExtras:0.1.1"
     }
 }
 

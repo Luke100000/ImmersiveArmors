@@ -1,3 +1,7 @@
+# 1.5.4
+
+* Temporarily removed extramixins
+
 # 1.5.3
 
 * Updated Translations
