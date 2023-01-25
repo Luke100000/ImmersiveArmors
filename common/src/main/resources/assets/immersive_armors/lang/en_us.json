@@ -74,6 +74,9 @@
 
   "option.immersive_armors.general": "General Options",
   "option.immersive_armors.whitelist": "Item Whitelist",
+  "option.immersive_armors.hideSecondLayerUnderArmor": "Hide player second skin layer under armor.",
+  "option.immersive_armors.enableEffects": "Enable all armor special effects.",
+  "option.immersive_armors.enableEnchantmentGlint": "Enable vanilla armor glint.",
   "option.immersive_armors.hudClockX": "X offset of the HUD clock.",
   "option.immersive_armors.hudClockXOffhand": "X offset of the HUD clock with used offhand.",
   "option.immersive_armors.hudClockY": "Y offset of the HUD clock.",

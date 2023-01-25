@@ -3,6 +3,7 @@ package immersive_armors.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import immersive_armors.Main;
+import immersive_armors.config.configEntries.BooleanConfigEntry;
 import immersive_armors.config.configEntries.FloatConfigEntry;
 import immersive_armors.config.configEntries.IntegerConfigEntry;
 import org.apache.logging.log4j.LogManager;
@@ -32,6 +33,8 @@ public class JsonConfig implements Serializable {
                         field.setInt(this, entry.value());
                     } else if (annotation instanceof FloatConfigEntry entry) {
                         field.setFloat(this, entry.value());
+                    } else if (annotation instanceof BooleanConfigEntry entry) {
+                        field.setBoolean(this, entry.value());
                     }
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);

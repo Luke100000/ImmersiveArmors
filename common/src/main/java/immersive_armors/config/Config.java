@@ -1,5 +1,6 @@
 package immersive_armors.config;
 
+import immersive_armors.config.configEntries.BooleanConfigEntry;
 import immersive_armors.config.configEntries.FloatConfigEntry;
 import immersive_armors.config.configEntries.IntegerConfigEntry;
 
@@ -13,12 +14,17 @@ public final class Config extends JsonConfig {
         return INSTANCE;
     }
 
-    public boolean hideSecondLayerUnderArmor = true;
-    public boolean enableEffects = true;
-    public boolean enableEnchantmentGlint = true;
-
     @SuppressWarnings("unused")
     public String _documentation = "https://github.com/Luke100000/ImmersiveArmors/blob/HEAD/config.md";
+
+    @BooleanConfigEntry(true)
+    public boolean hideSecondLayerUnderArmor = true;
+
+    @BooleanConfigEntry(true)
+    public boolean enableEffects = true;
+
+    @BooleanConfigEntry(true)
+    public boolean enableEnchantmentGlint = true;
 
     @IntegerConfigEntry(-91 - 20)
     public int hudClockX;
