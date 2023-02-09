@@ -1,8 +1,8 @@
 {
   "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
-  "armorEffect.fireResistance": "%d%% Fire Resistance",
-  "armorEffect.explosionResistance": "%d%% Explosion Resistance",
-  "armorEffect.magicResistance": "%d%% Magic Resistance",
+  "armorEffect.fireResistance": "%d%% Vuurbestendigheid",
+  "armorEffect.explosionResistance": "%d%% Explosiebestendigheid",
+  "armorEffect.magicResistance": "%d%% Magiebestendigheid",
   "armorEffect.fireInflicting": "%d Ticks Fire Damage",
   "armorEffect.bounceback": "%d Bounceback",
   "armorEffect.spikes": "%d Spike Damage",
