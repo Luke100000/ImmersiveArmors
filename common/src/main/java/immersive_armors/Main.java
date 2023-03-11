@@ -10,6 +10,7 @@ import java.util.Map;
 import static immersive_armors.ItemPropertyOverwrite.applyItemOverwrite;
 
 public final class Main {
+    public static final String SHORT_MOD_ID = "ic_ia";
     public static final String MOD_ID = "immersive_armors";
     public static NetworkManager networkManager;
 
