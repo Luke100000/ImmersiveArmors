@@ -1,5 +1,5 @@
 {
-  "required": true,
+  "required": false,
   "minVersion": "0.7",
   "package": "immersive_armors.mixin",
   "compatibilityLevel": "JAVA_16",

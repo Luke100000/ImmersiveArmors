@@ -1,3 +1,7 @@
+# 1.5.5
+
+* No crashes on Bukkit implementations, but reduced features
+
 # 1.5.4
 
 * Temporarily removed extramixins
