@@ -3,6 +3,7 @@ package immersive_armors.armorEffects;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -20,7 +21,7 @@ public class MagicProtectionArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (source.isMagic()) {
+        if (source.isOf(DamageTypes.MAGIC)) {
             return amount * (1.0f - strength);
         } else {
             return amount;

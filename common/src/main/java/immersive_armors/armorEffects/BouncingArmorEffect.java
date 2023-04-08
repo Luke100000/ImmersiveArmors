@@ -30,7 +30,7 @@ public class BouncingArmorEffect extends ArmorEffect {
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         Entity attacker = source.getAttacker();
-        if (attacker != null && !source.isProjectile()) {
+        if (attacker != null && !source.isIndirect()) {
             Vec3d direction = attacker.getPos().subtract(entity.getPos()).normalize().multiply(strength);
             Vec3d velocity = attacker.getVelocity();
             attacker.setVelocity(velocity.add(direction));

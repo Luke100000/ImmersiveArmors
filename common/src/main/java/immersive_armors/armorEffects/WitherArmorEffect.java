@@ -3,6 +3,7 @@ package immersive_armors.armorEffects;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Objects;
 
 public class WitherArmorEffect extends ArmorEffect {
     private final float immunity;
@@ -36,7 +36,7 @@ public class WitherArmorEffect extends ArmorEffect {
             attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, wither * getSetCount(armor, entity)));
         }
 
-        if (Objects.equals(source.name, "wither")) {
+        if (source.isOf(DamageTypes.WITHER)) {
             return amount * (1.0f - immunity);
         } else {
             return amount;

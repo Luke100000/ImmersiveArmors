@@ -36,7 +36,8 @@ public class WeaponEfficiency extends ArmorEffect {
 
     @Override
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
-        if (!source.isProjectile() && source.getAttacker() instanceof LivingEntity attacker) {
+        if (!source.isIndirect() && source.getAttacker() instanceof LivingEntity attacker) {
+            //todo verify indirect on arrows
             if (isPrimaryArmor(armor, attacker)) {
                 boolean hasAxe = Stream.of(attacker.getEquippedStack(EquipmentSlot.MAINHAND), attacker.getEquippedStack(EquipmentSlot.OFFHAND))
                         .filter(Objects::nonNull)

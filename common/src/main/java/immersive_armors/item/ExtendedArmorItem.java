@@ -30,7 +30,7 @@ public class ExtendedArmorItem extends ArmorItem {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     private final ExtendedArmorMaterial material;
 
-    public ExtendedArmorItem(Item.Settings settings, EquipmentSlot slot, ExtendedArmorMaterial material) {
+    public ExtendedArmorItem(Item.Settings settings, ArmorItem.Type slot, ExtendedArmorMaterial material) {
         super(material, slot, settings);
 
         this.material = material;
@@ -40,7 +40,7 @@ public class ExtendedArmorItem extends ArmorItem {
 
     @Override
     public int getProtection() {
-        return material.getProtectionAmount(slot);
+        return material.getProtection(type);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ExtendedArmorItem extends ArmorItem {
 
     public void refreshAttributes() {
         Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-        UUID uUID = MODIFIERS[slot.getEntitySlotId()];
+        UUID uUID = MODIFIERS[type.getEquipmentSlot().getEntitySlotId()];
 
         builder.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(uUID, "Armor modifier", getProtection(), EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(uUID, "Armor toughness", getMaterial().getToughness(), EntityAttributeModifier.Operation.ADDITION));
@@ -65,7 +65,7 @@ public class ExtendedArmorItem extends ArmorItem {
     }
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        return slot == this.slot ? this.attributeModifiers : super.getAttributeModifiers(slot);
+        return slot == this.type.getEquipmentSlot() ? this.attributeModifiers : super.getAttributeModifiers(slot);
     }
 
     @Override

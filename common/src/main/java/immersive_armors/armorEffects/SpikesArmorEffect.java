@@ -28,10 +28,10 @@ public class SpikesArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (isPrimaryArmor(armor, entity) && !source.isProjectile()) {
+        if (isPrimaryArmor(armor, entity) && !source.isIndirect()) {
             Entity attacker = source.getAttacker();
             if (attacker != null) {
-                attacker.damage(DamageSource.thorns(entity), strength * getSetCount(armor));
+                attacker.damage(entity.world.getDamageSources().thorns(entity), strength * getSetCount(armor));
             }
         }
 

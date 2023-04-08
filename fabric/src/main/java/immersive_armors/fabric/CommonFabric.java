@@ -32,7 +32,7 @@ public final class CommonFabric implements ModInitializer {
         ItemGroups.ARMOR = FabricItemGroup.builder(ItemGroups.getIdentifier())
                 .displayName(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
-                .entries((enabledFeatures, entries, operatorEnabled) -> entries.addAll(Items.getSortedItems()))
+                .entries((enabledFeatures, entries) -> entries.addAll(Items.getSortedItems()))
                 .build();
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->

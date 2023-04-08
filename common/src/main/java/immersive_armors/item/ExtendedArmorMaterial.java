@@ -5,6 +5,7 @@ import immersive_armors.armorEffects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
@@ -189,13 +190,13 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDurability(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier;
+    public int getDurability(ArmorItem.Type slot) {
+        return BASE_DURABILITY[slot.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
     }
 
     @Override
-    public int getProtectionAmount(EquipmentSlot slot) {
-        return protectionAmount[slot.getEntitySlotId()];
+    public int getProtection(ArmorItem.Type slot) {
+        return protectionAmount[slot.getEquipmentSlot().getEntitySlotId()];
     }
 
     @Override
