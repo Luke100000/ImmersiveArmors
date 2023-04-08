@@ -2,6 +2,7 @@ package immersive_armors;
 
 import immersive_armors.armorEffects.*;
 import immersive_armors.cobalt.registration.Registration;
+import immersive_armors.config.Config;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
@@ -124,7 +125,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
             .effect(new SpikesArmorEffect(1))
-            .enchantment(Enchantments.DEPTH_STRIDER, 1)
+            .enchantment(Enchantments.DEPTH_STRIDER, 2)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")
@@ -154,7 +155,7 @@ public interface Items {
     }
 
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
-        if (Config.getInstance().enabledArmors.get(material.getName())) {
+        if (Config.getInstance().enabledArmors.getOrDefault(material.getName(), true)) {
             Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material));
             Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material));
             Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material));
@@ -164,7 +165,7 @@ public interface Items {
     }
 
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
-        if (Config.getInstance().enabledArmors.get(material.getName())) {
+        if (Config.getInstance().enabledArmors.getOrDefault(material.getName(), true)) {
             Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.HEAD, material), material));
             Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.CHEST, material), material));
             Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), EquipmentSlot.LEGS, material), material));
