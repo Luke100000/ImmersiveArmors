@@ -1,3 +1,7 @@
+# 1.5.5
+
+* No crashes on Bukkit implementations, but reduced features
+
 # 1.5.4
 
 * Temporarily removed extramixins
@@ -32,7 +36,7 @@
 
 # 1.4.2
 
-* Ported to 1.19.2
+* Ported to 1.19.3
 
 # 1.4.1
 
