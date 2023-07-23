@@ -17,7 +17,7 @@ public class ItemPropertyOverwrite {
             if (split.length == 2) {
                 Optional<ExtendedArmorMaterial> found = Items.items.values().stream()
                         .map(Supplier::get)
-                        .filter(i -> i instanceof ExtendedArmorItem)
+                        .filter(ExtendedArmorItem.class::isInstance)
                         .map(i -> ((ExtendedArmorItem)i).getMaterial())
                         .filter(i -> i.getName().equals(split[0])).findAny();
                 if (found.isPresent()) {
@@ -50,10 +50,6 @@ public class ItemPropertyOverwrite {
                         case "enchantability" -> {
                             backup.putIfAbsent(entry.getKey(), (float)material.getEnchantability());
                             material.enchantability(entry.getValue().intValue());
-                        }
-                        case "durabilityMultiplier" -> {
-                            backup.putIfAbsent(entry.getKey(), (float)material.getDurabilityMultiplier());
-                            material.durabilityMultiplier(entry.getValue().intValue());
                         }
                         default -> Config.LOGGER.error("Armor property " + split[1] + " for item " + split[0] + " does not exist!");
                     }
