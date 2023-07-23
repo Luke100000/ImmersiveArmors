@@ -1,3 +1,7 @@
+# 1.5.1
+
+* Switched to bytebuffer packets
+
 # 1.5.0
 
 * Synced codebase, 1.16.5, 1.18.2 and 1.19.2 are now nearly identical again
