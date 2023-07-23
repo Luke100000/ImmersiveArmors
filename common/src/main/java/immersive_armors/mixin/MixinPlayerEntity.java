@@ -18,7 +18,8 @@ public abstract class MixinPlayerEntity {
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
-    @Shadow public abstract boolean isMainPlayer();
+    @Shadow
+    public abstract boolean isMainPlayer();
 
     @Inject(method = "isPartVisible", at = @At("HEAD"), cancellable = true)
     public void immersiveArmors$injectIsPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
@@ -50,10 +51,8 @@ public abstract class MixinPlayerEntity {
 
         if (index >= 0) {
             ItemStack stack = getEquippedStack(slot);
-            if (stack.getItem() instanceof ExtendedArmorItem armorItem) {
-                if (armorItem.getMaterial().shouldHideSecondLayer()[index]) {
-                    cir.setReturnValue(false);
-                }
+            if (stack.getItem() instanceof ExtendedArmorItem armorItem && armorItem.getMaterial().shouldHideSecondLayer()[index]) {
+                cir.setReturnValue(false);
             }
         }
     }

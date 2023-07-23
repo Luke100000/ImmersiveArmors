@@ -27,28 +27,22 @@ public abstract class MixinLivingEntity extends Entity {
     private float apply(EquipmentSlot slot, DamageSource source, float amount) {
         ItemStack stack = this.getEquippedStack(slot);
 
-        if (stack != null) {
-            if (stack.getItem() instanceof ExtendedArmorItem armor) {
-                //noinspection ConstantConditions
-                if ((Entity)this instanceof LivingEntity) {
-                    amount = armor.applyArmorToDamage((LivingEntity)((Entity)this), source, amount, stack);
-                }
-            }
+        //noinspection ConstantConditions
+        if (stack != null && stack.getItem() instanceof ExtendedArmorItem armor && (Entity) this instanceof LivingEntity livingEntity) {
+            amount = armor.applyArmorToDamage(livingEntity, source, amount, stack);
         }
+
         return amount;
     }
 
     private float applyToAttacker(LivingEntity attacker, EquipmentSlot slot, DamageSource source, float amount) {
         ItemStack stack = attacker.getEquippedStack(slot);
 
-        if (stack != null) {
-            if (stack.getItem() instanceof ExtendedArmorItem armor) {
-                //noinspection ConstantConditions
-                if ((Entity)this instanceof LivingEntity) {
-                    amount = armor.applyArmorToAttack((LivingEntity)((Entity)this), source, amount, stack);
-                }
-            }
+        //noinspection ConstantConditions
+        if (stack != null && stack.getItem() instanceof ExtendedArmorItem armor && (Entity) this instanceof LivingEntity livingEntity) {
+            amount = armor.applyArmorToAttack(livingEntity, source, amount, stack);
         }
+
         return amount;
     }
 
@@ -60,9 +54,9 @@ public abstract class MixinLivingEntity extends Entity {
     }
 
     @ModifyArg(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
-               at = @At(value = "INVOKE",
-                        target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"),
-               index = 1)
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"),
+            index = 1)
     public float immersiveArmors$modifyArgs(float amount) {
         amount = apply(EquipmentSlot.HEAD, source, amount);
         amount = apply(EquipmentSlot.CHEST, source, amount);
@@ -70,11 +64,11 @@ public abstract class MixinLivingEntity extends Entity {
         amount = apply(EquipmentSlot.FEET, source, amount);
 
         Entity attacker = source.getAttacker();
-        if (attacker instanceof LivingEntity) {
-            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.HEAD, source, amount);
-            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.CHEST, source, amount);
-            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.LEGS, source, amount);
-            amount = applyToAttacker((LivingEntity)attacker, EquipmentSlot.FEET, source, amount);
+        if (attacker instanceof LivingEntity livingAttacker) {
+            amount = applyToAttacker(livingAttacker, EquipmentSlot.HEAD, source, amount);
+            amount = applyToAttacker(livingAttacker, EquipmentSlot.CHEST, source, amount);
+            amount = applyToAttacker(livingAttacker, EquipmentSlot.LEGS, source, amount);
+            amount = applyToAttacker(livingAttacker, EquipmentSlot.FEET, source, amount);
         }
 
         return amount;
