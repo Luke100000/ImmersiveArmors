@@ -13,11 +13,9 @@ import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-public class JsonConfig implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 9132405079466337851L;
-
+public class JsonConfig {
     public static final Logger LOGGER = LogManager.getLogger();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public int version = 0;
 
@@ -50,18 +48,24 @@ public class JsonConfig implements Serializable {
     public void save() {
         try (FileWriter writer = new FileWriter(getConfigFile())) {
             version = getVersion();
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(this, writer);
+            writer.write(toJsonString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public String toJsonString() {
+        return GSON.toJson(this);
+    }
+
+    public static Config fromJsonString(String string) {
+        return GSON.fromJson(string, Config.class);
+    }
+
     public static Config loadOrCreate() {
         if (getConfigFile().exists()) {
             try (FileReader reader = new FileReader(getConfigFile())) {
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                Config config = gson.fromJson(reader, Config.class);
+                Config config = GSON.fromJson(reader, Config.class);
                 if (config.version != config.getVersion()) {
                     config = new Config();
                 }
@@ -69,7 +73,7 @@ public class JsonConfig implements Serializable {
                 return config;
             } catch (Exception e) {
                 LOGGER.error("Failed to load Immersive Armors config! Default config is used for now. Delete the file to reset.");
-                e.printStackTrace();
+                LOGGER.error(e);
                 return new Config();
             }
         } else {
