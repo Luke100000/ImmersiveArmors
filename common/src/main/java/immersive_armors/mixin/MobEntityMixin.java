@@ -18,10 +18,10 @@ import java.util.function.Supplier;
 
 @Mixin(MobEntity.class)
 public class MobEntityMixin {
+    private static final Random random = new Random();
+
     @Inject(method = "getEquipmentForSlot(Lnet/minecraft/entity/EquipmentSlot;I)Lnet/minecraft/item/Item;", at = @At("HEAD"), cancellable = true)
     private static void immersiveArmors$injectGetEquipmentForSlot(EquipmentSlot equipmentSlot, int equipmentLevel, CallbackInfoReturnable<Item> cir) {
-        Random random = new Random();
-
         final Map<Integer, ExtendedArmorMaterial> items = new HashMap<>() {{
             put(0, Items.WOODEN_ARMOR);
             put(1, Items.WARRIOR_ARMOR);
