@@ -1,3 +1,8 @@
+# 1.5.6
+
+* Migrated to fabric armor rendering
+    * This may solve some mod conflicts
+
 # 1.5.5
 
 * No crashes on Bukkit implementations, but reduced features
