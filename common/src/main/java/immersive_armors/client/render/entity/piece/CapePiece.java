@@ -30,14 +30,6 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/cape" + (overlay ? "_overlay" : "") + ".png");
     }
 
-    private Vec3d predictPosition(Entity entity, float tickDelta) {
-        return new Vec3d(
-                MathHelper.lerp(tickDelta, entity.prevX, entity.getX()),
-                MathHelper.lerp(tickDelta, entity.prevY, entity.getY()),
-                MathHelper.lerp(tickDelta, entity.prevZ, entity.getZ())
-        );
-    }
-
     public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem armor) {
             //update cape motion
@@ -66,18 +58,18 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
                 matrices.translate(0.0, 0.25, 0.0);
             }
 
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((float)(6.0F + r / 2.0F + q)));
-            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)(s / 2.0F)));
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float)(180.0F - s / 2.0F)));
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((float) (6.0F + r / 2.0F + q)));
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) (s / 2.0F)));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float) (180.0F - s / 2.0F)));
 
             model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
             VertexConsumer vertexConsumer;
             if (isColored()) {
-                int i = ((DyeableItem)armor).getColor(itemStack);
-                float red = (float)(i >> 16 & 255) / 255.0F;
-                float green = (float)(i >> 8 & 255) / 255.0F;
-                float blue = (float)(i & 255) / 255.0F;
+                int i = ((DyeableItem) armor).getColor(itemStack);
+                float red = (float) (i >> 16 & 255) / 255.0F;
+                float green = (float) (i >> 8 & 255) / 255.0F;
+                float blue = (float) (i & 255) / 255.0F;
 
                 vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
                 model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0f);
@@ -91,7 +83,9 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         }
     }
 
-    private class CapeAngles {
+    private static class CapeAngles {
+        private static final String ANGLE_TAG = "capeAngles";
+
         private double capeX;
         private double capeY;
         private double capeZ;
@@ -100,26 +94,34 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
         private double deltaZ;
         private float lastTickDelta;
 
+        private Vec3d predictPosition(Entity entity, float tickDelta) {
+            return new Vec3d(
+                    MathHelper.lerp(tickDelta, entity.prevX, entity.getX()),
+                    MathHelper.lerp(tickDelta, entity.prevY, entity.getY()),
+                    MathHelper.lerp(tickDelta, entity.prevZ, entity.getZ())
+            );
+        }
+
         private void updateCapeAngles(Entity entity, float tickDelta) {
             Vec3d pos = predictPosition(entity, tickDelta);
 
-            double deltaX = pos.getX() - capeX;
-            double deltaY = pos.getY() - capeY;
-            double deltaZ = pos.getZ() - capeZ;
+            double dx = pos.getX() - capeX;
+            double dy = pos.getY() - capeY;
+            double dz = pos.getZ() - capeZ;
 
-            if (deltaX > 10.0D || deltaX < -10D) {
+            if (dx > 10.0D || dx < -10D) {
                 this.capeX = pos.getX();
-                deltaX = 0;
+                dx = 0;
             }
 
-            if (deltaY > 10.0D || deltaY < -10D) {
+            if (dy > 10.0D || dy < -10D) {
                 this.capeY = pos.getY();
-                deltaY = 0;
+                dy = 0;
             }
 
-            if (deltaZ > 10.0D || deltaZ < -10D) {
+            if (dz > 10.0D || dz < -10D) {
                 this.capeZ = pos.getZ();
-                deltaZ = 0;
+                dz = 0;
             }
 
             float delta = tickDelta - lastTickDelta;
@@ -129,9 +131,9 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
             delta *= 0.25f;
             lastTickDelta = tickDelta;
 
-            this.capeX += deltaX * delta;
-            this.capeZ += deltaZ * delta;
-            this.capeY += deltaY * delta;
+            this.capeX += dx * delta;
+            this.capeZ += dz * delta;
+            this.capeY += dy * delta;
 
             this.deltaX = capeX - pos.getX();
             this.deltaY = capeY - pos.getY();
@@ -140,8 +142,8 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
 
         public CapeAngles(ItemStack cape) {
             NbtCompound tag = cape.getOrCreateNbt();
-            if (tag.contains("capeAngles")) {
-                NbtCompound angles = tag.getCompound("capeAngles");
+            if (tag.contains(ANGLE_TAG)) {
+                NbtCompound angles = tag.getCompound(ANGLE_TAG);
                 capeX = angles.getDouble("capeX");
                 capeY = angles.getDouble("capeY");
                 capeZ = angles.getDouble("capeZ");
@@ -156,7 +158,7 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
             angles.putDouble("capeY", capeY);
             angles.putDouble("capeZ", capeZ);
             angles.putFloat("lastTickDelta", lastTickDelta);
-            tag.put("capeAngles", angles);
+            tag.put(ANGLE_TAG, angles);
         }
     }
 }

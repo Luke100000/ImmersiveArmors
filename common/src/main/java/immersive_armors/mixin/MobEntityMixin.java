@@ -18,10 +18,10 @@ import java.util.function.Supplier;
 
 @Mixin(MobEntity.class)
 public class MobEntityMixin {
+    private static final Random equipmentRandom = new Random();
+
     @Inject(method = "getEquipmentForSlot(Lnet/minecraft/entity/EquipmentSlot;I)Lnet/minecraft/item/Item;", at = @At("HEAD"), cancellable = true)
     private static void immersiveArmors$injectGetEquipmentForSlot(EquipmentSlot equipmentSlot, int equipmentLevel, CallbackInfoReturnable<Item> cir) {
-        Random random = new Random();
-
         final Map<Integer, ExtendedArmorMaterial> items = new HashMap<>() {{
             put(0, Items.WOODEN_ARMOR);
             put(1, Items.WARRIOR_ARMOR);
@@ -30,7 +30,7 @@ public class MobEntityMixin {
             put(4, Items.PRISMARINE_ARMOR);
         }};
 
-        if (items.containsKey(equipmentLevel) && random.nextFloat() < Config.getInstance().mobEntityUseImmersiveArmorChance) {
+        if (items.containsKey(equipmentLevel) && equipmentRandom.nextFloat() < Config.getInstance().mobEntityUseImmersiveArmorChance) {
             String name = items.get(equipmentLevel).getName();
 
             Supplier<Item> item = switch (equipmentSlot) {

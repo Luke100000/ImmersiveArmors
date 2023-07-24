@@ -4,7 +4,7 @@ Most fields should be self-explanatory, except those topics:
 
 ## Toggle armors
 
-`enabledArmors` is a mapping, toggling armor. Since armor creation works at launch time, this can not be synced with the client. That means, if a client has the armor enabled and the server not, you may cause confusion as items appear craftable but are not.
+`enabledArmors` is a mapping, toggling armor. Since armor creation works at launch time, this cannot be synced with the client. That means, if a client has the armor enabled and the server not, you may cause confusion as items appear craftable but are not.
 
 If an armor is disabled on the client and not on the server, you will get rejected.
 
@@ -34,7 +34,6 @@ Valid properties are:
 * weight
 * toughness
 * enchantability
-* durabilityMultiplier
 
 If an entry is invalid, it will be printed in the log.
 
