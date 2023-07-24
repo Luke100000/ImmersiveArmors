@@ -44,7 +44,7 @@ public class ItemPiece extends Piece {
         if (rotation != null) {
             matrices.multiply(rotation);
         }
-        MinecraftClient.getInstance().getItemRenderer().renderItem(entity, stack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, entity.world, light, OverlayTexture.DEFAULT_UV, 0);
+        MinecraftClient.getInstance().getItemRenderer().renderItem(entity, stack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, entity.getWorld(), light, OverlayTexture.DEFAULT_UV, 0);
         matrices.pop();
     }
 }

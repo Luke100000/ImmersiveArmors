@@ -1,4 +1,4 @@
-package immersive_armors.armorEffects;
+package immersive_armors.armor_effects;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -7,16 +7,15 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BouncingArmorEffect extends ArmorEffect {
-    private final float strength;
+public class SpikesArmorEffect extends ArmorEffect {
+    private final int strength;
 
-    public BouncingArmorEffect(float strength) {
+    public SpikesArmorEffect(int strength) {
         this.strength = strength;
     }
 
@@ -24,17 +23,18 @@ public class BouncingArmorEffect extends ArmorEffect {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(Text.translatable("armorEffect.bounceback", (int)(strength * 100)).formatted(Formatting.GREEN));
+        tooltip.add(Text.translatable("armorEffect.spikes", strength).formatted(Formatting.RED));
     }
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        Entity attacker = source.getAttacker();
-        if (attacker != null && !source.isIndirect()) {
-            Vec3d direction = attacker.getPos().subtract(entity.getPos()).normalize().multiply(strength);
-            Vec3d velocity = attacker.getVelocity();
-            attacker.setVelocity(velocity.add(direction));
+        if (isPrimaryArmor(armor, entity) && !source.isIndirect()) {
+            Entity attacker = source.getAttacker();
+            if (attacker != null) {
+                attacker.damage(entity.getWorld().getDamageSources().thorns(entity), strength * getSetCount(armor));
+            }
         }
+
         return amount;
     }
 }

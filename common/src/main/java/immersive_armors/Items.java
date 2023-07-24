@@ -1,6 +1,6 @@
 package immersive_armors;
 
-import immersive_armors.armorEffects.*;
+import immersive_armors.armor_effects.*;
 import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.config.Config;
 import immersive_armors.item.DyeableExtendedArmorItem;

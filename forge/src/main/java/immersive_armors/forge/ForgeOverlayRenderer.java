@@ -18,12 +18,12 @@ public class ForgeOverlayRenderer extends InGameHud {
         super(client, itemRenderer);
     }
 
-    private final static Identifier NamedGuiIdentifier = new Identifier("minecraft:hotbar");
+    private static final Identifier NamedGuiIdentifier = new Identifier("minecraft:hotbar");
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void renderOverlay(RenderGuiOverlayEvent.Post event) {
         if (event.getOverlay().id().equals(NamedGuiIdentifier)) {
-            OverlayRenderer.renderOverlay(event.getPoseStack());
+            OverlayRenderer.renderOverlay(event.getGuiGraphics());
         }
     }
 }

@@ -1,6 +1,6 @@
 package immersive_armors.network.c2s;
 
-import immersive_armors.armorEffects.ArmorEffect;
+import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.cobalt.network.Message;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +33,7 @@ public class ArmorCommandMessage extends Message {
         ItemStack stack = player.getInventory().getStack(slot);
         if (stack.getItem() instanceof ExtendedArmorItem item) {
             for (ArmorEffect e : item.getMaterial().getEffects()) {
-                e.receiveCommand(stack, player.world, player, slot, command);
+                e.receiveCommand(stack, player.getWorld(), player, slot, command);
             }
         }
     }

@@ -1,4 +1,4 @@
-package immersive_armors.armorEffects;
+package immersive_armors.armor_effects;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class DivineArmorEffect extends ArmorEffect {
+    private static final String LAST_DIVINE = "last_divine";
+
     private final long cooldown;
 
     public DivineArmorEffect(long cooldown) {
@@ -22,7 +24,7 @@ public class DivineArmorEffect extends ArmorEffect {
 
     private boolean isCharged(long time, ItemStack armor) {
         NbtCompound tag = armor.getOrCreateNbt();
-        return (!tag.contains("last_divine") || tag.getLong("last_divine") + cooldown < time) && getSetCount(armor) == 4;
+        return (!tag.contains(LAST_DIVINE) || tag.getLong(LAST_DIVINE) + cooldown < time) && getSetCount(armor) == 4;
     }
 
     @Override
@@ -44,11 +46,11 @@ public class DivineArmorEffect extends ArmorEffect {
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         if (isPrimaryArmor(armor, entity)) {
-            long time = entity.world.getTime();
+            long time = entity.getWorld().getTime();
             boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
             if (charged) {
-                entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, entity.getSoundCategory(), 0.5f, 1.25f);
-                getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateNbt().putLong("last_divine", time));
+                entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, entity.getSoundCategory(), 0.5f, 1.25f);
+                getMatchingEquippedArmor(entity, armor).forEach(a -> a.getOrCreateNbt().putLong(LAST_DIVINE, time));
                 return 0;
             }
         }

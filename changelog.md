@@ -1,3 +1,7 @@
+# 1.6.0
+
+* Ported to 1.20.1
+
 # 1.5.6
 
 * Migrated to fabric armor rendering

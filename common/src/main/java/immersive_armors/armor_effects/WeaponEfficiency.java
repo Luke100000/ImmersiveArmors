@@ -1,4 +1,4 @@
-package immersive_armors.armorEffects;
+package immersive_armors.armor_effects;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;

@@ -1,7 +1,7 @@
 package immersive_armors.item;
 
 import immersive_armors.Main;
-import immersive_armors.armorEffects.ArmorEffect;
+import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;

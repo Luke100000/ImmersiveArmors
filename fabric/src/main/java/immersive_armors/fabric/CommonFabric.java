@@ -29,7 +29,7 @@ public final class CommonFabric implements ModInitializer {
         Items.bootstrap();
         Messages.bootstrap();
 
-        ItemGroups.ARMOR = FabricItemGroup.builder(ItemGroups.getIdentifier())
+        ItemGroups.ARMOR = FabricItemGroup.builder()
                 .displayName(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
                 .entries((enabledFeatures, entries) -> entries.addAll(Items.getSortedItems()))

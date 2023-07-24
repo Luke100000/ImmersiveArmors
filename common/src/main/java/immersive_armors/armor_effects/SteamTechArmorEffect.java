@@ -1,4 +1,4 @@
-package immersive_armors.armorEffects;
+package immersive_armors.armor_effects;
 
 import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.network.c2s.ArmorCommandMessage;
@@ -56,7 +56,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
                 createSteamParticle(entity);
 
                 if (entity.age % 5 == 0) {
-                    entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.1f, 1.0f);
+                    entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.1f, 1.0f);
                 }
             }
         }
@@ -70,7 +70,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
                     le.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 5));
                     if (!sound[0]) {
                         sound[0] = true;
-                        entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, entity.getSoundCategory(), 0.25f, 3f);
+                        entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, entity.getSoundCategory(), 0.25f, 3f);
                     }
                 }
             });
@@ -97,7 +97,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
     }
 
     private void createSteamParticle(LivingEntity entity) {
-        entity.world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+        entity.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                 entity.getParticleX(0.5D),
                 entity.getY() - 0.25,
                 entity.getParticleZ(0.5D),
@@ -128,7 +128,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
             createSteamParticle(entity);
         }
 
-        entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.25f, 0.75f);
+        entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, entity.getSoundCategory(), 0.25f, 0.75f);
     }
 
     private EquipmentSlot getEquipmentSlot(ItemStack stack) {

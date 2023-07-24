@@ -3,7 +3,7 @@ package immersive_armors.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
-import immersive_armors.armorEffects.ArmorEffect;
+import immersive_armors.armor_effects.ArmorEffect;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
