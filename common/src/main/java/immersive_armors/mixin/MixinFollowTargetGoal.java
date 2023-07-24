@@ -23,10 +23,8 @@ public abstract class MixinFollowTargetGoal extends TrackTargetGoal {
         if (mob instanceof AbstractSkeletonEntity && mob.getTarget() instanceof PlayerEntity player) {
             int pieces = 0;
             for (ItemStack item : player.getArmorItems()) {
-                if (item.getItem() instanceof ExtendedArmorItem armor) {
-                    if (armor.getMaterial().isAntiSkeleton()) {
-                        pieces++;
-                    }
+                if (item.getItem() instanceof ExtendedArmorItem armor && armor.getMaterial().isAntiSkeleton()) {
+                    pieces++;
                 }
             }
             if (pieces >= 4) {

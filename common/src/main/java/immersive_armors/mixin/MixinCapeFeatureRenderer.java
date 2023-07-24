@@ -19,10 +19,8 @@ public class MixinCapeFeatureRenderer {
     void immersiveArmors$render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, AbstractClientPlayerEntity abstractClientPlayerEntity, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
         if (abstractClientPlayerEntity.canRenderCapeTexture() && !abstractClientPlayerEntity.isInvisible() && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE) && abstractClientPlayerEntity.getCapeTexture() != null) {
             ItemStack itemStack = abstractClientPlayerEntity.getEquippedStack(EquipmentSlot.CHEST);
-            if (itemStack.getItem() instanceof ExtendedArmorItem) {
-                if (((ExtendedArmorItem)itemStack.getItem()).getMaterial().shouldHideCape()) {
-                    ci.cancel();
-                }
+            if (itemStack.getItem() instanceof ExtendedArmorItem && ((ExtendedArmorItem) itemStack.getItem()).getMaterial().shouldHideCape()) {
+                ci.cancel();
             }
         }
     }

@@ -14,7 +14,7 @@ public class Registration {
         return INSTANCE.register(registry, id, obj);
     }
 
-    public static abstract class Impl {
+    public abstract static class Impl {
         protected Impl() {
             INSTANCE = this;
         }
