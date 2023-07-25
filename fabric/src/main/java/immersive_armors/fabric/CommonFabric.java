@@ -2,6 +2,7 @@ package immersive_armors.fabric;
 
 import immersive_armors.ItemGroups;
 import immersive_armors.Items;
+import immersive_armors.Main;
 import immersive_armors.Messages;
 import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.config.Config;
@@ -13,9 +14,12 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -29,11 +33,13 @@ public final class CommonFabric implements ModInitializer {
         Items.bootstrap();
         Messages.bootstrap();
 
-        ItemGroups.ARMOR = FabricItemGroup.builder()
+        ItemGroup group = FabricItemGroup.builder()
                 .displayName(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
                 .entries((enabledFeatures, entries) -> entries.addAll(Items.getSortedItems()))
                 .build();
+
+        Registry.register(Registries.ITEM_GROUP, Main.locate("group"), group);
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 NetworkHandler.sendToPlayer(new SettingsMessage(), handler.player)
