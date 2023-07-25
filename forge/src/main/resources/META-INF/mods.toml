@@ -25,6 +25,6 @@ side = "BOTH"
 [[dependencies.immersive_armors]]
 modId = "forge"
 mandatory = true
-versionRange = "[47.1.42,)"
+versionRange = "[47.1.0,)"
 ordering = "NONE"
 side = "BOTH"
