@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Elmo steampunk",
   "item.immersive_armors.steampunk_chestplate": "Corazza steampunk",
   "item.immersive_armors.steampunk_leggings": "Gambali steampunk",
-  "item.immersive_armors.steampunk_boots": "Stivali steampunk"
+  "item.immersive_armors.steampunk_boots": "Stivali steampunk",
+  "option.immersive_armors.general": "Opzioni generali",
+  "option.immersive_armors.whitelist": "Whitelist degli articoli",
+  "option.immersive_armors.hudClockX": "Offset X dell'orologio HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Offset X dell'orologio HUD con l'offhand utilizzato.",
+  "option.immersive_armors.hudClockY": "Offset Y dell'orologio HUD.",
+  "option.immersive_armors.hudCompassX": "Offset X della bussola dell'HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Offset X dell'orologio HUD con l'offhand utilizzato.",
+  "option.immersive_armors.hudCompassY": "Offset Y della bussola dell'HUD.",
+  "option.immersive_armors.lootChance": "Possibilità di trovare l'Armatura Immersiva nel bottino.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Possibilità che l'entità indossi un'Armatura Immersiva."
 }
