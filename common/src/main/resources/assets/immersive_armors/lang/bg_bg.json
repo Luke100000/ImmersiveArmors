@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk шлем",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Стиймпънк гамаши",
-  "item.immersive_armors.steampunk_boots": "Steampunk ботуши"
+  "item.immersive_armors.steampunk_boots": "Steampunk ботуши",
+  "option.immersive_armors.general": "Общи опции",
+  "option.immersive_armors.whitelist": "Бял списък на елементите",
+  "option.immersive_armors.hudClockX": "X отместване на часовника HUD.",
+  "option.immersive_armors.hudClockXOffhand": "X отместване на часовника HUD с използвана офанзива.",
+  "option.immersive_armors.hudClockY": "Y отместване на часовника HUD.",
+  "option.immersive_armors.hudCompassX": "X отместване на компаса на HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "X отместване на часовника HUD с използвана офанзива.",
+  "option.immersive_armors.hudCompassY": "Y отместване на компаса на HUD.",
+  "option.immersive_armors.lootChance": "Вероятност да намерите броня Immersive Armor в плячката.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Шанс на субекта да носи потапяща броня."
 }
