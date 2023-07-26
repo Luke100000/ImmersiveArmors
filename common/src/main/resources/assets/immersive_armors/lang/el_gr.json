@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk κράνος",
   "item.immersive_armors.steampunk_chestplate": "Steampunk θώρακα",
   "item.immersive_armors.steampunk_leggings": "Steampunk κολάν",
-  "item.immersive_armors.steampunk_boots": "Μπότες Steampunk"
+  "item.immersive_armors.steampunk_boots": "Μπότες Steampunk",
+  "option.immersive_armors.general": "Γενικές επιλογές",
+  "option.immersive_armors.whitelist": "Λευκή λίστα στοιχείων",
+  "option.immersive_armors.hudClockX": "Μετατόπιση Χ του ρολογιού HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Μετατόπιση Χ του ρολογιού του HUD με τη χρήση του offhand.",
+  "option.immersive_armors.hudClockY": "Μετατόπιση Y του ρολογιού HUD.",
+  "option.immersive_armors.hudCompassX": "Μετατόπιση Χ της πυξίδας του HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Μετατόπιση Χ του ρολογιού του HUD με τη χρήση του offhand.",
+  "option.immersive_armors.hudCompassY": "Μετατόπιση Υ της πυξίδας του HUD.",
+  "option.immersive_armors.lootChance": "Πιθανότητα εύρεσης Immersive Armor στα λάφυρα.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Πιθανότητα η οντότητα να φοράει Immersive Armor."
 }
