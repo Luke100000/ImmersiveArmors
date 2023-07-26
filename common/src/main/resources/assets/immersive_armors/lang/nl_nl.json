@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helm",
   "item.immersive_armors.steampunk_chestplate": "Steampunk borstplaat",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Laarzen"
+  "item.immersive_armors.steampunk_boots": "Steampunk Laarzen",
+  "option.immersive_armors.general": "Algemene opties",
+  "option.immersive_armors.whitelist": "Item witte lijst",
+  "option.immersive_armors.hudClockX": "X offset van de HUD klok.",
+  "option.immersive_armors.hudClockXOffhand": "X-offset van de HUD-klok met gebruikte offhand.",
+  "option.immersive_armors.hudClockY": "Y-offset van de HUD klok.",
+  "option.immersive_armors.hudCompassX": "X-offset van het HUD-kompas.",
+  "option.immersive_armors.hudCompassXOffhand": "X-offset van de HUD-klok met gebruikte offhand.",
+  "option.immersive_armors.hudCompassY": "Y-offset van het HUD-kompas.",
+  "option.immersive_armors.lootChance": "Kans om Immersive Armor te vinden in de buit.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Kans dat de entiteit een Immersieve Armor draagt."
 }
