@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helmet",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk Leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Boots"
+  "item.immersive_armors.steampunk_boots": "Steampunk Boots",
+  "option.immersive_armors.general": "Opcje ogólne",
+  "option.immersive_armors.whitelist": "Biała lista pozycji",
+  "option.immersive_armors.hudClockX": "Przesunięcie X zegara HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Przesunięcie X zegara HUD z używaną ręką.",
+  "option.immersive_armors.hudClockY": "Przesunięcie Y zegara HUD.",
+  "option.immersive_armors.hudCompassX": "Przesunięcie X kompasu HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Przesunięcie X zegara HUD z używaną ręką.",
+  "option.immersive_armors.hudCompassY": "Przesunięcie Y kompasu HUD.",
+  "option.immersive_armors.lootChance": "Szansa na znalezienie pancerza immersyjnego w łupach.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Szansa na noszenie pancerza immersyjnego przez istotę."
 }
