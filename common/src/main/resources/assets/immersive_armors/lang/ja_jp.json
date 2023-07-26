@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "スチームパンクヘルメット",
   "item.immersive_armors.steampunk_chestplate": "スチームパンクチェストプレート",
   "item.immersive_armors.steampunk_leggings": "スチームパンクレギンス",
-  "item.immersive_armors.steampunk_boots": "スチームパンクブーツ"
+  "item.immersive_armors.steampunk_boots": "スチームパンクブーツ",
+  "option.immersive_armors.general": "一般の設定",
+  "option.immersive_armors.whitelist": "アイテムのホワイトリスト",
+  "option.immersive_armors.hudClockX": "HUDクロックのXオフセット。",
+  "option.immersive_armors.hudClockXOffhand": "オフハンドで使用するHUDクロックのXオフセット。",
+  "option.immersive_armors.hudClockY": "HUDクロックのYオフセット。",
+  "option.immersive_armors.hudCompassX": "HUDコンパスのXオフセット。",
+  "option.immersive_armors.hudCompassXOffhand": "オフハンドで使用するHUDクロックのXオフセット。",
+  "option.immersive_armors.hudCompassY": "HUDコンパスのYオフセット。",
+  "option.immersive_armors.lootChance": "戦利品からImmersive Armorを発見する確率。",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "確率で没入型アーマーを着用する。"
 }
