@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helmet",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk Leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Boots"
+  "item.immersive_armors.steampunk_boots": "Steampunk Boots",
+  "option.immersive_armors.general": "Allgemeine Optionen",
+  "option.immersive_armors.whitelist": "Artikel Whitelist",
+  "option.immersive_armors.hudClockX": "X-Offset der HUD-Uhr.",
+  "option.immersive_armors.hudClockXOffhand": "X-Offset der HUD-Uhr mit verwendeter Offhand.",
+  "option.immersive_armors.hudClockY": "Y-Offset der HUD-Uhr.",
+  "option.immersive_armors.hudCompassX": "X-Offset des HUD-Kompasses.",
+  "option.immersive_armors.hudCompassXOffhand": "X-Offset der HUD-Uhr mit verwendeter Offhand.",
+  "option.immersive_armors.hudCompassY": "Y-Versatz des HUD-Kompasses.",
+  "option.immersive_armors.lootChance": "Chance, Immersive Rüstung in der Beute zu finden.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Chance, dass das Wesen eine immersive Rüstung trägt."
 }
