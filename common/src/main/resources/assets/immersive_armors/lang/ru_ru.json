@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Стимпанковый шлем",
   "item.immersive_armors.steampunk_chestplate": "Стимпанковый нагрудник",
   "item.immersive_armors.steampunk_leggings": "Стимпанковые поножи",
-  "item.immersive_armors.steampunk_boots": "Стимпанковые ботинки"
+  "item.immersive_armors.steampunk_boots": "Стимпанковые ботинки",
+  "option.immersive_armors.general": "Общие параметры",
+  "option.immersive_armors.whitelist": "Белый список предметов",
+  "option.immersive_armors.hudClockX": "X-смещение часов HUD.",
+  "option.immersive_armors.hudClockXOffhand": "X-смещение часов HUD с используемой оффхендом.",
+  "option.immersive_armors.hudClockY": "Y-смещение часов HUD.",
+  "option.immersive_armors.hudCompassX": "X-смещение компаса HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "X-смещение часов HUD с используемой оффхендом.",
+  "option.immersive_armors.hudCompassY": "Y смещение компаса HUD.",
+  "option.immersive_armors.lootChance": "Шанс найти Immersive Armor в луте.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Шанс того, что сущность наденет Immersive Armor."
 }
