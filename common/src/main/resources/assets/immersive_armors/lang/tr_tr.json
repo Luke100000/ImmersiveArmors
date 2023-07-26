@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Miğfer",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Göğüs Zırhı",
   "item.immersive_armors.steampunk_leggings": "Steampunk Taytlar",
-  "item.immersive_armors.steampunk_boots": "Steampunk Çizmeler"
+  "item.immersive_armors.steampunk_boots": "Steampunk Çizmeler",
+  "option.immersive_armors.general": "Genel Seçenekler",
+  "option.immersive_armors.whitelist": "Öğe Beyaz Listesi",
+  "option.immersive_armors.hudClockX": "HUD saatinin X ofseti.",
+  "option.immersive_armors.hudClockXOffhand": "Kullanılmayan el ile HUD saatinin X ofseti.",
+  "option.immersive_armors.hudClockY": "HUD saatinin Y ofseti.",
+  "option.immersive_armors.hudCompassX": "HUD pusulasının X ofseti.",
+  "option.immersive_armors.hudCompassXOffhand": "Kullanılmayan el ile HUD saatinin X ofseti.",
+  "option.immersive_armors.hudCompassY": "HUD pusulasının Y ofseti.",
+  "option.immersive_armors.lootChance": "Ganimette Sürükleyici Zırh bulma şansı.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Varlığın Sürükleyici Zırh giyme şansı."
 }
