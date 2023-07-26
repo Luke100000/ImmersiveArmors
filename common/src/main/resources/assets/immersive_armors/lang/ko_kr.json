@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helmet",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk Leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Boots"
+  "item.immersive_armors.steampunk_boots": "Steampunk Boots",
+  "option.immersive_armors.general": "일반 옵션",
+  "option.immersive_armors.whitelist": "아이템 화이트리스트",
+  "option.immersive_armors.hudClockX": "HUD 시계의 X 오프셋입니다.",
+  "option.immersive_armors.hudClockXOffhand": "사용한 오프핸드로 HUD 시계의 X 오프셋.",
+  "option.immersive_armors.hudClockY": "HUD 시계의 Y 오프셋입니다.",
+  "option.immersive_armors.hudCompassX": "HUD 나침반의 X 오프셋입니다.",
+  "option.immersive_armors.hudCompassXOffhand": "사용한 오프핸드로 HUD 시계의 X 오프셋.",
+  "option.immersive_armors.hudCompassY": "HUD 나침반의 Y 오프셋입니다.",
+  "option.immersive_armors.lootChance": "전리품에서 몰입 방어구를 발견할 확률.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "개체가 몰입 방어구를 착용할 확률."
 }
