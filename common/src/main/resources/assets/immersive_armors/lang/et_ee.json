@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk kiiver",
   "item.immersive_armors.steampunk_chestplate": "Steampunk rindkate",
   "item.immersive_armors.steampunk_leggings": "Steampunk säärised",
-  "item.immersive_armors.steampunk_boots": "Steampunk saapad"
+  "item.immersive_armors.steampunk_boots": "Steampunk saapad",
+  "option.immersive_armors.general": "Üldised valikud",
+  "option.immersive_armors.whitelist": "Objektide valges nimekirjas",
+  "option.immersive_armors.hudClockX": "HUD-kella X-nihe.",
+  "option.immersive_armors.hudClockXOffhand": "HUD-kella X-nihe koos kasutatud off-handiga.",
+  "option.immersive_armors.hudClockY": "HUD-kella Y-nihe.",
+  "option.immersive_armors.hudCompassX": "HUD-kompassi X-nihe.",
+  "option.immersive_armors.hudCompassXOffhand": "HUD-kella X-nihe koos kasutatud off-handiga.",
+  "option.immersive_armors.hudCompassY": "HUD-kompassi Y-nihe.",
+  "option.immersive_armors.lootChance": "Tõenäosus leida Immersive Armor saagist.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Võimalus, et üksus kannab Immersive Armor'i."
 }
