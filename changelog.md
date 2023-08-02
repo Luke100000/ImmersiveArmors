@@ -1,7 +1,3 @@
-# 1.0.1
-
-* Removed unused code
-
 # 1.0.0
 
 * Bone Armor
@@ -66,3 +62,7 @@
 
 * Fixed armor not rendering on forge
 * Fixed first person sleeve not showing
+
+# 1.3.4
+
+* Removed dead code
