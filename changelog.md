@@ -1,3 +1,7 @@
+# 1.0.1
+
+* Removed unused code
+
 # 1.0.0
 
 * Bone Armor
