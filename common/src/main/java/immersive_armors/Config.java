@@ -3,13 +3,13 @@ package immersive_armors;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
-public final class Config implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 9132405079466337851L;
-
+public final class Config {
     private static final Config INSTANCE = loadOrCreate();
 
     public static Config getInstance() {
@@ -21,6 +21,7 @@ public final class Config implements Serializable {
     public final boolean hideSecondLayerUnderArmor = true;
 
     public final HashMap<String, Boolean> enabledArmors = new HashMap<>();
+
     {
         enabledArmors.put("bone", true);
         enabledArmors.put("wither", true);
