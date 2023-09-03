@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 issueTrackerURL = "https://github.com/Luke100000/ImmersiveArmors/issues"
-license = "GNU"
+license = "GPL-3.0-only"
 
 [[mods]]
 modId = "immersive_armors"
