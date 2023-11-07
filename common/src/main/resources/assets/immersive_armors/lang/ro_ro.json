@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Cască Steampunk",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Jambiere Steampunk",
-  "item.immersive_armors.steampunk_boots": "Cizme Steampunk"
+  "item.immersive_armors.steampunk_boots": "Cizme Steampunk",
+  "option.immersive_armors.general": "Opțiuni generale",
+  "option.immersive_armors.whitelist": "Lista albă a elementelor",
+  "option.immersive_armors.hudClockX": "Decalajul X al ceasului HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Decalajul X al ceasului HUD cu mâna liberă utilizată.",
+  "option.immersive_armors.hudClockY": "Decalajul Y al ceasului HUD.",
+  "option.immersive_armors.hudCompassX": "Decalajul X al busolei HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Decalajul X al ceasului HUD cu mâna liberă utilizată.",
+  "option.immersive_armors.hudCompassY": "Decalajul Y al compasului HUD.",
+  "option.immersive_armors.lootChance": "Șansa de a găsi Armura imersivă în pradă.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Șansa ca entitatea să poarte armura imersivă."
 }

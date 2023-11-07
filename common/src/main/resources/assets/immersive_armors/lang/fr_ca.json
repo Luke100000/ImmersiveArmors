@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helmet",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk Leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Boots"
+  "item.immersive_armors.steampunk_boots": "Steampunk Boots",
+  "option.immersive_armors.general": "Options générales",
+  "option.immersive_armors.whitelist": "Liste blanche des articles",
+  "option.immersive_armors.hudClockX": "Décalage X de l'horloge HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Décalage en X de l'horloge HUD avec la main libre utilisée.",
+  "option.immersive_armors.hudClockY": "Décalage Y de l'horloge HUD.",
+  "option.immersive_armors.hudCompassX": "Décalage X de la boussole HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Décalage en X de l'horloge HUD avec la main libre utilisée.",
+  "option.immersive_armors.hudCompassY": "Décalage Y de la boussole HUD.",
+  "option.immersive_armors.lootChance": "Chance de trouver une armure immersive dans le butin.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Chance que l'entité porte une armure immersive."
 }

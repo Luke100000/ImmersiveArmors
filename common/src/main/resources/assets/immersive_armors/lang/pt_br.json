@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Capacete Steampunk",
   "item.immersive_armors.steampunk_chestplate": "Peitoral Steampunk",
   "item.immersive_armors.steampunk_leggings": "Calças Steampunk",
-  "item.immersive_armors.steampunk_boots": "Botas Steampunk"
+  "item.immersive_armors.steampunk_boots": "Botas Steampunk",
+  "option.immersive_armors.general": "Opções Gerais",
+  "option.immersive_armors.whitelist": "Lista branca de itens",
+  "option.immersive_armors.hudClockX": "Deslocação X do relógio HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Deslocação X do relógio do HUD com a mão livre utilizada.",
+  "option.immersive_armors.hudClockY": "Deslocação Y do relógio HUD.",
+  "option.immersive_armors.hudCompassX": "Deslocação X da bússola do HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Deslocação X do relógio do HUD com a mão livre utilizada.",
+  "option.immersive_armors.hudCompassY": "Deslocação Y da bússola do HUD.",
+  "option.immersive_armors.lootChance": "Probabilidade de encontrar Armadura Imersiva no saque.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Probabilidade de a entidade usar Armadura Imersiva."
 }

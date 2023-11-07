@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunková přilba",
   "item.immersive_armors.steampunk_chestplate": "Steampunkový hrudní plát",
   "item.immersive_armors.steampunk_leggings": "Steampunkové legíny",
-  "item.immersive_armors.steampunk_boots": "Steampunkové boty"
+  "item.immersive_armors.steampunk_boots": "Steampunkové boty",
+  "option.immersive_armors.general": "Obecné možnosti",
+  "option.immersive_armors.whitelist": "Bílá listina položek",
+  "option.immersive_armors.hudClockX": "Posun hodin HUD o X.",
+  "option.immersive_armors.hudClockXOffhand": "Posunutí hodin HUD o X s použitým offhandem.",
+  "option.immersive_armors.hudClockY": "Posun hodin HUD o Y.",
+  "option.immersive_armors.hudCompassX": "Posunutí kompasu HUD o X.",
+  "option.immersive_armors.hudCompassXOffhand": "Posunutí hodin HUD o X s použitým offhandem.",
+  "option.immersive_armors.hudCompassY": "Posunutí Y kompasu HUD.",
+  "option.immersive_armors.lootChance": "Šance na nalezení Immersive Armor v kořisti.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Šance, že entita bude mít na sobě imerzivní zbroj."
 }

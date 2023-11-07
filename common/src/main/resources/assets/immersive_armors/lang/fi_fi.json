@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk kypärä",
   "item.immersive_armors.steampunk_chestplate": "Steampunk rintakilpi",
   "item.immersive_armors.steampunk_leggings": "Steampunk säärystimet",
-  "item.immersive_armors.steampunk_boots": "Steampunk saappaat"
+  "item.immersive_armors.steampunk_boots": "Steampunk saappaat",
+  "option.immersive_armors.general": "Yleiset vaihtoehdot",
+  "option.immersive_armors.whitelist": "Kohteen valittujen kohteiden luettelo",
+  "option.immersive_armors.hudClockX": "HUD-kellon X-välitys.",
+  "option.immersive_armors.hudClockXOffhand": "HUD-kellon X-offset, kun käytetään offhandia.",
+  "option.immersive_armors.hudClockY": "HUD-kellon Y-välitys.",
+  "option.immersive_armors.hudCompassX": "HUD:n kompassin X-välitys.",
+  "option.immersive_armors.hudCompassXOffhand": "HUD-kellon X-offset, kun käytetään offhandia.",
+  "option.immersive_armors.hudCompassY": "HUD-kompassin Y-välitys.",
+  "option.immersive_armors.lootChance": "Mahdollisuus löytää Immersive Armor saaliista.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Mahdollisuus, että entiteetti käyttää Immersive Armor -haarniskaa."
 }

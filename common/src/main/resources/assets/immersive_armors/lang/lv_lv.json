@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk ķivere",
   "item.immersive_armors.steampunk_chestplate": "Steampunk krūšu plāksne",
   "item.immersive_armors.steampunk_leggings": "Steampunk legingi",
-  "item.immersive_armors.steampunk_boots": "Steampunk zābaki"
+  "item.immersive_armors.steampunk_boots": "Steampunk zābaki",
+  "option.immersive_armors.general": "Vispārīgās opcijas",
+  "option.immersive_armors.whitelist": "Priekšmeta baltais saraksts",
+  "option.immersive_armors.hudClockX": "HUD pulksteņa X nobīde.",
+  "option.immersive_armors.hudClockXOffhand": "HUD pulksteņa X nobīde ar izmantoto offhand.",
+  "option.immersive_armors.hudClockY": "HUD pulksteņa Y nobīde.",
+  "option.immersive_armors.hudCompassX": "HUD kompasa X nobīde.",
+  "option.immersive_armors.hudCompassXOffhand": "HUD pulksteņa X nobīde ar izmantoto offhand.",
+  "option.immersive_armors.hudCompassY": "HUD kompasa Y nobīde.",
+  "option.immersive_armors.lootChance": "Iespēja atrast Imersīvās bruņas.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Iespēja, ka vienība valkā Immersive Armor."
 }
