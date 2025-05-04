@@ -5,7 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      MODRINTH_ID: ${{ secrets.MR_PROJECT_ID }}
       MODRINTH_TOKEN: ${{ secrets.MR_API_TOKEN }}
+      CURSEFORGE_ID: ${{ secrets.CF_PROJECT_ID }}
       CURSEFORGE_TOKEN: ${{ secrets.CF_API_TOKEN }}
     if: startsWith(github.ref, 'refs/tags/')
     steps:
@@ -38,9 +40,9 @@ jobs:
         uses: Kir-Antipov/mc-publish@v3.3.0
         if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
         with:
-          modrinth-id: eE2Db4YU
+          modrinth-id: ${{ env.MODRINTH_ID }}
           modrinth-token: ${{ env.MODRINTH_TOKEN }}
-          curseforge-id: 580681
+          curseforge-id: ${{ env.CURSEFORGE_ID }}
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           name: "[Fabric ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
@@ -62,9 +64,9 @@ jobs:
         uses: Kir-Antipov/mc-publish@v3.3.0
         if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
         with:
-          modrinth-id: eE2Db4YU
+          modrinth-id: ${{ env.MODRINTH_ID }}
           modrinth-token: ${{ env.MODRINTH_TOKEN }}
-          curseforge-id: 580681
+          curseforge-id: ${{ env.CURSEFORGE_ID }}
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           name: "[Forge ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
