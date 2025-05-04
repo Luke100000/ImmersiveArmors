@@ -1,5 +1,5 @@
 {
-  "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armors",
+  "itemGroup.immersive_armors.immersive_armors_tab": "Immersive Armours",
   "armorEffect.fireResistance": "%d%% Fire Resistance",
   "armorEffect.explosionResistance": "%d%% Explosion Resistance",
   "armorEffect.magicResistance": "%d%% Magic Resistance",
@@ -12,8 +12,8 @@
   "armorEffect.berserk": "Up to %d%% Damage when injured",
   "armorEffect.weaponEfficiency": "+%d%% Damage with %s",
   "armorEffect.weaponEfficiency.axe": "Axes",
-  "armorEffect.steamTech.head": "A primitive radar shows you the position of close entities",
-  "armorEffect.steamTech.chest": "Never loose track of time again!",
+  "armorEffect.steamTech.head": "A primitive radar shows you the position of nearby entities",
+  "armorEffect.steamTech.chest": "Never lose track of time again!",
   "armorEffect.steamTech.legs": "Discharges the steam tank for a double jump",
   "armorEffect.steamTech.feet": "Uses Steam Jets to avoid fall damage",
   "immersive_armors.dyeable": "Dyeable",
@@ -46,7 +46,7 @@
   "item.immersive_armors.divine_chestplate": "Divine Chestplate",
   "item.immersive_armors.divine_leggings": "Divine Leggings",
   "item.immersive_armors.divine_boots": "Divine Boots",
-  "item.immersive_armors.divine.description": "Can deflect a hit once in a minute",
+  "item.immersive_armors.divine.description": "Can deflect a hit once per minute",
   "item.immersive_armors.prismarine_helmet": "Prismarine Helmet",
   "item.immersive_armors.prismarine_chestplate": "Prismarine Chestplate",
   "item.immersive_armors.prismarine_leggings": "Prismarine Leggings",
@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk Helmet",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk Leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk Boots"
+  "item.immersive_armors.steampunk_boots": "Steampunk Boots",
+  "option.immersive_armors.general": "General Options",
+  "option.immersive_armors.whitelist": "Item Whitelist",
+  "option.immersive_armors.hudClockX": "X offset of the HUD clock.",
+  "option.immersive_armors.hudClockXOffhand": "X offset of the HUD clock with used offhand.",
+  "option.immersive_armors.hudClockY": "Y offset of the HUD clock.",
+  "option.immersive_armors.hudCompassX": "X offset of the HUD compass.",
+  "option.immersive_armors.hudCompassXOffhand": "X offset of the HUD clock with used offhand.",
+  "option.immersive_armors.hudCompassY": "Y offset of the HUD compass.",
+  "option.immersive_armors.lootChance": "Chance of finding Immersive Armour in loot.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Chance of entity wearing Immersive Armour."
 }
