@@ -2,6 +2,7 @@
 
 * Removed `enabledArmors` (Too buggy, use dedicated mods for that)
 * Robe boots now also requires blaze powder to avoid conflicts with other mods
+* Made helmets a bit larger to improve hat layer rendering
 
 # 1.6.1
 

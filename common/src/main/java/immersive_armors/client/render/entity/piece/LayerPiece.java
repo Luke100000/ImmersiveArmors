@@ -2,8 +2,7 @@ package immersive_armors.client.render.entity.piece;
 
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.model.Dilation;
-import net.minecraft.client.model.TexturedModelData;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumer;
@@ -25,7 +24,24 @@ public abstract class LayerPiece extends Piece {
     protected abstract BipedEntityModel<LivingEntity> getModel();
 
     protected static BipedEntityModel<LivingEntity> buildDilatedModel(float dilation) {
-        return new BipedEntityModel<>(TexturedModelData.of(BipedEntityModel.getModelData(new Dilation(dilation), 0.0f), 64, 32).createModel());
+        return buildDilatedModel(dilation, dilation);
+    }
+
+    protected static BipedEntityModel<LivingEntity> buildDilatedModel(float dilation, float headDilation) {
+        return new BipedEntityModel<>(TexturedModelData.of(getHeadAdjustedModelData(new Dilation(dilation), new Dilation(headDilation), 0.0f), 64, 32).createModel());
+    }
+
+    public static ModelData getHeadAdjustedModelData(Dilation dilation, Dilation headDilation, float pivotOffsetY) {
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+        modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation), ModelTransform.pivot(0.0F, 0.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("hat", ModelPartBuilder.create().uv(32, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation.add(0.5F)), ModelTransform.pivot(0.0F, 0.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("body", ModelPartBuilder.create().uv(16, 16).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(0.0F, 0.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("right_arm", ModelPartBuilder.create().uv(40, 16).cuboid(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(-5.0F, 2.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(40, 16).mirrored().cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(5.0F, 2.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("right_leg", ModelPartBuilder.create().uv(0, 16).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(-1.9F, 12.0F + pivotOffsetY, 0.0F));
+        modelPartData.addChild("left_leg", ModelPartBuilder.create().uv(0, 16).mirrored().cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(1.9F, 12.0F + pivotOffsetY, 0.0F));
+        return modelData;
     }
 
     public LayerPiece() {
