@@ -1,11 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "W W",
+    "B B",
     "W W",
     "   "
   ],
   "key": {
+    "B": [
+      {
+        "item": "minecraft:blaze_powder"
+      }
+    ],
     "W": [
       {
         "tag": "minecraft:wool"

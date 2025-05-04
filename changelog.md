@@ -1,6 +1,7 @@
 # 1.7.0
 
 * Removed `enabledArmors` (Too buggy, use dedicated mods for that)
+* Robe boots now also requires blaze powder to avoid conflicts with other mods
 
 # 1.6.1
 
