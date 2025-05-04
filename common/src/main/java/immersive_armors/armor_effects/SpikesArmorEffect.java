@@ -4,6 +4,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -28,7 +29,7 @@ public class SpikesArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (isPrimaryArmor(armor, entity) && !source.isIndirect()) {
+        if (isPrimaryArmor(armor, entity) && !source.isIndirect() && !source.getTypeRegistryEntry().matchesKey(DamageTypes.THORNS)) {
             Entity attacker = source.getAttacker();
             if (attacker != null) {
                 attacker.damage(entity.getWorld().getDamageSources().thorns(entity), strength * getSetCount(armor));
