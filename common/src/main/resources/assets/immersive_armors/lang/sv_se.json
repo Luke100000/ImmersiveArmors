@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Ångpunksglasögon",
   "item.immersive_armors.steampunk_chestplate": "Ångpunksharnesk",
   "item.immersive_armors.steampunk_leggings": "Ångpunksbyxor",
-  "item.immersive_armors.steampunk_boots": "Ångpunksstövlar"
+  "item.immersive_armors.steampunk_boots": "Ångpunksstövlar",
+  "option.immersive_armors.general": "Allmänna inställningar",
+  "option.immersive_armors.whitelist": "Vitlista för objekt",
+  "option.immersive_armors.hudClockX": "X-förskjutning av HUD-klockan.",
+  "option.immersive_armors.hudClockXOffhand": "X-förskjutning av HUD-klockan med använd offhand.",
+  "option.immersive_armors.hudClockY": "Y-förskjutning av HUD-klockan.",
+  "option.immersive_armors.hudCompassX": "X-förskjutning av HUD-kompassen.",
+  "option.immersive_armors.hudCompassXOffhand": "X-förskjutning av HUD-klockan med använd offhand.",
+  "option.immersive_armors.hudCompassY": "Y-förskjutning av HUD-kompassen.",
+  "option.immersive_armors.lootChance": "Chans att hitta Immersive Armor i bytet.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Chans att enheten bär Immersive Armor."
 }

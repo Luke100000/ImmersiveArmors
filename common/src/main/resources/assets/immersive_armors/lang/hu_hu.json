@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk sisak",
   "item.immersive_armors.steampunk_chestplate": "Steampunk mellvért",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
-  "item.immersive_armors.steampunk_boots": "Steampunk csizma"
+  "item.immersive_armors.steampunk_boots": "Steampunk csizma",
+  "option.immersive_armors.general": "Általános lehetőségek",
+  "option.immersive_armors.whitelist": "Elem fehér lista",
+  "option.immersive_armors.hudClockX": "A HUD óra X eltolása.",
+  "option.immersive_armors.hudClockXOffhand": "A HUD óra X eltolódása használt kézzel.",
+  "option.immersive_armors.hudClockY": "A HUD óra Y eltolása.",
+  "option.immersive_armors.hudCompassX": "A HUD iránytű X eltolása.",
+  "option.immersive_armors.hudCompassXOffhand": "A HUD óra X eltolódása használt kézzel.",
+  "option.immersive_armors.hudCompassY": "A HUD iránytű Y eltolása.",
+  "option.immersive_armors.lootChance": "Az Immersive Armor megtalálásának esélye a zsákmányban.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Az Immersive Armor viselésének esélye."
 }

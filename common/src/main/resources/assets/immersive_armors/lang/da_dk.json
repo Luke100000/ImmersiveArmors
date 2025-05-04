@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk-hjelm",
   "item.immersive_armors.steampunk_chestplate": "Steampunk brystplade",
   "item.immersive_armors.steampunk_leggings": "Steampunk-benklæder",
-  "item.immersive_armors.steampunk_boots": "Steampunk støvler"
+  "item.immersive_armors.steampunk_boots": "Steampunk støvler",
+  "option.immersive_armors.general": "Almindelige indstillinger",
+  "option.immersive_armors.whitelist": "Hvidliste over emner",
+  "option.immersive_armors.hudClockX": "X-forskydning af HUD-uret.",
+  "option.immersive_armors.hudClockXOffhand": "X-forskydning af HUD-uret med brugt offhand.",
+  "option.immersive_armors.hudClockY": "Y-forskydning af HUD-uret.",
+  "option.immersive_armors.hudCompassX": "X-forskydning af HUD-kompasset.",
+  "option.immersive_armors.hudCompassXOffhand": "X-forskydning af HUD-uret med brugt offhand.",
+  "option.immersive_armors.hudCompassY": "Y-forskydning af HUD-kompasset.",
+  "option.immersive_armors.lootChance": "Chance for at finde Immersive Armor i byttet.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Chance for, at enheden bærer Immersive Armor."
 }

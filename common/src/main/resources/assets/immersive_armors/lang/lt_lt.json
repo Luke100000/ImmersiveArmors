@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk šalmas",
   "item.immersive_armors.steampunk_chestplate": "Steampunk krūtinės plokštė",
   "item.immersive_armors.steampunk_leggings": "Steampunk antblauzdžiai",
-  "item.immersive_armors.steampunk_boots": "Steampunk batai"
+  "item.immersive_armors.steampunk_boots": "Steampunk batai",
+  "option.immersive_armors.general": "Bendrosios parinktys",
+  "option.immersive_armors.whitelist": "Elemento baltasis sąrašas",
+  "option.immersive_armors.hudClockX": "HUD laikrodžio X poslinkis.",
+  "option.immersive_armors.hudClockXOffhand": "HUD laikrodžio X poslinkis, kai naudojamas ne rankinis laikrodis.",
+  "option.immersive_armors.hudClockY": "HUD laikrodžio Y poslinkis.",
+  "option.immersive_armors.hudCompassX": "HUD kompaso X poslinkis.",
+  "option.immersive_armors.hudCompassXOffhand": "HUD laikrodžio X poslinkis, kai naudojamas ne rankinis laikrodis.",
+  "option.immersive_armors.hudCompassY": "HUD kompaso Y poslinkis.",
+  "option.immersive_armors.lootChance": "Tikimybė rasti \"Immersive Armor\" šarvų.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Tikimybė, kad subjektas dėvės \"Immersive Armor\"."
 }

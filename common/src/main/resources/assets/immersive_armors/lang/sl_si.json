@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Steampunk čelada",
   "item.immersive_armors.steampunk_chestplate": "Steampunk prsna plošča",
   "item.immersive_armors.steampunk_leggings": "Steampunk nogavice",
-  "item.immersive_armors.steampunk_boots": "Steampunk škornji"
+  "item.immersive_armors.steampunk_boots": "Steampunk škornji",
+  "option.immersive_armors.general": "Splošne možnosti",
+  "option.immersive_armors.whitelist": "Bela lista elementov",
+  "option.immersive_armors.hudClockX": "Odmik X ure HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Odmik X ure HUD z uporabljenim offhandom.",
+  "option.immersive_armors.hudClockY": "Odmik Y ure HUD.",
+  "option.immersive_armors.hudCompassX": "Odmik X kompasa HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Odmik X ure HUD z uporabljenim offhandom.",
+  "option.immersive_armors.hudCompassY": "Odmik Y kompasa HUD.",
+  "option.immersive_armors.lootChance": "Verjetnost, da boste v plenu našli oklep Immersive Armor.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Verjetnost, da bo entiteta nosila nepremakljiv oklep."
 }
