@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "خوذة البخار",
   "item.immersive_armors.steampunk_chestplate": "درع البخار",
   "item.immersive_armors.steampunk_leggings": "بنطال البخار",
-  "item.immersive_armors.steampunk_boots": "حذاء البخار"
+  "item.immersive_armors.steampunk_boots": "حذاء البخار",
+  "option.immersive_armors.general": "خيارات عامة",
+  "option.immersive_armors.whitelist": "قائمة العناصر البيضاء",
+  "option.immersive_armors.hudClockX": "إزاحة X لساعة HUD.",
+  "option.immersive_armors.hudClockXOffhand": "إزاحة X لساعة HUD مع استخدام اليد غير المهيمنة.",
+  "option.immersive_armors.hudClockY": "إزاحة Y لساعة HUD.",
+  "option.immersive_armors.hudCompassX": "إزاحة X للبوصلة HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "إزاحة X لساعة HUD مع استخدام اليد غير المهيمنة.",
+  "option.immersive_armors.hudCompassY": "إزاحة Y للبوصلة HUD.",
+  "option.immersive_armors.lootChance": "فرصة العثور على درع غامر في الغنائم.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "فرصة ارتداء الكيان درع غامر."
 }
