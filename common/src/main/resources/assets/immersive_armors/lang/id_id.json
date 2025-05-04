@@ -58,5 +58,15 @@
   "item.immersive_armors.steampunk_helmet": "Helm Steampunk",
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Legging Steampunk",
-  "item.immersive_armors.steampunk_boots": "Sepatu Bot Steampunk"
+  "item.immersive_armors.steampunk_boots": "Sepatu Bot Steampunk",
+  "option.immersive_armors.general": "Opsi Umum",
+  "option.immersive_armors.whitelist": "Daftar Putih Item",
+  "option.immersive_armors.hudClockX": "Offset X dari jam HUD.",
+  "option.immersive_armors.hudClockXOffhand": "Offset X dari jam HUD dengan yang digunakan secara langsung.",
+  "option.immersive_armors.hudClockY": "Offset Y dari jam HUD.",
+  "option.immersive_armors.hudCompassX": "Offset X dari kompas HUD.",
+  "option.immersive_armors.hudCompassXOffhand": "Offset X dari jam HUD dengan yang digunakan secara langsung.",
+  "option.immersive_armors.hudCompassY": "Offset Y dari kompas HUD.",
+  "option.immersive_armors.lootChance": "Peluang menemukan Immersive Armor dalam jarahan.",
+  "option.immersive_armors.mobEntityUseImmersiveArmorChance": "Peluang entitas mengenakan Immersive Armor."
 }
