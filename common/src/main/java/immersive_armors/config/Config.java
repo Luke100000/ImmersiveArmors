@@ -45,6 +45,4 @@ public final class Config extends JsonConfig {
     public float mobEntityUseImmersiveArmorChance;
 
     public Map<String, Float> overwriteValues = new HashMap<>();
-
-    public HashMap<String, Boolean> enabledArmors = new HashMap<>();
 }

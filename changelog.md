@@ -1,3 +1,7 @@
+# 1.7.0
+
+* Removed `enabledArmors` (Too buggy, use dedicated mods for that)
+
 # 1.6.1
 
 * Downgraded Forge to recommended version

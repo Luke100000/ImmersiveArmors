@@ -2,7 +2,6 @@ package immersive_armors;
 
 import immersive_armors.armor_effects.*;
 import immersive_armors.cobalt.registration.Registration;
-import immersive_armors.config.Config;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
@@ -155,24 +154,20 @@ public interface Items {
     }
 
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
-        if (Config.getInstance().enabledArmors.getOrDefault(material.getName(), true)) {
-            Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
-            Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
-            Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
-            Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
-        }
+        Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
+        Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
+        Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
+        Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
         return material;
     }
 
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
-        if (Config.getInstance().enabledArmors.getOrDefault(material.getName(), true)) {
-            Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
-            Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
-            Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
-            Items.coloredItems.putAll(register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
+        Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
+        Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
+        Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
+        Items.coloredItems.putAll(register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
 
-            Items.items.putAll(Items.coloredItems);
-        }
+        Items.items.putAll(Items.coloredItems);
         return material;
     }
 
