@@ -29,7 +29,7 @@ public class BerserkArmorEffect extends ArmorEffect {
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
         if (source.getAttacker() instanceof LivingEntity attacker && isPrimaryArmor(armor, attacker)) {
             float healthFactor = attacker.getHealth() / attacker.getMaxHealth();
-            amount *= (1.0f + getSetCount(armor, attacker) * berserk * (1.0 - healthFactor));
+            amount *= (1.0f + getSetCount(armor, attacker) * berserk * (1.0f - healthFactor));
         }
         return amount;
     }

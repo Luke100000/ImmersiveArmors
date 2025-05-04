@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import java.util.HashMap;
 import java.util.Map;
 
-import static immersive_armors.ItemPropertyOverwrite.applyItemOverwrite;
+import static immersive_armors.ItemPropertyOverwrite.applyItemOverride;
 
 public final class Main {
     public static final String SHORT_MOD_ID = "ic_ia";
@@ -23,10 +23,10 @@ public final class Main {
         sharedConfig = config;
 
         // Reverting
-        applyItemOverwrite(backup);
+        applyItemOverride(backup);
 
         // Applying properties overwrites
-        backup = applyItemOverwrite(config.overwriteValues);
+        backup = applyItemOverride(config.overwriteValues);
     }
 
     public static Identifier locate(String path) {

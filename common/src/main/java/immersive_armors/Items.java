@@ -7,7 +7,6 @@ import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -60,7 +59,7 @@ public interface Items {
             .enchantability(5)
             .hideCape()
             .effect(new BerserkArmorEffect(0.2f))
-            .effect(new WeaponEfficiency(0.05f, AxeItem.class, "axe"))
+            .effect(new WeaponEfficiency(0.05f, new Identifier("immersive_armors:axes"), "axe"))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")

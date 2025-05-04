@@ -5,6 +5,7 @@
 * Made helmets a bit larger to improve hat layer rendering
 * Fixed crash when two prismarine armors hurt each other
 * Steampunk boots no longer break elytra
+* Now using tags instead of Axe items
 
 # 1.6.1
 
