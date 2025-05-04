@@ -4,6 +4,7 @@
 * Robe boots now also requires blaze powder to avoid conflicts with other mods
 * Made helmets a bit larger to improve hat layer rendering
 * Fixed crash when two prismarine armors hurt each other
+* Steampunk boots no longer break elytra
 
 # 1.6.1
 

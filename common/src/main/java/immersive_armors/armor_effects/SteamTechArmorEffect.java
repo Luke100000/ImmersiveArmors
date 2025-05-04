@@ -51,7 +51,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
             //braking fall
             Vec3d velocity = entity.getVelocity();
-            if (velocity.getY() < -0.75) {
+            if (velocity.getY() < -0.75 && !entity.isFallFlying()) {
                 entity.setVelocity(velocity.x, -0.75f, velocity.z);
                 createSteamParticle(entity);
 
