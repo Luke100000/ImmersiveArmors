@@ -3,19 +3,18 @@ package immersive_armors.armor_effects;
 import immersive_armors.CustomDataComponentTypes;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
 public abstract class ArmorEffect {
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
@@ -30,7 +29,7 @@ public abstract class ArmorEffect {
 
     protected Stream<ItemStack> getMatchingEquippedArmor(LivingEntity entity, ExtendedArmorMaterial material) {
         return armorEquipmentSlots.stream()
-                .map(entity::getEquippedStack)
+                .map(entity::getItemBySlot)
                 .filter(Objects::nonNull)
                 .filter(stack -> stack.getItem() instanceof ExtendedArmorItem && ((ExtendedArmorItem)stack.getItem()).getExtendedMaterial() == material);
     }
@@ -51,17 +50,17 @@ public abstract class ArmorEffect {
         return stack.getOrDefault(CustomDataComponentTypes.SET_COUNT, 0);
     }
 
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 
     }
 
-    public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
-        if (world.getTime() % 20 == 0) {
+    public void equippedTick(ItemStack stack, Level world, LivingEntity entity, int slot) {
+        if (world.getGameTime() % 20 == 0) {
             stack.set(CustomDataComponentTypes.SET_COUNT, getSetCount(stack, entity));
         }
     }
 
-    public void receiveCommand(ItemStack armor, World world, LivingEntity entity, int slot, String command) {
+    public void receiveCommand(ItemStack armor, Level world, LivingEntity entity, int slot, String command) {
 
     }
 }

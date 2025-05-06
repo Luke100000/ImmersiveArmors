@@ -1,32 +1,31 @@
 package immersive_armors.item;
 
-import net.minecraft.block.cauldron.CauldronBehavior;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.DyedColorComponent;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.DyedItemColor;
 
 public class DyeableExtendedArmorItem extends ExtendedArmorItem {
-    public DyeableExtendedArmorItem(Settings settings, ArmorItem.Type slot, ExtendedArmorMaterial material) {
+    public DyeableExtendedArmorItem(Properties settings, ArmorItem.Type slot, ExtendedArmorMaterial material) {
         super(settings, slot, material);
 
-        CauldronBehavior.WATER_CAULDRON_BEHAVIOR.map().put(this, CauldronBehavior.CLEAN_DYEABLE_ITEM);
+        CauldronInteraction.WATER.map().put(this, CauldronInteraction.DYED_ITEM);
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        super.appendTooltip(stack, context, tooltip, type);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        super.appendHoverText(stack, context, tooltip, type);
 
-        tooltip.add(Text.translatable("immersive_armors.dyeable").formatted(Formatting.GOLD));
+        tooltip.add(Component.translatable("immersive_armors.dyeable").withStyle(ChatFormatting.GOLD));
     }
 
     public int getColor(ItemStack stack) {
-        DyedColorComponent dyedColorComponent = stack.get(DataComponentTypes.DYED_COLOR);
+        DyedItemColor dyedColorComponent = stack.get(DataComponents.DYED_COLOR);
         return (dyedColorComponent != null ? dyedColorComponent.rgb() : getExtendedMaterial().getColor()) | 0xFF000000;
     }
 }

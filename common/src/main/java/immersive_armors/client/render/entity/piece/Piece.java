@@ -1,32 +1,31 @@
 package immersive_armors.client.render.entity.piece;
 
 import com.google.common.collect.Maps;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-
 import java.util.Map;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 
 public abstract class Piece {
-    private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
+    private static final Map<String, ResourceLocation> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
 
     public Piece() {
 
     }
 
-    protected void setVisible(BipedEntityModel bipedModel, EquipmentSlot slot) {
-        bipedModel.setVisible(false);
+    protected void setVisible(HumanoidModel bipedModel, EquipmentSlot slot) {
+        bipedModel.setAllVisible(false);
         switch (slot) {
             case HEAD -> {
                 bipedModel.head.visible = true;
@@ -49,25 +48,25 @@ public abstract class Piece {
         }
     }
 
-    private Identifier getTexture(ExtendedArmorItem item, boolean overlay) {
+    private ResourceLocation getTexture(ExtendedArmorItem item, boolean overlay) {
         String string = "immersive_armors:textures/models/armor/" + item.getExtendedMaterial().getName() + "/" + getTexture() + (overlay ? "_overlay" : "") + ".png";
-        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::of);
+        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, ResourceLocation::parse);
     }
 
-    protected void renderParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ItemStack itemStack, ExtendedArmorItem item, EntityModel model, int color, boolean overlay) {
-        RenderLayer renderLayer;
+    protected void renderParts(PoseStack matrices, MultiBufferSource vertexConsumers, int light, ItemStack itemStack, ExtendedArmorItem item, EntityModel model, int color, boolean overlay) {
+        RenderType renderLayer;
         if (isTranslucent()) {
-            renderLayer = RenderLayer.getEntityTranslucent(getTexture(item, overlay));
+            renderLayer = RenderType.entityTranslucent(getTexture(item, overlay));
         } else if (isGlowing()) {
-            renderLayer = RenderLayer.getBeaconBeam(getTexture(item, overlay), false);
+            renderLayer = RenderType.beaconBeam(getTexture(item, overlay), false);
         } else {
-            renderLayer = RenderLayer.getArmorCutoutNoCull(getTexture(item, overlay));
+            renderLayer = RenderType.armorCutoutNoCull(getTexture(item, overlay));
         }
-        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, hasGlint() | itemStack.hasGlint() & Config.getInstance().enableEnchantmentGlint);
-        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color);
+        VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers, renderLayer, hasGlint() | itemStack.hasFoil() & Config.getInstance().enableEnchantmentGlint);
+        model.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, color);
     }
 
-    public abstract <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel);
+    public abstract <T extends LivingEntity, A extends HumanoidModel<T>> void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel);
 
     private boolean translucent;
     private boolean glint;

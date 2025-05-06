@@ -1,6 +1,11 @@
 package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
 
 public class HorizontalHeadModel extends DecoHeadModel {
     private final ModelPart part;
@@ -8,15 +13,15 @@ public class HorizontalHeadModel extends DecoHeadModel {
     public HorizontalHeadModel() {
         super();
 
-        ModelData modelData = new ModelData();
+        MeshDefinition modelData = new MeshDefinition();
 
-        modelData.getRoot().addChild("part",
-                ModelPartBuilder.create()
-                        .cuboid(-10.0F, -17.0F, 0.0F, 20.0F, 12.0F, 0.0F),
-                ModelTransform.NONE);
+        modelData.getRoot().addOrReplaceChild("part",
+                CubeListBuilder.create()
+                        .addBox(-10.0F, -17.0F, 0.0F, 20.0F, 12.0F, 0.0F),
+                PartPose.ZERO);
 
 
-        ModelPart model = TexturedModelData.of(modelData, 64, 16).createModel();
+        ModelPart model = LayerDefinition.create(modelData, 64, 16).bakeRoot();
         part = model.getChild("part");
     }
 

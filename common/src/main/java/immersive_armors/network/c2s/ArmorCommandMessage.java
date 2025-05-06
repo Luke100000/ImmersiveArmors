@@ -3,15 +3,16 @@ package immersive_armors.network.c2s;
 import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.cobalt.network.Message;
 import immersive_armors.item.ExtendedArmorItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class ArmorCommandMessage extends Message {
-    public static final PacketCodec<RegistryByteBuf, ArmorCommandMessage> STREAM_CODEC = PacketCodec.of(ArmorCommandMessage::encode, ArmorCommandMessage::new);
-    public static final CustomPayload.Id<ArmorCommandMessage> TYPE = Message.createType("armor_command");
+    public static final StreamCodec<RegistryFriendlyByteBuf, ArmorCommandMessage> STREAM_CODEC = StreamCodec.ofMember(ArmorCommandMessage::encode, ArmorCommandMessage::new);
+    public static final CustomPacketPayload.Type<ArmorCommandMessage> TYPE = Message.createType("armor_command");
 
     private final int slot;
     private final String command;
@@ -22,29 +23,29 @@ public class ArmorCommandMessage extends Message {
         this.command = command;
     }
 
-    public ArmorCommandMessage(RegistryByteBuf b) {
+    public ArmorCommandMessage(RegistryFriendlyByteBuf b) {
         slot = b.readInt();
-        command = b.readString();
+        command = b.readUtf();
     }
 
     @Override
-    public void encode(RegistryByteBuf b) {
+    public void encode(RegistryFriendlyByteBuf b) {
         b.writeInt(slot);
-        b.writeString(command);
+        b.writeUtf(command);
     }
 
     @Override
-    public void receiveServer(ServerPlayerEntity player) {
-        ItemStack stack = player.getInventory().getStack(slot);
+    public void receiveServer(ServerPlayer player) {
+        ItemStack stack = player.getInventory().getItem(slot);
         if (stack.getItem() instanceof ExtendedArmorItem item) {
             for (ArmorEffect e : item.getExtendedMaterial().getEffects()) {
-                e.receiveCommand(stack, player.getWorld(), player, slot, command);
+                e.receiveCommand(stack, player.level(), player, slot, command);
             }
         }
     }
 
     @Override
-    public Id<? extends CustomPayload> getId() {
+    public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 }

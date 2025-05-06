@@ -1,9 +1,12 @@
 package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.entity.EquipmentSlot;
-
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.world.entity.EquipmentSlot;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,16 +60,16 @@ public class PrismarineModel extends DecoModel {
     public PrismarineModel() {
         super();
 
-        ModelData modelData = new ModelData();
+        MeshDefinition modelData = new MeshDefinition();
 
         for (int t = 0; t < SPIKE_PIVOTS_X.length; t++) {
-            ModelPartData data = modelData.getRoot().addChild("part_" + t, ModelPartBuilder.create(), ModelTransform.NONE);
+            PartDefinition data = modelData.getRoot().addOrReplaceChild("part_" + t, CubeListBuilder.create(), PartPose.ZERO);
 
             for (int i = 0; i < SPIKE_PIVOTS_X[t].length; i++) {
-                data.addChild("spike_" + i,
-                        ModelPartBuilder.create()
-                                .cuboid(-1.0f, -1.0f, -1.0f, 2.0f, 5.0f, 2.0f),
-                        ModelTransform.of(
+                data.addOrReplaceChild("spike_" + i,
+                        CubeListBuilder.create()
+                                .addBox(-1.0f, -1.0f, -1.0f, 2.0f, 5.0f, 2.0f),
+                        PartPose.offsetAndRotation(
                                 SPIKE_PIVOTS_X[t][i],
                                 SPIKE_PIVOTS_Y[t][i],
                                 SPIKE_PIVOTS_Z[t][i],
@@ -76,37 +79,37 @@ public class PrismarineModel extends DecoModel {
                         ));
             }
 
-            parts.add(data.createPart(8, 8));
+            parts.add(data.bake(8, 8));
         }
     }
 
     @Override
-    protected Iterable<ModelPart> getHeadParts() {
+    protected Iterable<ModelPart> headParts() {
         return Collections.singletonList(parts.get(0));
     }
 
     @Override
-    protected Iterable<ModelPart> getBodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return parts.subList(1, parts.size());
     }
 
     @Override
-    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+    public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
         parts.forEach(p -> p.visible = false);
         switch (slot) {
             case HEAD -> {
-                parts.get(0).copyTransform(model.head);
+                parts.get(0).copyFrom(model.head);
                 parts.get(0).visible = true;
             }
             case CHEST -> {
-                parts.get(1).copyTransform(model.rightArm);
-                parts.get(2).copyTransform(model.leftArm);
+                parts.get(1).copyFrom(model.rightArm);
+                parts.get(2).copyFrom(model.leftArm);
                 parts.get(1).visible = true;
                 parts.get(2).visible = true;
             }
             case LEGS -> {
-                parts.get(3).copyTransform(model.rightLeg);
-                parts.get(4).copyTransform(model.leftLeg);
+                parts.get(3).copyFrom(model.rightLeg);
+                parts.get(4).copyFrom(model.leftLeg);
                 parts.get(3).visible = true;
                 parts.get(4).visible = true;
             }

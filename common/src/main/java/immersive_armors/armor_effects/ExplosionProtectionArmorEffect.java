@@ -1,15 +1,14 @@
 package immersive_armors.armor_effects;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
 public class ExplosionProtectionArmorEffect extends ArmorEffect {
     private final float strength;
@@ -20,7 +19,7 @@ public class ExplosionProtectionArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (source.isIn(DamageTypeTags.IS_EXPLOSION)) {
+        if (source.is(DamageTypeTags.IS_EXPLOSION)) {
             return amount * (1.0f - strength);
         } else {
             return amount;
@@ -28,7 +27,7 @@ public class ExplosionProtectionArmorEffect extends ArmorEffect {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("armorEffect.explosionResistance", (int)(strength * 100)).formatted(Formatting.DARK_GREEN));
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        tooltip.add(Component.translatable("armorEffect.explosionResistance", (int)(strength * 100)).withStyle(ChatFormatting.DARK_GREEN));
     }
 }

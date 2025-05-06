@@ -9,17 +9,17 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 
 public class NetworkHandlerImpl extends NetworkHandler.Impl {
     @Override
-    public <T extends Message> void registerMessage(String namespace, CustomPayload.Id<T> type, PacketCodec<RegistryByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
+    public <T extends Message> void registerMessage(String namespace, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
         if (clientHandler != null) PayloadTypeRegistry.playS2C().register(type, codec);
         if (serverHandler != null) PayloadTypeRegistry.playC2S().register(type, codec);
 
@@ -38,17 +38,17 @@ public class NetworkHandlerImpl extends NetworkHandler.Impl {
     }
 
     @Override
-    public void sendToPlayer(Message msg, ServerPlayerEntity e) {
-        RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), e.getRegistryManager());
+    public void sendToPlayer(Message msg, ServerPlayer e) {
+        RegistryFriendlyByteBuf buf = new RegistryFriendlyByteBuf(Unpooled.buffer(), e.registryAccess());
         msg.encode(buf);
         ServerPlayNetworking.send(e, msg);
     }
 
     @Override
     public void sendToTrackingPlayers(Message msg, Entity e) {
-        RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), e.getRegistryManager());
+        RegistryFriendlyByteBuf buf = new RegistryFriendlyByteBuf(Unpooled.buffer(), e.registryAccess());
         msg.encode(buf);
-        for (ServerPlayerEntity player : PlayerLookup.tracking(e)) {
+        for (ServerPlayer player : PlayerLookup.tracking(e)) {
             ServerPlayNetworking.send(player, msg);
         }
     }
@@ -59,14 +59,14 @@ public class NetworkHandlerImpl extends NetworkHandler.Impl {
             // Nop
         }
 
-        public static <T extends Message> void register(CustomPayload.Id<T> type, NetworkHandler.ClientHandler<T> handler) {
+        public static <T extends Message> void register(CustomPacketPayload.Type<T> type, NetworkHandler.ClientHandler<T> handler) {
             ClientPlayNetworking.registerGlobalReceiver(type, (payload, context) -> handler.handle(payload));
         }
 
         public static void sendToServer(Message msg) {
-            ClientPlayerEntity player = MinecraftClient.getInstance().player;
+            LocalPlayer player = Minecraft.getInstance().player;
             if (player != null) {
-                RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), player.getRegistryManager());
+                RegistryFriendlyByteBuf buf = new RegistryFriendlyByteBuf(Unpooled.buffer(), player.registryAccess());
                 msg.encode(buf);
                 ClientPlayNetworking.send(msg);
             }

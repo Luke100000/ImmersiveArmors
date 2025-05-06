@@ -1,10 +1,10 @@
 package immersive_armors.cobalt.network;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 
 public abstract class NetworkHandler {
     private static Impl INSTANCE;
@@ -14,10 +14,10 @@ public abstract class NetworkHandler {
     }
 
     public interface ServerHandler<T extends Message> {
-        void handle(T message, ServerPlayerEntity player);
+        void handle(T message, ServerPlayer player);
     }
 
-    public static <T extends Message> void handleDefault(T message, ServerPlayerEntity e) {
+    public static <T extends Message> void handleDefault(T message, ServerPlayer e) {
         message.receiveServer(e);
     }
 
@@ -25,11 +25,11 @@ public abstract class NetworkHandler {
         message.receiveClient();
     }
 
-    public static <T extends Message> void registerMessage(String namespace, CustomPayload.Id<T> type, PacketCodec<RegistryByteBuf, T> codec) {
+    public static <T extends Message> void registerMessage(String namespace, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec) {
         registerMessage(namespace, type, codec, NetworkHandler::handleDefault, NetworkHandler::handleDefault);
     }
 
-    public static <T extends Message> void registerMessage(String namespace, CustomPayload.Id<T> type, PacketCodec<RegistryByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
+    public static <T extends Message> void registerMessage(String namespace, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
         INSTANCE.registerMessage(namespace, type, codec, clientHandler, serverHandler);
     }
 
@@ -37,7 +37,7 @@ public abstract class NetworkHandler {
         INSTANCE.sendToServer(m);
     }
 
-    public static void sendToPlayer(Message m, ServerPlayerEntity e) {
+    public static void sendToPlayer(Message m, ServerPlayer e) {
         INSTANCE.sendToPlayer(m, e);
     }
 
@@ -50,11 +50,11 @@ public abstract class NetworkHandler {
             INSTANCE = this;
         }
 
-        public abstract <T extends Message> void registerMessage(String namespace, CustomPayload.Id<T> type, PacketCodec<RegistryByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler);
+        public abstract <T extends Message> void registerMessage(String namespace, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler);
 
         public abstract void sendToServer(Message m);
 
-        public abstract void sendToPlayer(Message m, ServerPlayerEntity e);
+        public abstract void sendToPlayer(Message m, ServerPlayer e);
 
         public abstract void sendToTrackingPlayers(Message m, Entity origin);
     }

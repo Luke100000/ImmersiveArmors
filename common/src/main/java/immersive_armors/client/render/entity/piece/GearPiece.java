@@ -1,20 +1,20 @@
 package immersive_armors.client.render.entity.piece;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import immersive_armors.Main;
 import immersive_armors.client.render.entity.model.DecoModel;
 import immersive_armors.client.render.entity.model.GearModel;
 import immersive_armors.item.ExtendedArmorItem;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 
@@ -25,7 +25,7 @@ public class GearPiece<M extends GearModel> extends Piece {
     private final float speed;
     private final Quaternionf rotation;
 
-    private Identifier getTexture(ExtendedArmorItem item) {
+    private ResourceLocation getTexture(ExtendedArmorItem item) {
         return Main.locate("textures/models/armor/" + item.getExtendedMaterial().getName() + "/" + texture + ".png");
     }
 
@@ -44,16 +44,16 @@ public class GearPiece<M extends GearModel> extends Piece {
     }
 
     @Override
-    public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
-        matrices.push();
-        DecoModel.getModelPart(armorModel, model.getAttachTo()).rotate(matrices);
+    public <T extends LivingEntity, A extends HumanoidModel<T>> void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
+        matrices.pushPose();
+        DecoModel.getModelPart(armorModel, model.getAttachTo()).translateAndRotate(matrices);
         matrices.translate(x, y, z);
         if (rotation != null) {
-            matrices.multiply(rotation);
+            matrices.mulPose(rotation);
         }
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) ((entity.age + tickDelta) * speed * 180.0f / Math.PI / 20.0f)));
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getTexture((ExtendedArmorItem) itemStack.getItem())));
-        model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
-        matrices.pop();
+        matrices.mulPose(Axis.ZP.rotationDegrees((float) ((entity.tickCount + tickDelta) * speed * 180.0f / Math.PI / 20.0f)));
+        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderType.armorCutoutNoCull(getTexture((ExtendedArmorItem) itemStack.getItem())));
+        model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
+        matrices.popPose();
     }
 }

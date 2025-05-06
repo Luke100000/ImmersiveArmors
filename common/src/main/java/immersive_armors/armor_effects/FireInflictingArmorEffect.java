@@ -1,18 +1,17 @@
 package immersive_armors.armor_effects;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
 public class FireInflictingArmorEffect extends ArmorEffect {
     private final int length;
@@ -23,23 +22,23 @@ public class FireInflictingArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (isPrimaryArmor(armor, entity) && source.getAttacker() != null && !source.getAttacker().isFireImmune()) {
-            source.getAttacker().setFireTicks(source.getAttacker().getFireTicks() + length * getSetCount(armor, entity));
+        if (isPrimaryArmor(armor, entity) && source.getEntity() != null && !source.getEntity().fireImmune()) {
+            source.getEntity().setRemainingFireTicks(source.getEntity().getRemainingFireTicks() + length * getSetCount(armor, entity));
 
-            entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ENTITY_BLAZE_BURN, entity.getSoundCategory(), 1.0f, entity.getRandom().nextFloat() * 0.7F + 0.3F);
+            entity.level().playSound(null, entity, SoundEvents.BLAZE_BURN, entity.getSoundSource(), 1.0f, entity.getRandom().nextFloat() * 0.7F + 0.3F);
         }
         return amount;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("armorEffect.fireInflicting", length).formatted(Formatting.RED));
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        tooltip.add(Component.translatable("armorEffect.fireInflicting", length).withStyle(ChatFormatting.RED));
     }
 
     @Override
-    public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
-        if (world.isClient && MinecraftClient.getInstance().player == entity && !MinecraftClient.getInstance().options.getPerspective().isFirstPerson() && entity.getRandom().nextInt(15) == 0) {
-            world.addParticle(ParticleTypes.FLAME, entity.getParticleX(0.5D), entity.getRandomBodyY(), entity.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
+    public void equippedTick(ItemStack stack, Level world, LivingEntity entity, int slot) {
+        if (world.isClientSide && Minecraft.getInstance().player == entity && !Minecraft.getInstance().options.getCameraType().isFirstPerson() && entity.getRandom().nextInt(15) == 0) {
+            world.addParticle(ParticleTypes.FLAME, entity.getRandomX(0.5D), entity.getRandomY(), entity.getRandomZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
     }
 }

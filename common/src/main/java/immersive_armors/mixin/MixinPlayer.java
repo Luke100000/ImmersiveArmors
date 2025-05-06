@@ -2,36 +2,34 @@ package immersive_armors.mixin;
 
 import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerModelPart;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.PlayerModelPart;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity {
-    @Shadow
-    public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+@Mixin(Player.class)
+public abstract class MixinPlayer {
+    @Shadow public abstract boolean isLocalPlayer();
 
-    @Shadow
-    public abstract boolean isMainPlayer();
+    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot slot);
 
-    @Inject(method = "isPartVisible(Lnet/minecraft/entity/player/PlayerModelPart;)Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isModelPartShown", at = @At("HEAD"), cancellable = true)
     public void immersiveArmors$injectIsPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.getInstance().hideSecondLayerUnderArmor) {
             return;
         }
 
-        if (isMainPlayer() && !MinecraftClient.getInstance().gameRenderer.getCamera().isThirdPerson()) {
+        if (isLocalPlayer() && !Minecraft.getInstance().gameRenderer.getMainCamera().isDetached()) {
             return;
         }
 
-        int flag = modelPart.getId();
+        int flag = modelPart.getBit();
         EquipmentSlot slot = null;
         int index = -1;
         switch (flag) {
@@ -50,7 +48,7 @@ public abstract class MixinPlayerEntity {
         }
 
         if (index >= 0) {
-            ItemStack stack = getEquippedStack(slot);
+            ItemStack stack = getItemBySlot(slot);
             if (stack.getItem() instanceof ExtendedArmorItem armorItem && armorItem.getExtendedMaterial().shouldHideSecondLayer()[index]) {
                 cir.setReturnValue(false);
             }

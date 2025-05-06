@@ -3,18 +3,17 @@ package immersive_armors.item;
 import immersive_armors.Main;
 import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Util;
-
 import java.util.*;
 import java.util.function.Supplier;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class ExtendedArmorMaterial {
     private final String name;
@@ -54,12 +53,12 @@ public class ExtendedArmorMaterial {
 
     private boolean hideCape;
 
-    private RegistryEntry<SoundEvent> equipSound;
+    private Holder<SoundEvent> equipSound;
     private Supplier<Ingredient> repairIngredient;
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
 
-    private RegistryEntry<ArmorMaterial> registryReference;
+    private Holder<ArmorMaterial> registryReference;
 
     public ExtendedArmorMaterial(String name) {
         this.name = name;
@@ -92,10 +91,10 @@ public class ExtendedArmorMaterial {
     }
 
     public ExtendedArmorMaterial equipSound(SoundEvent equipSound) {
-        return equipSound(RegistryEntry.of(equipSound));
+        return equipSound(Holder.direct(equipSound));
     }
 
-    public ExtendedArmorMaterial equipSound(RegistryEntry<SoundEvent> equipSound) {
+    public ExtendedArmorMaterial equipSound(Holder<SoundEvent> equipSound) {
         this.equipSound = equipSound;
         return this;
     }
@@ -209,7 +208,7 @@ public class ExtendedArmorMaterial {
 
 
     public int getDurability(ArmorItem.Type slot) {
-        return BASE_DURABILITY[slot.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
+        return BASE_DURABILITY[slot.getSlot().getIndex()] * this.durabilityMultiplier;
     }
 
 
@@ -228,7 +227,7 @@ public class ExtendedArmorMaterial {
     }
 
 
-    public RegistryEntry<SoundEvent> getEquipSound() {
+    public Holder<SoundEvent> getEquipSound() {
         return equipSound;
     }
 
@@ -319,14 +318,14 @@ public class ExtendedArmorMaterial {
     }
 
     public void registerVanillaMaterial() {
-        this.registryReference = Registry.registerReference(
-                Registries.ARMOR_MATERIAL,
+        this.registryReference = Registry.registerForHolder(
+                BuiltInRegistries.ARMOR_MATERIAL,
                 Main.locate(getName()),
                 getMaterial()
         );
     }
 
-    public RegistryEntry<ArmorMaterial> getRegistryReference() {
+    public Holder<ArmorMaterial> getRegistryReference() {
         return registryReference;
     }
 }

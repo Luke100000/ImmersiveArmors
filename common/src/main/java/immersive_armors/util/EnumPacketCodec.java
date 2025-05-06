@@ -1,9 +1,9 @@
 package immersive_armors.util;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.StreamCodec;
 
-public class EnumPacketCodec<E extends Enum<E>> implements PacketCodec<ByteBuf, E> {
+public class EnumPacketCodec<E extends Enum<E>> implements StreamCodec<ByteBuf, E> {
     private final Class<E> enumClass;
 
     public EnumPacketCodec(Class<E> enumClass) {

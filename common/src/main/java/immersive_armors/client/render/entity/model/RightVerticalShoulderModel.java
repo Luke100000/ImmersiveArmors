@@ -1,9 +1,12 @@
 package immersive_armors.client.render.entity.model;
 
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.entity.EquipmentSlot;
-
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.world.entity.EquipmentSlot;
 import java.util.Collections;
 
 public class RightVerticalShoulderModel extends DecoModel {
@@ -12,33 +15,33 @@ public class RightVerticalShoulderModel extends DecoModel {
     public RightVerticalShoulderModel() {
         super();
 
-        ModelData modelData = new ModelData();
+        MeshDefinition modelData = new MeshDefinition();
 
-        modelData.getRoot().addChild("part",
-                ModelPartBuilder.create()
-                        .cuboid(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f)
-                        .cuboid(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f)
-                        .cuboid(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f),
-                ModelTransform.NONE);
+        modelData.getRoot().addOrReplaceChild("part",
+                CubeListBuilder.create()
+                        .addBox(-5.0f, -4f, -4f, 1.0f, 8.0f, 8.0f)
+                        .addBox(-2.5f, -4f, -4f, 1.0f, 8.0f, 8.0f)
+                        .addBox(0.0f, -4f, -4f, 1.0f, 8.0f, 8.0f),
+                PartPose.ZERO);
 
 
-        ModelPart model = TexturedModelData.of(modelData, 32, 16).createModel();
+        ModelPart model = LayerDefinition.create(modelData, 32, 16).bakeRoot();
         part = model.getChild("part");
     }
 
     @Override
-    protected Iterable<ModelPart> getHeadParts() {
+    protected Iterable<ModelPart> headParts() {
         return Collections.emptyList();
     }
 
     @Override
-    protected Iterable<ModelPart> getBodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return Collections.singletonList(part);
     }
 
     @Override
-    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
-        part.copyTransform(model.rightArm);
+    public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
+        part.copyFrom(model.rightArm);
         super.copyFromModel(model, slot);
     }
 }

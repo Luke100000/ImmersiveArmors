@@ -10,14 +10,13 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.BinomialDistributionGenerator;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -31,13 +30,13 @@ public final class CommonFabric implements ModInitializer {
         Messages.bootstrap();
         CustomDataComponentTypes.bootstrap();
 
-        ItemGroup group = FabricItemGroup.builder()
-                .displayName(ItemGroups.getDisplayName())
+        CreativeModeTab group = FabricItemGroup.builder()
+                .title(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
-                .entries((enabledFeatures, entries) -> entries.addAll(Items.getSortedItems()))
+                .displayItems((enabledFeatures, entries) -> entries.acceptAll(Items.getSortedItems()))
                 .build();
 
-        Registry.register(Registries.ITEM_GROUP, Main.locate("group"), group);
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Main.locate("group"), group);
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 NetworkHandler.sendToPlayer(new SettingsMessage(), handler.player)
@@ -48,9 +47,9 @@ public final class CommonFabric implements ModInitializer {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (Items.lootLookup.containsKey(key.toString())) {
                 for (Map.Entry<Supplier<Item>, Float> entry : Items.lootLookup.get(key.toString()).entrySet()) {
-                    tableBuilder.pool(LootPool.builder()
-                            .rolls(BinomialLootNumberProvider.create(1, entry.getValue() * Config.getInstance().lootChance))
-                            .with(ItemEntry.builder(entry.getKey().get()))
+                    tableBuilder.withPool(LootPool.lootPool()
+                            .setRolls(BinomialDistributionGenerator.binomial(1, entry.getValue() * Config.getInstance().lootChance))
+                            .add(LootItem.lootTableItem(entry.getKey().get()))
                     );
                 }
             }

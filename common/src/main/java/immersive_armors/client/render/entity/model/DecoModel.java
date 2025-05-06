@@ -1,40 +1,39 @@
 package immersive_armors.client.render.entity.model;
 
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.entity.model.AnimalModel;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-
 import java.util.Collections;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 
-public abstract class DecoModel extends AnimalModel {
+public abstract class DecoModel extends AgeableListModel {
     public DecoModel() {
         super(true, 16.0f, 0.0f, 2.0f, 2.0f, 24.0f);
     }
 
-    public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
-        this.handSwingProgress = model.handSwingProgress;
+    public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
+        this.attackTime = model.attackTime;
         this.riding = model.riding;
-        this.child = model.child;
+        this.young = model.young;
     }
 
     @Override
-    protected Iterable<ModelPart> getHeadParts() {
+    protected Iterable<ModelPart> headParts() {
         return Collections.emptyList();
     }
 
     @Override
-    protected Iterable<ModelPart> getBodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return Collections.emptyList();
     }
 
     @Override
-    public void setAngles(Entity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setupAnim(Entity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 
     }
 
-    public static ModelPart getModelPart(BipedEntityModel model, String name) {
+    public static ModelPart getModelPart(HumanoidModel model, String name) {
         return switch (name) {
             case "head" -> model.head;
             case "leftArm" -> model.leftArm;

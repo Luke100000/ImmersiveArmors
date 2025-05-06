@@ -4,16 +4,15 @@
 	"package": "immersive_armors.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"MixinFollowTargetGoal",
+		"MixinNearestAttackableTargetGoal",
 		"MixinLivingEntity",
-		"MobEntityMixin"
+		"MobMixin"
 	],
 	"client": [
-		"InGameHudMixin",
-		"MixinArmorFeatureRenderer",
-		"MixinCapeFeatureRenderer",
-		"MixinItemRenderer",
-		"MixinPlayerEntity"
+		"MixinGui",
+		"MixinHumanoidArmorLayer",
+		"MixinCapeLayer",
+		"MixinPlayer"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -3,13 +3,12 @@ package immersive_armors;
 import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
-import net.minecraft.item.ArmorItem;
-
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
+import net.minecraft.world.item.ArmorItem;
 
 public class ItemPropertyOverwrite {
     public static Map<String, Float> applyItemOverride(Map<String, Float> map) {

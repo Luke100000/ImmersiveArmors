@@ -1,17 +1,16 @@
 package immersive_armors.armor_effects;
 
 import immersive_armors.CustomDataComponentTypes;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
 public class DivineArmorEffect extends ArmorEffect {
     private final long cooldown;
@@ -27,33 +26,33 @@ public class DivineArmorEffect extends ArmorEffect {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("item.immersive_armors.divine.description").formatted(Formatting.GRAY));
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        tooltip.add(Component.translatable("item.immersive_armors.divine.description").withStyle(ChatFormatting.GRAY));
 
         int count = getSetCount(stack);
         if (count == 4) {
             if (isCharged(this.lastTime, stack)) {
-                tooltip.add(Text.translatable("armorEffect.charged").formatted(Formatting.AQUA));
+                tooltip.add(Component.translatable("armorEffect.charged").withStyle(ChatFormatting.AQUA));
             }
         } else {
-            tooltip.add(Text.translatable("immersive_armors.incomplete", count, 4));
+            tooltip.add(Component.translatable("immersive_armors.incomplete", count, 4));
         }
     }
 
     @Override
-    public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
+    public void equippedTick(ItemStack stack, Level world, LivingEntity entity, int slot) {
         super.equippedTick(stack, world, entity, slot);
 
-        this.lastTime = world.getTime();
+        this.lastTime = world.getGameTime();
     }
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
         if (isPrimaryArmor(armor, entity)) {
-            long time = entity.getWorld().getTime();
+            long time = entity.level().getGameTime();
             boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
             if (charged) {
-                entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, entity.getSoundCategory(), 0.5f, 1.25f);
+                entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ANVIL_LAND, entity.getSoundSource(), 0.5f, 1.25f);
                 getMatchingEquippedArmor(entity, armor).forEach(a -> a.set(CustomDataComponentTypes.LAST_DIVINE, time));
                 return 0;
             }

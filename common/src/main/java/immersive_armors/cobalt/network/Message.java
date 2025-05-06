@@ -1,22 +1,22 @@
 package immersive_armors.cobalt.network;
 
 import immersive_armors.Main;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
 
-public abstract class Message implements CustomPayload {
+public abstract class Message implements CustomPacketPayload {
     protected Message() {
 
     }
 
-    public static <T extends CustomPayload> CustomPayload.Id<T> createType(String id) {
-        return new CustomPayload.Id<>(Main.locate(id));
+    public static <T extends CustomPacketPayload> CustomPacketPayload.Type<T> createType(String id) {
+        return new CustomPacketPayload.Type<>(Main.locate(id));
     }
 
-    public abstract void encode(RegistryByteBuf b);
+    public abstract void encode(RegistryFriendlyByteBuf b);
 
-    public void receiveServer(ServerPlayerEntity e) {
+    public void receiveServer(ServerPlayer e) {
 
     }
 
@@ -25,5 +25,5 @@ public abstract class Message implements CustomPayload {
     }
 
     @Override
-    abstract public CustomPayload.Id<? extends CustomPayload> getId();
+    abstract public CustomPacketPayload.Type<? extends CustomPacketPayload> type();
 }

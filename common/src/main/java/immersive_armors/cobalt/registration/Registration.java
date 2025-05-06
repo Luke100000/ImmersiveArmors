@@ -1,15 +1,14 @@
 package immersive_armors.cobalt.registration;
 
 
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-
 import java.util.function.Supplier;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 
 public class Registration {
     private static Impl INSTANCE;
 
-    public static <T> Supplier<T> register(Registry<? super T> registry, Identifier id, Supplier<T> obj) {
+    public static <T> Supplier<T> register(Registry<? super T> registry, ResourceLocation id, Supplier<T> obj) {
         return INSTANCE.register(registry, id, obj);
     }
 
@@ -18,6 +17,6 @@ public class Registration {
             INSTANCE = this;
         }
 
-        public abstract <T> Supplier<T> register(Registry<? super T> registry, Identifier id, Supplier<T> obj);
+        public abstract <T> Supplier<T> register(Registry<? super T> registry, ResourceLocation id, Supplier<T> obj);
     }
 }

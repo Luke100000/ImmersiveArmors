@@ -3,13 +3,13 @@ package immersive_armors.network.s2c;
 import immersive_armors.Main;
 import immersive_armors.cobalt.network.Message;
 import immersive_armors.config.Config;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 public class SettingsMessage extends Message {
-    public static final PacketCodec<RegistryByteBuf, SettingsMessage> STREAM_CODEC = PacketCodec.of(SettingsMessage::encode, SettingsMessage::new);
-    public static final CustomPayload.Id<SettingsMessage> TYPE = Message.createType("settings");
+    public static final StreamCodec<RegistryFriendlyByteBuf, SettingsMessage> STREAM_CODEC = StreamCodec.ofMember(SettingsMessage::encode, SettingsMessage::new);
+    public static final CustomPacketPayload.Type<SettingsMessage> TYPE = Message.createType("settings");
 
     public final Config config;
 
@@ -18,13 +18,13 @@ public class SettingsMessage extends Message {
         this.config = Config.getInstance();
     }
 
-    public SettingsMessage(RegistryByteBuf b) {
-        config = Config.fromJsonString(b.readString());
+    public SettingsMessage(RegistryFriendlyByteBuf b) {
+        config = Config.fromJsonString(b.readUtf());
     }
 
     @Override
-    public void encode(RegistryByteBuf b) {
-        b.writeString(config.toJsonString());
+    public void encode(RegistryFriendlyByteBuf b) {
+        b.writeUtf(config.toJsonString());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SettingsMessage extends Message {
     }
 
     @Override
-    public Id<? extends CustomPayload> getId() {
+    public Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 }

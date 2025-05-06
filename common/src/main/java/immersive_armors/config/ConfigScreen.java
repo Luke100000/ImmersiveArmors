@@ -5,9 +5,8 @@ import immersive_armors.config.configEntries.IntegerConfigEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
@@ -16,10 +15,10 @@ public class ConfigScreen {
         Config config = Config.getInstance();
 
         ConfigBuilder builder = ConfigBuilder.create()
-                .setTitle(Text.translatable("itemGroup.immersive_armors.immersive_armors_tab"))
+                .setTitle(Component.translatable("itemGroup.immersive_armors.immersive_armors_tab"))
                 .setSavingRunnable(config::save);
 
-        ConfigCategory general = builder.getOrCreateCategory(Text.translatable("option.immersive_armors.general"));
+        ConfigCategory general = builder.getOrCreateCategory(Component.translatable("option.immersive_armors.general"));
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
@@ -29,7 +28,7 @@ public class ConfigScreen {
                 try {
                     String key = "option.immersive_armors." + field.getName();
                     if (annotation instanceof IntegerConfigEntry entry) {
-                        general.addEntry(entryBuilder.startIntField(Text.translatable(key), field.getInt(config))
+                        general.addEntry(entryBuilder.startIntField(Component.translatable(key), field.getInt(config))
                                 .setDefaultValue(entry.value())
                                 .setSaveConsumer(v -> {
                                     try {
@@ -42,7 +41,7 @@ public class ConfigScreen {
                                 .setMax(entry.max())
                                 .build());
                     } else if (annotation instanceof FloatConfigEntry entry) {
-                        general.addEntry(entryBuilder.startFloatField(Text.translatable(key), field.getFloat(config))
+                        general.addEntry(entryBuilder.startFloatField(Component.translatable(key), field.getFloat(config))
                                 .setDefaultValue(entry.value())
                                 .setSaveConsumer(v -> {
                                     try {
