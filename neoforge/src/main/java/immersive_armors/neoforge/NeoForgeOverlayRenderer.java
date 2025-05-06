@@ -13,8 +13,6 @@ public class NeoForgeOverlayRenderer {
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, Main.locate("ia_overlay"),
-                (graphics, delta) -> {
-                    OverlayRenderer.renderOverlay(graphics);
-                });
+                (graphics, delta) -> OverlayRenderer.renderOverlay(graphics));
     }
 }

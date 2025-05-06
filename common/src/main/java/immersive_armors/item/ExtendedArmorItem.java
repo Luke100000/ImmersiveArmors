@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class ExtendedArmorItem extends ArmorItem {
     private Supplier<ItemAttributeModifiers> attributeModifiers;
@@ -57,22 +58,6 @@ public class ExtendedArmorItem extends ArmorItem {
             if (movementSpeed != 0.0F) {
                 builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(identifier, movementSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), slot);
             }
-            float maxHealth = material.getExtraHealth();
-            if (maxHealth != 0.0F) {
-                builder.add(Attributes.MAX_HEALTH, new AttributeModifier(identifier, maxHealth, AttributeModifier.Operation.ADD_VALUE), slot);
-            }
-            float attackDamage = material.getAttackDamage();
-            if (attackDamage != 0.0F) {
-                builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(identifier, attackDamage, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), slot);
-            }
-            float attackSpeed = material.getAttackSpeed();
-            if (attackSpeed != 0.0F) {
-                builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(identifier, attackSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), slot);
-            }
-            float luck = material.getLuck();
-            if (luck != 0.0F) {
-                builder.add(Attributes.LUCK, new AttributeModifier(identifier, luck, AttributeModifier.Operation.ADD_VALUE), slot);
-            }
             float waterMovement = material.getWaterMovement();
             if (waterMovement != 0.0F) {
                 builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, new AttributeModifier(identifier, waterMovement, AttributeModifier.Operation.ADD_VALUE), slot);
@@ -83,7 +68,7 @@ public class ExtendedArmorItem extends ArmorItem {
     }
 
     @Override
-    public ItemAttributeModifiers getDefaultAttributeModifiers() {
+    public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers() {
         return attributeModifiers.get();
     }
 

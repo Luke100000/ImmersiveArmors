@@ -85,7 +85,7 @@ public class PrismarineModel extends DecoModel {
 
     @Override
     protected Iterable<ModelPart> headParts() {
-        return Collections.singletonList(parts.get(0));
+        return Collections.singletonList(parts.getFirst());
     }
 
     @Override
@@ -98,8 +98,8 @@ public class PrismarineModel extends DecoModel {
         parts.forEach(p -> p.visible = false);
         switch (slot) {
             case HEAD -> {
-                parts.get(0).copyFrom(model.head);
-                parts.get(0).visible = true;
+                parts.getFirst().copyFrom(model.head);
+                parts.getFirst().visible = true;
             }
             case CHEST -> {
                 parts.get(1).copyFrom(model.rightArm);

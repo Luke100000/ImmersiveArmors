@@ -30,11 +30,6 @@ public class RightVerticalShoulderModel extends DecoModel {
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
-        return Collections.emptyList();
-    }
-
-    @Override
     protected Iterable<ModelPart> bodyParts() {
         return Collections.singletonList(part);
     }

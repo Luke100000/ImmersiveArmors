@@ -70,7 +70,6 @@ public abstract class Piece {
 
     private boolean translucent;
     private boolean glint;
-    private boolean colored;
     private boolean glowing;
 
     private String texture;
@@ -82,11 +81,6 @@ public abstract class Piece {
 
     public Piece glint() {
         this.glint = true;
-        return this;
-    }
-
-    public Piece colored() {
-        this.colored = true;
         return this;
     }
 
@@ -106,10 +100,6 @@ public abstract class Piece {
 
     public boolean hasGlint() {
         return glint;
-    }
-
-    public boolean isColored() {
-        return colored;
     }
 
     public boolean isGlowing() {

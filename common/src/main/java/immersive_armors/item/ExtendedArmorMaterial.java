@@ -31,11 +31,7 @@ public class ExtendedArmorMaterial {
     private float knockbackResistance;
     private int enchantability;
     private float weight;
-    private int extraHealth;
     private int color = 10511680;
-    private float attackDamage;
-    private float attackSpeed;
-    private int luck;
     private float waterMovement;
     private final List<ArmorEffect> effects = new LinkedList<>();
     private final Map<String, Float> loot = new HashMap<>();
@@ -114,28 +110,8 @@ public class ExtendedArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial extraHealth(int extraHealth) {
-        this.extraHealth = extraHealth;
-        return this;
-    }
-
     public ExtendedArmorMaterial color(int color) {
         this.color = color;
-        return this;
-    }
-
-    public ExtendedArmorMaterial attackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
-        return this;
-    }
-
-    public ExtendedArmorMaterial attackSpeed(int attackSpeed) {
-        this.attackSpeed = attackSpeed;
-        return this;
-    }
-
-    public ExtendedArmorMaterial luck(int luck) {
-        this.luck = luck;
         return this;
     }
 
@@ -245,24 +221,8 @@ public class ExtendedArmorMaterial {
         return weight;
     }
 
-    public int getExtraHealth() {
-        return extraHealth;
-    }
-
     public int getColor() {
         return color;
-    }
-
-    public float getAttackDamage() {
-        return attackDamage;
-    }
-
-    public float getAttackSpeed() {
-        return attackSpeed;
-    }
-
-    public int getLuck() {
-        return luck;
     }
 
     public float getWaterMovement() {

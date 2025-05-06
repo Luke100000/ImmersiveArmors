@@ -42,10 +42,10 @@ public class ItemsClient {
 
         ROBE_ARMOR
                 .hidesSecondLayer(false, true, true, true)
-                .lower(new LowerLeggingsLayerPiece().colored())
-                .upper(new LowerBodyLayerPiece().colored())
-                .lower(new MiddleLeggingsLayerPiece().colored())
-                .upper(new MiddleBodyLayerPiece().colored());
+                .lower(new LowerLeggingsLayerPiece())
+                .upper(new LowerBodyLayerPiece())
+                .lower(new MiddleLeggingsLayerPiece())
+                .upper(new MiddleBodyLayerPiece());
 
         SLIME_ARMOR
                 .lower(new LowerLeggingsLayerPiece().texture("leggings").translucent())
@@ -57,11 +57,11 @@ public class ItemsClient {
 
         DIVINE_ARMOR
                 .hidesSecondLayer(false, true, true, true)
-                .lower(new LowerLeggingsLayerPiece().colored())
-                .upper(new LowerBodyLayerPiece().colored())
+                .lower(new LowerLeggingsLayerPiece())
+                .upper(new LowerBodyLayerPiece())
                 .upper(new MiddleBodyLayerPiece().glint())
-                .upper(new UpperBodyLayerPiece().colored())
-                .chest(new CapePiece<>(new CapeModel<>()).colored());
+                .upper(new UpperBodyLayerPiece())
+                .chest(new CapePiece<>(new CapeModel<>()));
 
         PRISMARINE_ARMOR
                 .lower(new MiddleLeggingsLayerPiece())

@@ -13,12 +13,12 @@ public final class Config extends JsonConfig {
         return INSTANCE;
     }
 
+    @SuppressWarnings("unused")
+    public String _documentation = "https://github.com/Luke100000/ImmersiveArmors/blob/HEAD/config.md";
+
     public boolean hideSecondLayerUnderArmor = true;
     public boolean enableEffects = true;
     public boolean enableEnchantmentGlint = true;
-
-    @SuppressWarnings("unused")
-    public String _documentation = "https://github.com/Luke100000/ImmersiveArmors/blob/HEAD/config.md";
 
     @IntegerConfigEntry(-91 - 20)
     public int hudClockX;
