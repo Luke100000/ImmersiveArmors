@@ -1,5 +1,6 @@
 package immersive_armors.client.render.entity.piece;
 
+import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.*;
@@ -11,12 +12,13 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.trim.ArmorTrim;
+import net.minecraft.registry.entry.RegistryEntry;
 
 public abstract class LayerPiece extends Piece {
     protected final SpriteAtlasTexture armorTrimsAtlas;
@@ -48,10 +50,10 @@ public abstract class LayerPiece extends Piece {
         armorTrimsAtlas = MinecraftClient.getInstance().getBakedModelManager().getAtlas(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE);
     }
 
-    protected void renderTrim(ArmorMaterial material, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorTrim trim, BipedEntityModel<LivingEntity> model, boolean leggings) {
+    protected void renderTrim(RegistryEntry<ArmorMaterial> material, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorTrim trim, BipedEntityModel<LivingEntity> model, boolean leggings) {
         Sprite sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(material) : trim.getGenericModelId(material));
-        VertexConsumer vertexConsumer = sprite.getTextureSpecificVertexConsumer(vertexConsumers.getBuffer(TexturedRenderLayers.getArmorTrims()));
-        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
+        VertexConsumer vertexConsumer = sprite.getTextureSpecificVertexConsumer(vertexConsumers.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
+        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 0xFFFFFF);
     }
 
     @Override
@@ -61,18 +63,19 @@ public abstract class LayerPiece extends Piece {
             armorModel.copyBipedStateTo((BipedEntityModel<T>) getModel());
             setVisible(getModel(), armorSlot);
 
-            if (isColored()) {
-                int i = ((DyeableItem) armorItem).getColor(itemStack);
-                float red = (float) (i >> 16 & 255) / 255.0F;
-                float green = (float) (i >> 8 & 255) / 255.0F;
-                float blue = (float) (i & 255) / 255.0F;
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), red, green, blue, false);
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 1.0F, 1.0F, 1.0F, true);
+            if (armorItem instanceof DyeableExtendedArmorItem dyeableArmorItem) {
+                int c = dyeableArmorItem.getColor(itemStack);
+
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), c + 0xFF000000, false);
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 0xFFFFFFFF, true);
             } else {
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 1.0F, 1.0F, 1.0F, false);
+                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 0xFFFFFFFF, false);
             }
 
-            ArmorTrim.getTrim(entity.getWorld().getRegistryManager(), itemStack).ifPresent(trim -> this.renderTrim(armorItem.getMaterial(), matrices, vertexConsumers, light, trim, getModel(), armorSlot == EquipmentSlot.LEGS));
+            ArmorTrim trim = itemStack.get(DataComponentTypes.TRIM);
+            if (trim != null) {
+                this.renderTrim(armorItem.getMaterial(), matrices, vertexConsumers, light, trim, getModel(), armorSlot == EquipmentSlot.LEGS);
+            }
         }
     }
 }

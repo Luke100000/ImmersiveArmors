@@ -3,9 +3,9 @@ package immersive_armors.mixin;
 import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.entity.PlayerModelPart;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerModelPart;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +21,7 @@ public abstract class MixinPlayerEntity {
     @Shadow
     public abstract boolean isMainPlayer();
 
-    @Inject(method = "isPartVisible", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isPartVisible(Lnet/minecraft/entity/player/PlayerModelPart;)Z", at = @At("HEAD"), cancellable = true)
     public void immersiveArmors$injectIsPartVisible(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.getInstance().hideSecondLayerUnderArmor) {
             return;
@@ -51,7 +51,7 @@ public abstract class MixinPlayerEntity {
 
         if (index >= 0) {
             ItemStack stack = getEquippedStack(slot);
-            if (stack.getItem() instanceof ExtendedArmorItem armorItem && armorItem.getMaterial().shouldHideSecondLayer()[index]) {
+            if (stack.getItem() instanceof ExtendedArmorItem armorItem && armorItem.getExtendedMaterial().shouldHideSecondLayer()[index]) {
                 cir.setReturnValue(false);
             }
         }

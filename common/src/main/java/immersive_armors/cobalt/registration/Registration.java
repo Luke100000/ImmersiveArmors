@@ -1,9 +1,8 @@
 package immersive_armors.cobalt.registration;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 

@@ -5,7 +5,8 @@ import immersive_armors.cobalt.registration.Registration;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
-import net.minecraft.enchantment.Enchantments;
+import net.minecraft.client.color.item.ItemColorProvider;
+import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -59,7 +59,7 @@ public interface Items {
             .enchantability(5)
             .hideCape()
             .effect(new BerserkArmorEffect(0.2f))
-            .effect(new WeaponEfficiency(0.05f, new Identifier("immersive_armors:axes"), "axe"))
+            .effect(new WeaponEfficiency(0.05f, Main.locate("axes"), "axe"))
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial HEAVY_ARMOR = registerSet(new ExtendedArmorMaterial("heavy")
@@ -82,7 +82,7 @@ public interface Items {
             .enchantability(50)
             .durabilityMultiplier(14)
             .repairIngredient(() -> Ingredient.fromTag(ItemTags.WOOL))
-            .color(11546150)
+            .color(0xFFB00F46)
             .effect(new FireResistanceArmorEffect(0.25f))
             .effect(new FireInflictingArmorEffect(10))
             .effect(new MagicProtectionArmorEffect(0.2f))
@@ -110,7 +110,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.GOLD_INGOT))
             .enchantability(30)
             .effect(new DivineArmorEffect(1200))
-            .color(11546150)
+            .color(0xFFB00F46)
             .hideCape()
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
@@ -122,8 +122,8 @@ public interface Items {
             .durabilityMultiplier(18)
             .repairIngredient(() -> Ingredient.ofItems(net.minecraft.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
+            .waterMovement(0.25f)
             .effect(new SpikesArmorEffect(1))
-            .enchantment(Enchantments.DEPTH_STRIDER, 2)
             .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
     ExtendedArmorMaterial WOODEN_ARMOR = registerSet(new ExtendedArmorMaterial("wooden")
@@ -153,25 +153,31 @@ public interface Items {
     }
 
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
+        material.registerVanillaMaterial();
+
         Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
         Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
         Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
         Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
+
         return material;
     }
 
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
+        material.registerVanillaMaterial();
+
         Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
         Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
         Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
         Items.coloredItems.putAll(register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
 
         Items.items.putAll(Items.coloredItems);
+
         return material;
     }
 
     static Map<String, Supplier<Item>> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
-        Supplier<Item> register = Registration.register(Registries.ITEM, new Identifier(Main.MOD_ID, name), item);
+        Supplier<Item> register = Registration.register(Registries.ITEM, Main.locate(name), item);
         for (Map.Entry<String, Float> entry : material.getLoot().entrySet()) {
             lootLookup.putIfAbsent(entry.getKey(), new HashMap<>());
             lootLookup.get(entry.getKey()).put(register, entry.getValue());
@@ -181,10 +187,20 @@ public interface Items {
     }
 
     static Item.Settings baseProps() {
-        return new Item.Settings();
+        return new Item.Settings().maxCount(1);
     }
 
     static List<ItemStack> getSortedItems() {
         return itemsOrdered.stream().map(i -> i.get().getDefaultStack()).toList();
+    }
+
+    static ItemColorProvider getDyeColor(int defaultColor) {
+        return (item, layer) -> {
+            if (layer != 0) {
+                return -1;
+            } else {
+                return DyedColorComponent.getColor(item, defaultColor);
+            }
+        };
     }
 }

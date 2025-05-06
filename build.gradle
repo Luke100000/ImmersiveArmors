@@ -6,8 +6,7 @@ buildscript {
 
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
 }
 
 architectury {
@@ -16,9 +15,6 @@ architectury {
 
 subprojects {
     apply plugin: "dev.architectury.loom"
-
-    apply plugin: 'com.github.johnrengelman.shadow'
-    apply plugin: 'java'
 
     repositories {
         maven { url 'https://jitpack.io' }
@@ -34,7 +30,12 @@ subprojects {
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.architectury.minecraft}"
-        mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+        dependencies {
+            mappings loom.layered {
+                it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
+                it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.yarn_mappings_patch_neoforge_version")
+            }
+        }
 
         //implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
         //annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
@@ -45,23 +46,21 @@ subprojects {
 }
 
 def getAppVersion = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'rev-parse', '--short', 'HEAD'
-        standardOutput = stdout
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'tag', '--points-at', 'HEAD'
+            standardOutput = stdout
+        }
+        def tag = stdout.toString().trim()
+        if (tag.isEmpty()) {
+            return rootProject.minecraft_version + "-SNAPSHOT"
+        }
+        return tag
+    } catch (Exception e) {
+        println "Warning: ${e.message}, is git installed?"
+        return rootProject.minecraft_version + "-DEV"
     }
-    def commitId = stdout.toString().replace("\n", "").replace("\r", "").trim()
-    stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'tag', '--points-at', commitId
-        standardOutput = stdout
-    }
-    def tagName = stdout.toString().replace("\n", "").replace("\r", "").trim()
-    def versionName = '0-git-' + commitId
-    if (tagName != null && "" != tagName) {
-        versionName = tagName
-    }
-    return versionName
 } as Object
 
 allprojects {
@@ -73,7 +72,7 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 16
+        options.release = 21
     }
 
     java {

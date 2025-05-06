@@ -3,21 +3,30 @@ package immersive_armors.item;
 import immersive_armors.Main;
 import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Util;
 
 import java.util.*;
 import java.util.function.Supplier;
 
-public class ExtendedArmorMaterial implements ArmorMaterial {
+public class ExtendedArmorMaterial {
     private final String name;
 
     private int durabilityMultiplier;
-    private int[] protectionAmount;
+    private final EnumMap<ArmorItem.Type, Integer> protection = Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+        map.put(ArmorItem.Type.BOOTS, 0);
+        map.put(ArmorItem.Type.LEGGINGS, 0);
+        map.put(ArmorItem.Type.CHESTPLATE, 0);
+        map.put(ArmorItem.Type.HELMET, 0);
+        map.put(ArmorItem.Type.BODY, 0);
+    });
     private final boolean[] hidesSecondLayer = {false, false, false, false};
     private float toughness;
     private float knockbackResistance;
@@ -28,8 +37,8 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     private float attackDamage;
     private float attackSpeed;
     private int luck;
+    private float waterMovement;
     private final List<ArmorEffect> effects = new LinkedList<>();
-    private final Map<Enchantment, Integer> enchantments = new HashMap<>();
     private final Map<String, Float> loot = new HashMap<>();
 
     private boolean antiSkeleton;
@@ -45,10 +54,12 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     private boolean hideCape;
 
-    private SoundEvent equipSound;
+    private RegistryEntry<SoundEvent> equipSound;
     private Supplier<Ingredient> repairIngredient;
 
-    private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
+
+    private RegistryEntry<ArmorMaterial> registryReference;
 
     public ExtendedArmorMaterial(String name) {
         this.name = name;
@@ -62,7 +73,11 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public ExtendedArmorMaterial protectionAmount(int helmet, int chestplate, int legging, int boots) {
-        this.protectionAmount = new int[] {boots, legging, chestplate, helmet};
+        this.protection.put(ArmorItem.Type.HELMET, helmet);
+        this.protection.put(ArmorItem.Type.CHESTPLATE, chestplate);
+        this.protection.put(ArmorItem.Type.LEGGINGS, legging);
+        this.protection.put(ArmorItem.Type.BOOTS, boots);
+        this.protection.put(ArmorItem.Type.BODY, chestplate);
         return this;
     }
 
@@ -77,6 +92,10 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
     }
 
     public ExtendedArmorMaterial equipSound(SoundEvent equipSound) {
+        return equipSound(RegistryEntry.of(equipSound));
+    }
+
+    public ExtendedArmorMaterial equipSound(RegistryEntry<SoundEvent> equipSound) {
         this.equipSound = equipSound;
         return this;
     }
@@ -121,13 +140,13 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    public ExtendedArmorMaterial effect(ArmorEffect effect) {
-        this.effects.add(effect);
+    public ExtendedArmorMaterial waterMovement(float waterMovement) {
+        this.waterMovement = waterMovement;
         return this;
     }
 
-    public ExtendedArmorMaterial enchantment(Enchantment enchantment, int level) {
-        this.enchantments.put(enchantment, level);
+    public ExtendedArmorMaterial effect(ArmorEffect effect) {
+        this.effects.add(effect);
         return this;
     }
 
@@ -184,42 +203,41 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return this;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
+
     public int getDurability(ArmorItem.Type slot) {
         return BASE_DURABILITY[slot.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
     }
 
-    @Override
+
     public int getProtection(ArmorItem.Type slot) {
-        return protectionAmount[slot.getEquipmentSlot().getEntitySlotId()];
+        return protection.get(slot);
     }
 
-    @Override
+
     public float getToughness() {
         return toughness;
     }
 
-    @Override
+
     public int getEnchantability() {
         return enchantability;
     }
 
-    @Override
-    public SoundEvent getEquipSound() {
+
+    public RegistryEntry<SoundEvent> getEquipSound() {
         return equipSound;
     }
 
-    @Override
+
     public Ingredient getRepairIngredient() {
         return repairIngredient.get();
     }
 
-    @Override
+
     public float getKnockbackResistance() {
         return knockbackResistance;
     }
@@ -248,24 +266,16 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return luck;
     }
 
+    public float getWaterMovement() {
+        return waterMovement;
+    }
+
     public List<ArmorEffect> getEffects() {
         if (Main.sharedConfig.enableEffects) {
             return effects;
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public Map<Enchantment, Integer> getEnchantments() {
-        return enchantments;
-    }
-
-    public boolean hasEnchantment(Enchantment enchantment) {
-        return enchantments.containsKey(enchantment);
-    }
-
-    public int getEnchantment(Enchantment enchantment) {
-        return enchantments.get(enchantment);
     }
 
     public boolean shouldHideCape() {
@@ -292,8 +302,8 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
         return antiSkeleton;
     }
 
-    public int[] getProtectionAmounts() {
-        return protectionAmount;
+    public EnumMap<ArmorItem.Type, Integer> getProtection() {
+        return protection;
     }
 
     public int getDurabilityMultiplier() {
@@ -302,5 +312,21 @@ public class ExtendedArmorMaterial implements ArmorMaterial {
 
     public Map<String, Float> getLoot() {
         return loot;
+    }
+
+    public ArmorMaterial getMaterial() {
+        return new ArmorMaterial(protection, enchantability, equipSound, repairIngredient, List.of(), toughness, knockbackResistance);
+    }
+
+    public void registerVanillaMaterial() {
+        this.registryReference = Registry.registerReference(
+                Registries.ARMOR_MATERIAL,
+                Main.locate(getName()),
+                getMaterial()
+        );
+    }
+
+    public RegistryEntry<ArmorMaterial> getRegistryReference() {
+        return registryReference;
     }
 }

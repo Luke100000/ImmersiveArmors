@@ -50,11 +50,11 @@ public abstract class Piece {
     }
 
     private Identifier getTexture(ExtendedArmorItem item, boolean overlay) {
-        String string = "immersive_armors:textures/models/armor/" + item.getMaterial().getName() + "/" + getTexture() + (overlay ? "_overlay" : "") + ".png";
-        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::new);
+        String string = "immersive_armors:textures/models/armor/" + item.getExtendedMaterial().getName() + "/" + getTexture() + (overlay ? "_overlay" : "") + ".png";
+        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::of);
     }
 
-    protected void renderParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ItemStack itemStack, ExtendedArmorItem item, EntityModel model, float red, float green, float blue, boolean overlay) {
+    protected void renderParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ItemStack itemStack, ExtendedArmorItem item, EntityModel model, int color, boolean overlay) {
         RenderLayer renderLayer;
         if (isTranslucent()) {
             renderLayer = RenderLayer.getEntityTranslucent(getTexture(item, overlay));
@@ -63,8 +63,8 @@ public abstract class Piece {
         } else {
             renderLayer = RenderLayer.getArmorCutoutNoCull(getTexture(item, overlay));
         }
-        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, false, hasGlint() | itemStack.hasGlint() & Config.getInstance().enableEnchantmentGlint);
-        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0F);
+        VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, renderLayer, hasGlint() | itemStack.hasGlint() & Config.getInstance().enableEnchantmentGlint);
+        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color);
     }
 
     public abstract <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel);

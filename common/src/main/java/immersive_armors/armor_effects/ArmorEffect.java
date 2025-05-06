@@ -1,15 +1,16 @@
 package immersive_armors.armor_effects;
 
+import immersive_armors.CustomDataComponentTypes;
 import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,11 +32,11 @@ public abstract class ArmorEffect {
         return armorEquipmentSlots.stream()
                 .map(entity::getEquippedStack)
                 .filter(Objects::nonNull)
-                .filter(stack -> stack.getItem() instanceof ExtendedArmorItem && ((ExtendedArmorItem)stack.getItem()).getMaterial() == material);
+                .filter(stack -> stack.getItem() instanceof ExtendedArmorItem && ((ExtendedArmorItem)stack.getItem()).getExtendedMaterial() == material);
     }
 
     protected Stream<ItemStack> getMatchingEquippedArmor(LivingEntity entity, ItemStack stack) {
-        return getMatchingEquippedArmor(entity, ((ExtendedArmorItem)stack.getItem()).getMaterial());
+        return getMatchingEquippedArmor(entity, ((ExtendedArmorItem)stack.getItem()).getExtendedMaterial());
     }
 
     protected boolean isPrimaryArmor(ItemStack stack, LivingEntity entity) {
@@ -47,16 +48,16 @@ public abstract class ArmorEffect {
     }
 
     protected int getSetCount(ItemStack stack) {
-        return stack.getOrCreateNbt().getInt("set_bonus");
+        return stack.getOrDefault(CustomDataComponentTypes.SET_COUNT, 0);
     }
 
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
 
     }
 
     public void equippedTick(ItemStack stack, World world, LivingEntity entity, int slot) {
         if (world.getTime() % 20 == 0) {
-            stack.getOrCreateNbt().putInt("set_bonus", getSetCount(stack, entity));
+            stack.set(CustomDataComponentTypes.SET_COUNT, getSetCount(stack, entity));
         }
     }
 

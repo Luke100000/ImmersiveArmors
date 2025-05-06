@@ -1,78 +1,77 @@
 package immersive_armors.fabric.cobalt.network;
 
-import immersive_armors.Main;
 import immersive_armors.cobalt.network.Message;
 import immersive_armors.cobalt.network.NetworkHandler;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 
 public class NetworkHandlerImpl extends NetworkHandler.Impl {
-    private final Map<Class<?>, Identifier> identifiers = new HashMap<>();
-
-    private int id = 0;
-
-    private <T> Identifier createMessageIdentifier(Class<T> msg) {
-        return new Identifier(Main.SHORT_MOD_ID, msg.getSimpleName().toLowerCase(Locale.ROOT).substring(0, 8) + id++);
-    }
-
-    private Identifier getMessageIdentifier(Message msg) {
-        return Objects.requireNonNull(identifiers.get(msg.getClass()), "Used unregistered message!");
-    }
-
     @Override
-    public <T extends Message> void registerMessage(Class<T> msg, Function<PacketByteBuf, T> constructor) {
-        Identifier identifier = createMessageIdentifier(msg);
-        identifiers.put(msg, identifier);
+    public <T extends Message> void registerMessage(String namespace, CustomPayload.Id<T> type, PacketCodec<RegistryByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
+        if (clientHandler != null) PayloadTypeRegistry.playS2C().register(type, codec);
+        if (serverHandler != null) PayloadTypeRegistry.playC2S().register(type, codec);
 
-        ServerPlayNetworking.registerGlobalReceiver(identifier, (server, player, handler, buffer, responder) -> {
-            Message m = constructor.apply(buffer);
-            server.execute(() -> m.receive(player));
-        });
+        if (clientHandler != null && FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+            ClientProxy.register(type, clientHandler);
+        }
 
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            ClientProxy.register(identifier, constructor);
+        if (serverHandler != null) {
+            ServerPlayNetworking.registerGlobalReceiver(type, (payload, context) -> serverHandler.handle(payload, context.player()));
         }
     }
 
     @Override
     public void sendToServer(Message msg) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-        msg.encode(buf);
-        ClientPlayNetworking.send(getMessageIdentifier(msg), buf);
+        ClientProxy.sendToServer(msg);
     }
 
     @Override
     public void sendToPlayer(Message msg, ServerPlayerEntity e) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), e.getRegistryManager());
         msg.encode(buf);
-        ServerPlayNetworking.send(e, getMessageIdentifier(msg), buf);
+        ServerPlayNetworking.send(e, msg);
     }
 
-    // Fabric's APIs are not side-agnostic.
-    // We punt this to a separate class file to keep it from being eager-loaded on a server environment.
+    @Override
+    public void sendToTrackingPlayers(Message msg, Entity e) {
+        RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), e.getRegistryManager());
+        msg.encode(buf);
+        for (ServerPlayerEntity player : PlayerLookup.tracking(e)) {
+            ServerPlayNetworking.send(player, msg);
+        }
+    }
+
+    // Prevent eager loading client side code
     private static final class ClientProxy {
         private ClientProxy() {
-            throw new RuntimeException("new ClientProxy()");
+            // Nop
         }
 
-        public static <T extends Message> void register(Identifier id, Function<PacketByteBuf, T> constructor) {
-            ClientPlayNetworking.registerGlobalReceiver(id, (client, ignore1, buffer, ignore2) -> {
-                Message m = constructor.apply(buffer);
-                client.execute(() -> m.receive(client.player));
-            });
+        public static <T extends Message> void register(CustomPayload.Id<T> type, NetworkHandler.ClientHandler<T> handler) {
+            ClientPlayNetworking.registerGlobalReceiver(type, (payload, context) -> handler.handle(payload));
+        }
+
+        public static void sendToServer(Message msg) {
+            ClientPlayerEntity player = MinecraftClient.getInstance().player;
+            if (player != null) {
+                RegistryByteBuf buf = new RegistryByteBuf(Unpooled.buffer(), player.getRegistryManager());
+                msg.encode(buf);
+                ClientPlayNetworking.send(msg);
+            }
         }
     }
 }
+
 

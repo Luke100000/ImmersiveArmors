@@ -1,18 +1,24 @@
 package immersive_armors.armor_effects;
 
+import com.mojang.serialization.Codec;
+import immersive_armors.CustomDataComponentTypes;
 import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.network.c2s.ArmorCommandMessage;
+import immersive_armors.util.EnumCodec;
+import immersive_armors.util.EnumPacketCodec;
 import immersive_armors.util.FlowingText;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
@@ -21,16 +27,13 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Locale;
 
 public class SteamTechArmorEffect extends ArmorEffect {
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
-
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         MutableText text = Text.translatable("armorEffect.steamTech." + getEquipmentSlot(stack).name().toLowerCase(Locale.ROOT)).formatted(Formatting.GRAY);
         tooltip.addAll(FlowingText.wrap(text, 140));
     }
@@ -65,9 +68,8 @@ public class SteamTechArmorEffect extends ArmorEffect {
         if (!world.isClient() && entity.isSneaking() && getEquipmentSlot(armor) == EquipmentSlot.HEAD && entity.age % 20 == 0) {
             final boolean[] sound = {false};
             world.getOtherEntities(entity, new Box(entity.getPos(), entity.getPos()).expand(16)).forEach(e -> {
-                if (e instanceof HostileEntity) {
-                    LivingEntity le = (LivingEntity)e;
-                    le.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 5));
+                if (e instanceof HostileEntity hostileEntity) {
+                    hostileEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 5));
                     if (!sound[0]) {
                         sound[0] = true;
                         entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, entity.getSoundCategory(), 0.25f, 3f);
@@ -78,18 +80,16 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
         //double jump
         if (world.isClient && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
-            NbtCompound nbt = armor.getOrCreateNbt();
             if (entity.isOnGround()) {
-                nbt.putInt("thrusterState", ThrusterState.CHARGED.ordinal());
-            } else if (nbt.getInt("thrusterState") == ThrusterState.CHARGED.ordinal()) {
+                armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.CHARGED);
+            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE) == ThrusterState.CHARGED) {
                 if (!isJumping()) {
-                    nbt.putInt("thrusterState", ThrusterState.READY.ordinal());
+                    armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.READY);
                 }
-            } else if (nbt.getInt("thrusterState") == ThrusterState.READY.ordinal()) {
+            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE) == ThrusterState.READY) {
                 if (isJumping()) {
                     thrust(entity);
-                    nbt.putInt("thrusterState", ThrusterState.OFFLINE.ordinal());
-
+                    armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.OFFLINE);
                     NetworkHandler.sendToServer(new ArmorCommandMessage(slot, "thrust"));
                 }
             }
@@ -132,12 +132,15 @@ public class SteamTechArmorEffect extends ArmorEffect {
     }
 
     private EquipmentSlot getEquipmentSlot(ItemStack stack) {
-        return ((ArmorItem)stack.getItem()).getSlotType();
+        return ((ArmorItem) stack.getItem()).getSlotType();
     }
 
-    private enum ThrusterState {
+    public enum ThrusterState {
         OFFLINE,
         CHARGED,
-        READY
+        READY;
+
+        public static final Codec<ThrusterState> CODEC = new EnumCodec<>(ThrusterState.class);
+        public static final PacketCodec<ByteBuf, ThrusterState> PACKET_CODEC = new EnumPacketCodec<>(ThrusterState.class);
     }
 }

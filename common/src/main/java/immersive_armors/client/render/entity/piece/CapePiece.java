@@ -1,6 +1,8 @@
 package immersive_armors.client.render.entity.piece;
 
+import immersive_armors.Main;
 import immersive_armors.client.render.entity.model.CapeModel;
+import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -11,15 +13,19 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
+    private static final Map<UUID, CapeAngles> capeAngles = new HashMap<>();
+
     private final M model;
 
     public CapePiece(M model) {
@@ -27,15 +33,14 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
     }
 
     private Identifier getCapeTexture(ExtendedArmorItem item, boolean overlay) {
-        return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/cape" + (overlay ? "_overlay" : "") + ".png");
+        return Main.locate("textures/models/armor/" + item.getExtendedMaterial().getName() + "/cape" + (overlay ? "_overlay" : "") + ".png");
     }
 
     public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
         if (itemStack.getItem() instanceof ExtendedArmorItem armor) {
             //update cape motion
-            CapeAngles angles = new CapeAngles(itemStack);
+            CapeAngles angles = capeAngles.computeIfAbsent(entity.getUuid(), k -> new CapeAngles());
             angles.updateCapeAngles(entity, tickDelta);
-            angles.store(itemStack);
 
             matrices.push();
             matrices.translate(0.0D, 0.0D, 0.125D);
@@ -65,27 +70,22 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
             model.setAngles(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
             VertexConsumer vertexConsumer;
-            if (isColored()) {
-                int i = ((DyeableItem) armor).getColor(itemStack);
-                float red = (float) (i >> 16 & 255) / 255.0F;
-                float green = (float) (i >> 8 & 255) / 255.0F;
-                float blue = (float) (i & 255) / 255.0F;
+            if (armor instanceof DyeableExtendedArmorItem dyeableArmorItem) {
+                int c = dyeableArmorItem.getColor(itemStack);
 
                 vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
-                model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, red, green, blue, 1.0f);
+                model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, c);
 
                 vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, true)));
             } else {
                 vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getCapeTexture(armor, false)));
             }
-            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
+            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
             matrices.pop();
         }
     }
 
     private static class CapeAngles {
-        private static final String ANGLE_TAG = "capeAngles";
-
         private double capeX;
         private double capeY;
         private double capeZ;
@@ -138,27 +138,6 @@ public class CapePiece<M extends CapeModel<LivingEntity>> extends Piece {
             this.deltaX = capeX - pos.getX();
             this.deltaY = capeY - pos.getY();
             this.deltaZ = capeZ - pos.getZ();
-        }
-
-        public CapeAngles(ItemStack cape) {
-            NbtCompound tag = cape.getOrCreateNbt();
-            if (tag.contains(ANGLE_TAG)) {
-                NbtCompound angles = tag.getCompound(ANGLE_TAG);
-                capeX = angles.getDouble("capeX");
-                capeY = angles.getDouble("capeY");
-                capeZ = angles.getDouble("capeZ");
-                lastTickDelta = angles.getFloat("lastTickDelta");
-            }
-        }
-
-        public void store(ItemStack cape) {
-            NbtCompound tag = cape.getOrCreateNbt();
-            NbtCompound angles = new NbtCompound();
-            angles.putDouble("capeX", capeX);
-            angles.putDouble("capeY", capeY);
-            angles.putDouble("capeZ", capeZ);
-            angles.putFloat("lastTickDelta", lastTickDelta);
-            tag.put(ANGLE_TAG, angles);
         }
     }
 }

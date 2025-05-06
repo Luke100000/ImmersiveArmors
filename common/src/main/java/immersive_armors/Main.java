@@ -10,7 +10,6 @@ import java.util.Map;
 import static immersive_armors.ItemPropertyOverwrite.applyItemOverride;
 
 public final class Main {
-    public static final String SHORT_MOD_ID = "ic_ia";
     public static final String MOD_ID = "immersive_armors";
     public static NetworkManager networkManager;
 
@@ -30,6 +29,6 @@ public final class Main {
     }
 
     public static Identifier locate(String path) {
-        return new Identifier(MOD_ID, path);
+        return Identifier.of(MOD_ID, path);
     }
 }

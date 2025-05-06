@@ -6,7 +6,7 @@ import immersive_armors.network.s2c.SettingsMessage;
 
 public class Messages {
     public static void bootstrap() {
-        NetworkHandler.registerMessage(SettingsMessage.class, SettingsMessage::new);
-        NetworkHandler.registerMessage(ArmorCommandMessage.class, ArmorCommandMessage::new);
+        NetworkHandler.registerMessage(Main.MOD_ID, SettingsMessage.TYPE, SettingsMessage.STREAM_CODEC);
+        NetworkHandler.registerMessage(Main.MOD_ID, ArmorCommandMessage.TYPE, ArmorCommandMessage.STREAM_CODEC);
     }
 }

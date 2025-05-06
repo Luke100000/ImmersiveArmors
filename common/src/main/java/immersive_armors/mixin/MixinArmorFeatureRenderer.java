@@ -12,6 +12,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -38,18 +39,19 @@ public abstract class MixinArmorFeatureRenderer<T extends LivingEntity, M extend
     public void immersiveArmors$render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float tickDelta, float j, float k, float l, CallbackInfo ci) {
         // Forge removed renderArmorParts calls
         if (Main.FORGE) {
-            renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.HEAD);
-            renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.CHEST);
-            renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.LEGS);
-            renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.FEET);
+            immersive_armors$renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.HEAD);
+            immersive_armors$renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.CHEST);
+            immersive_armors$renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.LEGS);
+            immersive_armors$renderPieces(matrixStack, vertexConsumerProvider, i, entity, tickDelta, EquipmentSlot.FEET);
         }
     }
 
-    private void renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float tickDelta, EquipmentSlot armorSlot) {
+    @Unique
+    private void immersive_armors$renderPieces(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float tickDelta, EquipmentSlot armorSlot) {
         if (entity != null) {
             ItemStack equippedStack = entity.getEquippedStack(armorSlot);
             if (equippedStack.getItem() instanceof ExtendedArmorItem item) {
-                item.getMaterial().getPieces(item.getSlotType()).forEach(piece -> piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), this.getContextModel()));
+                item.getExtendedMaterial().getPieces(item.getSlotType()).forEach(piece -> piece.render(matrices, vertexConsumers, light, entity, equippedStack, tickDelta, item.getSlotType(), this.getContextModel()));
             }
         }
     }

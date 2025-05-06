@@ -1,4 +1,4 @@
-![Banner](./common/src/main/resources/logoFile.png)
+![Banner](./common/src/main/resources/banner.png)
 
 [![Crowdin](https://badges.crowdin.net/immersive-collection/localized.svg)](https://crowdin.com/project/immersive-collection)
 

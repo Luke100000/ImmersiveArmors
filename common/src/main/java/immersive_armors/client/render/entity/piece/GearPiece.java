@@ -1,5 +1,6 @@
 package immersive_armors.client.render.entity.piece;
 
+import immersive_armors.Main;
 import immersive_armors.client.render.entity.model.DecoModel;
 import immersive_armors.client.render.entity.model.GearModel;
 import immersive_armors.item.ExtendedArmorItem;
@@ -25,7 +26,7 @@ public class GearPiece<M extends GearModel> extends Piece {
     private final Quaternionf rotation;
 
     private Identifier getTexture(ExtendedArmorItem item) {
-        return new Identifier("immersive_armors", "textures/models/armor/" + item.getMaterial().getName() + "/" + texture + ".png");
+        return Main.locate("textures/models/armor/" + item.getExtendedMaterial().getName() + "/" + texture + ".png");
     }
 
     public GearPiece(M model, String texture, float x, float y, float z, float speed) {
@@ -50,9 +51,9 @@ public class GearPiece<M extends GearModel> extends Piece {
         if (rotation != null) {
             matrices.multiply(rotation);
         }
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)((entity.age + tickDelta) * speed * 180.0f / Math.PI / 20.0f)));
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getTexture((ExtendedArmorItem)itemStack.getItem())));
-        model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) ((entity.age + tickDelta) * speed * 180.0f / Math.PI / 20.0f)));
+        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(getTexture((ExtendedArmorItem) itemStack.getItem())));
+        model.getPart().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 0xFFFFFFFF);
         matrices.pop();
     }
 }

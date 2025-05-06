@@ -27,8 +27,8 @@ public class GearModel extends DecoModel {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-        part.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+        part.render(matrices, vertices, light, overlay, color);
     }
 
     public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {

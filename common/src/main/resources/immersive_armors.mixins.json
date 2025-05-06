@@ -4,7 +4,6 @@
 	"package": "immersive_armors.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"MixinEnchantmentHelper",
 		"MixinFollowTargetGoal",
 		"MixinLivingEntity",
 		"MobEntityMixin"
@@ -14,7 +13,6 @@
 		"MixinArmorFeatureRenderer",
 		"MixinCapeFeatureRenderer",
 		"MixinItemRenderer",
-		"MixinMinecraftClient",
 		"MixinPlayerEntity"
 	],
 	"injectors": {
