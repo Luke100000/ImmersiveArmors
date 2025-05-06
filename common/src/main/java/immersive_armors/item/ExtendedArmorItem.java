@@ -25,7 +25,7 @@ public class ExtendedArmorItem extends ArmorItem {
     private final ExtendedArmorMaterial material;
 
     public ExtendedArmorItem(Item.Properties settings, ArmorItem.Type slot, ExtendedArmorMaterial material) {
-        super(material.getRegistryReference(), slot, settings);
+        super(material.getRegistryReference(), slot, settings.durability(slot.getDurability(material.getDurabilityMultiplier())));
 
         this.material = material;
 

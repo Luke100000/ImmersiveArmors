@@ -52,8 +52,6 @@ public class ExtendedArmorMaterial {
     private Holder<SoundEvent> equipSound;
     private Supplier<Ingredient> repairIngredient;
 
-    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
-
     private Holder<ArmorMaterial> registryReference;
 
     public ExtendedArmorMaterial(String name) {
@@ -182,36 +180,25 @@ public class ExtendedArmorMaterial {
         return name;
     }
 
-
-    public int getDurability(ArmorItem.Type slot) {
-        return BASE_DURABILITY[slot.getSlot().getIndex()] * this.durabilityMultiplier;
-    }
-
-
     public int getProtection(ArmorItem.Type slot) {
         return protection.get(slot);
     }
-
 
     public float getToughness() {
         return toughness;
     }
 
-
     public int getEnchantability() {
         return enchantability;
     }
-
 
     public Holder<SoundEvent> getEquipSound() {
         return equipSound;
     }
 
-
     public Ingredient getRepairIngredient() {
         return repairIngredient.get();
     }
-
 
     public float getKnockbackResistance() {
         return knockbackResistance;
