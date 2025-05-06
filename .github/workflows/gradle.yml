@@ -34,8 +34,8 @@ jobs:
           msg: ${{steps.tag.outputs.tag}}
       - name: "Rename Fabric files"
         run: mv "fabric/build/libs/immersive_armors-${{steps.tag.outputs.tag}}.jar" "fabric/build/libs/immersive_armors-${{steps.tag.outputs.tag}}-fabric.jar"
-      - name: "Rename Forge files"
-        run: mv "forge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}.jar" "forge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}-forge.jar"
+      - name: "Rename NeoForge files"
+        run: mv "neoforge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}.jar" "neoforge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}-neoforge.jar"
       - name: "Upload Fabric"
         uses: Kir-Antipov/mc-publish@v3.3.0
         if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
@@ -60,7 +60,7 @@ jobs:
             cloth-config(recommended)
 
           fail-mode: skip
-      - name: "Upload Forge"
+      - name: "Upload NeoForge"
         uses: Kir-Antipov/mc-publish@v3.3.0
         if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
         with:
@@ -69,12 +69,12 @@ jobs:
           curseforge-id: ${{ env.CURSEFORGE_ID }}
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
-          name: "[Forge ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
+          name: "[NeoForge ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
           changelog-file: changelog.md
           version-type: release
-          files: "forge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}-forge.jar"
+          files: "neoforge/build/libs/immersive_armors-${{steps.tag.outputs.tag}}-neoforge.jar"
           loaders: |
-            forge
+            neoforge
           game-versions: |
             ${{steps.split.outputs._1}}
           java: |
