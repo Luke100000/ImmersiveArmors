@@ -1,6 +1,6 @@
 # 1.7.1
 
-* Added forge armor tags
+* Added armor tags
 
 # 1.7.0
 
