@@ -1,3 +1,7 @@
+# 1.7.1
+
+* Added forge armor tags
+
 # 1.7.0
 
 * Removed `enabledArmors` (Too buggy, use dedicated mods for that)
