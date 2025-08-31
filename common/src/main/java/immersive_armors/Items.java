@@ -103,7 +103,6 @@ public interface Items {
             .addLoot("minecraft:chests/bastion_treasure", 0.25f)
             .addLoot("minecraft:chests/woodland_mansion", 0.25f)
             .addLoot("minecraft:chests/desert_pyramid", 1.0f)
-            .addLoot("minecraft:blocks/coal_block", 0.1f)
             .protectionAmount(3, 7, 5, 3)
             .durabilityMultiplier(18)
             .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.GOLD_INGOT))
