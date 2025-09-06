@@ -4,10 +4,12 @@ import immersive_armors.ClientMain;
 import immersive_armors.Main;
 import immersive_armors.cobalt.network.NetworkHandler;
 import immersive_armors.network.s2c.SettingsMessage;
+import immersive_armors.util.DamageUtils;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 @EventBusSubscriber(modid = Main.MOD_ID)
@@ -28,5 +30,10 @@ public class NeoForgeBusEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             NetworkHandler.sendToPlayer(new SettingsMessage(), player);
         }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDamageEvent(LivingDamageEvent.Pre event) {
+        event.setNewDamage(DamageUtils.adjustDamage(event.getEntity(), event.getSource(), event.getOriginalDamage()));
     }
 }

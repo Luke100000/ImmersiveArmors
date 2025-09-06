@@ -27,7 +27,8 @@
     ]
   },
   "mixins": [
-    "immersive_armors.mixins.json"
+    "immersive_armors.mixins.json",
+    "immersive_armors.fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.3",

@@ -1,8 +1,5 @@
 package immersive_armors.armor_effects;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -15,6 +12,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class WeaponEfficiency extends ArmorEffect {
     private final float damage;
@@ -37,9 +37,10 @@ public class WeaponEfficiency extends ArmorEffect {
     public float applyArmorToAttack(LivingEntity target, DamageSource source, float amount, ItemStack armor) {
         if (source.isDirect() && source.getEntity() instanceof LivingEntity attacker) {
             if (isPrimaryArmor(armor, attacker)) {
-                boolean hasAxe = Stream.of(attacker.getItemBySlot(EquipmentSlot.MAINHAND), attacker.getItemBySlot(EquipmentSlot.OFFHAND))
-                        .filter(Objects::nonNull)
-                        .anyMatch(v -> v.is(weapon));
+                boolean hasAxe = Stream.of(
+                        attacker.getItemBySlot(EquipmentSlot.MAINHAND),
+                        attacker.getItemBySlot(EquipmentSlot.OFFHAND)
+                ).anyMatch(v -> v.is(weapon));
                 if (hasAxe) {
                     amount *= (1.0f + getSetCount(armor, attacker) * damage);
                 }
