@@ -1,4 +1,4 @@
-# 1.8.0
+# 1.7.2
 
 * Fixed wither armor not dealing much wither damage
 * Fixed effects not working on NeoForge
