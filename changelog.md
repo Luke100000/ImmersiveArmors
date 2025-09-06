@@ -1,3 +1,7 @@
+# 1.8.0
+
+* Fixed wither armor not dealing much wither damage
+
 # 1.7.1
 
 * Added armor tags

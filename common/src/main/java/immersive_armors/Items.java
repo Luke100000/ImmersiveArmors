@@ -42,7 +42,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.BONE))
             .protectionAmount(2, 4, 3, 2)
             .enchantability(0)
-            .effect(new WitherArmorEffect(1.0f, 10))
+            .effect(new WitherArmorEffect(0.25f, 20))
             .hideCape()
             .equipSound(SoundEvents.WITHER_SKELETON_AMBIENT)
             .antiSkeleton()

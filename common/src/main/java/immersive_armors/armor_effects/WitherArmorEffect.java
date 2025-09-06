@@ -28,12 +28,13 @@ public class WitherArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
+        int setCount = getSetCount(armor, entity);
         if (isPrimaryArmor(armor, entity) && source.getEntity() instanceof LivingEntity attacker && !attacker.fireImmune()) {
-            attacker.addEffect(new MobEffectInstance(MobEffects.WITHER, wither * getSetCount(armor, entity)));
+            attacker.addEffect(new MobEffectInstance(MobEffects.WITHER, wither * setCount, 1));
         }
 
         if (source.is(DamageTypes.WITHER)) {
-            return amount * (1.0f - immunity);
+            return amount * Math.min(1.0f, 1.0f - immunity * setCount);
         } else {
             return amount;
         }
