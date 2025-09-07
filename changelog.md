@@ -1,3 +1,8 @@
+# 1.7.4
+
+* Fixed NeoForge magic tag
+* Robe now applies 2x fire ticks
+
 # 1.7.2
 
 * Fixed wither armor not dealing much wither damage

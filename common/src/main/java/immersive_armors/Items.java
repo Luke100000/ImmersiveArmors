@@ -83,7 +83,7 @@ public interface Items {
             .repairIngredient(() -> Ingredient.of(ItemTags.WOOL))
             .color(0xFFB00F46)
             .effect(new FireResistanceArmorEffect(0.25f))
-            .effect(new FireInflictingArmorEffect(10))
+            .effect(new FireInflictingArmorEffect(20))
             .effect(new MagicProtectionArmorEffect(0.2f))
             .equipSound(SoundEvents.WOOL_PLACE));
 
