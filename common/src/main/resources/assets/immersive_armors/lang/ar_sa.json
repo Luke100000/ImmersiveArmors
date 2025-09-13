@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "درع البخار",
   "item.immersive_armors.steampunk_leggings": "بنطال البخار",
   "item.immersive_armors.steampunk_boots": "حذاء البخار",
+  "tag.item.immersive_armors.armor": "دروع غامضة",
+  "tag.item.immersive_armors.axes": "فؤوس",
   "option.immersive_armors.general": "خيارات عامة",
   "option.immersive_armors.whitelist": "قائمة العناصر البيضاء",
   "option.immersive_armors.hudClockX": "إزاحة X لساعة HUD.",
