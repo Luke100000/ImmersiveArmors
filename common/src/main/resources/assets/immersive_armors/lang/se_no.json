@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk Dálbennis",
   "item.immersive_armors.steampunk_leggings": "Steampunk Servodit",
   "item.immersive_armors.steampunk_boots": "Steampunk Boahka",
+  "tag.item.immersive_armors.armor": "Suopma Armá",
+  "tag.item.immersive_armors.axes": "Kiehkkat",
   "option.immersive_armors.general": "Yleiset Asetukset",
   "option.immersive_armors.whitelist": "Ávddas Whitelist",
   "option.immersive_armors.hudClockX": "HUD-kellon X-offset.",
