@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Частина Парового",
   "item.immersive_armors.steampunk_leggings": "Легінси Парового",
   "item.immersive_armors.steampunk_boots": "Ботинки Парового",
+  "tag.item.immersive_armors.armor": "Занурювальні Броні",
+  "tag.item.immersive_armors.axes": "Сокири",
   "option.immersive_armors.general": "Загальні параметри",
   "option.immersive_armors.whitelist": "Приєднання до білого списку",
   "option.immersive_armors.hudClockX": "X зміщення годинника HUD.",
