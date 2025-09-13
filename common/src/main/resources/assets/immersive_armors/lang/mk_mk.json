@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Парен плочник",
   "item.immersive_armors.steampunk_leggings": "Парни легинси",
   "item.immersive_armors.steampunk_boots": "Парни чизми",
+  "tag.item.immersive_armors.armor": "Импулсивни бронски",
+  "tag.item.immersive_armors.axes": "Топори",
   "option.immersive_armors.general": "Општи опции",
   "option.immersive_armors.whitelist": "Бел список на предмети",
   "option.immersive_armors.hudClockX": "X оддалеченост на HUD часовникот.",
