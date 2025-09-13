@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk krūšu plāksne",
   "item.immersive_armors.steampunk_leggings": "Steampunk legingi",
   "item.immersive_armors.steampunk_boots": "Steampunk zābaki",
+  "tag.item.immersive_armors.armor": "Iedvesmojoši bruņas",
+  "tag.item.immersive_armors.axes": "Asis",
   "option.immersive_armors.general": "Vispārīgās opcijas",
   "option.immersive_armors.whitelist": "Priekšmeta baltais saraksts",
   "option.immersive_armors.hudClockX": "HUD pulksteņa X nobīde.",
