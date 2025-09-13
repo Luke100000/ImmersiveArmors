@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Нагрудный знак в стиле стимпанк",
   "item.immersive_armors.steampunk_leggings": "Леггинсы в стиле стимпанк",
   "item.immersive_armors.steampunk_boots": "Сапоги в стиле стимпанк",
+  "tag.item.immersive_armors.armor": "Иммерсивные доспехи",
+  "tag.item.immersive_armors.axes": "Оси",
   "option.immersive_armors.general": "Общие параметры",
   "option.immersive_armors.whitelist": "Белый список предметов",
   "option.immersive_armors.hudClockX": "X-смещение часов HUD.",
