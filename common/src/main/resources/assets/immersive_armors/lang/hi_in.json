@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "स्टीमपंक चेस्टप्लेट",
   "item.immersive_armors.steampunk_leggings": "स्टीमपंक लेगिंग्स",
   "item.immersive_armors.steampunk_boots": "स्टीमपंक बूट्स",
+  "tag.item.immersive_armors.armor": "इमर्सिव आर्मर्स",
+  "tag.item.immersive_armors.axes": "कुल्हाड़ियों",
   "option.immersive_armors.general": "सामान्य विकल्प",
   "option.immersive_armors.whitelist": "आइटम व्हाइटलिस्ट",
   "option.immersive_armors.hudClockX": "HUD घड़ी का X ऑफसेट।",
