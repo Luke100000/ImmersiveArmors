@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk brystplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk bukser",
   "item.immersive_armors.steampunk_boots": "Steampunk støvler",
+  "tag.item.immersive_armors.armor": "Immersive rustningar",
+  "tag.item.immersive_armors.axes": "Økser",
   "option.immersive_armors.general": "Generelle innstillinger",
   "option.immersive_armors.whitelist": "Element Whitelist",
   "option.immersive_armors.hudClockX": "X-offset for HUD-klokka.",
