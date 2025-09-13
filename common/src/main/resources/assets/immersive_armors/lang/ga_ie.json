@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Cuirluas steampunk",
   "item.immersive_armors.steampunk_leggings": "Bóthar steampunk",
   "item.immersive_armors.steampunk_boots": "Buatais steampunk",
+  "tag.item.immersive_armors.armor": "Armóidí Íomháienda",
+  "tag.item.immersive_armors.axes": "Eachtach",
   "option.immersive_armors.general": "Rogha Ginearálta",
   "option.immersive_armors.whitelist": "Liosta Rudaí",
   "option.immersive_armors.hudClockX": "X asachadh na cuimhne clock HUD.",
