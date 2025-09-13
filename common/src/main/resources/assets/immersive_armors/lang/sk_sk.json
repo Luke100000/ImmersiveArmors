@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk hrudný štít",
   "item.immersive_armors.steampunk_leggings": "Steampunkové legíny",
   "item.immersive_armors.steampunk_boots": "Steampunkové topánky",
+  "tag.item.immersive_armors.armor": "Ponorné brnenia",
+  "tag.item.immersive_armors.axes": "Osy",
   "option.immersive_armors.general": "Všeobecné možnosti",
   "option.immersive_armors.whitelist": "Biela listina položiek",
   "option.immersive_armors.hudClockX": "X posun hodín HUD.",
