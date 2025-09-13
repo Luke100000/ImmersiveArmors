@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Стимпанковый нагрудник",
   "item.immersive_armors.steampunk_leggings": "Стимпанковые поножи",
   "item.immersive_armors.steampunk_boots": "Стимпанковые ботинки",
+  "tag.item.immersive_armors.armor": "Впечатляющие Доспехи",
+  "tag.item.immersive_armors.axes": "Топорами",
   "option.immersive_armors.general": "Общие параметры",
   "option.immersive_armors.whitelist": "Белый список предметов",
   "option.immersive_armors.hudClockX": "Смещение оверлея часов по X.",
