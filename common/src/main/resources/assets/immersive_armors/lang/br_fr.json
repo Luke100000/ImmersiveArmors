@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Cornez-steampunk",
   "item.immersive_armors.steampunk_leggings": "Legenn-steampunk",
   "item.immersive_armors.steampunk_boots": "Bolo-steampunk",
+  "tag.item.immersive_armors.armor": "Armodennoù Immersive",
+  "tag.item.immersive_armors.axes": "Axennoù",
   "option.immersive_armors.general": "Distro an urzhiata",
   "option.immersive_armors.whitelist": "Lizher ar c'hronoig",
   "option.immersive_armors.hudClockX": "A-raok X eus ar c'hronoig HUD.",
