@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunkowy napierśnik",
   "item.immersive_armors.steampunk_leggings": "Legginsy w stylu steampunkowym",
   "item.immersive_armors.steampunk_boots": "Buty w stylu steampunkowym",
+  "tag.item.immersive_armors.armor": "Pancerze zanurzeniowe",
+  "tag.item.immersive_armors.axes": "Osie",
   "option.immersive_armors.general": "Opcje ogólne",
   "option.immersive_armors.whitelist": "Biała lista pozycji",
   "option.immersive_armors.hudClockX": "Przesunięcie X zegara HUD.",
