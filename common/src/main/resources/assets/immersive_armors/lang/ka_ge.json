@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "სტიმპანკის ზედა მანქანა",
   "item.immersive_armors.steampunk_leggings": "სტიმპანკის ლეგინები",
   "item.immersive_armors.steampunk_boots": "სტიმპანკის ფეხსაცმელი",
+  "tag.item.immersive_armors.armor": "დაგროვებითი ფარადები",
+  "tag.item.immersive_armors.axes": "ხეებს",
   "option.immersive_armors.general": "ზოგადი პარამეტრები",
   "option.immersive_armors.whitelist": "სათაური სიის პრივილეგია",
   "option.immersive_armors.hudClockX": "HUD საათის X-ის შესწორება.",
