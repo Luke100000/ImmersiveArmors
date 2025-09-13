@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk θώρακα",
   "item.immersive_armors.steampunk_leggings": "Steampunk κολάν",
   "item.immersive_armors.steampunk_boots": "Μπότες Steampunk",
+  "tag.item.immersive_armors.armor": "Immersive πανοπλίες",
+  "tag.item.immersive_armors.axes": "Άξονες",
   "option.immersive_armors.general": "Γενικές επιλογές",
   "option.immersive_armors.whitelist": "Λευκή λίστα στοιχείων",
   "option.immersive_armors.hudClockX": "Μετατόπιση Χ του ρολογιού HUD.",
