@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Pectorale Steampunk",
   "item.immersive_armors.steampunk_leggings": "Braccae Steampunk",
   "item.immersive_armors.steampunk_boots": "Calceamenta Steampunk",
+  "tag.item.immersive_armors.armor": "Armamenta Immersiva",
+  "tag.item.immersive_armors.axes": "Secures",
   "option.immersive_armors.general": "Optiones Generales",
   "option.immersive_armors.whitelist": "Item Album",
   "option.immersive_armors.hudClockX": "Offset X horologii HUD.",
