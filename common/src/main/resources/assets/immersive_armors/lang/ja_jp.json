@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "スチームパンクのチェストプレート",
   "item.immersive_armors.steampunk_leggings": "スチームパンクのレギンス",
   "item.immersive_armors.steampunk_boots": "スチームパンクのブーツ",
+  "tag.item.immersive_armors.armor": "Immersive Armors",
+  "tag.item.immersive_armors.axes": "斧",
   "option.immersive_armors.general": "一般の設定",
   "option.immersive_armors.whitelist": "アイテムのホワイトリスト",
   "option.immersive_armors.hudClockX": "HUDクロックのXオフセット。",
