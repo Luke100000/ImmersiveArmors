@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Coixí steampunk",
   "item.immersive_armors.steampunk_leggings": "Pantalons steampunk",
   "item.immersive_armors.steampunk_boots": "Botes steampunk",
+  "tag.item.immersive_armors.armor": "Armadures immersives",
+  "tag.item.immersive_armors.axes": "Axe",
   "option.immersive_armors.general": "Opcions generals",
   "option.immersive_armors.whitelist": "Llista blanca d'articles",
   "option.immersive_armors.hudClockX": "Desplaçament X del rellotge HUD.",
