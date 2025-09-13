@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Паровой нагрудник",
   "item.immersive_armors.steampunk_leggings": "Паровые штаны",
   "item.immersive_armors.steampunk_boots": "Паровые ботинки",
+  "tag.item.immersive_armors.armor": "Иммерсивный доспех",
+  "tag.item.immersive_armors.axes": "Топоры",
   "option.immersive_armors.general": "Гомум вариантлар",
   "option.immersive_armors.whitelist": "Элемент ак аяк",
   "option.immersive_armors.hudClockX": "HUD сәгать часовының X offset.",
