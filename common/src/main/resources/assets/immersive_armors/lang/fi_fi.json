@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk rintakilpi",
   "item.immersive_armors.steampunk_leggings": "Steampunk säärystimet",
   "item.immersive_armors.steampunk_boots": "Steampunk saappaat",
+  "tag.item.immersive_armors.armor": "Immersiiviset haarniskat",
+  "tag.item.immersive_armors.axes": "Akselit",
   "option.immersive_armors.general": "Yleiset vaihtoehdot",
   "option.immersive_armors.whitelist": "Kohteen valittujen kohteiden luettelo",
   "option.immersive_armors.hudClockX": "HUD-kellon X-välitys.",
