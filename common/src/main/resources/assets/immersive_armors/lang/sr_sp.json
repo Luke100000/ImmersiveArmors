@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Стимпанк оклоп",
   "item.immersive_armors.steampunk_leggings": "Стимпанк ногавице",
   "item.immersive_armors.steampunk_boots": "Стимпанк чизме",
+  "tag.item.immersive_armors.armor": "Имерзивни Оклопи",
+  "tag.item.immersive_armors.axes": "Секире",
   "option.immersive_armors.general": "Опште опције",
   "option.immersive_armors.whitelist": "Листа дозвољених предмета",
   "option.immersive_armors.hudClockX": "X офсет ХУД сата.",
