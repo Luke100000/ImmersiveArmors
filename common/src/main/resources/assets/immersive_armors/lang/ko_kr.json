@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "스팀펑크 흉갑",
   "item.immersive_armors.steampunk_leggings": "스팀펑크 레깅스",
   "item.immersive_armors.steampunk_boots": "스팀펑크 부츠",
+  "tag.item.immersive_armors.armor": "몰입형 아머",
+  "tag.item.immersive_armors.axes": "축",
   "option.immersive_armors.general": "일반 옵션",
   "option.immersive_armors.whitelist": "아이템 화이트리스트",
   "option.immersive_armors.hudClockX": "HUD 시계의 X 오프셋입니다.",
