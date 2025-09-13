@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Pechera Steampunk",
   "item.immersive_armors.steampunk_leggings": "Pantalones Steampunk",
   "item.immersive_armors.steampunk_boots": "Botas Steampunk",
+  "tag.item.immersive_armors.armor": "Armadures Inmersivas",
+  "tag.item.immersive_armors.axes": "Hachas",
   "option.immersive_armors.general": "Opciones Generales",
   "option.immersive_armors.whitelist": "Llistá d'items",
   "option.immersive_armors.hudClockX": "Desplazamientu X del reloj de la HUD.",
