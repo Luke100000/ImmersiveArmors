@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "שריון סטימפאנק",
   "item.immersive_armors.steampunk_leggings": "מכנסי סטימפאנק",
   "item.immersive_armors.steampunk_boots": "מגפי סטימפאנק",
+  "tag.item.immersive_armors.armor": "שריונות אימרסיביים",
+  "tag.item.immersive_armors.axes": "גרזנים",
   "option.immersive_armors.general": "אפשרויות כלליות",
   "option.immersive_armors.whitelist": "רשימה לבנה של חפצים",
   "option.immersive_armors.hudClockX": "הזזה בציר X של שעון ה-HUD.",
