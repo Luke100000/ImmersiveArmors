@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "蒸汽朋克胸甲",
   "item.immersive_armors.steampunk_leggings": "蒸汽朋克褲襪",
   "item.immersive_armors.steampunk_boots": "蒸汽朋克靴",
+  "tag.item.immersive_armors.armor": "Immersive Armors",
+  "tag.item.immersive_armors.axes": "軸心",
   "option.immersive_armors.general": "一般選項",
   "option.immersive_armors.whitelist": "項目白名單",
   "option.immersive_armors.hudClockX": "HUD 時鐘的 X 偏移量。",
