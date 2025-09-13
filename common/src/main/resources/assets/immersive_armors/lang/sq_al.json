@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Plaketa Steampunk",
   "item.immersive_armors.steampunk_leggings": "Pantallona Steampunk",
   "item.immersive_armors.steampunk_boots": "Këpucë Steampunk",
+  "tag.item.immersive_armors.armor": "Armaturat Immersive",
+  "tag.item.immersive_armors.axes": "Aks",
   "option.immersive_armors.general": "Opsionet e përgjithshme",
   "option.immersive_armors.whitelist": "Lista e elementëve të lejuar",
   "option.immersive_armors.hudClockX": "Offset-i X i orës HUD.",
