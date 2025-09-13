@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Plât Coes Steampunk",
   "item.immersive_armors.steampunk_leggings": "Legging Steampunk",
   "item.immersive_armors.steampunk_boots": "Botiau Steampunk",
+  "tag.item.immersive_armors.armor": "Cloffiau Syfrdanol",
+  "tag.item.immersive_armors.axes": "Cyllyll",
   "option.immersive_armors.general": "Dewisiadau Cyffredinol",
   "option.immersive_armors.whitelist": "Eitem gwynledig",
   "option.immersive_armors.hudClockX": "X symud o'r cloc HUD.",
