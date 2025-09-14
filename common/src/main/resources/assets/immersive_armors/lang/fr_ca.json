@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Plastron Steampunk",
   "item.immersive_armors.steampunk_leggings": "Leggings Steampunk",
   "item.immersive_armors.steampunk_boots": "Bottes Steampunk",
+  "tag.item.immersive_armors.armor": "Armures immersives",
+  "tag.item.immersive_armors.axes": "Axes",
   "option.immersive_armors.general": "Options générales",
   "option.immersive_armors.whitelist": "Liste blanche des articles",
   "option.immersive_armors.hudClockX": "Décalage X de l'horloge HUD.",

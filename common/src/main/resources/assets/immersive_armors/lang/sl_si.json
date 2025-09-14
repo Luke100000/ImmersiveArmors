@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk prsna plošča",
   "item.immersive_armors.steampunk_leggings": "Steampunk nogavice",
   "item.immersive_armors.steampunk_boots": "Steampunk škornji",
+  "tag.item.immersive_armors.armor": "Potresni oklepi",
+  "tag.item.immersive_armors.axes": "Osi",
   "option.immersive_armors.general": "Splošne možnosti",
   "option.immersive_armors.whitelist": "Bela lista elementov",
   "option.immersive_armors.hudClockX": "Odmik X ure HUD.",

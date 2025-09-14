@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Стимпанк цээжний хамгаалалт",
   "item.immersive_armors.steampunk_leggings": "Стимпанк өмд",
   "item.immersive_armors.steampunk_boots": "Стимпанк ботинок",
+  "tag.item.immersive_armors.armor": "Дотоод хувцас",
+  "tag.item.immersive_armors.axes": "Тодорхойлсон мод",
   "option.immersive_armors.general": "Ерөнхий сонголт",
   "option.immersive_armors.whitelist": "Барааны цагаан жагсаалт",
   "option.immersive_armors.hudClockX": "HUD цагийн X байрлал.",

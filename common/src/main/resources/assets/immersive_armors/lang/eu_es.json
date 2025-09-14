@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk chestplate",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
   "item.immersive_armors.steampunk_boots": "Steampunk boots",
+  "tag.item.immersive_armors.armor": "Inmersibo Armaturek",
+  "tag.item.immersive_armors.axes": "Axeak",
   "option.immersive_armors.general": "Aukera Orokorrak",
   "option.immersive_armors.whitelist": "Elementu zerrenda",
   "option.immersive_armors.hudClockX": "HUD erlojuaren X desplazamendua.",

@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Áo Steampunk",
   "item.immersive_armors.steampunk_leggings": "Quần Steampunk",
   "item.immersive_armors.steampunk_boots": "Ủng Steampunk",
+  "tag.item.immersive_armors.armor": "Giáp Trần Tái Tạo",
+  "tag.item.immersive_armors.axes": "Rìu",
   "option.immersive_armors.general": "Tùy chọn chung",
   "option.immersive_armors.whitelist": "Danh sách Trắng Vật Phẩm",
   "option.immersive_armors.hudClockX": "Độ dịch chuyển X của đồng hồ HUD.",

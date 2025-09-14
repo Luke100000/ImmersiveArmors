@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk Plato",
   "item.immersive_armors.steampunk_leggings": "Steampunk Noge",
   "item.immersive_armors.steampunk_boots": "Steampunk Čizme",
+  "tag.item.immersive_armors.armor": "Uronjene Oklade",
+  "tag.item.immersive_armors.axes": "Sjekire",
   "option.immersive_armors.general": "Opće opcije",
   "option.immersive_armors.whitelist": "Bijela lista stavki",
   "option.immersive_armors.hudClockX": "X pomak HUD sata.",

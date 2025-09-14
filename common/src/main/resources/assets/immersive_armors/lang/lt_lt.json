@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk krūtinės plokštė",
   "item.immersive_armors.steampunk_leggings": "Steampunk antblauzdžiai",
   "item.immersive_armors.steampunk_boots": "Steampunk batai",
+  "tag.item.immersive_armors.armor": "Įtraukiantys šarvai",
+  "tag.item.immersive_armors.axes": "Ašys",
   "option.immersive_armors.general": "Bendrosios parinktys",
   "option.immersive_armors.whitelist": "Elemento baltasis sąrašas",
   "option.immersive_armors.hudClockX": "HUD laikrodžio X poslinkis.",

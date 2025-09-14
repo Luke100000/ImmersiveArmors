@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk brjóstvörður",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
   "item.immersive_armors.steampunk_boots": "Steampunk skór",
+  "tag.item.immersive_armors.armor": "Námskýrðar vopn",
+  "tag.item.immersive_armors.axes": "Öxur",
   "option.immersive_armors.general": "Almennar stillingar",
   "option.immersive_armors.whitelist": "Tækjalisti",
   "option.immersive_armors.hudClockX": "X forskot klukkunnar á HUD.",

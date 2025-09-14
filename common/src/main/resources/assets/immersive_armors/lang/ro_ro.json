@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk Chestplate",
   "item.immersive_armors.steampunk_leggings": "Jambiere Steampunk",
   "item.immersive_armors.steampunk_boots": "Cizme Steampunk",
+  "tag.item.immersive_armors.armor": "Armuri imersive",
+  "tag.item.immersive_armors.axes": "Axele",
   "option.immersive_armors.general": "Opțiuni generale",
   "option.immersive_armors.whitelist": "Lista albă a elementelor",
   "option.immersive_armors.hudClockX": "Decalajul X al ceasului HUD.",

@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk rindkate",
   "item.immersive_armors.steampunk_leggings": "Steampunk säärised",
   "item.immersive_armors.steampunk_boots": "Steampunk saapad",
+  "tag.item.immersive_armors.armor": "Immersiivsed soomused",
+  "tag.item.immersive_armors.axes": "Teljed",
   "option.immersive_armors.general": "Üldised valikud",
   "option.immersive_armors.whitelist": "Objektide valges nimekirjas",
   "option.immersive_armors.hudClockX": "HUD-kella X-nihe.",

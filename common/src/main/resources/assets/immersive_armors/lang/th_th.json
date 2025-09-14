@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "เสื้อเกราะสตีมพังค์",
   "item.immersive_armors.steampunk_leggings": "กางเกงสตีมพังค์",
   "item.immersive_armors.steampunk_boots": "รองเท้าสตีมพังค์",
+  "tag.item.immersive_armors.armor": "ชุดเกราะเพื่อการดื่มด่ำ",
+  "tag.item.immersive_armors.axes": "ขวาน",
   "option.immersive_armors.general": "ตัวเลือกทั่วไป",
   "option.immersive_armors.whitelist": "รายการที่อนุญาต",
   "option.immersive_armors.hudClockX": "ตัวขยาย X ของนาฬิกา HUD.",

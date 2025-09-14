@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Trec'h Steampunk Kolan",
   "item.immersive_armors.steampunk_leggings": "Trec'h Steampunk Latharn",
   "item.immersive_armors.steampunk_boots": "Trec'h Steampunk Kiber",
+  "tag.item.immersive_armors.armor": "Armour Immersif",
+  "tag.item.immersive_armors.axes": "Axes",
   "option.immersive_armors.general": "Opciónn Geneth",
   "option.immersive_armors.whitelist": "Karten Whitelist",
   "option.immersive_armors.hudClockX": "X offset an HUD klok.",

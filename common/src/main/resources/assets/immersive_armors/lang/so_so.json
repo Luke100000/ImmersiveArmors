@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Dhar Steampunk",
   "item.immersive_armors.steampunk_leggings": "Surwaal Steampunk",
   "item.immersive_armors.steampunk_boots": "Kabo Steampunk",
+  "tag.item.immersive_armors.armor": "Dhar Immersive",
+  "tag.item.immersive_armors.axes": "Saqaf",
   "option.immersive_armors.general": "Ikhtiyaarada Guud",
   "option.immersive_armors.whitelist": "Liiska Cadaynka Qalabka",
   "option.immersive_armors.hudClockX": "X qiyaasta saacada HUD.",

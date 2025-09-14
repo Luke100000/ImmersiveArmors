@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Стимпанк күлмәк",
   "item.immersive_armors.steampunk_leggings": "Стимпанк штан",
   "item.immersive_armors.steampunk_boots": "Стимпанк башлығын",
+  "tag.item.immersive_armors.armor": "Мауыҡтырғыс Бронялар",
+  "tag.item.immersive_armors.axes": "Төреләр",
   "option.immersive_armors.general": "Дөйөм варианттар",
   "option.immersive_armors.whitelist": "Элемент исемлегенә индереү",
   "option.immersive_armors.hudClockX": "HUD сәғәтенең X өлөшө.",

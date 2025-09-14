@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Стімпанковий нагрудник",
   "item.immersive_armors.steampunk_leggings": "Стімпанкові наголінники",
   "item.immersive_armors.steampunk_boots": "Стімпанкові чоботи",
+  "tag.item.immersive_armors.armor": "Захопливі обладунки",
+  "tag.item.immersive_armors.axes": "Сокири",
   "option.immersive_armors.general": "Загальні налаштування",
   "option.immersive_armors.whitelist": "Білий список елементів",
   "option.immersive_armors.hudClockX": "Зміщення X годинника HUD.",

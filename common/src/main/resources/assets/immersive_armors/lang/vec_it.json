@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Civetta Steampunk",
   "item.immersive_armors.steampunk_leggings": "Leggings Steampunk",
   "item.immersive_armors.steampunk_boots": "Stivali Steampunk",
+  "tag.item.immersive_armors.armor": "Armadi Immersivi",
+  "tag.item.immersive_armors.axes": "Asce",
   "option.immersive_armors.general": "Opzioni Generali",
   "option.immersive_armors.whitelist": "Lista bianca de l'oggetti",
   "option.immersive_armors.hudClockX": "Offset X del orologio de HUD.",

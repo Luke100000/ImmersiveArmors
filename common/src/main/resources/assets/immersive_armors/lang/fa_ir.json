@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "زره سینه استیم‌پانک",
   "item.immersive_armors.steampunk_leggings": "شلوارک استیم‌پانک",
   "item.immersive_armors.steampunk_boots": "کفش استیم‌پانک",
+  "tag.item.immersive_armors.armor": "زره‌های غوطه‌ور",
+  "tag.item.immersive_armors.axes": "تبرها",
   "option.immersive_armors.general": "گزینه‌های عمومی",
   "option.immersive_armors.whitelist": "لیست سفید آیتم",
   "option.immersive_armors.hudClockX": "جابجایی X ساعت HUD.",

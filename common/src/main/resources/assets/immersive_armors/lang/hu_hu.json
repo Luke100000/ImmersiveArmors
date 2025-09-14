@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk mellvért",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
   "item.immersive_armors.steampunk_boots": "Steampunk csizma",
+  "tag.item.immersive_armors.armor": "Merev páncélok",
+  "tag.item.immersive_armors.axes": "Tengelyek",
   "option.immersive_armors.general": "Általános lehetőségek",
   "option.immersive_armors.whitelist": "Elem fehér lista",
   "option.immersive_armors.hudClockX": "A HUD óra X eltolása.",

@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "bansy be se panzi",
   "item.immersive_armors.steampunk_leggings": "bansy be se girfu",
   "item.immersive_armors.steampunk_boots": "bansy be se xizbixu",
+  "tag.item.immersive_armors.armor": "se xabju be'o",
+  "tag.item.immersive_armors.axes": "kagni",
   "option.immersive_armors.general": "kancu je nanmu",
   "option.immersive_armors.whitelist": "se tocmu cu se claxu",
   "option.immersive_armors.hudClockX": "X se claxu be le HUD cotcu.",

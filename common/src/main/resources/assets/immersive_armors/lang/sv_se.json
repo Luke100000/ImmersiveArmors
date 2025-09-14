@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Ångpunksharnesk",
   "item.immersive_armors.steampunk_leggings": "Ångpunksbyxor",
   "item.immersive_armors.steampunk_boots": "Ångpunksstövlar",
+  "tag.item.immersive_armors.armor": "Immersive Armors",
+  "tag.item.immersive_armors.axes": "Yxor",
   "option.immersive_armors.general": "Allmänna inställningar",
   "option.immersive_armors.whitelist": "Vitlista för objekt",
   "option.immersive_armors.hudClockX": "X-förskjutning av HUD-klockan.",

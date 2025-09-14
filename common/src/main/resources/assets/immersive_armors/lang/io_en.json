@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk Ŝultro",
   "item.immersive_armors.steampunk_leggings": "Steampunk Pantalonoj",
   "item.immersive_armors.steampunk_boots": "Steampunk Botetoj",
+  "tag.item.immersive_armors.armor": "Imersiv Armors",
+  "tag.item.immersive_armors.axes": "Aksioj",
   "option.immersive_armors.general": "Generala Opzioni",
   "option.immersive_armors.whitelist": "Item Whitelist",
   "option.immersive_armors.hudClockX": "X ofseto de HUD klok.",

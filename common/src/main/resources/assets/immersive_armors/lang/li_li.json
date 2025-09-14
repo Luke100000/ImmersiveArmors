@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk borstplaat",
   "item.immersive_armors.steampunk_leggings": "Steampunk leggings",
   "item.immersive_armors.steampunk_boots": "Steampunk laarzen",
+  "tag.item.immersive_armors.armor": "Immersive Armorë",
+  "tag.item.immersive_armors.axes": "Axe",
   "option.immersive_armors.general": "Algemene Opties",
   "option.immersive_armors.whitelist": "Item Whitelist",
   "option.immersive_armors.hudClockX": "X-verschuiving van de HUD-klok.",

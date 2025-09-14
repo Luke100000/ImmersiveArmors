@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunkbrustpanzer",
   "item.immersive_armors.steampunk_leggings": "Steampunkhosen",
   "item.immersive_armors.steampunk_boots": "Steampunkstiefel",
+  "tag.item.immersive_armors.armor": "Immersive Rüstungs",
+  "tag.item.immersive_armors.axes": "Ax",
   "option.immersive_armors.general": "Algemeene Opties",
   "option.immersive_armors.whitelist": "Item-Witlist",
   "option.immersive_armors.hudClockX": "X-Verschuuv vun de HUD-Klock.",

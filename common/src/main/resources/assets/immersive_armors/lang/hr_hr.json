@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk prsna kutija",
   "item.immersive_armors.steampunk_leggings": "Steampunk hlače",
   "item.immersive_armors.steampunk_boots": "Steampunk čizme",
+  "tag.item.immersive_armors.armor": "Uživotne oklade",
+  "tag.item.immersive_armors.axes": "Sjekire",
   "option.immersive_armors.general": "Opće opcije",
   "option.immersive_armors.whitelist": "Bijela lista predmeta",
   "option.immersive_armors.hudClockX": "X pomak HUD sata.",

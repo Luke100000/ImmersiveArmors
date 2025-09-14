@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Steampunk Döşlük",
   "item.immersive_armors.steampunk_leggings": "Steampunk Şalvar",
   "item.immersive_armors.steampunk_boots": "Steampunk Botları",
+  "tag.item.immersive_armors.armor": "İmmersiv Zirehlər",
+  "tag.item.immersive_armors.axes": "Baltalar",
   "option.immersive_armors.general": "Ümumi Seçimlər",
   "option.immersive_armors.whitelist": "Məhsul Ağ Siyahısı",
   "option.immersive_armors.hudClockX": "HUD saatının X ofseti.",

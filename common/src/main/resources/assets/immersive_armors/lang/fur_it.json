@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "Pettorale Steampunk",
   "item.immersive_armors.steampunk_leggings": "Pantaloni Steampunk",
   "item.immersive_armors.steampunk_boots": "Stivali Steampunk",
+  "tag.item.immersive_armors.armor": "Armors Immersivi",
+  "tag.item.immersive_armors.axes": "Asce",
   "option.immersive_armors.general": "Opzioni generali",
   "option.immersive_armors.whitelist": "Elenc di element",
   "option.immersive_armors.hudClockX": "Offset X dal orologio HUD.",

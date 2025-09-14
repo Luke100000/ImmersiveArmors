@@ -59,6 +59,8 @@
   "item.immersive_armors.steampunk_chestplate": "len sijelo ilo",
   "item.immersive_armors.steampunk_leggings": "len noka ilo",
   "item.immersive_armors.steampunk_boots": "len noka anpa ilo",
+  "tag.item.immersive_armors.armor": "ilo Immersive Armors",
+  "tag.item.immersive_armors.axes": "ilo kipisi",
   "option.immersive_armors.general": "kekuna",
   "option.immersive_armors.whitelist": "kule kute",
   "option.immersive_armors.hudClockX": "X li kulupu palisa pi palisa HUD.",
