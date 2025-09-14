@@ -1,3 +1,7 @@
+# 1.7.5
+
+* Fixed NeoForge damage math
+
 # 1.7.4
 
 * Fixed NeoForge magic tag

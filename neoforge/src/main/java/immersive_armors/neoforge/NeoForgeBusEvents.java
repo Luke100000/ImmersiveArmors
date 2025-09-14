@@ -34,6 +34,6 @@ public class NeoForgeBusEvents {
 
     @SubscribeEvent
     public static void onLivingDamageEvent(LivingDamageEvent.Pre event) {
-        event.setNewDamage(DamageUtils.adjustDamage(event.getEntity(), event.getSource(), event.getOriginalDamage()));
+        event.setNewDamage(DamageUtils.adjustDamage(event.getEntity(), event.getSource(), event.getNewDamage()));
     }
 }
