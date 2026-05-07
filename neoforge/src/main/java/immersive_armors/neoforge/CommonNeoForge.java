@@ -3,6 +3,7 @@ package immersive_armors.neoforge;
 import immersive_armors.*;
 import immersive_armors.neoforge.cobalt.network.NetworkHandlerImpl;
 import immersive_armors.neoforge.cobalt.registration.RegistrationImpl;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -16,7 +17,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import static net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB;
 
 @Mod(Main.MOD_ID)
-@EventBusSubscriber(modid = Main.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public final class CommonNeoForge {
     static {
         Main.FORGE = true;
@@ -26,16 +26,17 @@ public final class CommonNeoForge {
 
     public CommonNeoForge(IEventBus bus) {
         new RegistrationImpl(bus);
-
         LootProvider.initialize(bus);
-
+        bus.addListener(CommonNeoForge::onRegistryEvent);
         DEF_REG.register(bus);
     }
 
     static boolean onlyOnce = true;
 
-    @SubscribeEvent
     public static void onRegistryEvent(RegisterEvent event) {
+        if (!event.getRegistryKey().equals(Registries.ARMOR_MATERIAL)) {
+            return;
+        }
         if (onlyOnce) {
             onlyOnce = false;
             Items.bootstrap();
@@ -54,8 +55,11 @@ public final class CommonNeoForge {
             .build()
     );
 
-    @SubscribeEvent
-    public static void register(final RegisterPayloadHandlersEvent event) {
-        CommonNeoForge.NETWORK_HANDLER.register(event);
+    @EventBusSubscriber(modid = Main.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    static final class PayloadRegistration {
+        @SubscribeEvent
+        public static void register(RegisterPayloadHandlersEvent event) {
+            CommonNeoForge.NETWORK_HANDLER.register(event);
+        }
     }
 }
