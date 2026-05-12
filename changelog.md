@@ -1,3 +1,8 @@
+# 1.7.6
+
+* Fixed NeoForge loading
+* Synced translations
+
 # 1.7.5
 
 * Fixed NeoForge damage math
