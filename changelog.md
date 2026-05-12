@@ -1,3 +1,7 @@
+# 1.7.2
+
+* Synced translations
+
 # 1.7.1
 
 * Added forge armor tags
