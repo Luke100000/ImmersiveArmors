@@ -147,7 +147,7 @@ public interface Items {
             .equipSound(SoundEvents.REDSTONE_TORCH_BURNOUT));
 
     static void bootstrap() {
-
+        ItemGroups.markItemsReady();
     }
 
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {

@@ -5,6 +5,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class ItemGroups {
+    private static boolean itemsReady;
+
+    public static void markItemsReady() {
+        itemsReady = true;
+    }
+
     public static ResourceLocation getIdentifier() {
         return Main.locate(Main.MOD_ID + "_tab");
     }
@@ -14,6 +20,9 @@ public class ItemGroups {
     }
 
     public static ItemStack getIcon() {
+        if (!itemsReady) {
+            return new ItemStack(net.minecraft.world.item.Items.IRON_HELMET);
+        }
         return Items.items.getOrDefault("divine_chestplate", () -> net.minecraft.world.item.Items.IRON_HELMET).get().getDefaultInstance();
     }
 }
