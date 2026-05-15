@@ -31,8 +31,8 @@
     "immersive_armors.fabric.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
-    "java": ">=8",
+    "fabricloader": ">=0.18.1",
+    "java": ">=21",
     "fabric-api-base": ">=0.1.0"
   },
   "custom": {

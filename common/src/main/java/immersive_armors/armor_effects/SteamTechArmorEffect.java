@@ -3,6 +3,7 @@ package immersive_armors.armor_effects;
 import com.mojang.serialization.Codec;
 import immersive_armors.CustomDataComponentTypes;
 import immersive_armors.cobalt.network.NetworkHandler;
+import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.network.c2s.ArmorCommandMessage;
 import immersive_armors.util.EnumCodec;
 import immersive_armors.util.EnumPacketCodec;
@@ -22,7 +23,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -78,17 +78,17 @@ public class SteamTechArmorEffect extends ArmorEffect {
         }
 
         //double jump
-        if (world.isClientSide && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
+        if (world.isClientSide() && getEquipmentSlot(armor) == EquipmentSlot.LEGS) {
             if (entity.onGround()) {
-                armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.CHARGED);
-            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE) == ThrusterState.CHARGED) {
+                armor.set(CustomDataComponentTypes.THRUSTER_STATE.get(), ThrusterState.CHARGED);
+            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE.get()) == ThrusterState.CHARGED) {
                 if (!isJumping()) {
-                    armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.READY);
+                    armor.set(CustomDataComponentTypes.THRUSTER_STATE.get(), ThrusterState.READY);
                 }
-            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE) == ThrusterState.READY) {
+            } else if (armor.get(CustomDataComponentTypes.THRUSTER_STATE.get()) == ThrusterState.READY) {
                 if (isJumping()) {
                     thrust(entity);
-                    armor.set(CustomDataComponentTypes.THRUSTER_STATE, ThrusterState.OFFLINE);
+                    armor.set(CustomDataComponentTypes.THRUSTER_STATE.get(), ThrusterState.OFFLINE);
                     NetworkHandler.sendToServer(new ArmorCommandMessage(slot, "thrust"));
                 }
             }
@@ -115,7 +115,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
 
     private boolean isJumping() {
         Minecraft client = Minecraft.getInstance();
-        return client != null && client.player != null && client.player.input.jumping;
+        return client.player != null && client.options.keyJump.isDown();
     }
 
     private void thrust(LivingEntity entity) {
@@ -131,7 +131,7 @@ public class SteamTechArmorEffect extends ArmorEffect {
     }
 
     private EquipmentSlot getEquipmentSlot(ItemStack stack) {
-        return ((ArmorItem) stack.getItem()).getEquipmentSlot();
+        return ((ExtendedArmorItem) stack.getItem()).getEquipmentSlot();
     }
 
     public enum ThrusterState {

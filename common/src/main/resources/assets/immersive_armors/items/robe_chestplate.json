@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "immersive_armors:item/robe_chestplate",
+    "tints": [
+      {
+        "type": "minecraft:dye",
+        "default": -5238970
+      }
+    ]
+  }
+}

@@ -1,10 +1,12 @@
 package immersive_armors.mixin;
 
 import immersive_armors.item.ExtendedArmorItem;
+import java.util.List;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +24,8 @@ public abstract class MixinNearestAttackableTargetGoal extends TargetGoal {
     private void immersiveArmors$injectStart(CallbackInfo ci) {
         if (mob instanceof AbstractSkeleton && mob.getTarget() instanceof Player player) {
             int pieces = 0;
-            for (ItemStack item : player.getArmorSlots()) {
+            for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
+                ItemStack item = player.getItemBySlot(slot);
                 if (item.getItem() instanceof ExtendedArmorItem armor && armor.getExtendedMaterial().isAntiSkeleton()) {
                     pieces++;
                 }

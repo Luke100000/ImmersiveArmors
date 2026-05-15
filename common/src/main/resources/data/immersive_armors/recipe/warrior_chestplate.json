@@ -6,21 +6,9 @@
     "   "
   ],
   "key": {
-    "L": [
-      {
-        "item": "minecraft:leather_chestplate"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:iron_ingot"
-      }
-    ],
-    "C": [
-      {
-        "item": "minecraft:leather"
-      }
-    ]
+    "L": "minecraft:leather_chestplate",
+    "I": "minecraft:iron_ingot",
+    "C": "minecraft:leather"
   },
   "result": {
     "id": "immersive_armors:warrior_chestplate"

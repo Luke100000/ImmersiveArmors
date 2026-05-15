@@ -4,27 +4,29 @@ import immersive_armors.Main;
 import immersive_armors.armor_effects.ArmorEffect;
 import immersive_armors.client.render.entity.piece.Piece;
 import java.util.*;
-import java.util.function.Supplier;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 
 public class ExtendedArmorMaterial {
     private final String name;
 
     private int durabilityMultiplier;
-    private final EnumMap<ArmorItem.Type, Integer> protection = Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-        map.put(ArmorItem.Type.BOOTS, 0);
-        map.put(ArmorItem.Type.LEGGINGS, 0);
-        map.put(ArmorItem.Type.CHESTPLATE, 0);
-        map.put(ArmorItem.Type.HELMET, 0);
-        map.put(ArmorItem.Type.BODY, 0);
+    private final EnumMap<ArmorType, Integer> protection = Util.make(new EnumMap<>(ArmorType.class), map -> {
+        map.put(ArmorType.BOOTS, 0);
+        map.put(ArmorType.LEGGINGS, 0);
+        map.put(ArmorType.CHESTPLATE, 0);
+        map.put(ArmorType.HELMET, 0);
+        map.put(ArmorType.BODY, 0);
     });
     private final boolean[] hidesSecondLayer = {false, false, false, false};
     private float toughness;
@@ -50,12 +52,14 @@ public class ExtendedArmorMaterial {
     private boolean hideCape;
 
     private Holder<SoundEvent> equipSound;
-    private Supplier<Ingredient> repairIngredient;
+    private final TagKey<Item> repairIngredientTag;
 
+    private ArmorMaterial armorMaterial;
     private Holder<ArmorMaterial> registryReference;
 
     public ExtendedArmorMaterial(String name) {
         this.name = name;
+        this.repairIngredientTag = TagKey.create(Registries.ITEM, Main.locate("repairs_" + name + "_armor"));
 
         protectionAmount(0, 0, 0, 0);
     }
@@ -66,11 +70,11 @@ public class ExtendedArmorMaterial {
     }
 
     public ExtendedArmorMaterial protectionAmount(int helmet, int chestplate, int legging, int boots) {
-        this.protection.put(ArmorItem.Type.HELMET, helmet);
-        this.protection.put(ArmorItem.Type.CHESTPLATE, chestplate);
-        this.protection.put(ArmorItem.Type.LEGGINGS, legging);
-        this.protection.put(ArmorItem.Type.BOOTS, boots);
-        this.protection.put(ArmorItem.Type.BODY, chestplate);
+        this.protection.put(ArmorType.HELMET, helmet);
+        this.protection.put(ArmorType.CHESTPLATE, chestplate);
+        this.protection.put(ArmorType.LEGGINGS, legging);
+        this.protection.put(ArmorType.BOOTS, boots);
+        this.protection.put(ArmorType.BODY, chestplate);
         return this;
     }
 
@@ -90,11 +94,6 @@ public class ExtendedArmorMaterial {
 
     public ExtendedArmorMaterial equipSound(Holder<SoundEvent> equipSound) {
         this.equipSound = equipSound;
-        return this;
-    }
-
-    public ExtendedArmorMaterial repairIngredient(Supplier<Ingredient> repairIngredient) {
-        this.repairIngredient = repairIngredient;
         return this;
     }
 
@@ -180,7 +179,7 @@ public class ExtendedArmorMaterial {
         return name;
     }
 
-    public int getProtection(ArmorItem.Type slot) {
+    public int getProtection(ArmorType slot) {
         return protection.get(slot);
     }
 
@@ -194,10 +193,6 @@ public class ExtendedArmorMaterial {
 
     public Holder<SoundEvent> getEquipSound() {
         return equipSound;
-    }
-
-    public Ingredient getRepairIngredient() {
-        return repairIngredient.get();
     }
 
     public float getKnockbackResistance() {
@@ -248,7 +243,7 @@ public class ExtendedArmorMaterial {
         return antiSkeleton;
     }
 
-    public EnumMap<ArmorItem.Type, Integer> getProtection() {
+    public EnumMap<ArmorType, Integer> getProtection() {
         return protection;
     }
 
@@ -261,15 +256,15 @@ public class ExtendedArmorMaterial {
     }
 
     public ArmorMaterial getMaterial() {
-        return new ArmorMaterial(protection, enchantability, equipSound, repairIngredient, List.of(), toughness, knockbackResistance);
+        if (armorMaterial == null) {
+            ResourceKey<EquipmentAsset> assetId = ResourceKey.create(EquipmentAssets.ROOT_ID, Main.locate(getName()));
+            armorMaterial = new ArmorMaterial(durabilityMultiplier, protection, enchantability, equipSound, toughness, knockbackResistance, repairIngredientTag, assetId);
+        }
+        return armorMaterial;
     }
 
     public void registerVanillaMaterial() {
-        this.registryReference = Registry.registerForHolder(
-                BuiltInRegistries.ARMOR_MATERIAL,
-                Main.locate(getName()),
-                getMaterial()
-        );
+        this.registryReference = Holder.direct(getMaterial());
     }
 
     public Holder<ArmorMaterial> getRegistryReference() {

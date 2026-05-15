@@ -3,7 +3,7 @@ package immersive_armors.neoforge.cobalt.registration;
 
 import immersive_armors.cobalt.registration.Registration;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -29,13 +29,13 @@ public class RegistrationImpl extends Registration.Impl {
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
-    public <T> Supplier<T> register(Registry<? super T> registry, ResourceLocation id, Supplier<T> obj) {
+    public <T> Supplier<T> register(Registry<? super T> registry, Identifier id, Supplier<T> obj) {
         DeferredRegister reg = getRepo(id.getNamespace()).get(registry);
         return reg.register(id.getPath(), obj);
     }
 
     class RegistryRepo {
-        private final Map<ResourceLocation, DeferredRegister<?>> registries = new HashMap<>();
+        private final Map<Identifier, DeferredRegister<?>> registries = new HashMap<>();
 
         private final String namespace;
 
@@ -45,7 +45,7 @@ public class RegistrationImpl extends Registration.Impl {
 
         @SuppressWarnings({"rawtypes"})
         public <T> DeferredRegister get(Registry<? super T> registry) {
-            ResourceLocation id = registry.key().registry();
+            Identifier id = registry.key().identifier();
             if (!registries.containsKey(id)) {
                 DeferredRegister def = DeferredRegister.create(registry, namespace);
 

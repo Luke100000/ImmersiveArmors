@@ -1,9 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import java.util.List;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,8 +9,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.world.entity.LivingEntity;
 
-@Environment(EnvType.CLIENT)
-public class CapeModel<T extends LivingEntity> extends EntityModel<T> {
+public class CapeModel<T extends LivingEntity> implements ModelPartProvider {
     private final ModelPart cape;
 
     public CapeModel() {
@@ -30,12 +26,7 @@ public class CapeModel<T extends LivingEntity> extends EntityModel<T> {
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        this.cape.render(matrices, vertices, light, overlay, color);
+    public Iterable<ModelPart> parts() {
+        return List.of(cape);
     }
 }

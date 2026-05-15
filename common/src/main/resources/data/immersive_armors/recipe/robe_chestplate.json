@@ -6,16 +6,8 @@
     "WWW"
   ],
   "key": {
-    "B": [
-      {
-        "item": "minecraft:blaze_powder"
-      }
-    ],
-    "W": [
-      {
-        "tag": "minecraft:wool"
-      }
-    ]
+    "B": "minecraft:blaze_powder",
+    "W": "#minecraft:wool"
   },
   "result": {
     "id": "immersive_armors:robe_chestplate"

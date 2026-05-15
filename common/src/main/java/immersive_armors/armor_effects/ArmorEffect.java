@@ -30,7 +30,6 @@ public abstract class ArmorEffect {
     protected Stream<ItemStack> getMatchingEquippedArmor(LivingEntity entity, ExtendedArmorMaterial material) {
         return armorEquipmentSlots.stream()
                 .map(entity::getItemBySlot)
-                .filter(Objects::nonNull)
                 .filter(stack -> stack.getItem() instanceof ExtendedArmorItem && ((ExtendedArmorItem)stack.getItem()).getExtendedMaterial() == material);
     }
 
@@ -47,7 +46,7 @@ public abstract class ArmorEffect {
     }
 
     protected int getSetCount(ItemStack stack) {
-        return stack.getOrDefault(CustomDataComponentTypes.SET_COUNT, 0);
+        return stack.getOrDefault(CustomDataComponentTypes.SET_COUNT.get(), 0);
     }
 
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
@@ -56,7 +55,7 @@ public abstract class ArmorEffect {
 
     public void equippedTick(ItemStack stack, Level world, LivingEntity entity, int slot) {
         if (world.getGameTime() % 20 == 0) {
-            stack.set(CustomDataComponentTypes.SET_COUNT, getSetCount(stack, entity));
+            stack.set(CustomDataComponentTypes.SET_COUNT.get(), getSetCount(stack, entity));
         }
     }
 

@@ -1,36 +1,20 @@
 package immersive_armors.client.render.entity.model;
 
-import java.util.Collections;
-import net.minecraft.client.model.AgeableListModel;
+import java.util.List;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 
-public abstract class DecoModel extends AgeableListModel {
+public abstract class DecoModel implements ModelPartProvider {
     public DecoModel() {
-        super(true, 16.0f, 0.0f, 2.0f, 2.0f, 24.0f);
     }
 
     public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
-        this.attackTime = model.attackTime;
-        this.riding = model.riding;
-        this.young = model.young;
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
-        return Collections.emptyList();
-    }
-
-    @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public void setupAnim(Entity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-
+    public Iterable<ModelPart> parts() {
+        return List.of();
     }
 
     public static ModelPart getModelPart(HumanoidModel model, String name) {
@@ -42,5 +26,10 @@ public abstract class DecoModel extends AgeableListModel {
             case "rightLeg" -> model.rightLeg;
             default -> model.body;
         };
+    }
+
+    protected static void copyPart(ModelPart target, ModelPart source) {
+        target.loadPose(source.storePose());
+        target.visible = source.visible;
     }
 }

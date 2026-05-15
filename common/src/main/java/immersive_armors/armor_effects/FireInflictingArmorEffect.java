@@ -37,7 +37,7 @@ public class FireInflictingArmorEffect extends ArmorEffect {
 
     @Override
     public void equippedTick(ItemStack stack, Level world, LivingEntity entity, int slot) {
-        if (world.isClientSide && Minecraft.getInstance().player == entity && !Minecraft.getInstance().options.getCameraType().isFirstPerson() && entity.getRandom().nextInt(15) == 0) {
+        if (world.isClientSide() && Minecraft.getInstance().player == entity && !Minecraft.getInstance().options.getCameraType().isFirstPerson() && entity.getRandom().nextInt(15) == 0) {
             world.addParticle(ParticleTypes.FLAME, entity.getRandomX(0.5D), entity.getRandomY(), entity.getRandomZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
     }

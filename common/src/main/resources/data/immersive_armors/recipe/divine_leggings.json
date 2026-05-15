@@ -6,16 +6,8 @@
     "I I"
   ],
   "key": {
-    "R": [
-      {
-        "item": "immersive_armors:robe_leggings"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ]
+    "R": "immersive_armors:robe_leggings",
+    "I": "minecraft:gold_ingot"
   },
   "result": {
     "id": "immersive_armors:divine_leggings"

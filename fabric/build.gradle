@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.gradleup.shadow" version "8.3.10"
 }
 
 loom {
@@ -29,8 +29,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modCompileOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
 
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+    common files(project(":common").tasks.named("jar").flatMap { it.archiveFile })
+    shadowCommon files(project(":common").tasks.named("transformProductionFabric").flatMap { it.archiveFile })
 }
 
 processResources {

@@ -4,7 +4,7 @@ import immersive_armors.config.Config;
 import immersive_armors.network.NetworkManager;
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import static immersive_armors.ItemPropertyOverwrite.applyItemOverride;
 
@@ -27,7 +27,7 @@ public final class Main {
         backup = applyItemOverride(config.overwriteValues);
     }
 
-    public static ResourceLocation locate(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    public static Identifier locate(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 }

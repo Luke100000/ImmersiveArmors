@@ -6,21 +6,9 @@
     "   "
   ],
   "key": {
-    "R": [
-      {
-        "item": "minecraft:redstone_torch"
-      }
-    ],
-    "G": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ],
-    "H": [
-      {
-        "item": "minecraft:white_stained_glass"
-      }
-    ]
+    "R": "minecraft:redstone_torch",
+    "G": "minecraft:gold_ingot",
+    "H": "minecraft:white_stained_glass"
   },
   "result": {
     "id": "immersive_armors:steampunk_helmet"

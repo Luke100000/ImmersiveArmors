@@ -4,7 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,7 +21,7 @@ public class WeaponEfficiency extends ArmorEffect {
     private final TagKey<Item> weapon;
     private final String weaponName;
 
-    public WeaponEfficiency(float damage, ResourceLocation weapon, String weaponName) {
+    public WeaponEfficiency(float damage, Identifier weapon, String weaponName) {
         this.damage = damage;
         this.weapon = TagKey.create(Registries.ITEM, weapon);
         this.weaponName = weaponName;

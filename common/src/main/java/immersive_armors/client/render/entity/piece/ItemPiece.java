@@ -1,10 +1,13 @@
 package immersive_armors.client.render.entity.piece;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import immersive_armors.client.render.entity.ImmersiveArmorRenderState;
 import immersive_armors.client.render.entity.model.DecoModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,7 +39,7 @@ public class ItemPiece extends Piece {
     }
 
     @Override
-    public <T extends LivingEntity, A extends HumanoidModel<T>> void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
+    public int render(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, HumanoidRenderState renderState, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, HumanoidModel<HumanoidRenderState> armorModel, int order) {
         matrices.pushPose();
         DecoModel.getModelPart(armorModel, attachTo).translateAndRotate(matrices);
         matrices.translate(x, y, z);
@@ -44,7 +47,18 @@ public class ItemPiece extends Piece {
         if (rotation != null) {
             matrices.mulPose(rotation);
         }
-        Minecraft.getInstance().getItemRenderer().renderStatic(entity, stack, ItemDisplayContext.GROUND, false, matrices, vertexConsumers, entity.level(), light, OverlayTexture.NO_OVERLAY, 0);
+
+        LivingEntity entity = ((ImmersiveArmorRenderState) renderState).immersiveArmors$getEntity();
+        if (entity != null) {
+            Minecraft.getInstance().gameRenderer.itemInHandRenderer.renderItem(entity, stack, ItemDisplayContext.GROUND, matrices, submitNodeCollector, light);
+        } else {
+            ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
+            Minecraft client = Minecraft.getInstance();
+            client.getItemModelResolver().updateForTopItem(itemStackRenderState, stack, ItemDisplayContext.GROUND, client.level, null, ItemDisplayContext.GROUND.ordinal());
+            itemStackRenderState.submit(matrices, submitNodeCollector, light, OverlayTexture.NO_OVERLAY, 0);
+        }
+
         matrices.popPose();
+        return order + 1;
     }
 }

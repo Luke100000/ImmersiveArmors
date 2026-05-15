@@ -5,6 +5,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -22,15 +23,15 @@ public abstract class MixinLivingEntity extends Entity {
         super(entityType, level);
     }
 
-    @Inject(method = "hurt", at = @At(value = "HEAD"))
-    public void immersiveArmors$injectDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "hurtServer", at = @At(value = "HEAD"))
+    public void immersiveArmors$injectDamage(ServerLevel serverLevel, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         this.immersiveArmors$source = source;
     }
 
-    @ModifyArg(method = "hurt",
+    @ModifyArg(method = "hurtServer",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V"),
-            index = 1)
+                    target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)V"),
+            index = 2)
     public float immersiveArmors$modifyArgs(float amount) {
         return DamageUtils.adjustDamage((LivingEntity) (Object) this, this.immersiveArmors$source, amount);
     }

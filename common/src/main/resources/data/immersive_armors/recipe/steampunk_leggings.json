@@ -6,16 +6,8 @@
     "G G"
   ],
   "key": {
-    "G": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ],
-    "P": [
-      {
-        "item": "minecraft:piston"
-      }
-    ]
+    "G": "minecraft:gold_ingot",
+    "P": "minecraft:piston"
   },
   "result": {
     "id": "immersive_armors:steampunk_leggings"

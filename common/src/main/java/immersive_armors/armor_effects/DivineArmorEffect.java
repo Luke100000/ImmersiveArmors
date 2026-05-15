@@ -21,7 +21,7 @@ public class DivineArmorEffect extends ArmorEffect {
     }
 
     private boolean isCharged(long time, ItemStack armor) {
-        Long l = armor.get(CustomDataComponentTypes.LAST_DIVINE);
+        Long l = armor.get(CustomDataComponentTypes.LAST_DIVINE.get());
         return (l == null || l + cooldown < time) && getSetCount(armor) == 4;
     }
 
@@ -53,7 +53,7 @@ public class DivineArmorEffect extends ArmorEffect {
             boolean charged = getMatchingEquippedArmor(entity, armor).anyMatch(a -> isCharged(time, a));
             if (charged) {
                 entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ANVIL_LAND, entity.getSoundSource(), 0.5f, 1.25f);
-                getMatchingEquippedArmor(entity, armor).forEach(a -> a.set(CustomDataComponentTypes.LAST_DIVINE, time));
+                getMatchingEquippedArmor(entity, armor).forEach(a -> a.set(CustomDataComponentTypes.LAST_DIVINE.get(), time));
                 return 0;
             }
         }

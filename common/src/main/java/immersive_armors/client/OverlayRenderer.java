@@ -2,10 +2,12 @@ package immersive_armors.client;
 
 import immersive_armors.Main;
 import immersive_armors.config.Config;
+import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,8 +20,9 @@ public class OverlayRenderer {
     public static void renderOverlay(GuiGraphics context) {
         Minecraft client = Minecraft.getInstance();
         if (!client.options.hideGui && client.gameMode != null && client.player != null) {
-            for (ItemStack item : client.player.getArmorSlots()) {
-                ResourceLocation id = BuiltInRegistries.ITEM.getKey(item.getItem());
+            for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
+                ItemStack item = client.player.getItemBySlot(slot);
+                Identifier id = BuiltInRegistries.ITEM.getKey(item.getItem());
                 if (id.equals(Main.locate("steampunk_chestplate"))) {
                     renderSteampunkHud(context);
                 }

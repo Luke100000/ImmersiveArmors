@@ -6,11 +6,7 @@
     "   "
   ],
   "key": {
-    "B": [
-      {
-        "item": "minecraft:bone"
-      }
-    ]
+    "B": "minecraft:bone"
   },
   "result": {
     "id": "immersive_armors:bone_helmet"

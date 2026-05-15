@@ -6,16 +6,8 @@
     "   "
   ],
   "key": {
-    "L": [
-      {
-        "item": "minecraft:leather_boots"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:iron_ingot"
-      }
-    ]
+    "L": "minecraft:leather_boots",
+    "I": "minecraft:iron_ingot"
   },
   "result": {
     "id": "immersive_armors:warrior_boots"

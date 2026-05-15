@@ -6,11 +6,7 @@
     "   "
   ],
   "key": {
-    "W": [
-      {
-        "tag": "minecraft:logs"
-      }
-    ]
+    "W": "#minecraft:logs"
   },
   "result": {
     "id": "immersive_armors:wooden_boots"

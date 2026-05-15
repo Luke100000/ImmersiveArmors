@@ -6,26 +6,10 @@
     "GPG"
   ],
   "key": {
-    "S": [
-      {
-        "item": "minecraft:clock"
-      }
-    ],
-    "C": [
-      {
-        "item": "minecraft:compass"
-      }
-    ],
-    "G": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ],
-    "P": [
-      {
-        "item": "minecraft:piston"
-      }
-    ]
+    "S": "minecraft:clock",
+    "C": "minecraft:compass",
+    "G": "minecraft:gold_ingot",
+    "P": "minecraft:piston"
   },
   "result": {
     "id": "immersive_armors:steampunk_chestplate"

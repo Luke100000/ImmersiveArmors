@@ -6,21 +6,9 @@
     "   "
   ],
   "key": {
-    "R": [
-      {
-        "item": "immersive_armors:robe_helmet"
-      }
-    ],
-    "E": [
-      {
-        "item": "minecraft:emerald"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ]
+    "R": "immersive_armors:robe_helmet",
+    "E": "minecraft:emerald",
+    "I": "minecraft:gold_ingot"
   },
   "result": {
     "id": "immersive_armors:divine_helmet"

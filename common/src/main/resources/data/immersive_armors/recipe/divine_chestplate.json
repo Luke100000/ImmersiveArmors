@@ -6,21 +6,9 @@
     "IRI"
   ],
   "key": {
-    "R": [
-      {
-        "item": "immersive_armors:robe_chestplate"
-      }
-    ],
-    "T": [
-      {
-        "item": "minecraft:totem_of_undying"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:gold_ingot"
-      }
-    ]
+    "R": "immersive_armors:robe_chestplate",
+    "T": "minecraft:totem_of_undying",
+    "I": "minecraft:gold_ingot"
   },
   "result": {
     "id": "immersive_armors:divine_chestplate"

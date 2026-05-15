@@ -27,6 +27,7 @@ public final class CommonFabric implements ModInitializer {
         new NetworkHandlerImpl();
 
         Items.bootstrap();
+        Items.registerCauldronInteractions();
         Messages.bootstrap();
         CustomDataComponentTypes.bootstrap();
 
@@ -56,4 +57,3 @@ public final class CommonFabric implements ModInitializer {
         });
     }
 }
-

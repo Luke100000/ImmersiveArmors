@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.7",
   "package": "immersive_armors.fabric.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": ["MixinLivingEntity"],
   "client": [],
   "injectors": {

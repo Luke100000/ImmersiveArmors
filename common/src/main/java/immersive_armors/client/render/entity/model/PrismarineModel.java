@@ -7,7 +7,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -84,13 +83,8 @@ public class PrismarineModel extends DecoModel {
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
-        return Collections.singletonList(parts.getFirst());
-    }
-
-    @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return parts.subList(1, parts.size());
+    public Iterable<ModelPart> parts() {
+        return parts;
     }
 
     @Override
@@ -98,18 +92,18 @@ public class PrismarineModel extends DecoModel {
         parts.forEach(p -> p.visible = false);
         switch (slot) {
             case HEAD -> {
-                parts.getFirst().copyFrom(model.head);
+                copyPart(parts.getFirst(), model.head);
                 parts.getFirst().visible = true;
             }
             case CHEST -> {
-                parts.get(1).copyFrom(model.rightArm);
-                parts.get(2).copyFrom(model.leftArm);
+                copyPart(parts.get(1), model.rightArm);
+                copyPart(parts.get(2), model.leftArm);
                 parts.get(1).visible = true;
                 parts.get(2).visible = true;
             }
             case LEGS -> {
-                parts.get(3).copyFrom(model.rightLeg);
-                parts.get(4).copyFrom(model.leftLeg);
+                copyPart(parts.get(3), model.rightLeg);
+                copyPart(parts.get(4), model.leftLeg);
                 parts.get(3).visible = true;
                 parts.get(4).visible = true;
             }

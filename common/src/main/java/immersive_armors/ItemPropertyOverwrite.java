@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 
 public class ItemPropertyOverwrite {
     public static Map<String, Float> applyItemOverride(Map<String, Float> map) {
@@ -23,23 +23,23 @@ public class ItemPropertyOverwrite {
                         .filter(i -> i.getName().equals(split[0])).findAny();
                 if (found.isPresent()) {
                     ExtendedArmorMaterial material = found.get();
-                    EnumMap<ArmorItem.Type, Integer> protection = material.getProtection();
+                    EnumMap<ArmorType, Integer> protection = material.getProtection();
                     switch (split[1]) {
                         case "helmetProtection" -> {
-                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorItem.Type.HELMET).floatValue());
-                            protection.put(ArmorItem.Type.HELMET, entry.getValue().intValue());
+                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorType.HELMET).floatValue());
+                            protection.put(ArmorType.HELMET, entry.getValue().intValue());
                         }
                         case "chestplateProtection" -> {
-                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorItem.Type.CHESTPLATE).floatValue());
-                            protection.put(ArmorItem.Type.CHESTPLATE, entry.getValue().intValue());
+                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorType.CHESTPLATE).floatValue());
+                            protection.put(ArmorType.CHESTPLATE, entry.getValue().intValue());
                         }
                         case "leggingsProtection" -> {
-                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorItem.Type.LEGGINGS).floatValue());
-                            protection.put(ArmorItem.Type.LEGGINGS, entry.getValue().intValue());
+                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorType.LEGGINGS).floatValue());
+                            protection.put(ArmorType.LEGGINGS, entry.getValue().intValue());
                         }
                         case "bootsProtection" -> {
-                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorItem.Type.BOOTS).floatValue());
-                            protection.put(ArmorItem.Type.BOOTS, entry.getValue().intValue());
+                            backup.putIfAbsent(entry.getKey(), protection.get(ArmorType.BOOTS).floatValue());
+                            protection.put(ArmorType.BOOTS, entry.getValue().intValue());
                         }
                         case "weight" -> {
                             backup.putIfAbsent(entry.getKey(), material.getWeight());

@@ -6,16 +6,8 @@
     "SSS"
   ],
   "key": {
-    "S": [
-      {
-        "item": "minecraft:prismarine_shard"
-      }
-    ],
-    "C": [
-      {
-        "item": "minecraft:heart_of_the_sea"
-      }
-    ]
+    "S": "minecraft:prismarine_shard",
+    "C": "minecraft:heart_of_the_sea"
   },
   "result": {
     "id": "immersive_armors:prismarine_chestplate"

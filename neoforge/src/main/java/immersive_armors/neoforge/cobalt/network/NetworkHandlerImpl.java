@@ -8,9 +8,10 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
+import net.neoforged.neoforge.network.handling.IPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import java.util.HashMap;
@@ -22,7 +23,8 @@ public class NetworkHandlerImpl extends NetworkHandler.Impl {
     @SuppressWarnings("rawtypes")
     record MessageRegistryEntry(CustomPacketPayload.Type type,
                                 StreamCodec codec,
-                                DirectionalPayloadHandler payloadHandler) {
+                                IPayloadHandler serverPayloadHandler,
+                                IPayloadHandler clientPayloadHandler) {
     }
 
     Map<String, List<MessageRegistryEntry>> messageRegistry = new HashMap<>();
@@ -30,16 +32,16 @@ public class NetworkHandlerImpl extends NetworkHandler.Impl {
     @Override
     public <T extends Message> void registerMessage(String namespace, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec, NetworkHandler.ClientHandler<T> clientHandler, NetworkHandler.ServerHandler<T> serverHandler) {
         messageRegistry.computeIfAbsent(namespace, k -> new LinkedList<>());
-        DirectionalPayloadHandler<T> payloadHandler = new DirectionalPayloadHandler<>(
-                (m, c) -> clientHandler.handle(m),
-                (m, c) -> serverHandler.handle(m, (ServerPlayer) c.player())
-        );
-        messageRegistry.get(namespace).add(new MessageRegistryEntry(type, codec, payloadHandler));
+        IPayloadHandler<T> serverPayloadHandler =
+                (m, c) -> serverHandler.handle(m, (ServerPlayer) c.player());
+        IPayloadHandler<T> clientPayloadHandler =
+                (m, c) -> clientHandler.handle(m);
+        messageRegistry.get(namespace).add(new MessageRegistryEntry(type, codec, serverPayloadHandler, clientPayloadHandler));
     }
 
     @Override
     public void sendToServer(Message m) {
-        PacketDistributor.sendToServer(m);
+        ClientPacketDistributor.sendToServer(m);
     }
 
     @Override
@@ -59,7 +61,8 @@ public class NetworkHandlerImpl extends NetworkHandler.Impl {
                 channel.forEach(entry -> registrar.playBidirectional(
                         entry.type,
                         entry.codec,
-                        entry.payloadHandler
+                        entry.serverPayloadHandler,
+                        entry.clientPayloadHandler
                 ))
         );
     }

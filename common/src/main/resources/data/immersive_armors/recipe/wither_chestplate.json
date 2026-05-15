@@ -6,16 +6,8 @@
     "NNN"
   ],
   "key": {
-    "N": [
-      {
-        "item": "minecraft:nether_brick"
-      }
-    ],
-    "B": [
-      {
-        "item": "immersive_armors:bone_chestplate"
-      }
-    ]
+    "N": "minecraft:nether_brick",
+    "B": "immersive_armors:bone_chestplate"
   },
   "result": {
     "id": "immersive_armors:wither_chestplate"

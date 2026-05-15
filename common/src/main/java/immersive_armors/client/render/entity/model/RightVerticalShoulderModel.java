@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
-import java.util.Collections;
+import java.util.List;
 
 public class RightVerticalShoulderModel extends DecoModel {
     private final ModelPart part;
@@ -30,13 +30,13 @@ public class RightVerticalShoulderModel extends DecoModel {
     }
 
     @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return Collections.singletonList(part);
+    public Iterable<ModelPart> parts() {
+        return List.of(part);
     }
 
     @Override
     public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
-        part.copyFrom(model.rightArm);
+        copyPart(part, model.rightArm);
         super.copyFromModel(model, slot);
     }
 }

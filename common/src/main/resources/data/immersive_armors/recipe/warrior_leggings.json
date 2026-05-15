@@ -6,16 +6,8 @@
     "I I"
   ],
   "key": {
-    "L": [
-      {
-        "item": "minecraft:leather_leggings"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:iron_ingot"
-      }
-    ]
+    "L": "minecraft:leather_leggings",
+    "I": "minecraft:iron_ingot"
   },
   "result": {
     "id": "immersive_armors:warrior_leggings"

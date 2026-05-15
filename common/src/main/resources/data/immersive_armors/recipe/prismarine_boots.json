@@ -6,16 +6,8 @@
     "   "
   ],
   "key": {
-    "S": [
-      {
-        "item": "minecraft:prismarine_shard"
-      }
-    ],
-    "C": [
-      {
-        "item": "minecraft:prismarine_crystals"
-      }
-    ]
+    "S": "minecraft:prismarine_shard",
+    "C": "minecraft:prismarine_crystals"
   },
   "result": {
     "id": "immersive_armors:prismarine_boots"

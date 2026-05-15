@@ -1,7 +1,5 @@
 package immersive_armors.client.render.entity.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -9,6 +7,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
+import java.util.List;
 
 public class GearModel extends DecoModel {
     private final String attachTo;
@@ -30,14 +29,14 @@ public class GearModel extends DecoModel {
         part = model.getChild("part");
     }
 
-    @Override
-    public void renderToBuffer(PoseStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        part.render(matrices, vertices, light, overlay, color);
+    public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
+        copyPart(part, getModelPart(model, attachTo));
+        super.copyFromModel(model, slot);
     }
 
-    public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
-        part.copyFrom(getModelPart(model, attachTo));
-        super.copyFromModel(model, slot);
+    @Override
+    public Iterable<ModelPart> parts() {
+        return List.of(part);
     }
 
     public String getAttachTo() {

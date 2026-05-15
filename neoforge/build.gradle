@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.gradleup.shadow" version "8.3.10"
 }
 
 architectury {
@@ -27,8 +27,8 @@ repositories {
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
+    common files(project(":common").tasks.named("jar").flatMap { it.archiveFile })
+    shadowCommon files(project(":common").tasks.named("transformProductionNeoForge").flatMap { it.archiveFile })
 }
 
 processResources {

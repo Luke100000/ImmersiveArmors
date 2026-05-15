@@ -7,6 +7,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,32 +15,36 @@ public class ArmorCommandMessage extends Message {
     public static final StreamCodec<RegistryFriendlyByteBuf, ArmorCommandMessage> STREAM_CODEC = StreamCodec.ofMember(ArmorCommandMessage::encode, ArmorCommandMessage::new);
     public static final CustomPacketPayload.Type<ArmorCommandMessage> TYPE = Message.createType("armor_command");
 
-    private final int slot;
+    private final EquipmentSlot slot;
     private final String command;
 
     public ArmorCommandMessage(int slot, String command) {
+        this(EquipmentSlot.values()[slot], command);
+    }
+
+    public ArmorCommandMessage(EquipmentSlot slot, String command) {
         super();
         this.slot = slot;
         this.command = command;
     }
 
     public ArmorCommandMessage(RegistryFriendlyByteBuf b) {
-        slot = b.readInt();
+        slot = b.readEnum(EquipmentSlot.class);
         command = b.readUtf();
     }
 
     @Override
     public void encode(RegistryFriendlyByteBuf b) {
-        b.writeInt(slot);
+        b.writeEnum(slot);
         b.writeUtf(command);
     }
 
     @Override
     public void receiveServer(ServerPlayer player) {
-        ItemStack stack = player.getInventory().getItem(slot);
+        ItemStack stack = player.getItemBySlot(slot);
         if (stack.getItem() instanceof ExtendedArmorItem item) {
             for (ArmorEffect e : item.getExtendedMaterial().getEffects()) {
-                e.receiveCommand(stack, player.level(), player, slot, command);
+                e.receiveCommand(stack, player.level(), player, slot.ordinal(), command);
             }
         }
     }

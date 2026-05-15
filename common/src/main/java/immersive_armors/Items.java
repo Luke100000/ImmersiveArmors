@@ -7,27 +7,35 @@ import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 import java.util.*;
 import java.util.function.Supplier;
-import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.DyedItemColor;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public interface Items {
-    Map<String, Supplier<Item>> coloredItems = new HashMap<>();
     Map<String, Supplier<Item>> items = new HashMap<>();
     List<Supplier<Item>> itemsOrdered = new LinkedList<>();
+    List<Supplier<Item>> dyeableItems = new LinkedList<>();
     Map<String, Map<Supplier<Item>, Float>> lootLookup = new HashMap<>();
 
     ExtendedArmorMaterial BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
             .addLoot("minecraft:chests/village/village_weaponsmith", 1.0f)
             .addLoot("minecraft:chests/jungle_temple", 1.0f)
             .durabilityMultiplier(8)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.BONE))
             .protectionAmount(1, 3, 2, 1)
             .enchantability(15)
             .equipSound(SoundEvents.SKELETON_AMBIENT)
@@ -39,7 +47,6 @@ public interface Items {
             .addLoot("minecraft:chests/ruined_portal", 1.0f)
             .addLoot("minecraft:chests/bastion_other", 1.0f)
             .durabilityMultiplier(12)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.BONE))
             .protectionAmount(2, 4, 3, 2)
             .enchantability(0)
             .effect(new WitherArmorEffect(0.25f, 20))
@@ -53,7 +60,6 @@ public interface Items {
             .addLoot("minecraft:chests/shipwreck_supply", 1.0f)
             .protectionAmount(2, 5, 6, 2)
             .durabilityMultiplier(15)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.IRON_INGOT))
             .toughness(1.0f)
             .enchantability(5)
             .hideCape()
@@ -66,7 +72,6 @@ public interface Items {
             .addLoot("minecraft:chests/stronghold_crossing", 1.0f)
             .protectionAmount(4, 6, 5, 3)
             .durabilityMultiplier(20)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.IRON_INGOT))
             .toughness(4.0f)
             .knockbackReduction(0.5f)
             .weight(0.05f)
@@ -80,7 +85,6 @@ public interface Items {
             .protectionAmount(2, 3, 2, 1)
             .enchantability(50)
             .durabilityMultiplier(14)
-            .repairIngredient(() -> Ingredient.of(ItemTags.WOOL))
             .color(0xFFB00F46)
             .effect(new FireResistanceArmorEffect(0.25f))
             .effect(new FireInflictingArmorEffect(20))
@@ -92,7 +96,6 @@ public interface Items {
             .protectionAmount(3, 5, 4, 2)
             .enchantability(10)
             .durabilityMultiplier(20)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.SLIME_BALL))
             .knockbackReduction(0.25f)
             .effect(new BouncingArmorEffect(0.25f))
             .effect(new ExplosionProtectionArmorEffect(0.2f))
@@ -105,7 +108,6 @@ public interface Items {
             .addLoot("minecraft:chests/desert_pyramid", 1.0f)
             .protectionAmount(3, 7, 5, 3)
             .durabilityMultiplier(18)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.GOLD_INGOT))
             .enchantability(30)
             .effect(new DivineArmorEffect(1200))
             .color(0xFFB00F46)
@@ -118,7 +120,6 @@ public interface Items {
             .protectionAmount(3, 8, 6, 3)
             .enchantability(8)
             .durabilityMultiplier(18)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.PRISMARINE_CRYSTALS))
             .weight(0.02f)
             .waterMovement(0.25f)
             .effect(new SpikesArmorEffect(1))
@@ -128,7 +129,6 @@ public interface Items {
             .addLoot("minecraft:chests/village/village_fletcher", 0.25f)
             .protectionAmount(1, 3, 2, 1)
             .durabilityMultiplier(8)
-            .repairIngredient(() -> Ingredient.of(ItemTags.LOGS))
             .enchantability(4)
             .effect(new ArrowBlockArmorEffect(0.15f))
             .effect(new ExplosionProtectionArmorEffect(0.1f))
@@ -139,7 +139,6 @@ public interface Items {
             .addLoot("minecraft:chests/shipwreck_treasure", 1.0f)
             .protectionAmount(3, 6, 3, 2)
             .durabilityMultiplier(10)
-            .repairIngredient(() -> Ingredient.of(net.minecraft.world.item.Items.GOLD_INGOT))
             .enchantability(4)
             .hideCape()
             .effect(new ExplosionProtectionArmorEffect(0.1f))
@@ -150,13 +149,17 @@ public interface Items {
         ItemGroups.markItemsReady();
     }
 
+    static void registerCauldronInteractions() {
+        dyeableItems.forEach(item -> CauldronInteraction.WATER.map().put(item.get(), Items::cleanDyeableItem));
+    }
+
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
         material.registerVanillaMaterial();
 
-        Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
-        Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
-        Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
-        Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
+        Items.items.putAll(register(material.getName() + "_helmet", () -> new ExtendedArmorItem(baseProps(material.getName() + "_helmet"), ArmorType.HELMET, material), material));
+        Items.items.putAll(register(material.getName() + "_chestplate", () -> new ExtendedArmorItem(baseProps(material.getName() + "_chestplate"), ArmorType.CHESTPLATE, material), material));
+        Items.items.putAll(register(material.getName() + "_leggings", () -> new ExtendedArmorItem(baseProps(material.getName() + "_leggings"), ArmorType.LEGGINGS, material), material));
+        Items.items.putAll(register(material.getName() + "_boots", () -> new ExtendedArmorItem(baseProps(material.getName() + "_boots"), ArmorType.BOOTS, material), material));
 
         return material;
     }
@@ -164,14 +167,18 @@ public interface Items {
     static ExtendedArmorMaterial registerDyeableSet(ExtendedArmorMaterial material) {
         material.registerVanillaMaterial();
 
-        Items.coloredItems.putAll(register(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.HELMET, material), material));
-        Items.coloredItems.putAll(register(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.CHESTPLATE, material), material));
-        Items.coloredItems.putAll(register(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.LEGGINGS, material), material));
-        Items.coloredItems.putAll(register(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(), ArmorItem.Type.BOOTS, material), material));
-
-        Items.items.putAll(Items.coloredItems);
+        Items.items.putAll(registerDyeable(material.getName() + "_helmet", () -> new DyeableExtendedArmorItem(baseProps(material.getName() + "_helmet"), ArmorType.HELMET, material), material));
+        Items.items.putAll(registerDyeable(material.getName() + "_chestplate", () -> new DyeableExtendedArmorItem(baseProps(material.getName() + "_chestplate"), ArmorType.CHESTPLATE, material), material));
+        Items.items.putAll(registerDyeable(material.getName() + "_leggings", () -> new DyeableExtendedArmorItem(baseProps(material.getName() + "_leggings"), ArmorType.LEGGINGS, material), material));
+        Items.items.putAll(registerDyeable(material.getName() + "_boots", () -> new DyeableExtendedArmorItem(baseProps(material.getName() + "_boots"), ArmorType.BOOTS, material), material));
 
         return material;
+    }
+
+    static Map<String, Supplier<Item>> registerDyeable(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
+        Map<String, Supplier<Item>> registered = register(name, item, material);
+        dyeableItems.add(registered.get(name));
+        return registered;
     }
 
     static Map<String, Supplier<Item>> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
@@ -184,21 +191,30 @@ public interface Items {
         return Collections.singletonMap(name, register);
     }
 
-    static Item.Properties baseProps() {
-        return new Item.Properties().stacksTo(1);
+    static Item.Properties baseProps(String name) {
+        return new Item.Properties()
+                .setId(ResourceKey.create(Registries.ITEM, Main.locate(name)))
+                .stacksTo(1);
     }
 
     static List<ItemStack> getSortedItems() {
         return itemsOrdered.stream().map(i -> i.get().getDefaultInstance()).toList();
     }
 
-    static ItemColor getDyeColor(int defaultColor) {
-        return (item, layer) -> {
-            if (layer != 0) {
-                return -1;
-            } else {
-                return DyedItemColor.getOrDefault(item, defaultColor);
+    private static InteractionResult cleanDyeableItem(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, ItemStack itemStack) {
+        if (!itemStack.is(ItemTags.DYEABLE)) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        } else if (!itemStack.has(DataComponents.DYED_COLOR)) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        } else {
+            if (!level.isClientSide()) {
+                itemStack.remove(DataComponents.DYED_COLOR);
+                player.awardStat(Stats.CLEAN_ARMOR);
+                LayeredCauldronBlock.lowerFillLevel(blockState, level, blockPos);
             }
-        };
+
+            return InteractionResult.SUCCESS;
+        }
     }
+
 }

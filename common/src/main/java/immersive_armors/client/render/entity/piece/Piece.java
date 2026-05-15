@@ -5,20 +5,23 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import immersive_armors.config.Config;
 import immersive_armors.item.ExtendedArmorItem;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 public abstract class Piece {
-    private static final Map<String, ResourceLocation> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
+    private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.newHashMap();
 
     public Piece() {
 
@@ -48,25 +51,57 @@ public abstract class Piece {
         }
     }
 
-    private ResourceLocation getTexture(ExtendedArmorItem item, boolean overlay) {
+    private Identifier getTexture(ExtendedArmorItem item, boolean overlay) {
         String string = "immersive_armors:textures/models/armor/" + item.getExtendedMaterial().getName() + "/" + getTexture() + (overlay ? "_overlay" : "") + ".png";
-        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, ResourceLocation::parse);
+        return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::parse);
     }
 
-    protected void renderParts(PoseStack matrices, MultiBufferSource vertexConsumers, int light, ItemStack itemStack, ExtendedArmorItem item, EntityModel model, int color, boolean overlay) {
+    protected int renderParts(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, HumanoidRenderState renderState, ItemStack itemStack, ExtendedArmorItem item, Iterable<ModelPart> parts, int color, boolean overlay, int order) {
         RenderType renderLayer;
         if (isTranslucent()) {
-            renderLayer = RenderType.entityTranslucent(getTexture(item, overlay));
+            renderLayer = RenderTypes.entityTranslucent(getTexture(item, overlay));
         } else if (isGlowing()) {
-            renderLayer = RenderType.beaconBeam(getTexture(item, overlay), false);
+            renderLayer = RenderTypes.beaconBeam(getTexture(item, overlay), false);
         } else {
-            renderLayer = RenderType.armorCutoutNoCull(getTexture(item, overlay));
+            renderLayer = RenderTypes.armorCutoutNoCull(getTexture(item, overlay));
         }
-        VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers, renderLayer, hasGlint() | itemStack.hasFoil() & Config.getInstance().enableEnchantmentGlint);
-        model.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, color);
+
+        order = renderGeometry(matrices, submitNodeCollector, renderLayer, light, LivingEntityRenderer.getOverlayCoords(renderState, 0.0F), color, parts, order);
+        if (hasGlint() || itemStack.hasFoil() && Config.getInstance().enableEnchantmentGlint) {
+            order = renderGeometry(matrices, submitNodeCollector, RenderTypes.armorEntityGlint(), light, LivingEntityRenderer.getOverlayCoords(renderState, 0.0F), color, parts, order);
+        }
+        return order;
     }
 
-    public abstract <T extends LivingEntity, A extends HumanoidModel<T>> void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel);
+    protected int renderGeometry(PoseStack matrices, SubmitNodeCollector submitNodeCollector, RenderType renderType, int light, int overlay, int color, Iterable<ModelPart> parts, int order) {
+        return renderGeometry(matrices, submitNodeCollector, renderType, light, overlay, color, parts, order, null);
+    }
+
+    protected int renderGeometry(PoseStack matrices, SubmitNodeCollector submitNodeCollector, RenderType renderType, int light, int overlay, int color, Iterable<ModelPart> parts, int order, TextureAtlasSprite sprite) {
+        List<CubeRender> cubes = collectCubes(matrices, parts);
+        if (!cubes.isEmpty()) {
+            submitNodeCollector.order(order++).submitCustomGeometry(new PoseStack(), renderType, (pose, vertexConsumer) -> {
+                VertexConsumer buffer = sprite == null ? vertexConsumer : sprite.wrap(vertexConsumer);
+                cubes.forEach(cube -> cube.cube().compile(cube.pose(), buffer, light, overlay, color));
+            });
+        }
+        return order;
+    }
+
+    private List<CubeRender> collectCubes(PoseStack matrices, Iterable<ModelPart> parts) {
+        List<CubeRender> cubes = new ArrayList<>();
+        parts.forEach(part -> collectCubes(matrices, part, cubes));
+        return cubes;
+    }
+
+    private void collectCubes(PoseStack matrices, ModelPart part, List<CubeRender> cubes) {
+        part.visit(matrices, (pose, path, index, cube) -> cubes.add(new CubeRender(pose.copy(), cube)));
+    }
+
+    public abstract int render(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, HumanoidRenderState renderState, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, HumanoidModel<HumanoidRenderState> armorModel, int order);
+
+    private record CubeRender(PoseStack.Pose pose, ModelPart.Cube cube) {
+    }
 
     private boolean translucent;
     private boolean glint;

@@ -6,21 +6,9 @@
     "   "
   ],
   "key": {
-    "L": [
-      {
-        "item": "minecraft:leather_helmet"
-      }
-    ],
-    "I": [
-      {
-        "item": "minecraft:iron_ingot"
-      }
-    ],
-    "B": [
-      {
-        "item": "minecraft:bone"
-      }
-    ]
+    "L": "minecraft:leather_helmet",
+    "I": "minecraft:iron_ingot",
+    "B": "minecraft:bone"
   },
   "result": {
     "id": "immersive_armors:warrior_helmet"

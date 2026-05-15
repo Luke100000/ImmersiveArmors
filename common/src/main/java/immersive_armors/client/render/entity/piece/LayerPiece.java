@@ -1,48 +1,45 @@
 package immersive_armors.client.render.entity.piece;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import immersive_armors.item.DyeableExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.core.Holder;
+import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.AtlasIds;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.armortrim.ArmorTrim;
+import net.minecraft.world.item.equipment.trim.ArmorTrim;
+
+import java.util.List;
 
 public abstract class LayerPiece extends Piece {
-    protected final TextureAtlas armorTrimsAtlas;
+    protected abstract HumanoidModel getModel();
 
-    protected abstract HumanoidModel<LivingEntity> getModel();
-
-    protected static HumanoidModel<LivingEntity> buildDilatedModel(float dilation) {
+    protected static HumanoidModel buildDilatedModel(float dilation) {
         return buildDilatedModel(dilation, dilation);
     }
 
-    protected static HumanoidModel<LivingEntity> buildDilatedModel(float dilation, float headDilation) {
+    protected static HumanoidModel buildDilatedModel(float dilation, float headDilation) {
         return new HumanoidModel<>(LayerDefinition.create(getHeadAdjustedModelData(new CubeDeformation(dilation), new CubeDeformation(headDilation), 0.0f), 64, 32).bakeRoot());
     }
 
     public static MeshDefinition getHeadAdjustedModelData(CubeDeformation dilation, CubeDeformation headDilation, float pivotOffsetY) {
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
-        modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation), PartPose.offset(0.0F, 0.0F + pivotOffsetY, 0.0F));
-        modelPartData.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation.extend(0.5F)), PartPose.offset(0.0F, 0.0F + pivotOffsetY, 0.0F));
+        PartDefinition head = modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation), PartPose.offset(0.0F, 0.0F + pivotOffsetY, 0.0F));
+        head.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, headDilation.extend(0.5F)), PartPose.ZERO);
         modelPartData.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, dilation), PartPose.offset(0.0F, 0.0F + pivotOffsetY, 0.0F));
         modelPartData.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), PartPose.offset(-5.0F, 2.0F + pivotOffsetY, 0.0F));
         modelPartData.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(40, 16).mirror().addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, dilation), PartPose.offset(5.0F, 2.0F + pivotOffsetY, 0.0F));
@@ -51,36 +48,46 @@ public abstract class LayerPiece extends Piece {
         return modelData;
     }
 
-    public LayerPiece() {
-        armorTrimsAtlas = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET);
-    }
-
-    protected void renderTrim(Holder<ArmorMaterial> material, PoseStack matrices, MultiBufferSource vertexConsumers, int light, ArmorTrim trim, HumanoidModel<LivingEntity> model, boolean leggings) {
-        TextureAtlasSprite sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.innerTexture(material) : trim.outerTexture(material));
-        VertexConsumer vertexConsumer = sprite.wrap(vertexConsumers.getBuffer(Sheets.armorTrimsSheet(trim.pattern().value().decal())));
-        model.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 0xFFFFFF);
-    }
-
     @Override
-    public <T extends LivingEntity, A extends HumanoidModel<T>> void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, A armorModel) {
+    public int render(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, HumanoidRenderState renderState, ItemStack itemStack, float tickDelta, EquipmentSlot armorSlot, HumanoidModel<HumanoidRenderState> armorModel, int order) {
         if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
-            //noinspection unchecked
-            armorModel.copyPropertiesTo((HumanoidModel<T>) getModel());
-            setVisible(getModel(), armorSlot);
+            HumanoidModel<HumanoidRenderState> model = getModel();
+            copyHumanoid(armorModel, model);
+            setVisible(model, armorSlot);
+            Iterable<ModelPart> parts = List.of(model.root());
 
             if (armorItem instanceof DyeableExtendedArmorItem dyeableArmorItem) {
                 int c = dyeableArmorItem.getColor(itemStack);
 
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), c + 0xFF000000, false);
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 0xFFFFFFFF, true);
+                order = renderParts(matrices, submitNodeCollector, light, renderState, itemStack, armorItem, parts, c, false, order);
+                order = renderParts(matrices, submitNodeCollector, light, renderState, itemStack, armorItem, parts, 0xFFFFFFFF, true, order);
             } else {
-                renderParts(matrices, vertexConsumers, light, itemStack, armorItem, getModel(), 0xFFFFFFFF, false);
+                order = renderParts(matrices, submitNodeCollector, light, renderState, itemStack, armorItem, parts, 0xFFFFFFFF, false, order);
             }
 
             ArmorTrim trim = itemStack.get(DataComponents.TRIM);
             if (trim != null) {
-                this.renderTrim(armorItem.getMaterial(), matrices, vertexConsumers, light, trim, getModel(), armorSlot == EquipmentSlot.LEGS);
+                order = renderTrim(matrices, submitNodeCollector, light, trim, parts, armorItem, armorSlot, order);
             }
         }
+        return order;
+    }
+
+    protected int renderTrim(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, ArmorTrim trim, Iterable<ModelPart> parts, ExtendedArmorItem armorItem, EquipmentSlot armorSlot, int order) {
+        EquipmentClientInfo.LayerType layerType = armorSlot == EquipmentSlot.LEGS ? EquipmentClientInfo.LayerType.HUMANOID_LEGGINGS : EquipmentClientInfo.LayerType.HUMANOID;
+        TextureAtlas armorTrimsAtlas = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.ARMOR_TRIMS);
+        TextureAtlasSprite sprite = armorTrimsAtlas.getSprite(trim.layerAssetId(layerType.trimAssetPrefix(), armorItem.getExtendedMaterial().getMaterial().assetId()));
+        RenderType renderType = Sheets.armorTrimsSheet(trim.pattern().value().decal());
+        return renderGeometry(matrices, submitNodeCollector, renderType, light, OverlayTexture.NO_OVERLAY, -1, parts, order, sprite);
+    }
+
+    private static void copyHumanoid(HumanoidModel source, HumanoidModel target) {
+        target.head.loadPose(source.head.storePose());
+        target.hat.loadPose(source.hat.storePose());
+        target.body.loadPose(source.body.storePose());
+        target.rightArm.loadPose(source.rightArm.storePose());
+        target.leftArm.loadPose(source.leftArm.storePose());
+        target.rightLeg.loadPose(source.rightLeg.storePose());
+        target.leftLeg.loadPose(source.leftLeg.storePose());
     }
 }

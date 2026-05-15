@@ -9,7 +9,7 @@ import immersive_armors.config.Config;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -45,12 +45,12 @@ public class LootProvider {
     private static final
     DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ImmersiveArmorsLootModifier>> ARMOR_MODIFIER_SERIALIZER = GLM.register("armor_modifier_serializer", ImmersiveArmorsLootModifier.CODEC);
 
-    @EventBusSubscriber(modid = Main.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = Main.MOD_ID)
     public static class EventHandlers {
         @SubscribeEvent
-        public static void runData(GatherDataEvent event) {
+        public static void runData(GatherDataEvent.Server event) {
             if (Config.getInstance().lootChance > 0) {
-                event.getGenerator().addProvider(event.includeServer(), new DataProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), Main.MOD_ID));
+                event.addProvider(new DataProvider(event.getGenerator().getPackOutput(), event.getLookupProvider(), Main.MOD_ID));
             }
         }
     }
@@ -65,7 +65,7 @@ public class LootProvider {
             for (String s : Items.lootLookup.keySet()) {
                 add("armor_modifier_serializer_" + s, new ImmersiveArmorsLootModifier
                         (new LootItemCondition[]{
-                                LootTableIdCondition.builder(ResourceLocation.parse(s)).build()
+                                LootTableIdCondition.builder(Identifier.parse(s)).build()
                         }));
             }
         }
@@ -81,7 +81,7 @@ public class LootProvider {
 
         @Override
         protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-            ResourceLocation id = context.getQueriedLootTableId();
+            Identifier id = context.getQueriedLootTableId();
             if (Items.lootLookup.containsKey(id.toString())) {
                 for (Map.Entry<Supplier<Item>, Float> entry : Items.lootLookup.get(id.toString()).entrySet()) {
                     if (context.getLevel().getRandom().nextFloat() < entry.getValue() * Config.getInstance().lootChance) {

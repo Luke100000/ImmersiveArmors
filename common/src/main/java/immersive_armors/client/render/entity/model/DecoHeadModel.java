@@ -1,6 +1,6 @@
 package immersive_armors.client.render.entity.model;
 
-import java.util.Collections;
+import java.util.List;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,12 +13,12 @@ public abstract class DecoHeadModel extends DecoModel {
     abstract ModelPart getPart();
 
     public void copyFromModel(HumanoidModel model, EquipmentSlot slot) {
-        getPart().copyFrom(model.head);
+        copyPart(getPart(), model.head);
         super.copyFromModel(model, slot);
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
-        return Collections.singletonList(getPart());
+    public Iterable<ModelPart> parts() {
+        return List.of(getPart());
     }
 }
