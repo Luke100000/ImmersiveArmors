@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
@@ -21,21 +22,29 @@ public class ItemPiece extends Piece {
     private final float x, y, z;
     private final float size;
 
-    private final ItemStack stack;
+    private final Item item;
+    private @Nullable ItemStack stack;
     private final Quaternionf rotation;
 
-    public ItemPiece(String to, float x, float y, float z, float size, ItemStack stack) {
-        this(to, x, y, z, size, stack, null);
+    public ItemPiece(String to, float x, float y, float z, float size, Item item) {
+        this(to, x, y, z, size, item, null);
     }
 
-    public ItemPiece(String to, float x, float y, float z, float size, ItemStack stack, @Nullable Quaternionf rotation) {
+    public ItemPiece(String to, float x, float y, float z, float size, Item item, @Nullable Quaternionf rotation) {
         attachTo = to;
         this.x = x;
         this.y = y;
         this.z = z;
         this.size = size;
-        this.stack = stack;
+        this.item = item;
         this.rotation = rotation;
+    }
+
+    private ItemStack stack() {
+        if (stack == null) {
+            stack = new ItemStack(item);
+        }
+        return stack;
     }
 
     @Override
@@ -49,12 +58,13 @@ public class ItemPiece extends Piece {
         }
 
         LivingEntity entity = ((ImmersiveArmorRenderState) renderState).immersiveArmors$getEntity();
+        ItemStack decorationStack = stack();
         if (entity != null) {
-            Minecraft.getInstance().gameRenderer.itemInHandRenderer.renderItem(entity, stack, ItemDisplayContext.GROUND, matrices, submitNodeCollector, light);
+            Minecraft.getInstance().gameRenderer.itemInHandRenderer.renderItem(entity, decorationStack, ItemDisplayContext.GROUND, matrices, submitNodeCollector, light);
         } else {
             ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
             Minecraft client = Minecraft.getInstance();
-            client.getItemModelResolver().updateForTopItem(itemStackRenderState, stack, ItemDisplayContext.GROUND, client.level, null, ItemDisplayContext.GROUND.ordinal());
+            client.getItemModelResolver().updateForTopItem(itemStackRenderState, decorationStack, ItemDisplayContext.GROUND, client.level, null, ItemDisplayContext.GROUND.ordinal());
             itemStackRenderState.submit(matrices, submitNodeCollector, light, OverlayTexture.NO_OVERLAY, 0);
         }
 

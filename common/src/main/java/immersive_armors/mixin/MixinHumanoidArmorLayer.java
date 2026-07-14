@@ -25,8 +25,7 @@ public abstract class MixinHumanoidArmorLayer<S extends HumanoidRenderState, M e
 
     @Inject(method = "renderArmorPiece", at = @At("HEAD"), cancellable = true)
     private void immersiveArmors$renderArmorPiece(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, ItemStack itemStack, EquipmentSlot equipmentSlot, int light, S humanoidRenderState, CallbackInfo ci) {
-        // TODO: The modern way would be via the equipment assets system
-        //  I will skip 1.21.11 and tackle this in 26.1.2 in a slightly larger rewrite
+        // TODO: Migrate custom armor pieces to the equipment assets system.
         if (itemStack.getItem() instanceof ExtendedArmorItem armor) {
             int order = 1;
             float tickDelta = ((ImmersiveArmorRenderState) humanoidRenderState).immersiveArmors$getTickDelta();

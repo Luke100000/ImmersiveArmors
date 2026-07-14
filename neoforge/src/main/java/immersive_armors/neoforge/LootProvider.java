@@ -66,7 +66,7 @@ public class LootProvider {
                 add("armor_modifier_serializer_" + s, new ImmersiveArmorsLootModifier
                         (new LootItemCondition[]{
                                 LootTableIdCondition.builder(Identifier.parse(s)).build()
-                        }));
+                        }, IGlobalLootModifier.DEFAULT_PRIORITY));
             }
         }
     }
@@ -75,8 +75,8 @@ public class LootProvider {
     private static class ImmersiveArmorsLootModifier extends LootModifier {
         public static final Supplier<MapCodec<ImmersiveArmorsLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.mapCodec(inst -> codecStart(inst).apply(inst, ImmersiveArmorsLootModifier::new)));
 
-        public ImmersiveArmorsLootModifier(final LootItemCondition[] conditionsIn) {
-            super(conditionsIn);
+        public ImmersiveArmorsLootModifier(final LootItemCondition[] conditionsIn, int priority) {
+            super(conditionsIn, priority);
         }
 
         @Override

@@ -8,7 +8,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -25,16 +24,11 @@ public final class CommonNeoForge {
 
     public CommonNeoForge(IEventBus bus) {
         new RegistrationImpl(bus);
-        bus.addListener(this::commonSetup);
         Items.bootstrap();
         Messages.bootstrap();
         CustomDataComponentTypes.bootstrap();
         LootProvider.initialize(bus);
         DEF_REG.register(bus);
-    }
-
-    private void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(Items::registerCauldronInteractions);
     }
 
     public static final DeferredRegister<CreativeModeTab> DEF_REG = DeferredRegister.create(CREATIVE_MODE_TAB, Main.MOD_ID);

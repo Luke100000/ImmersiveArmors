@@ -1,72 +1,52 @@
 plugins {
-    id "com.gradleup.shadow" version "8.3.10"
+    id "multiloader-loader"
+    id "net.fabricmc.fabric-loom"
 }
 
 loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
-}
-
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
-
-configurations {
-    shade
-    common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-}
-
-repositories {
-    maven { url "https://maven.terraformersmc.com/releases/" }
-}
-
-dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-    modCompileOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
-
-    common files(project(":common").tasks.named("jar").flatMap { it.archiveFile })
-    shadowCommon files(project(":common").tasks.named("transformProductionFabric").flatMap { it.archiveFile })
-}
-
-processResources {
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-    inputs.property "version", project.version
-}
-
-shadowJar {
-    exclude "architectury-common.accessWidener"
-    exclude "architectury.common.json"
-
-    configurations = [project.configurations.shadowCommon, project.configurations.shade]
-}
-
-remapJar {
-    injectAccessWidener = true
-    input.set shadowJar.archiveFile
-    dependsOn shadowJar
-}
-
-sourcesJar {
-    afterEvaluate {
-        [":common"].forEach {
-            def depSources = project(it).sourcesJar
-            dependsOn depSources
-            from(depSources.archiveFile.map { zipTree(it) }) {
-                exclude "immersive_armors.accessWidener"
-            }
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("runs/client")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("runs/server")
         }
     }
 }
 
-components.java {
-    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
-        skip()
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    implementation("com.terraformersmc:modmenu:${mod_menu_version}") {
+        transitive false
+    }
+    implementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") {
+        exclude group: "net.fabricmc.fabric-api"
+    }
+}
+
+def loaderAttribute = Attribute.of("io.github.mcgradleconventions.loader", String)
+["apiElements", "runtimeElements", "sourcesElements", "includeInternal", "modCompileClasspath"].each { variant ->
+    configurations.named(variant) {
+        attributes {
+            attribute(loaderAttribute, "fabric")
+        }
+    }
+}
+
+sourceSets.configureEach {
+    [compileClasspathConfigurationName, runtimeClasspathConfigurationName].each { variant ->
+        configurations.named(variant) {
+            attributes {
+                attribute(loaderAttribute, "fabric")
+            }
+        }
     }
 }

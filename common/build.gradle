@@ -1,23 +1,48 @@
-loom {
-    accessWidenerPath = file("src/main/resources/immersive_armors.accessWidener")
+plugins {
+    id "multiloader-common"
+    id "net.neoforged.moddev"
 }
 
-repositories {
-    maven { url "https://maven.terraformersmc.com/releases/" }
+neoForge {
+    neoFormVersion = neo_form_version
 }
 
 dependencies {
-    // We depend on fabric loader here to use the fabric @Environment annotations
-    // Do NOT use other classes from fabric loader
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    compileOnly "net.fabricmc:sponge-mixin:0.17.3+mixin.0.8.7"
+    compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.3")
+}
 
-    modApi "com.terraformersmc:modmenu:${rootProject.mod_menu_version}"
-
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
     }
 }
 
-architectury {
-    common("fabric", "neoforge")
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.singleFile
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+}
+
+def loaderAttribute = Attribute.of("io.github.mcgradleconventions.loader", String)
+["apiElements", "runtimeElements", "sourcesElements"].each { variant ->
+    configurations.named(variant) {
+        attributes {
+            attribute(loaderAttribute, "common")
+        }
+    }
+}
+
+sourceSets.configureEach {
+    [compileClasspathConfigurationName, runtimeClasspathConfigurationName].each { variant ->
+        configurations.named(variant) {
+            attributes {
+                attribute(loaderAttribute, "common")
+            }
+        }
+    }
 }

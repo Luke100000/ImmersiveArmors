@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 
 public class JsonConfig {
     public static final Logger LOGGER = LogManager.getLogger();
@@ -46,7 +47,18 @@ public class JsonConfig {
     }
 
     public void save() {
-        try (FileWriter writer = new FileWriter(getConfigFile())) {
+        File configFile = getConfigFile();
+        try {
+            File parent = configFile.getParentFile();
+            if (parent != null) {
+                Files.createDirectories(parent.toPath());
+            }
+        } catch (IOException e) {
+            LOGGER.error("Failed to create the Immersive Armors config directory!", e);
+            return;
+        }
+
+        try (FileWriter writer = new FileWriter(configFile)) {
             version = getVersion();
             writer.write(toJsonString());
         } catch (IOException e) {

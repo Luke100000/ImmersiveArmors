@@ -2,7 +2,6 @@ package immersive_armors;
 
 import immersive_armors.client.render.entity.model.*;
 import immersive_armors.client.render.entity.piece.*;
-import net.minecraft.world.item.ItemStack;
 import org.joml.Quaternionf;
 
 import static immersive_armors.Items.*;
@@ -85,8 +84,8 @@ public class ItemsClient {
                 .lower(new MiddleLeggingsLayerPiece())
                 .upper(new MiddleBodyLayerPiece().translucent())
                 .upper(new UpperBodyLayerPiece())
-                .chest(new ItemPiece("leftArm", 0.05f, -0.2f, 0.1f, 1.0f, new ItemStack(net.minecraft.world.item.Items.COMPASS), rotate))
-                .chest(new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, new ItemStack(net.minecraft.world.item.Items.CLOCK)))
+                .chest(new ItemPiece("leftArm", 0.05f, -0.2f, 0.1f, 1.0f, net.minecraft.world.item.Items.COMPASS, rotate))
+                .chest(new ItemPiece("body", 0.15f, 0.4f, -0.175f, 0.6f, net.minecraft.world.item.Items.CLOCK))
                 .chest(new GearPiece<>(new GearModel("body", 8), "gear", 0.05f, 0.3f, 0.18f, 2.0f))
                 .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.15f, 0.6f, 0.19f, -2.0f))
                 .chest(new GearPiece<>(new GearModel("body", 5), "gear_small", -0.1f, 0.45f, -0.17f, -2.0f))

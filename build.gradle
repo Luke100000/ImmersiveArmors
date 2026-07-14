@@ -1,73 +1,25 @@
-buildscript {
-    configurations.classpath {
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    }
-}
-
 plugins {
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.14-SNAPSHOT" apply false
-}
-
-architectury {
-    minecraft = rootProject.minecraft_version
-}
-
-subprojects {
-    apply plugin: "dev.architectury.loom"
-
-    repositories {
-        maven { url 'https://jitpack.io' }
-        maven { url 'https://maven.parchmentmc.org' }
-    }
-
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    configurations {
-        shade
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.architectury.minecraft}"
-        mappings loom.layered() {
-            officialMojangMappings()
-        }
-    }
+    id "net.fabricmc.fabric-loom" version "1.15.5" apply false
+    id "net.neoforged.moddev" version "2.0.141" apply false
 }
 
 def getAppVersion = { ->
     try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
+        def result = providers.exec {
             commandLine 'git', 'tag', '--points-at', 'HEAD'
-            standardOutput = stdout
+            ignoreExitValue = true
         }
-        def tag = stdout.toString().trim()
+        def tag = result.standardOutput.asText.get().trim()
         if (tag.isEmpty()) {
-            return rootProject.minecraft_version + "-SNAPSHOT"
+            return minecraft_version + "-SNAPSHOT"
         }
         return tag
     } catch (Exception e) {
         println "Warning: ${e.message}, is git installed?"
-        return rootProject.minecraft_version + "-DEV"
+        return minecraft_version + "-DEV"
     }
 } as Object
 
 allprojects {
-    apply plugin: "java"
-    apply plugin: "architectury-plugin"
-
-    archivesBaseName = rootProject.archives_base_name
     version = getAppVersion()
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 21
-    }
-
-    java {
-        withSourcesJar()
-    }
 }

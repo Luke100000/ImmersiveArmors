@@ -20,7 +20,7 @@ public class ArrowBlockArmorEffect extends ArmorEffect {
 
     @Override
     public float applyArmorToDamage(LivingEntity entity, DamageSource source, float amount, ItemStack armor) {
-        if (source.is(DamageTypeTags.IS_PROJECTILE) && isPrimaryArmor(armor, entity) && entity.level().random.nextFloat() < getSetCount(armor, entity) * chance) {
+        if (source.is(DamageTypeTags.IS_PROJECTILE) && isPrimaryArmor(armor, entity) && entity.level().getRandom().nextFloat() < getSetCount(armor, entity) * chance) {
             entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.SHIELD_BLOCK, entity.getSoundSource(), 0.5f, 1.25f);
             return 0;
         }

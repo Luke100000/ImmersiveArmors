@@ -7,29 +7,17 @@ import immersive_armors.item.ExtendedArmorItem;
 import immersive_armors.item.ExtendedArmorMaterial;
 import java.util.*;
 import java.util.function.Supplier;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
-import net.minecraft.world.level.block.state.BlockState;
 
 public interface Items {
     Map<String, Supplier<Item>> items = new HashMap<>();
     List<Supplier<Item>> itemsOrdered = new LinkedList<>();
-    List<Supplier<Item>> dyeableItems = new LinkedList<>();
     Map<String, Map<Supplier<Item>, Float>> lootLookup = new HashMap<>();
 
     ExtendedArmorMaterial BONE_ARMOR = registerSet(new ExtendedArmorMaterial("bone")
@@ -149,10 +137,6 @@ public interface Items {
         ItemGroups.markItemsReady();
     }
 
-    static void registerCauldronInteractions() {
-        dyeableItems.forEach(item -> CauldronInteraction.WATER.map().put(item.get(), Items::cleanDyeableItem));
-    }
-
     static ExtendedArmorMaterial registerSet(ExtendedArmorMaterial material) {
         material.registerVanillaMaterial();
 
@@ -176,9 +160,7 @@ public interface Items {
     }
 
     static Map<String, Supplier<Item>> registerDyeable(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
-        Map<String, Supplier<Item>> registered = register(name, item, material);
-        dyeableItems.add(registered.get(name));
-        return registered;
+        return register(name, item, material);
     }
 
     static Map<String, Supplier<Item>> register(String name, Supplier<Item> item, ExtendedArmorMaterial material) {
@@ -199,22 +181,6 @@ public interface Items {
 
     static List<ItemStack> getSortedItems() {
         return itemsOrdered.stream().map(i -> i.get().getDefaultInstance()).toList();
-    }
-
-    private static InteractionResult cleanDyeableItem(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, ItemStack itemStack) {
-        if (!itemStack.is(ItemTags.DYEABLE)) {
-            return InteractionResult.TRY_WITH_EMPTY_HAND;
-        } else if (!itemStack.has(DataComponents.DYED_COLOR)) {
-            return InteractionResult.TRY_WITH_EMPTY_HAND;
-        } else {
-            if (!level.isClientSide()) {
-                itemStack.remove(DataComponents.DYED_COLOR);
-                player.awardStat(Stats.CLEAN_ARMOR);
-                LayeredCauldronBlock.lowerFillLevel(blockState, level, blockPos);
-            }
-
-            return InteractionResult.SUCCESS;
-        }
     }
 
 }

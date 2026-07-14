@@ -20,8 +20,8 @@ build
 # other
 eclipse
 run
+runs
 backup
-/common/src/main/resources/assets/immersive_armors/textures/models/armor/emerald
 
 # Files from Forge MDK
 forge*changelog.txt
@@ -30,10 +30,4 @@ forge*changelog.txt
 /mcmodsrepo
 /local.properties
 
-# Files from architectury
-.architectury-transformer
-/logs
-/common/src/main/resources/assets/immersive_armors/textures/*.psd
-/.vscode
-/curseforge
-/page
+.*

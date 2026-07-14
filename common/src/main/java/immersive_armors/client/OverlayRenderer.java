@@ -4,7 +4,7 @@ import immersive_armors.Main;
 import immersive_armors.config.Config;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,7 +17,7 @@ public class OverlayRenderer {
     private static final ItemStack clock = new ItemStack(Items.CLOCK);
     private static final ItemStack compass = new ItemStack(Items.COMPASS);
 
-    public static void renderOverlay(GuiGraphics context) {
+    public static void renderOverlay(GuiGraphicsExtractor context) {
         Minecraft client = Minecraft.getInstance();
         if (!client.options.hideGui && client.gameMode != null && client.player != null) {
             for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
@@ -30,7 +30,7 @@ public class OverlayRenderer {
         }
     }
 
-    private static void renderSteampunkHud(GuiGraphics context) {
+    private static void renderSteampunkHud(GuiGraphicsExtractor context) {
         Minecraft client = Minecraft.getInstance();
 
         // Offset item when offhand slot is rendered
@@ -46,7 +46,7 @@ public class OverlayRenderer {
         int scaledWidth = client.getWindow().getGuiScaledWidth();
         int scaledHeight = client.getWindow().getGuiScaledHeight();
 
-        context.renderItem(clock, scaledWidth / 2 + (arm == HumanoidArm.LEFT ? Config.getInstance().hudClockXOffhand : Config.getInstance().hudClockX), scaledHeight + Config.getInstance().hudClockY);
-        context.renderItem(compass, scaledWidth / 2 + (arm == HumanoidArm.RIGHT ? Config.getInstance().hudCompassXOffhand : Config.getInstance().hudCompassX), scaledHeight + Config.getInstance().hudCompassY);
+        context.item(clock, scaledWidth / 2 + (arm == HumanoidArm.LEFT ? Config.getInstance().hudClockXOffhand : Config.getInstance().hudClockX), scaledHeight + Config.getInstance().hudClockY);
+        context.item(compass, scaledWidth / 2 + (arm == HumanoidArm.RIGHT ? Config.getInstance().hudCompassXOffhand : Config.getInstance().hudCompassX), scaledHeight + Config.getInstance().hudCompassY);
     }
 }

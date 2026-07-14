@@ -27,8 +27,8 @@ public abstract class Piece {
 
     }
 
-    protected void setVisible(HumanoidModel bipedModel, EquipmentSlot slot) {
-        bipedModel.setAllVisible(false);
+    protected void setVisible(HumanoidModel<?> bipedModel, EquipmentSlot slot) {
+        bipedModel.allParts().forEach(part -> part.visible = false);
         switch (slot) {
             case HEAD -> {
                 bipedModel.head.visible = true;

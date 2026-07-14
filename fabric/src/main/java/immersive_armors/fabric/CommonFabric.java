@@ -7,7 +7,7 @@ import immersive_armors.fabric.cobalt.network.NetworkHandlerImpl;
 import immersive_armors.fabric.cobalt.registration.RegistrationImpl;
 import immersive_armors.network.s2c.SettingsMessage;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
@@ -27,11 +27,10 @@ public final class CommonFabric implements ModInitializer {
         new NetworkHandlerImpl();
 
         Items.bootstrap();
-        Items.registerCauldronInteractions();
         Messages.bootstrap();
         CustomDataComponentTypes.bootstrap();
 
-        CreativeModeTab group = FabricItemGroup.builder()
+        CreativeModeTab group = FabricCreativeModeTab.builder()
                 .title(ItemGroups.getDisplayName())
                 .icon(ItemGroups::getIcon)
                 .displayItems((enabledFeatures, entries) -> entries.acceptAll(Items.getSortedItems()))

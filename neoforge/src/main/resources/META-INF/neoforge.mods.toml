@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[${minecraft_version},)"
+loaderVersion = "${neoforge_loader_version_range}"
 issueTrackerURL = "https://github.com/Luke100000/ImmersiveArmors/issues"
 license = "GPL-3.0-only"
 
@@ -20,14 +20,14 @@ itemIcon = "immersive_armors:divine_chestplate"
 
 [[dependencies.immersive_armors]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[${minecraft_version},)"
+type = "required"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.immersive_armors]]
 modId = "neoforge"
-mandatory = true
-versionRange = "[${minecraft_version},)"
+type = "required"
+versionRange = "[${neoforge_version},)"
 ordering = "NONE"
 side = "BOTH"
