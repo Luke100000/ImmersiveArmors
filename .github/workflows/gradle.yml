@@ -1,22 +1,27 @@
 name: Java CI with Gradle
 
-on: [ push ]
+on:
+  push:
+    tags:
+      - "*"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       MODRINTH_TOKEN: ${{ secrets.MR_API_TOKEN }}
       CURSEFORGE_TOKEN: ${{ secrets.CF_API_TOKEN }}
-    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout Commit
-        uses: actions/checkout@v2
-      - name: Fetch Tags
-        run: git fetch --unshallow --tags
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/checkout@v6
         with:
+          fetch-depth: 0
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
           java-version: 17
+          cache: gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle - Forge
@@ -24,41 +29,45 @@ jobs:
       - name: Build with Gradle - Fabric
         run: ./gradlew :fabric:build
       - name: Upload Artifacts - Forge
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: forge_artifacts
           path: ./forge/build/libs/
       - name: Upload Artifacts - Fabric
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: fabric_artifacts
           path: ./fabric/build/libs/
-      - name: Get tag
-        if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-      - uses: jungwinter/split@v2
-        id: split
-        with:
-          separator: "+"
-          msg: ${{steps.tag.outputs.tag}}
+      - name: Read release versions from tag
+        id: release
+        shell: bash
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          if [[ "${tag}" != *"+"* ]]; then
+            echo "::error::Release tag must use the format <mod-version>+<minecraft-version>"
+            exit 1
+          fi
+
+          echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
+          echo "version=${tag%%+*}" >> "${GITHUB_OUTPUT}"
+          echo "game_version=${tag#*+}" >> "${GITHUB_OUTPUT}"
       - name: "Upload Fabric"
-        uses: Kir-Antipov/mc-publish@v3.1
-        if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
+        uses: Kira-NT/mc-publish@v3.3.1
         with:
           modrinth-id: eE2Db4YU
           modrinth-token: ${{ env.MODRINTH_TOKEN }}
           curseforge-id: 580681
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
-          name: "[Fabric ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
+          name: "[Fabric ${{ steps.release.outputs.game_version }}] Immersive Armors - ${{ steps.release.outputs.version }}"
           changelog-file: changelog.md
           version-type: release
-          files: "fabric/build/libs/immersive-armors-${{steps.tag.outputs.tag}}-fabric.jar"
+          files: "fabric/build/libs/immersive-armors-${{ steps.release.outputs.tag }}-fabric.jar"
           loaders: |
             fabric
+          environment: client | server
           game-versions: |
-            ${{steps.split.outputs._1}}
+            ${{ steps.release.outputs.game_version }}
           java: |
             Java 8
           dependencies: |
@@ -66,22 +75,22 @@ jobs:
 
           fail-mode: skip
       - name: "Upload Forge"
-        uses: Kir-Antipov/mc-publish@v3.1
-        if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
+        uses: Kira-NT/mc-publish@v3.3.1
         with:
           modrinth-id: eE2Db4YU
           modrinth-token: ${{ env.MODRINTH_TOKEN }}
           curseforge-id: 580681
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
-          name: "[Forge ${{steps.split.outputs._1}}] Immersive Armors - ${{steps.split.outputs._0}}"
+          name: "[Forge ${{ steps.release.outputs.game_version }}] Immersive Armors - ${{ steps.release.outputs.version }}"
           changelog-file: changelog.md
           version-type: release
-          files: "forge/build/libs/immersive-armors-${{steps.tag.outputs.tag}}-forge.jar"
+          files: "forge/build/libs/immersive-armors-${{ steps.release.outputs.tag }}-forge.jar"
           loaders: |
             forge
+          environment: client | server
           game-versions: |
-            ${{steps.split.outputs._1}}
+            ${{ steps.release.outputs.game_version }}
           java: |
             Java 8
 
