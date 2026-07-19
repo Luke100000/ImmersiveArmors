@@ -8,7 +8,7 @@
 		"MobMixin"
 	],
 	"client": [
-		"MixinGui",
+		"MixinHud",
 		"MixinCapeLayer",
 		"MixinPlayer",
 		"MixinHumanoidArmorLayer",

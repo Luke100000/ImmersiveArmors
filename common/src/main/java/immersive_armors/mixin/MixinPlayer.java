@@ -22,7 +22,7 @@ public abstract class MixinPlayer {
             return;
         }
 
-        if ((Object) this instanceof Player player && player.isLocalPlayer() && !Minecraft.getInstance().gameRenderer.getMainCamera().isDetached()) {
+        if ((Object) this instanceof Player player && player.isLocalPlayer() && !Minecraft.getInstance().gameRenderer.mainCamera().isDetached()) {
             return;
         }
 

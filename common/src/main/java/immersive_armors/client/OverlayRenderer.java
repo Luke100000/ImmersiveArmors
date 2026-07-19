@@ -19,7 +19,7 @@ public class OverlayRenderer {
 
     public static void renderOverlay(GuiGraphicsExtractor context) {
         Minecraft client = Minecraft.getInstance();
-        if (!client.options.hideGui && client.gameMode != null && client.player != null) {
+        if (!client.gui.hud.isHidden() && client.gameMode != null && client.player != null) {
             for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
                 ItemStack item = client.player.getItemBySlot(slot);
                 Identifier id = BuiltInRegistries.ITEM.getKey(item.getItem());
