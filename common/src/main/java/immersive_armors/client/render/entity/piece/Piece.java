@@ -27,28 +27,14 @@ public abstract class Piece {
 
     }
 
-    protected void setVisible(HumanoidModel<?> bipedModel, EquipmentSlot slot) {
-        bipedModel.allParts().forEach(part -> part.visible = false);
-        switch (slot) {
-            case HEAD -> {
-                bipedModel.head.visible = true;
-                bipedModel.hat.visible = true;
-            }
-            case CHEST -> {
-                bipedModel.body.visible = true;
-                bipedModel.rightArm.visible = true;
-                bipedModel.leftArm.visible = true;
-            }
-            case LEGS -> {
-                bipedModel.body.visible = true;
-                bipedModel.rightLeg.visible = true;
-                bipedModel.leftLeg.visible = true;
-            }
-            case FEET -> {
-                bipedModel.rightLeg.visible = true;
-                bipedModel.leftLeg.visible = true;
-            }
-        }
+    protected Iterable<ModelPart> getPartsForSlot(HumanoidModel<?> bipedModel, EquipmentSlot slot) {
+        return switch (slot) {
+            case HEAD -> List.of(bipedModel.head);
+            case CHEST -> List.of(bipedModel.body, bipedModel.rightArm, bipedModel.leftArm);
+            case LEGS -> List.of(bipedModel.body, bipedModel.rightLeg, bipedModel.leftLeg);
+            case FEET -> List.of(bipedModel.rightLeg, bipedModel.leftLeg);
+            default -> List.of();
+        };
     }
 
     private Identifier getTexture(ExtendedArmorItem item, boolean overlay) {
@@ -90,7 +76,11 @@ public abstract class Piece {
 
     private List<CubeRender> collectCubes(PoseStack matrices, Iterable<ModelPart> parts) {
         List<CubeRender> cubes = new ArrayList<>();
-        parts.forEach(part -> collectCubes(matrices, part, cubes));
+        parts.forEach(part -> {
+            if (part.visible) {
+                collectCubes(matrices, part, cubes);
+            }
+        });
         return cubes;
     }
 
