@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_dye",
+  "category": "misc",
+  "dye": "#minecraft:dyes",
+  "result": {
+    "id": "immersive_armors:robe_boots"
+  },
+  "target": "immersive_armors:robe_boots"
+}

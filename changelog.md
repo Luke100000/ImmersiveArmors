@@ -1,3 +1,7 @@
+# 1.8.1
+
+* Fixed dyeable armor
+
 # 1.8.0
 
 * Ported to 1.21.11
