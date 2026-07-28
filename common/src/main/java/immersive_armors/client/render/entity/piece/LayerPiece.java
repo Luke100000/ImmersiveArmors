@@ -22,7 +22,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.trim.ArmorTrim;
 
-import java.util.List;
 
 public abstract class LayerPiece extends Piece {
     protected abstract HumanoidModel getModel();
@@ -53,8 +52,7 @@ public abstract class LayerPiece extends Piece {
         if (itemStack.getItem() instanceof ExtendedArmorItem armorItem) {
             HumanoidModel<HumanoidRenderState> model = getModel();
             copyHumanoid(armorModel, model);
-            setVisible(model, armorSlot);
-            Iterable<ModelPart> parts = List.of(model.root());
+            Iterable<ModelPart> parts = getPartsForSlot(model, armorSlot);
 
             if (armorItem instanceof DyeableExtendedArmorItem dyeableArmorItem) {
                 int c = dyeableArmorItem.getColor(itemStack);
